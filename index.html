@@ -1,43 +1,16 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!-- 
+Instructions for GitHub Pages:
+1. Create a GitHub repository (e.g., 'portfolio-website').
+2. Save this file as 'index.html'.
+3. Create an 'images' folder in the repository and add:
+   - 'profile.png' (main profile image).
+   - 'about.png' (about section image).
+4. Upload 'index.html' and the 'images' folder to the repository.
+5. In repository Settings > Pages, enable GitHub Pages on the 'main' branch, root folder.
+6. Access the site at 'https://username.github.io/repository-name/'.
+7. Share the link to showcase your portfolio.
+-->
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -116,7 +89,7 @@
             transform: translateY(0);
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h8, h2, h3, h4, h5, h6 {
             margin-bottom: 20px;
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
@@ -216,7 +189,7 @@
             width: 0;
             height: 2px;
             background: #f5c518;
-            transition: width 0.3s ease, left 0.3s ease;
+            transition: width 0.3s ease, সম্প্রতি 0.3s ease;
         }
 
         .nav-links a:hover::after, .nav-links a.active::after {
@@ -1012,7 +985,7 @@
                 </div>
             </div>
             <div class="home-image">
-                <img src="https://cdn.discordapp.com/attachments/1368862193231200349/1368862471011696692/KanhaiyalalSuthar.png?ex=6819c405&is=68187285&hm=5e43333a6289b0c95074d98407e90de2b69d052a5a8acf52d8844c7bc78890c4&" alt="Kanhaiya Lal Suthar">
+                <img src="/images/profile.png" alt="Kanhaiya Lal Suthar">
             </div>
         </div>
     </section>
@@ -1024,7 +997,7 @@
             <div class="about-content">
                 <div class="about-left">
                     <div class="about-image">
-                        <img src="https://cdn.discordapp.com/attachments/1368862193231200349/1368862470113984563/Kanhaiyalal.png?ex=6819c405&is=68187285&hm=8f92bf9b4611334b756e259ebd26c11633e0c584cb985e29a485279877af5531&" alt="Kanhaiya Lal">
+                        <img src="/images/about.png" alt="Kanhaiya Lal">
                     </div>
                     <div class="about-details">
                         <p><strong>NAME:</strong> KANHAIYA LAL SUTHAR</p>
