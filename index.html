@@ -1251,7 +1251,7 @@
             <div class="education-section">
                 <h3 class="resume-title">EDUCATION</h3>
                 <div class="cards-container">
-                    <div class="card" style="--card-index: 1;" data-tilt data-tilt-max="8">
+                    <div class="card" styleFirestore: "--card-index: 1;" data-tilt data-tilt-max="8">
                         <p class="card-year">2017-2018</p>
                         <h4 class="card-title">SECONDARY SCHOOL</h4>
                         <p class="card-description"><em>Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu</em></p>
@@ -1307,7 +1307,7 @@
                     <div class="contact-icon">📩</div>
                     <h3 class="contact-title">EMAIL ADDRESS</h3>
                     <p class="contact-info">
-                        <a href="mailto:klsuthar0987@gmail.com">klsuthar0987@gmail.com</a>
+                        <a href="/cdn-cgi/l/email-protection#d8f3f4ebedecf0f9eaa8a1a0afd8fff5f9f1f4b6fbf7f5"><span class="__cf_email__" data-cfemail="153e392620213d3427656c6d62153238343c397b363a38">[email&#160;protected]</span></a>
                     </p>
                 </div>
             </div>
@@ -1324,7 +1324,7 @@
             
             <div class="question-section">
                 <h3 class="question-title">HAVE A QUESTION?</h3>
-                <a href="mailto:klsuthar0987@gmail.com" class="btn btn-primary">CLICK HERE</a>
+                <a href="/cdn-cgi/l/email-protection#b8d3d4cbcdccd0d9ca8881808ff8dfd5d9d1d496dbd7d5" class="btn btn-primary">CLICK HERE</a>
             </div>
             
             <div class="social-links">
@@ -1337,8 +1337,40 @@
         </div>
     </section>
 
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js"></script>
     <script>
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+            return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+            if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+                try {
+                    var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                    var firstSheetName = workbook.SheetNames[0];
+                    var worksheet = workbook.Sheets[firstSheetName];
+                    var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                    var filteredData = jsonData.filter(row => row.some(filledCell));
+                    var headerRowIndex = filteredData.findIndex((row, index) =>
+                        row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                    );
+                    if (headerRowIndex === -1 || headerRowIndex > 25) {
+                        headerRowIndex = 0;
+                    }
+                    var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+                    csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                    return csv;
+                } catch (e) {
+                    console.error(e);
+                    return "";
+                }
+            }
+            return gk_fileData[filename] || "";
+        }
+
         // Custom Cursor
         const cursor = document.querySelector('.custom-cursor');
         document.addEventListener('mousemove', (e) => {
@@ -1378,7 +1410,6 @@
                 this.container.appendChild(this.renderer.domElement);
                 this.camera.position.z = 6;
 
-                // Lighting
                 const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
                 this.scene.add(ambientLight);
 
@@ -1394,7 +1425,6 @@
                 directionalLight.shadow.mapSize.height = 1024;
                 this.scene.add(directionalLight);
 
-                // Create particles
                 for (let i = 0; i < this.numParticles; i++) {
                     const shape = this.shapes[Math.floor(Math.random() * this.shapes.length)];
                     const color = this.colors[Math.floor(Math.random() * this.colors.length)];
@@ -1588,21 +1618,14 @@
                 skillObserver.observe(document.querySelector('.skills'));
             });
 
-            // Parallax and Zoom Effect
+            // Parallax Effect
             window.addEventListener('scroll', () => {
                 const scrollPosition = window.pageYOffset;
                 homeSection.style.setProperty('--scroll', scrollPosition + 'px');
                 if (scrollPosition > 50) {
                     homeSection.classList.add('parallax');
-                    sections.forEach(section => {
-                        const sectionTop = section.offsetTop;
-                        if (scrollPosition >= sectionTop - window.innerHeight && scrollPosition <= sectionTop + section.clientHeight) {
-                            section.style.transform = `scale(${1 + scrollPosition / 10000})`;
-                        }
-                    });
                 } else {
                     homeSection.classList.remove('parallax');
-                    sections.forEach(section => section.style.transform = 'scale(1)');
                 }
             });
         };
@@ -1654,5 +1677,6 @@
         animateOnScroll();
         hideLoadingOverlay();
     </script>
+    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'93b16bc36c427bba',t:'MTc0NjQ2MDUxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body>
 </html>
