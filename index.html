@@ -6,6 +6,7 @@
     <title>Kanhaiya Lal Suthar - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <style>
         /* Reset and Base Styles */
         * {
@@ -177,7 +178,7 @@
             width: 0;
             height: 2px;
             background: #f5c518;
-            transition: width 0.3s ease, সম্প্রতি 0.3s ease;
+            transition: width 0.3s ease, left 0.3s ease;
         }
 
         .nav-links a:hover::after, .nav-links a.active::after {
@@ -248,6 +249,7 @@
         .home-text {
             flex: 1;
             padding-right: 60px;
+            position: relative;
         }
 
         .hello {
@@ -256,6 +258,7 @@
             font-family: 'Roboto', sans-serif;
             font-weight: 500;
             color: #f5c518;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .name {
@@ -263,6 +266,7 @@
             margin-bottom: 20px;
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .name span {
@@ -279,6 +283,7 @@
             font-weight: 400;
             font-style: italic;
             transition: color 0.3s ease;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .profession::after {
@@ -805,7 +810,7 @@
                 flex-direction: column;
             }
 
-            .home-text, .home-image {
+            .home-text {
                 width: 100%;
                 padding-right: 0;
                 text-align: center;
@@ -816,6 +821,7 @@
             }
 
             .home-image {
+                width: 100%;
                 margin-top: 50px;
             }
 
@@ -900,6 +906,42 @@
                 flex-basis: 100%;
                 margin-bottom: 30px;
             }
+
+            /* Mobile-specific home section styles */
+            .home-content {
+                flex-direction: column;
+            }
+
+            .home-text {
+                background-image: url('https://github.com/Klsuthar/KanhaiyalalSuthar/blob/main/images/profile.png?raw=true');
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                padding: 40px 20px;
+                border-radius: 10px;
+                position: relative;
+                min-height: 400px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .home-text::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5); /* Dark overlay for readability */
+                border-radius: 10px;
+                z-index: -1;
+            }
+
+            .home-image {
+                display: none; /* Hide the image div on mobile */
+            }
         }
 
         /* Animation for Nav Links */
@@ -961,7 +1003,7 @@
 
     <!-- Home Section -->
     <section id="home">
-        <canvas id="maths-particles"></canvas>
+        <div id="maths-particles"></div>
         <div class="container home-content">
             <div class="home-text">
                 <p class="hello">HELLO!</p>
@@ -1126,17 +1168,25 @@
                 <div class="contact-item" data-tilt data-tilt-max="10">
                     <div class="contact-icon">📍</div>
                     <h3 class="contact-title">ADDRESS</h3>
-                    <p class="contact-info">Dhadheru, Churu, Rajasthan</p>
+                    <p class="contact-info">
+                        <a href="https://maps.app.goo.gl/FoWhp6aNYvZx836EA" target="_blank" rel="noopener noreferrer">
+                          Dhadheru, Churu, Rajasthan
+                        </a>
+                      </p>
                 </div>
                 <div class="contact-item" data-tilt data-tilt-max="10">
                     <div class="contact-icon">📞</div>
                     <h3 class="contact-title">CONTACT NUMBER</h3>
-                    <p class="contact-info">+91 9001375139</p>
+                    <p class="contact-info">
+                        <a href="tel:+919001375139">+91 9001375139</a>
+                    </p>
                 </div>
                 <div class="contact-item" data-tilt data-tilt-max="10">
-                    <div class="contact-icon">✉️</div>
+                    <div class="contact-icon">📩</div>
                     <h3 class="contact-title">EMAIL ADDRESS</h3>
-                    <p class="contact-info"><a href="mailto:klsuthar0987@gmail.com">klsuthar0987@gmail.com</a></p>
+                    <p class="contact-info">
+                        <a href="mailto:klsuthar0987@gmail.com">klsuthar0987@gmail.com</a>
+                    </p>
                 </div>
             </div>
 
@@ -1179,49 +1229,116 @@
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
 
-        // Maths Particles Animation
+        // 3D Shapes Particles Animation with Three.js
         class MathsParticles {
-            constructor(canvasId) {
-                this.canvas = document.getElementById(canvasId);
-                this.ctx = this.canvas.getContext('2d');
-                this.symbols = ['π', '%', '*', '>', '<', '[', ']', 'λ', 'Σ', '∫', '√'];
+            constructor(containerId) {
+                this.container = document.getElementById(containerId);
+                this.scene = new THREE.Scene();
+                this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                this.renderer = new THREE.WebGLRenderer({ alpha: true });
+                this.renderer.shadowMap.enabled = true;
+                this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
                 this.particles = [];
                 this.numParticles = 50;
+                this.shapes = [
+                    { type: 'Sphere', geometry: new THREE.SphereGeometry(0.2, 32, 32) },
+                    { type: 'Hemisphere', geometry: new THREE.SphereGeometry(0.2, 32, 32, 0, Math.PI) },
+                    { type: 'Cube', geometry: new THREE.BoxGeometry(0.3, 0.3, 0.3) },
+                    { type: 'Cuboid', geometry: new THREE.BoxGeometry(0.4, 0.2, 0.3) },
+                    { type: 'Cone', geometry: new THREE.ConeGeometry(0.2, 0.4, 32) },
+                    { type: 'Cylinder', geometry: new THREE.CylinderGeometry(0.2, 0.2, 0.4, 32) },
+                    { type: 'Pyramid', geometry: new THREE.ConeGeometry(0.3, 0.4, 4) },
+                    { type: 'Triangular Pyramid', geometry: new THREE.TetrahedronGeometry(0.3) },
+                    { type: 'Square Pyramid', geometry: new THREE.ConeGeometry(0.3, 0.4, 4) },
+                    { type: 'Prism', geometry: new THREE.BoxGeometry(0.3, 0.3, 0.4) },
+                    { 
+                        type: 'Triangular Prism', 
+                        geometry: (() => {
+                            const shape = new THREE.Shape([
+                                new THREE.Vector2(0, 0),
+                                new THREE.Vector2(0.3, 0),
+                                new THREE.Vector2(0.15, 0.26)
+                            ]);
+                            const extrudeSettings = { depth: 0.4, bevelEnabled: false };
+                            return new THREE.ExtrudeGeometry(shape, extrudeSettings);
+                        })()
+                    },
+                    { type: 'Pentagonal Prism', geometry: new THREE.CylinderGeometry(0.2, 0.2, 0.4, 5) },
+                    { type: 'Torus', geometry: new THREE.TorusGeometry(0.2, 0.05, 16, 32) }
+                ];
+                this.material = new THREE.MeshStandardMaterial({ 
+                    color: 0xf5c518, 
+                    roughness: 0.5, 
+                    metalness: 0.3, 
+                    transparent: true 
+                });
                 this.init();
             }
 
             init() {
-                this.canvas.width = window.innerWidth;
-                this.canvas.height = window.innerHeight;
+                this.renderer.setSize(window.innerWidth, window.innerHeight);
+                this.container.appendChild(this.renderer.domElement);
+                this.camera.position.z = 5;
+
+                // Lighting
+                const ambientLight = new THREE.AmbientLight(0x404040, 0.3);
+                this.scene.add(ambientLight);
+
+                const pointLight = new THREE.PointLight(0xf5c518, 1, 10);
+                pointLight.position.set(5, 5, 5);
+                pointLight.castShadow = true;
+                this.scene.add(pointLight);
+
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+                directionalLight.position.set(0, 1, 1);
+                directionalLight.castShadow = true;
+                directionalLight.shadow.mapSize.width = 512;
+                directionalLight.shadow.mapSize.height = 512;
+                this.scene.add(directionalLight);
+
+                // Create particles
                 for (let i = 0; i < this.numParticles; i++) {
-                    this.particles.push({
-                        symbol: this.symbols[Math.floor(Math.random() * this.symbols.length)],
-                        x: Math.random() * this.canvas.width,
-                        y: Math.random() * this.canvas.height,
-                        vx: (Math.random() - 0.5) * 2,
-                        vy: (Math.random() - 0.5) * 2,
-                        size: 10 + Math.random() * 20,
-                        opacity: 0.2 + Math.random() * 0.3
-                    });
+                    const shape = this.shapes[Math.floor(Math.random() * this.shapes.length)];
+                    const mesh = new THREE.Mesh(shape.geometry, this.material);
+                    mesh.position.set(
+                        (Math.random() - 0.5) * 10,
+                        (Math.random() - 0.5) * 10,
+                        (Math.random() - 0.5) * 5
+                    );
+                    mesh.vx = (Math.random() - 0.5) * 0.02;
+                    mesh.vy = (Math.random() - 0.5) * 0.02;
+                    mesh.vz = (Math.random() - 0.5) * 0.02;
+                    mesh.opacity = 0.2 + Math.random() * 0.3;
+                    mesh.material.opacity = mesh.opacity;
+                    mesh.castShadow = true;
+                    mesh.receiveShadow = true;
+                    this.scene.add(mesh);
+                    this.particles.push(mesh);
                 }
+
                 window.addEventListener('resize', () => {
-                    this.canvas.width = window.innerWidth;
-                    this.canvas.height = window.innerHeight;
+                    this.renderer.setSize(window.innerWidth, window.innerHeight);
+                    this.camera.aspect = window.innerWidth / window.innerHeight;
+                    this.camera.updateProjectionMatrix();
                 });
+
                 this.animate();
             }
 
             animate() {
-                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
                 this.particles.forEach(p => {
-                    p.x += p.vx;
-                    p.y += p.vy;
-                    if (p.x < 0 || p.x > this.canvas.width) p.vx *= -1;
-                    if (p.y < 0 || p.y > this.canvas.height) p.vy *= -1;
-                    this.ctx.font = `${p.size}px 'Playfair Display', serif`;
-                    this.ctx.fillStyle = `rgba(245, 197, 24, ${p.opacity})`;
-                    this.ctx.fillText(p.symbol, p.x, p.y);
+                    p.position.x += p.vx;
+                    p.position.y += p.vy;
+                    p.position.z += p.vz;
+                    p.rotation.x += 0.01;
+                    p.rotation.y += 0.01;
+
+                    if (p.position.x < -5 || p.position.x > 5) p.vx *= -1;
+                    if (p.position.y < -5 || p.position.y > 5) p.vy *= -1;
+                    if (p.position.z < -2.5 || p.position.z > 2.5) p.vz *= -1;
                 });
+
+                this.renderer.render(this.scene, this.camera);
                 requestAnimationFrame(() => this.animate());
             }
         }
