@@ -1,5 +1,3 @@
---- START OF FILE code (1).html ---
-
 <script type="text/javascript">
         // These gk_ functions seem unrelated to the portfolio's core functionality
         // but are kept as they were in the original source.
@@ -436,11 +434,13 @@
         }
         .skill {
             margin-bottom: 25px; position: relative; opacity: 0; transform: translateX(-20px);
+            /* Default transition for desktop */
             transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+             transition-delay: calc(0.1s * var(--skill-index, 1));
         }
         section.visible .skill {
              opacity: 1; transform: translateX(0);
-             transition-delay: calc(0.1s * var(--skill-index, 1));
+             /* transition-delay applied above */
         }
         .skill-name {
             margin-bottom: 8px; display: flex; justify-content: space-between;
@@ -480,12 +480,14 @@
             background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 15px;
             padding: 30px; border: 1px solid rgba(245, 197, 24, 0.2);
             opacity: 0; transform: translateY(40px) scale(0.95);
+            /* Default transition for desktop */
             transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+            transition-delay: calc(0.12s * var(--card-index, 1));
             transform-style: preserve-3d;
         }
         section.visible .card {
             opacity: 1; transform: translateY(0) scale(1);
-            transition-delay: calc(0.12s * var(--card-index, 1));
+            /* transition-delay applied above */
         }
         .card:hover { transform: translateY(-12px) scale(1.03); box-shadow: 0 15px 40px rgba(0, 196, 180, 0.55); }
         /* Remove hover effect on touch devices */
@@ -515,13 +517,15 @@
         .contact-item {
             flex: 1; min-width: 220px; text-align: center;
             opacity: 0; transform: translateY(40px) scale(0.95);
+            /* Default transition for desktop */
             transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition-delay: calc(0.12s * var(--contact-index, 1));
             transform-style: preserve-3d;
             padding: 15px; /* Add some padding */
         }
         section.visible .contact-item {
             opacity: 1; transform: translateY(0) scale(1);
-            transition-delay: calc(0.12s * var(--contact-index, 1));
+            /* transition-delay applied above */
         }
         .contact-icon {
             width: 70px; height: 70px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);
@@ -633,6 +637,26 @@
         .maths-loader span:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(50px); animation-delay: 0.8s; }
         @keyframes mathPulse { 0%, 100% { opacity: 1; transform-origin: center center; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.8); } }
 
+        /* --- Keyframe for Mobile Bounce Animation --- */
+        @keyframes enterUpBounce {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1.02); /* Bounce up past final position */
+            }
+            80% {
+                transform: translateY(5px) scale(0.98); /* Bounce down */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1); /* Settle */
+            }
+        }
+
+
         /* --- Responsive Styles --- */
 
         /* Medium screens (Tablets, small laptops) */
@@ -740,6 +764,38 @@
             .about-details p, .about-right p, .about-info p { font-size: 16px; line-height: 1.7; } /* Adjust text size */
             .skills-title { font-size: 20px; }
             .skill-name { font-size: 15px; }
+
+            /* Mobile animation override for cards, contact items, skills */
+            .card, .contact-item, .skill {
+                 /* Keep initial hidden state consistent */
+                 opacity: 0;
+                 /* Adjust initial Y offset slightly if needed for bounce animation */
+                 transform: translateY(50px) scale(0.95);
+             }
+
+             section.visible .card,
+             section.visible .contact-item,
+             section.visible .skill {
+                 transition: none; /* Disable default desktop transition */
+                 transform: none; /* Reset transform before animation starts */
+                 opacity: 1; /* Set final opacity here to avoid flicker if animation has no opacity */
+                 animation-name: enterUpBounce;
+                 animation-duration: 0.9s; /* Adjust duration */
+                 animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Easing for bounce */
+                 animation-fill-mode: forwards; /* Keep final state */
+             }
+
+             /* Apply staggered delay using animation-delay */
+             section.visible .card {
+                 animation-delay: calc(0.15s * var(--card-index, 1)); /* Adjust delay multiplier */
+             }
+             section.visible .contact-item {
+                 animation-delay: calc(0.15s * var(--contact-index, 1)); /* Adjust delay multiplier */
+             }
+              section.visible .skill {
+                  animation-delay: calc(0.1s * var(--skill-index, 1)); /* Keep original delay for skills */
+              }
+
 
             .cards-container { grid-template-columns: 1fr; gap: 30px; } /* Single column grid */
             .card { padding: 25px; } /* Adjust card padding */
@@ -1176,7 +1232,8 @@
              const observerOptions = {
                  root: null, // Observe relative to viewport
                  rootMargin: '0px',
-                 threshold: 0.15 // Trigger when 15% of the element is visible
+                 // Trigger slightly earlier on mobile to ensure animation starts promptly
+                 threshold: window.matchMedia("(max-width: 768px)").matches ? 0.1 : 0.15
              };
 
              const sectionObserver = new IntersectionObserver((entries, observer) => {
@@ -1187,8 +1244,8 @@
                          // Animate skill bars only when 'about' section becomes visible
                          if (entry.target.id === 'about') {
                              entry.target.querySelectorAll('.skill-progress').forEach((bar) => {
-                                 // No need for individual timeouts, CSS transition handles the delay
-                                 setTimeout(() => bar.classList.add('animate'), 200); // Small delay before starting animation
+                                 // Delay skill bar fill animation slightly
+                                 setTimeout(() => bar.classList.add('animate'), 500); // Increased delay
                              });
                          }
 
@@ -1204,6 +1261,8 @@
                                 bar.classList.remove('animate');
                             });
                          }
+                         // Reset mobile animations if needed (remove animation class, reset opacity/transform if not handled by initial state)
+                         // Note: The CSS handles the initial state (.card, .contact-item, .skill without .visible)
                       }
                  });
              }, observerOptions);
