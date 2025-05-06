@@ -438,7 +438,7 @@
             transition: opacity 0.5s ease-out, transform 0.5s ease-out;
              transition-delay: calc(0.1s * var(--skill-index, 1));
         }
-        section.visible .skill {
+        section.visible .skill { /* Still needed for desktop fade/slide */
              opacity: 1; transform: translateX(0);
              /* transition-delay applied above */
         }
@@ -485,7 +485,7 @@
             transition-delay: calc(0.12s * var(--card-index, 1));
             transform-style: preserve-3d;
         }
-        section.visible .card {
+        section.visible .card { /* Still needed for desktop fade/slide */
             opacity: 1; transform: translateY(0) scale(1);
             /* transition-delay applied above */
         }
@@ -523,7 +523,7 @@
             transform-style: preserve-3d;
             padding: 15px; /* Add some padding */
         }
-        section.visible .contact-item {
+        section.visible .contact-item { /* Still needed for desktop fade/slide */
             opacity: 1; transform: translateY(0) scale(1);
             /* transition-delay applied above */
         }
@@ -766,36 +766,28 @@
             .skill-name { font-size: 15px; }
 
             /* Mobile animation override for cards, contact items, skills */
+            /* Initial state for elements that will animate on mobile */
             .card, .contact-item, .skill {
-                 /* Keep initial hidden state consistent */
+                 /* Keep initial hidden state consistent with desktop */
                  opacity: 0;
-                 /* Adjust initial Y offset slightly if needed for bounce animation */
+                 /* Adjust initial transform based on animation start */
                  transform: translateY(50px) scale(0.95);
+                 /* Ensure desktop transition doesn't interfere */
+                 transition: none;
              }
 
-             section.visible .card,
-             section.visible .contact-item,
-             section.visible .skill {
-                 transition: none; /* Disable default desktop transition */
-                 transform: none; /* Reset transform before animation starts */
-                 opacity: 1; /* Set final opacity here to avoid flicker if animation has no opacity */
+             /* Animation application via JS-added class */
+             .card.animate-bounce,
+             .contact-item.animate-bounce,
+             .skill.animate-bounce {
+                 /* Apply the bounce animation */
                  animation-name: enterUpBounce;
                  animation-duration: 0.9s; /* Adjust duration */
                  animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Easing for bounce */
                  animation-fill-mode: forwards; /* Keep final state */
+                 /* Delay is still picked up from inline style variable */
+                 animation-delay: var(--animation-delay, 0s);
              }
-
-             /* Apply staggered delay using animation-delay */
-             section.visible .card {
-                 animation-delay: calc(0.15s * var(--card-index, 1)); /* Adjust delay multiplier */
-             }
-             section.visible .contact-item {
-                 animation-delay: calc(0.15s * var(--contact-index, 1)); /* Adjust delay multiplier */
-             }
-              section.visible .skill {
-                  animation-delay: calc(0.1s * var(--skill-index, 1)); /* Keep original delay for skills */
-              }
-
 
             .cards-container { grid-template-columns: 1fr; gap: 30px; } /* Single column grid */
             .card { padding: 25px; } /* Adjust card padding */
@@ -910,27 +902,27 @@
                     </div>
                     <h3 class="skills-title">SKILLS</h3>
                     <div class="skills">
-                        <div class="skill" style="--skill-index: 1;">
+                        <div class="skill" style="--skill-index: 1; --animation-delay: 0.1s;">
                             <div class="skill-name"><span>TEACHING</span><span>95%</span></div>
                             <div class="skill-bar"><div class="skill-progress" style="--progress-width: 95%;"></div></div>
                             <div class="skill-tooltip">Expert in simplifying complex concepts</div>
                         </div>
-                        <div class="skill" style="--skill-index: 2;">
+                        <div class="skill" style="--skill-index: 2; --animation-delay: 0.2s;">
                             <div class="skill-name"><span>COMPUTER SKILLS</span><span>90%</span></div>
                             <div class="skill-bar"><div class="skill-progress" style="--progress-width: 90%;"></div></div>
                             <div class="skill-tooltip">MS Office, Tech Tools</div>
                         </div>
-                        <div class="skill" style="--skill-index: 3;">
+                        <div class="skill" style="--skill-index: 3; --animation-delay: 0.3s;">
                             <div class="skill-name"><span>COMMUNICATION</span><span>70%</span></div>
                             <div class="skill-bar"><div class="skill-progress" style="--progress-width: 70%;"></div></div>
                             <div class="skill-tooltip">Clear & Engaging Delivery</div>
                         </div>
-                        <div class="skill" style="--skill-index: 4;">
+                        <div class="skill" style="--skill-index: 4; --animation-delay: 0.4s;">
                             <div class="skill-name"><span>QUICK LEARNING</span><span>95%</span></div>
                             <div class="skill-bar"><div class="skill-progress" style="--progress-width: 95%;"></div></div>
                             <div class="skill-tooltip">Eager to master new skills</div>
                         </div>
-                        <div class="skill" style="--skill-index: 5;">
+                        <div class="skill" style="--skill-index: 5; --animation-delay: 0.5s;">
                             <div class="skill-name"><span>ADAPTABILITY</span><span>80%</span></div>
                             <div class="skill-bar"><div class="skill-progress" style="--progress-width: 80%;"></div></div>
                             <div class="skill-tooltip">Flexible & Open to Change</div>
@@ -962,12 +954,12 @@
                 <h3 class="resume-title">EXPERIENCE</h3>
                 <div class="cards-container">
                     <!-- Updated 2023 Internship -->
-                    <div class="card" style="--card-index: 1;" data-tilt>
+                    <div class="card" style="--card-index: 1; --animation-delay: 0.15s;" data-tilt>
                         <p class="card-year">2023</p> <h4 class="card-title">MATHS TEACHER INTERN - SENIOR LEVEL</h4>
                         <p class="card-description">Gov. Sen. Sec. School, Dhadheru (1 Month)</p>
                     </div>
                     <!-- Added 2024 Internship -->
-                    <div class="card" style="--card-index: 2;" data-tilt>
+                    <div class="card" style="--card-index: 2; --animation-delay: 0.30s;" data-tilt>
                         <p class="card-year">2024</p> <h4 class="card-title">MATHS TEACHER INTERN - SENIOR LEVEL</h4>
                         <p class="card-description">Gov. Sen. Sec. School, Dhadheru (1 Month)</p>
                     </div>
@@ -978,24 +970,24 @@
                  <!-- Corrected Card Indices for Animation (Start from 1 for each section if desired, or continue sequence) -->
                  <!-- Let's continue the sequence for simplicity -->
                 <div class="cards-container">
-                    <div class="card" style="--card-index: 3;" data-tilt> <!-- Was 1 -->
+                    <div class="card" style="--card-index: 3; --animation-delay: 0.45s;" data-tilt> <!-- Was 1 -->
                         <p class="card-year">2017-2018</p> <h4 class="card-title">SECONDARY SCHOOL</h4>
                         <p class="card-description">Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu</p>
                         <p class="card-description">Grade: <strong>First Class Distinction (84.33%)</strong></p>
                     </div>
-                    <div class="card" style="--card-index: 4;" data-tilt> <!-- Was 2 -->
+                    <div class="card" style="--card-index: 4; --animation-delay: 0.60s;" data-tilt> <!-- Was 2 -->
                         <p class="card-year">2019-2020</p> <h4 class="card-title">HIGHER SECONDARY SCHOOL</h4>
                         <p class="card-description">Abhilasha Shikshan Sansthani, Sandwa, Churu</p>
                         <p class="card-description">Grade: <strong>First Class Distinction (87.60%)</strong></p>
                     </div>
-                    <div class="card" style="--card-index: 5;" data-tilt> <!-- Was 3 -->
+                    <div class="card" style="--card-index: 5; --animation-delay: 0.75s;" data-tilt> <!-- Was 3 -->
                         <!-- Corrected BSc Dates -->
                         <p class="card-year">2020-2023</p> <h4 class="card-title">BACHELOR OF SCIENCE (BSc)</h4>
                         <!-- Corrected University/Institute Name -->
                         <p class="card-description">Maharaja Ganga Singh University, Bikaner (via Lohia College, Churu)</p>
                         <p class="card-description">Grade: <strong>First Class Distinction (64.15%)</strong></p>
                     </div>
-                    <div class="card" style="--card-index: 6;" data-tilt> <!-- Was 4 -->
+                    <div class="card" style="--card-index: 6; --animation-delay: 0.90s;" data-tilt> <!-- Was 4 -->
                         <!-- Corrected BEd Dates -->
                         <p class="card-year">2022-2024</p> <h4 class="card-title">BACHELOR OF EDUCATION (BEd)</h4>
                         <p class="card-description">Sadguru Institute of Education, Sanganer, Jaipur</p>
@@ -1012,35 +1004,35 @@
             <h2 class="section-title">Contact Me</h2>
             <p class="section-subtitle">Get in Touch - Let's Connect!</p>
             <div class="contact-grid">
-                <div class="contact-item" style="--contact-index: 1;" data-tilt>
+                <div class="contact-item" style="--contact-index: 1; --animation-delay: 0.15s;" data-tilt>
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h3 class="contact-title">ADDRESS</h3>
                     <p class="contact-info"><a href="https://maps.app.goo.gl/FoWhp6aNYvZx836EA" target="_blank" rel="noopener noreferrer">Dhadheru, Churu, Rajasthan, India</a></p>
                 </div>
-                <div class="contact-item" style="--contact-index: 2;" data-tilt>
+                <div class="contact-item" style="--contact-index: 2; --animation-delay: 0.30s;" data-tilt>
                     <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                     <h3 class="contact-title">CONTACT NUMBER</h3>
                     <p class="contact-info"><a href="tel:+919001375139">+91 90013 75139</a></p>
                 </div>
-                <div class="contact-item" style="--contact-index: 3;" data-tilt>
+                <div class="contact-item" style="--contact-index: 3; --animation-delay: 0.45s;" data-tilt>
                      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <h3 class="contact-title">EMAIL ADDRESS</h3>
                      <!-- Updated Email Address & Removed Cloudflare protection span as it will be rendered directly -->
                     <p class="contact-info"><a href="mailto:klsuthar0987@gmail.com">klsuthar0987@gmail.com</a></p>
                 </div>
             </div>
-            <form class="contact-form" id="contact-form">
+            <form class="contact-form" id="contact-form"> <!-- This form won't use the bounce animation based on current CSS selectors -->
                 <label for="name">Name</label> <input type="text" id="name" name="name" placeholder="Your Name" required>
                 <label for="email">Email</label> <input type="email" id="email" name="email" placeholder="Your Email" required>
                 <label for="message">Message</label> <textarea id="message" name="message" placeholder="Your Message" required></textarea>
                 <button type="button" onclick="submitForm()">Send Message</button>
             </form>
-            <div class="question-section">
+            <div class="question-section"> <!-- This section won't use the bounce animation -->
                 <h3 class="question-title">HAVE A QUESTION?</h3>
                  <!-- Updated Email Link -->
                 <a href="mailto:klsuthar0987@gmail.com" class="btn btn-primary">CLICK HERE TO EMAIL ME</a>
             </div>
-            <div class="social-links">
+            <div class="social-links"> <!-- This section won't use the bounce animation -->
                  <!-- Added target="_blank" and rel="noopener noreferrer" to all social links -->
                  <!-- Replaced placeholder URLs with actual/example URLs -->
                 <a href="https://youtube.com/@KanhaiyaLalSutharMaths?si=g18y5d62nI0i-1h0" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-youtube"></i></a>
@@ -1059,11 +1051,13 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
 
+            const isMobile = window.matchMedia("(max-width: 768px)").matches;
+            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
+
             // --- Custom Cursor ---
             const cursor = document.querySelector('.custom-cursor');
-            // Check if it's not a touch device (basic check) and screen is wide enough
-             const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0);
-             if (cursor && !isTouchDevice && window.matchMedia("(min-width: 769px)").matches) {
+             // Hide on touch AND specific mobile width check
+             if (cursor && !isTouchDevice && !isMobile) {
                 window.addEventListener('mousemove', (e) => {
                     requestAnimationFrame(() => {
                          cursor.style.left = e.clientX + 'px';
@@ -1228,55 +1222,72 @@
             };
             typeWriter();
 
-             // --- Scroll Animations (Intersection Observer) ---
-             const observerOptions = {
+             // --- Scroll Animations (Intersection Observer for Sections) ---
+             const sectionObserverOptions = {
                  root: null, // Observe relative to viewport
                  rootMargin: '0px',
-                 // Trigger slightly earlier on mobile to ensure animation starts promptly
-                 threshold: window.matchMedia("(max-width: 768px)").matches ? 0.1 : 0.15
+                 threshold: 0.15 // Trigger when 15% of the section is visible
              };
 
              const sectionObserver = new IntersectionObserver((entries, observer) => {
                  entries.forEach(entry => {
                      if (entry.isIntersecting) {
                          entry.target.classList.add('visible');
-
-                         // Animate skill bars only when 'about' section becomes visible
+                         // Animate skill bars fill when 'about' section becomes visible (desktop/mobile)
                          if (entry.target.id === 'about') {
                              entry.target.querySelectorAll('.skill-progress').forEach((bar) => {
-                                 // Delay skill bar fill animation slightly
-                                 setTimeout(() => bar.classList.add('animate'), 500); // Increased delay
+                                 setTimeout(() => bar.classList.add('animate'), 500);
                              });
                          }
-
-                         // Optionally unobserve after first intersection if animation runs only once
-                          // observer.unobserve(entry.target);
-                     }
-                     // Optional: Remove 'visible' class if element scrolls out of view (for re-animation)
-                      else if (!entry.target.classList.contains('no-reanimate')) { // Add a class to prevent re-animation if desired
+                         // Optionally unobserve section after first intersection
+                         // observer.unobserve(entry.target);
+                     } else if (!entry.target.classList.contains('no-reanimate')) {
                          entry.target.classList.remove('visible');
-                         // Reset skill bar animation if needed
                          if (entry.target.id === 'about') {
                             entry.target.querySelectorAll('.skill-progress.animate').forEach((bar) => {
                                 bar.classList.remove('animate');
                             });
                          }
-                         // Reset mobile animations if needed (remove animation class, reset opacity/transform if not handled by initial state)
-                         // Note: The CSS handles the initial state (.card, .contact-item, .skill without .visible)
-                      }
+                     }
                  });
-             }, observerOptions);
+             }, sectionObserverOptions);
 
-             // Observe all sections with an ID
+             // Observe all sections for general visibility fade/transform
              sections.forEach(section => {
                  sectionObserver.observe(section);
              });
 
+            // --- Scroll Animations (Intersection Observer for Mobile Bounce Items) ---
+            if (isMobile) {
+                const mobileAnimElements = document.querySelectorAll('.card, .contact-item, .skill');
+
+                const mobileObserverOptions = {
+                    root: null,
+                    rootMargin: '0px 0px -50px 0px', // Trigger slightly before element fully enters viewport bottom
+                    threshold: 0.1 // Trigger when 10% is visible
+                };
+
+                const mobileElementObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate-bounce');
+                            observer.unobserve(entry.target); // Animate only once
+                        }
+                        // No 'else' needed as we unobserve
+                    });
+                }, mobileObserverOptions);
+
+                mobileAnimElements.forEach(el => {
+                    mobileElementObserver.observe(el);
+                });
+            }
+
+
             // --- Vanilla Tilt Initialization ---
             const tiltElements = document.querySelectorAll('[data-tilt]');
             if (tiltElements.length > 0 && typeof VanillaTilt !== 'undefined') {
-                 // Check if not a touch device before initializing tilt
-                 if (!isTouchDevice) {
+                 // Initialize tilt only if not touch device AND not mobile width
+                 if (!isTouchDevice && !isMobile) {
                     VanillaTilt.init(tiltElements, {
                         max: 10,          // Reduced max tilt angle
                         perspective: 1000,
