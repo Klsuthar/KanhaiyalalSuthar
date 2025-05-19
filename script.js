@@ -69,25 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.style.cursor = 'auto'; // Ensure default cursor is shown
     }
 
-    // --- Loading Overlay ---
-    const hideLoadingOverlay = () => {
-        const overlay = document.getElementById('loading-overlay');
-        if (overlay) {
-            // Start fade out slightly earlier
-            setTimeout(() => { overlay.classList.add('hidden'); }, 300);
-            // Remove the overlay from DOM after transition to prevent interference
-            overlay.addEventListener('transitionend', () => {
-                if (overlay.classList.contains('hidden')) {
-                    overlay.remove();
-                }
-            }, { once: true }); // Ensure listener runs only once
-        }
-    };
-    // Use 'load' to wait for all resources, including images and scripts
-    window.addEventListener('load', hideLoadingOverlay);
-    // Fallback in case load event takes too long
-    setTimeout(hideLoadingOverlay, 3000); // Hide after 3 seconds max
-
     // --- Navigation ---
     const nav = document.querySelector('nav');
     const burger = document.querySelector('.burger');
