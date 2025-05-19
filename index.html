@@ -8,6 +8,27 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Montserrat:wght@500;600&display=swap"
         rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom Keyframes for Animated Skill Cards -->
+    <style>
+        @keyframes shine {
+            0% { transform: translateX(-100%) skewX(-20deg); }
+            100% { transform: translateX(200%) skewX(-20deg); }
+        }
+        @keyframes particle {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-20px) scale(0.5); opacity: 0; }
+        }
+        .animate-\[shine_2s_linear_infinite\] {
+            animation: shine 2s linear infinite;
+        }
+        .animate-\[particle_2s_linear_infinite\] {
+            animation: particle 2s linear infinite;
+        }
+    </style>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js" defer></script>
@@ -54,6 +75,7 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
+                
                 <div class="about-left">
                     <div class="about-image">
                         <img src="images/about.png" alt="Kanhaiya Lal">
@@ -64,45 +86,160 @@
                         <p><strong>EXPERIENCE:</strong> 4+ MONTHS INTERN</p>
                         <p><strong>ADDRESS:</strong> DHADHERU, CHURU, RAJASTHAN</p>
                     </div>
+                    
+                    <!-- === MODIFIED SKILLS SECTION START === -->
                     <h3 class="skills-title">SKILLS</h3>
-                    <div class="skills">
-                        <div class="skill" style="--skill-index: 1; --animation-delay: 0.1s;">
-                            <div class="skill-name"><span>TEACHING</span><span>90%</span></div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress-width: 95%;"></div>
+                    <div class="animated-skills-container mt-6 space-y-6">
+
+                        <!-- Skill Card 1: TEACHING -->
+                        <div class="w-full p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-700 shadow-xl border border-gray-700">
+                            <div class="mb-3 text-center sm:text-left">
+                                <span class="inline-block px-3 py-1 border border-teal-500 rounded-md text-yellow-400 text-xs font-medium bg-gray-700/50">
+                                    Expert in simplifying complex concepts
+                                </span>
                             </div>
-                            <div class="skill-tooltip">Expert in simplifying complex concepts</div>
-                        </div>
-                        <div class="skill" style="--skill-index: 2; --animation-delay: 0.2s;">
-                            <div class="skill-name"><span>COMPUTER SKILLS</span><span>95%</span></div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress-width: 90%;"></div>
+                            <div class="relative">
+                                <div class="flex justify-between mb-1.5">
+                                    <span class="text-gray-100 font-semibold text-sm uppercase tracking-wider">TEACHING</span>
+                                    <span class="text-yellow-400 font-bold text-sm">90%</span>
+                                </div>
+                                <div class="relative h-3 bg-gray-600/50 rounded-full overflow-hidden backdrop-blur-sm">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-lime-500/20 to-teal-400/20 animate-pulse"></div>
+                                    <div style="width: 90%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-lime-500 to-teal-400"></div>
+                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]"></div>
+                                        <div class="absolute inset-0">
+                                            <div style="top: 25%; left: 30%; animation-delay: 0s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 0.8s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-yellow-500/50 rounded-full animate-ping"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-400/50 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.03] to-transparent rounded-full pointer-events-none"></div>
                             </div>
-                            <div class="skill-tooltip">MS Office, Tech Tools</div>
                         </div>
-                        <div class="skill" style="--skill-index: 3; --animation-delay: 0.3s;">
-                            <div class="skill-name"><span>COMMUNICATION</span><span>70%</span></div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress-width: 70%;"></div>
+
+                        <!-- Skill Card 2: COMPUTER SKILLS -->
+                        <div class="w-full p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-700 shadow-xl border border-gray-700">
+                            <div class="mb-3 text-center sm:text-left">
+                                <span class="inline-block px-3 py-1 border border-teal-500 rounded-md text-yellow-400 text-xs font-medium bg-gray-700/50">
+                                    MS Office, Tech Tools
+                                </span>
                             </div>
-                            <div class="skill-tooltip">Clear & Engaging Delivery</div>
-                        </div>
-                        <div class="skill" style="--skill-index: 4; --animation-delay: 0.4s;">
-                            <div class="skill-name"><span>QUICK LEARNING</span><span>95%</span></div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress-width: 95%;"></div>
+                            <div class="relative">
+                                <div class="flex justify-between mb-1.5">
+                                    <span class="text-gray-100 font-semibold text-sm uppercase tracking-wider">COMPUTER SKILLS</span>
+                                    <span class="text-yellow-400 font-bold text-sm">95%</span>
+                                </div>
+                                <div class="relative h-3 bg-gray-600/50 rounded-full overflow-hidden backdrop-blur-sm">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-lime-500/20 to-teal-400/20 animate-pulse"></div>
+                                    <div style="width: 95%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-lime-500 to-teal-400"></div>
+                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]"></div>
+                                        <div class="absolute inset-0">
+                                            <div style="top: 25%; left: 30%; animation-delay: 0.2s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 1.0s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-yellow-500/50 rounded-full animate-ping" style="animation-delay: 0.1s;"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-400/50 rounded-full animate-ping" style="animation-delay: 0.6s;"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.03] to-transparent rounded-full pointer-events-none"></div>
                             </div>
-                            <div class="skill-tooltip">Eager to master new skills</div>
                         </div>
-                        <div class="skill" style="--skill-index: 5; --animation-delay: 0.5s;">
-                            <div class="skill-name"><span>AI Prompt Engineer</span><span>85%</span></div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="--progress-width: 80%;"></div>
+
+                        <!-- Skill Card 3: COMMUNICATION -->
+                        <div class="w-full p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-700 shadow-xl border border-gray-700">
+                            <div class="mb-3 text-center sm:text-left">
+                                <span class="inline-block px-3 py-1 border border-teal-500 rounded-md text-yellow-400 text-xs font-medium bg-gray-700/50">
+                                    Clear & Engaging Delivery
+                                </span>
                             </div>
-                            <div class="skill-tooltip">Mastering the art of talking to machines.</div>
+                            <div class="relative">
+                                <div class="flex justify-between mb-1.5">
+                                    <span class="text-gray-100 font-semibold text-sm uppercase tracking-wider">COMMUNICATION</span>
+                                    <span class="text-yellow-400 font-bold text-sm">70%</span>
+                                </div>
+                                <div class="relative h-3 bg-gray-600/50 rounded-full overflow-hidden backdrop-blur-sm">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-lime-500/20 to-teal-400/20 animate-pulse"></div>
+                                    <div style="width: 70%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-lime-500 to-teal-400"></div>
+                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]"></div>
+                                        <div class="absolute inset-0">
+                                            <div style="top: 25%; left: 30%; animation-delay: 0.4s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 1.2s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-yellow-500/50 rounded-full animate-ping" style="animation-delay: 0.2s;"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-400/50 rounded-full animate-ping" style="animation-delay: 0.7s;"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.03] to-transparent rounded-full pointer-events-none"></div>
+                            </div>
                         </div>
+
+                        <!-- Skill Card 4: QUICK LEARNING -->
+                        <div class="w-full p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-700 shadow-xl border border-gray-700">
+                            <div class="mb-3 text-center sm:text-left">
+                                <span class="inline-block px-3 py-1 border border-teal-500 rounded-md text-yellow-400 text-xs font-medium bg-gray-700/50">
+                                    Eager to master new skills
+                                </span>
+                            </div>
+                            <div class="relative">
+                                <div class="flex justify-between mb-1.5">
+                                    <span class="text-gray-100 font-semibold text-sm uppercase tracking-wider">QUICK LEARNING</span>
+                                    <span class="text-yellow-400 font-bold text-sm">95%</span>
+                                </div>
+                                <div class="relative h-3 bg-gray-600/50 rounded-full overflow-hidden backdrop-blur-sm">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-lime-500/20 to-teal-400/20 animate-pulse"></div>
+                                    <div style="width: 95%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-lime-500 to-teal-400"></div>
+                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]"></div>
+                                        <div class="absolute inset-0">
+                                            <div style="top: 25%; left: 30%; animation-delay: 0.6s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 1.4s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-yellow-500/50 rounded-full animate-ping" style="animation-delay: 0.3s;"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-400/50 rounded-full animate-ping" style="animation-delay: 0.8s;"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.03] to-transparent rounded-full pointer-events-none"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Skill Card 5: AI Prompt Engineer -->
+                        <div class="w-full p-6 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-700 shadow-xl border border-gray-700">
+                            <div class="mb-3 text-center sm:text-left">
+                                <span class="inline-block px-3 py-1 border border-teal-500 rounded-md text-yellow-400 text-xs font-medium bg-gray-700/50">
+                                    Mastering the art of talking to machines
+                                </span>
+                            </div>
+                            <div class="relative">
+                                <div class="flex justify-between mb-1.5">
+                                    <span class="text-gray-100 font-semibold text-sm uppercase tracking-wider">AI Prompt Engineer</span>
+                                    <span class="text-yellow-400 font-bold text-sm">85%</span>
+                                </div>
+                                <div class="relative h-3 bg-gray-600/50 rounded-full overflow-hidden backdrop-blur-sm">
+                                    <div class="absolute inset-0 bg-gradient-to-r from-yellow-500/20 via-lime-500/20 to-teal-400/20 animate-pulse"></div>
+                                    <div style="width: 85%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-yellow-500 via-lime-500 to-teal-400"></div>
+                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]"></div>
+                                        <div class="absolute inset-0">
+                                            <div style="top: 25%; left: 30%; animation-delay: 0.8s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 1.6s;" class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-yellow-500/50 rounded-full animate-ping" style="animation-delay: 0.4s;"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-400/50 rounded-full animate-ping" style="animation-delay: 0.9s;"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.03] to-transparent rounded-full pointer-events-none"></div>
+                            </div>
+                        </div>
+
                     </div>
+                    <!-- === MODIFIED SKILLS SECTION END === -->
                 </div>
+
                 <div class="about-right">
                     <p>My name is <strong>Kanhaiya Lal</strong>, and I am a dedicated mathematics teacher with a strong
                         academic background. I hold a <em>Bachelor of Science (BSc)</em> and a <em>Bachelor of Education
