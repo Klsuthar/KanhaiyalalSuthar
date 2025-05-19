@@ -1,13 +1,13 @@
 <script type="text/javascript">
-        // These gk_ functions seem unrelated to the portfolio's core functionality
-        // but are kept as they were in the original source.
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
+    // These gk_ functions seem unrelated to the portfolio's core functionality
+    // but are kept as they were in the original source.
+    var gk_isXlsx = false;
+    var gk_xlsxFileLookup = {};
+    var gk_fileData = {};
+    function filledCell(cell) {
+        return cell !== '' && cell != null;
+    }
+    function loadFileData(filename) {
         // Basic check for XLSX library presence if used
         if (gk_isXlsx && gk_xlsxFileLookup[filename] && typeof XLSX !== 'undefined') {
             try {
@@ -17,17 +17,17 @@
                 var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
                 var filteredData = jsonData.filter(row => row.some(filledCell));
                 var headerRowIndex = filteredData.findIndex((row, index) =>
-                  index < filteredData.length - 1 && // Ensure there's a next row to compare
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                    index < filteredData.length - 1 && // Ensure there's a next row to compare
+                    row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
                 );
-                 // Fallback if no clear header found or it's too far down
-                if (headerRowIndex === -1 || headerRowIndex > 25 || headerRowIndex >= filteredData.length -1 ) {
+                // Fallback if no clear header found or it's too far down
+                if (headerRowIndex === -1 || headerRowIndex > 25 || headerRowIndex >= filteredData.length - 1) {
                     // Check if first row looks like a header (more filled cells than second)
                     if (filteredData.length > 1 && filteredData[0].filter(filledCell).length >= filteredData[1].filter(filledCell).length) {
-                       headerRowIndex = 0;
+                        headerRowIndex = 0;
                     } else {
-                       // Default to first row if heuristic fails badly
-                       headerRowIndex = 0;
+                        // Default to first row if heuristic fails badly
+                        headerRowIndex = 0;
                     }
                     // Simple check if index became negative (shouldn't happen but safety)
                     if (headerRowIndex < 0) headerRowIndex = 0;
@@ -42,15 +42,18 @@
             }
         }
         return gk_fileData[filename] || "";
-        }
-        </script>
+    }
+</script>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kanhaiya Lal Suthar - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Montserrat:wght@500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Load Vanilla Tilt JS -->
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js" defer></script>
@@ -79,8 +82,10 @@
             opacity: 0;
             animation: fadeInBody 1.2s ease-out forwards;
             font-weight: 400;
-            cursor: none; /* Hide default cursor */
-            overflow-x: hidden; /* Prevent horizontal scrollbars */
+            cursor: none;
+            /* Hide default cursor */
+            overflow-x: hidden;
+            /* Prevent horizontal scrollbars */
         }
 
         /* --- Custom Cursor --- */
@@ -106,11 +111,23 @@
 
         /* Hide custom cursor on touch devices/smaller screens */
         @media (max-width: 768px) {
-            body { cursor: auto; } /* Restore default cursor */
-            .custom-cursor { display: none; } /* Hide the custom cursor element */
+            body {
+                cursor: auto;
+            }
+
+            /* Restore default cursor */
+            .custom-cursor {
+                display: none;
+            }
+
+            /* Hide the custom cursor element */
         }
 
-        @keyframes fadeInBody { to { opacity: 1; } }
+        @keyframes fadeInBody {
+            to {
+                opacity: 1;
+            }
+        }
 
         /* --- Section Styling & Animations --- */
         section {
@@ -130,20 +147,28 @@
 
         /* Remove SVG pattern from home section specifically */
         #home {
-            background: linear-gradient(135deg, #1a1a1a, #2c2c2c); /* Only gradient for home */
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            /* Only gradient for home */
         }
 
-        section::before { /* Wavy divider - Keep for non-home sections */
+        section::before {
+            /* Wavy divider - Keep for non-home sections */
             content: '';
             position: absolute;
-            bottom: -50px; left: 0; width: 100%; height: 100px;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48V0h1200v120z" fill="#f5c518" opacity="0.1"></path></svg>') no-repeat bottom;
             background-size: cover;
             z-index: 0;
-            pointer-events: none; /* Make sure it doesn't block interactions */
+            pointer-events: none;
+            /* Make sure it doesn't block interactions */
         }
-        #home::before { /* Remove divider from home section */
-             display: none;
+
+        #home::before {
+            /* Remove divider from home section */
+            display: none;
         }
 
 
@@ -153,7 +178,11 @@
         }
 
         /* --- Headings and Titles --- */
-        h2, h3, h4, h5, h6 {
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             margin-bottom: 20px;
             font-family: 'Poppins', sans-serif;
             font-weight: 700;
@@ -162,17 +191,24 @@
             transform: translateY(15px);
             transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s;
         }
-        section.visible h2, section.visible h3, section.visible h4, section.visible h5, section.visible h6 {
-             opacity: 1;
-             transform: translateY(0);
+
+        section.visible h2,
+        section.visible h3,
+        section.visible h4,
+        section.visible h5,
+        section.visible h6 {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
-            z-index: 2; /* Ensure container content is above default background elements */
-            width: 100%; /* Ensure container takes full width within padding */
+            z-index: 2;
+            /* Ensure container content is above default background elements */
+            width: 100%;
+            /* Ensure container takes full width within padding */
         }
 
         .section-title {
@@ -188,81 +224,165 @@
             animation: glow 2s ease-in-out infinite alternate;
             transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s;
         }
+
         section:not(.visible) .section-title {
             opacity: 0;
             transform: translateY(20px);
         }
 
         @keyframes glow {
-            from { text-shadow: 0 4px 10px rgba(245, 197, 24, 0.4); }
-            to { text-shadow: 0 4px 20px rgba(245, 197, 24, 0.8); }
+            from {
+                text-shadow: 0 4px 10px rgba(245, 197, 24, 0.4);
+            }
+
+            to {
+                text-shadow: 0 4px 20px rgba(245, 197, 24, 0.8);
+            }
         }
 
         .section-title::after {
             content: "";
             position: absolute;
-            bottom: -15px; left: 50%; transform: translateX(-50%);
-            width: 0; height: 3px;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
             background: linear-gradient(to right, transparent, #00c4b4, transparent);
             transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s;
         }
-        section.visible .section-title::after { width: 120px; }
+
+        section.visible .section-title::after {
+            width: 120px;
+        }
 
         .section-subtitle {
-            font-size: 22px; text-align: center; margin-bottom: 50px;
-            color: #e0e0e0; font-family: 'Montserrat', sans-serif; font-weight: 500; font-style: italic;
-            opacity: 0; transform: translateY(10px);
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(10px);
             transition: opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s;
         }
-        section.visible .section-subtitle { opacity: 1; transform: translateY(0); }
+
+        section.visible .section-subtitle {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* --- Navigation Bar --- */
         nav {
-            position: fixed; top: 0; left: 0; width: 100%;
-            background: rgba(26, 26, 26, 0.85); backdrop-filter: blur(12px);
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 18px 50px; z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 50px;
+            z-index: 1000;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
-            transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; /* Added padding transition */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+            /* Added padding transition */
         }
+
         body.scrolled nav {
-             background: rgba(20, 20, 20, 0.9);
-             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+            background: rgba(20, 20, 20, 0.9);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
         }
 
         .logo {
-            font-size: 28px; font-weight: 700; color: #f5c518;
-            font-family: 'Poppins', sans-serif; letter-spacing: 2px;
-            transition: transform 0.3s ease, font-size 0.3s ease; /* Added font-size transition */
+            font-size: 28px;
+            font-weight: 700;
+            color: #f5c518;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease, font-size 0.3s ease;
+            /* Added font-size transition */
         }
-        .logo:hover { transform: scale(1.05); }
 
-        .nav-links { display: flex; list-style: none; }
-        .nav-links li { margin-left: 35px; position: relative; }
-        .nav-links a {
-            text-decoration: none; color: white; font-size: 18px;
-            font-family: 'Montserrat', sans-serif; font-weight: 500;
-            transition: color 0.3s ease, transform 0.3s ease;
-            position: relative; padding-bottom: 5px;
+        .logo:hover {
+            transform: scale(1.05);
         }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 35px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
         .nav-links a::after {
-            content: ''; position: absolute; bottom: 0; left: 0;
-            width: 0; height: 3px; background: #00c4b4;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #00c4b4;
             transition: width 0.4s cubic-bezier(0.23, 1, 0.320, 1);
         }
-        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
-        .nav-links a:hover, .nav-links a.active { color: #00c4b4; transform: translateY(-3px); }
 
-        .burger { display: none; cursor: pointer; z-index: 1001; position: relative; } /* Added z-index and relative pos */
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00c4b4;
+            transform: translateY(-3px);
+        }
+
+        .burger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+            position: relative;
+        }
+
+        /* Added z-index and relative pos */
         .burger div {
-            width: 30px; height: 4px; background-color: #f5c518; margin: 6px;
+            width: 30px;
+            height: 4px;
+            background-color: #f5c518;
+            margin: 6px;
             transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
         }
 
         /* Burger menu active state ('X' icon) */
-        .toggle .line1 { transform: rotate(-45deg) translate(-7px, 7px); }
-        .toggle .line2 { opacity: 0; transform: scale(0); }
-        .toggle .line3 { transform: rotate(45deg) translate(-7px, -7px); }
+        .toggle .line1 {
+            transform: rotate(-45deg) translate(-7px, 7px);
+        }
+
+        .toggle .line2 {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .toggle .line3 {
+            transform: rotate(45deg) translate(-7px, -7px);
+        }
 
 
         /* --- Home Section --- */
@@ -281,7 +401,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0; /* Behind home-content */
+            z-index: 0;
+            /* Behind home-content */
         }
 
         .home-content {
@@ -290,7 +411,8 @@
             align-items: center;
             width: 100%;
             position: relative;
-            z-index: 1; /* Above particles */
+            z-index: 1;
+            /* Above particles */
         }
 
         .home-text {
@@ -301,341 +423,895 @@
             animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
         }
 
-        @keyframes slideInLeft { to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
         .hello {
-            font-size: 28px; margin-bottom: 15px; font-family: 'Montserrat', sans-serif;
-            font-weight: 600; color: #00c4b4; text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            font-size: 28px;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #00c4b4;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
         }
+
         .name {
-            font-size: 56px; margin-bottom: 25px; font-family: 'Poppins', sans-serif;
-            font-weight: 700; letter-spacing: 1.5px; line-height: 1.2;
+            font-size: 56px;
+            margin-bottom: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            line-height: 1.2;
         }
+
         .name span {
-            color: #f5c518; font-style: italic;
+            color: #f5c518;
+            font-style: italic;
             background: linear-gradient(45deg, #f5c518, #00c4b4);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            background-clip: text; /* Standard property */
-            text-fill-color: transparent; /* Standard property */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            /* Standard property */
+            text-fill-color: transparent;
+            /* Standard property */
         }
+
         .profession {
-            font-size: 26px; height: 35px; margin-bottom: 40px; position: relative;
-            font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); min-width: 5px;
+            font-size: 26px;
+            height: 35px;
+            margin-bottom: 40px;
+            position: relative;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-style: italic;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            min-width: 5px;
             /* Ensure enough height for text */
             line-height: 1.3;
         }
-        .profession::after {
-            content: "|"; position: absolute; /* right: -10px; */ /* Adjusted below */
-            animation: blink 0.7s infinite; color: #e0e0e0;
-            /* Adjust position relative to text */
-            display: inline-block; /* Helps with positioning */
-            margin-left: 5px; /* Space after text */
-            top: 0; /* Align with text */
-        }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        .home-buttons { display: flex; gap: 25px; margin-top: 30px; }
+        .profession::after {
+            content: "|";
+            position: absolute;
+            /* right: -10px; */
+            /* Adjusted below */
+            animation: blink 0.7s infinite;
+            color: #e0e0e0;
+            /* Adjust position relative to text */
+            display: inline-block;
+            /* Helps with positioning */
+            margin-left: 5px;
+            /* Space after text */
+            top: 0;
+            /* Align with text */
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+        }
+
+        .home-buttons {
+            display: flex;
+            gap: 25px;
+            margin-top: 30px;
+        }
 
         /* --- Button Styles & Animations --- */
         .btn {
-            padding: 14px 32px; border-radius: 50px; font-size: 18px;
-            cursor: pointer; text-decoration: none; display: inline-block;
-            position: relative; font-family: 'Montserrat', sans-serif; font-weight: 600;
-            background: transparent; color: white; border: 2px solid #00c4b4;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            background: transparent;
+            color: white;
+            border: 2px solid #00c4b4;
             transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
-            overflow: hidden; z-index: 1;
+            overflow: hidden;
+            z-index: 1;
         }
+
         .btn::before {
-            content: ''; position: absolute; top: 0; left: 0;
-            width: 0%; height: 100%;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
             background: linear-gradient(45deg, #f5c518, #00c4b4);
-            transition: width 0.4s cubic-bezier(0.23, 1, 0.320, 1); z-index: -1;
+            transition: width 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            z-index: -1;
         }
-        .btn:hover::before { width: 100%; }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
         .btn:hover {
-            color: #1a1a1a; transform: translateY(-6px) scale(1.03);
+            color: #1a1a1a;
+            transform: translateY(-6px) scale(1.03);
             box-shadow: 0 10px 30px rgba(0, 196, 180, 0.6);
             border-color: transparent;
         }
+
         /* Remove hover effect on touch devices where :hover is problematic */
         @media (hover: none) {
-             .btn:hover {
-                 color: white; /* Revert color */
-                 transform: none; /* Remove transform */
-                 box-shadow: none; /* Remove shadow */
-                 border-color: #00c4b4; /* Restore border */
-             }
-             .btn:hover::before { width: 0%; } /* Prevent background fill */
-             .btn-primary:hover { color: #1a1a1a; } /* Keep primary button hover color */
-             .btn-secondary:hover { color: white; } /* Revert secondary button hover color */
+            .btn:hover {
+                color: white;
+                /* Revert color */
+                transform: none;
+                /* Remove transform */
+                box-shadow: none;
+                /* Remove shadow */
+                border-color: #00c4b4;
+                /* Restore border */
+            }
+
+            .btn:hover::before {
+                width: 0%;
+            }
+
+            /* Prevent background fill */
+            .btn-primary:hover {
+                color: #1a1a1a;
+            }
+
+            /* Keep primary button hover color */
+            .btn-secondary:hover {
+                color: white;
+            }
+
+            /* Revert secondary button hover color */
         }
 
         .btn-primary {
             background: linear-gradient(45deg, #f5c518, #00c4b4);
-            color: #1a1a1a; border: none;
+            color: #1a1a1a;
+            border: none;
         }
-         .btn-primary::before {
-             background: linear-gradient(45deg, #f5c518cc, #00c4b4cc); width: 100%;
-         }
-         .btn-primary:hover { color: #000; }
-        .btn-secondary { background: transparent; color: white; }
-         .btn-secondary:hover { color: #1a1a1a; }
+
+        .btn-primary::before {
+            background: linear-gradient(45deg, #f5c518cc, #00c4b4cc);
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            color: #000;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            color: #1a1a1a;
+        }
 
 
         /* --- Home Image --- */
         .home-image {
-            flex: 1; display: flex; justify-content: center;
-            opacity: 0; transform: translateX(60px);
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(60px);
             animation: slideInRight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s forwards;
         }
-        @keyframes slideInRight { to { opacity: 1; transform: translateX(0); } }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
         .home-image img {
-            max-width: 100%; height: auto; border-radius: 20px;
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
             box-shadow: 0 10px 40px rgba(245, 197, 24, 0.4);
             transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.6s ease;
             /* Ensure image scales down */
-             display: block; /* Remove extra space below image */
+            display: block;
+            /* Remove extra space below image */
         }
+
         .home-image[data-tilt] {
-             transform-style: preserve-3d; transform: perspective(1000px);
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
         }
 
         /* --- About Section --- */
-        #about { background: linear-gradient(135deg, #2c2c2c, #1a1a1a); }
-        .about-content { display: flex; justify-content: space-between; gap: 80px; margin-top: 50px; }
-        .about-left, .about-right {
-            flex: 1; opacity: 0; transform: translateY(30px);
+        #about {
+            background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 80px;
+            margin-top: 50px;
+        }
+
+        .about-left,
+        .about-right {
+            flex: 1;
+            opacity: 0;
+            transform: translateY(30px);
             transition: opacity 0.8s ease-out 0.4s, transform 0.8s ease-out 0.4s;
         }
-        section.visible .about-left, section.visible .about-right { opacity: 1; transform: translateY(0); }
-        section.visible .about-right { transition-delay: 0.6s; }
+
+        section.visible .about-left,
+        section.visible .about-right {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section.visible .about-right {
+            transition-delay: 0.6s;
+        }
+
         .about-image {
-            width: 180px; height: 180px; border-radius: 50%; overflow: hidden;
-            margin: 0 auto 30px; position: relative; box-shadow: 0 0 25px rgba(0, 196, 180, 0.6);
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 30px;
+            position: relative;
+            box-shadow: 0 0 25px rgba(0, 196, 180, 0.6);
             transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             /* Ensure it doesn't overflow container on small screens */
             max-width: 100%;
         }
+
         .about-image::before {
-            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
-            border-radius: 50%; background: linear-gradient(45deg, #f5c518, #00c4b4);
-            opacity: 0.3; z-index: -1; animation: pulse 2.5s ease-in-out infinite;
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #f5c518, #00c4b4);
+            opacity: 0.3;
+            z-index: -1;
+            animation: pulse 2.5s ease-in-out infinite;
         }
-        @keyframes pulse { 0% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.12); opacity: 0.5; } 100% { transform: scale(1); opacity: 0.3; } }
-        .about-image:hover { transform: scale(1.08) rotate(4deg); }
-        .about-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .about-details p { margin-bottom: 20px; font-size: 18px; color: #e0e0e0; word-wrap: break-word; } /* Added word-wrap */
-        .about-details p strong { font-weight: 700; font-family: 'Poppins', sans-serif; color: #f5c518; }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: scale(1.12);
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+        }
+
+        .about-image:hover {
+            transform: scale(1.08) rotate(4deg);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-details p {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #e0e0e0;
+            word-wrap: break-word;
+        }
+
+        /* Added word-wrap */
+        .about-details p strong {
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            color: #f5c518;
+        }
+
         .skills-title {
-            font-size: 22px; margin: 40px 0 25px; font-family: 'Montserrat', sans-serif;
-            font-weight: 600; color: #00c4b4;
+            font-size: 22px;
+            margin: 40px 0 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #00c4b4;
         }
+
         .skill {
-            margin-bottom: 25px; position: relative; opacity: 0; transform: translateX(-20px);
+            margin-bottom: 25px;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-20px);
             /* Default transition for desktop */
             transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-             transition-delay: calc(0.1s * var(--skill-index, 1));
+            transition-delay: calc(0.1s * var(--skill-index, 1));
         }
-        section.visible .skill { /* Still needed for desktop fade/slide */
-             opacity: 1; transform: translateX(0);
-             /* transition-delay applied above */
+
+        section.visible .skill {
+            /* Still needed for desktop fade/slide */
+            opacity: 1;
+            transform: translateX(0);
+            /* transition-delay applied above */
         }
+
         .skill-name {
-            margin-bottom: 8px; display: flex; justify-content: space-between;
-            font-family: 'Montserrat', sans-serif; font-weight: 500; font-size: 16px;
-            flex-wrap: wrap; /* Allow wrapping if name is long */
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            flex-wrap: wrap;
+            /* Allow wrapping if name is long */
         }
-        .skill-name span:last-child { font-weight: 700; color: #f5c518; }
-        .skill-bar { height: 12px; background-color: rgba(255, 255, 255, 0.1); border-radius: 6px; overflow: hidden; }
+
+        .skill-name span:last-child {
+            font-weight: 700;
+            color: #f5c518;
+        }
+
+        .skill-bar {
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
         .skill-progress {
-            height: 100%; background: linear-gradient(90deg, #f5c518, #00c4b4);
-            border-radius: 6px; width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #f5c518, #00c4b4);
+            border-radius: 6px;
+            width: 0;
             transition: width 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .skill-progress.animate { width: var(--progress-width); }
-        .skill-tooltip {
-            position: absolute; top: -50px; left: 50%; transform: translateX(-50%) translateY(10px);
-            background: rgba(34, 34, 34, 0.9); backdrop-filter: blur(5px); color: #f5c518;
-            padding: 8px 12px; border-radius: 8px; font-size: 14px; font-family: 'Montserrat', sans-serif;
-            opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none;
-            border: 1px solid #00c4b4; white-space: nowrap;
+
+        .skill-progress.animate {
+            width: var(--progress-width);
         }
-        .skill:hover .skill-tooltip { opacity: 1; transform: translateX(-50%) translateY(0); }
-        .completed-projects { margin-top: 40px; font-size: 18px; font-family: 'Roboto', sans-serif; font-style: italic; font-weight: 400; color: #00c4b4; }
-        .about-right p { margin-bottom: 25px; line-height: 1.9; color: #e0e0e0; word-wrap: break-word; } /* Added word-wrap */
-        .about-info p { margin-bottom: 15px; color: #e0e0e0; word-wrap: break-word; } /* Added word-wrap */
-        .about-info p strong { font-weight: 700; font-family: 'Poppins', sans-serif; color: #f5c518; }
+
+        .skill-tooltip {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(34, 34, 34, 0.9);
+            backdrop-filter: blur(5px);
+            color: #f5c518;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            border: 1px solid #00c4b4;
+            white-space: nowrap;
+        }
+
+        .skill:hover .skill-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .completed-projects {
+            margin-top: 40px;
+            font-size: 18px;
+            font-family: 'Roboto', sans-serif;
+            font-style: italic;
+            font-weight: 400;
+            color: #00c4b4;
+        }
+
+        .about-right p {
+            margin-bottom: 25px;
+            line-height: 1.9;
+            color: #e0e0e0;
+            word-wrap: break-word;
+        }
+
+        /* Added word-wrap */
+        .about-info p {
+            margin-bottom: 15px;
+            color: #e0e0e0;
+            word-wrap: break-word;
+        }
+
+        /* Added word-wrap */
+        .about-info p strong {
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            color: #f5c518;
+        }
 
         /* --- Resume Section --- */
-        #resume { background: linear-gradient(135deg, #1a1a1a, #2c2c2c); }
-        .experience-section, .education-section { margin-top: 60px; }
-        .resume-title {
-            font-size: 22px; text-align: center; margin-bottom: 40px; font-family: 'Montserrat', sans-serif;
-            font-weight: 600; color: #00c4b4;
+        #resume {
+            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
         }
-        .cards-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+
+        .experience-section,
+        .education-section {
+            margin-top: 60px;
+        }
+
+        .resume-title {
+            font-size: 22px;
+            text-align: center;
+            margin-bottom: 40px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #00c4b4;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
         .card {
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border-radius: 15px;
-            padding: 30px; border: 1px solid rgba(245, 197, 24, 0.2);
-            opacity: 0; transform: translateY(40px) scale(0.95);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(245, 197, 24, 0.2);
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
             /* Default transition for desktop */
             transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
             transition-delay: calc(0.12s * var(--card-index, 1));
             transform-style: preserve-3d;
         }
-        section.visible .card { /* Still needed for desktop fade/slide */
-            opacity: 1; transform: translateY(0) scale(1);
+
+        section.visible .card {
+            /* Still needed for desktop fade/slide */
+            opacity: 1;
+            transform: translateY(0) scale(1);
             /* transition-delay applied above */
         }
-        .card:hover { transform: translateY(-12px) scale(1.03); box-shadow: 0 15px 40px rgba(0, 196, 180, 0.55); }
+
+        .card:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 196, 180, 0.55);
+        }
+
         /* Remove hover effect on touch devices */
-         @media (hover: none) {
-             .card:hover {
-                 transform: translateY(0) scale(1); /* Reset transform */
-                 box-shadow: none; /* Reset shadow */
-             }
-             .contact-item:hover .contact-icon {
-                  transform: scale(1) rotate(0deg); /* Reset icon transform */
-                  box-shadow: none;
-             }
-             .social-link:hover {
-                 color: #e0e0e0; /* Reset color */
-                 transform: none; /* Reset transform */
-             }
-         }
-        .card-year { font-size: 24px; color: #f5c518; margin-bottom: 15px; font-family: 'Poppins', sans-serif; font-weight: 700; }
-        .card-title { font-size: 20px; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; font-weight: 600; color: #e0e0e0; line-height: 1.4; } /* Added line-height */
-        .card-description { color: #b0b0b0; font-size: 16px; font-family: 'Roboto', sans-serif; font-style: italic; font-weight: 400; word-wrap: break-word; margin-bottom: 5px;} /* Added word-wrap and reduced bottom margin */
-        .card-description:last-of-type { margin-bottom: 0; } /* Remove margin from last description */
-        .card-description strong { color: #f0f0f0; }
+        @media (hover: none) {
+            .card:hover {
+                transform: translateY(0) scale(1);
+                /* Reset transform */
+                box-shadow: none;
+                /* Reset shadow */
+            }
+
+            .contact-item:hover .contact-icon {
+                transform: scale(1) rotate(0deg);
+                /* Reset icon transform */
+                box-shadow: none;
+            }
+
+            .social-link:hover {
+                color: #e0e0e0;
+                /* Reset color */
+                transform: none;
+                /* Reset transform */
+            }
+        }
+
+        .card-year {
+            font-size: 24px;
+            color: #f5c518;
+            margin-bottom: 15px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #e0e0e0;
+            line-height: 1.4;
+        }
+
+        /* Added line-height */
+        .card-description {
+            color: #b0b0b0;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+            font-style: italic;
+            font-weight: 400;
+            word-wrap: break-word;
+            margin-bottom: 5px;
+        }
+
+        /* Added word-wrap and reduced bottom margin */
+        .card-description:last-of-type {
+            margin-bottom: 0;
+        }
+
+        /* Remove margin from last description */
+        .card-description strong {
+            color: #f0f0f0;
+        }
 
         /* --- Contact Section --- */
-        #contact { background: linear-gradient(135deg, #2c2c2c, #1a1a1a); }
-        .contact-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; margin: 60px 0; }
+        #contact {
+            background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin: 60px 0;
+        }
+
         .contact-item {
-            flex: 1; min-width: 220px; text-align: center;
-            opacity: 0; transform: translateY(40px) scale(0.95);
+            flex: 1;
+            min-width: 220px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
             /* Default transition for desktop */
             transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transition-delay: calc(0.12s * var(--contact-index, 1));
             transform-style: preserve-3d;
-            padding: 15px; /* Add some padding */
+            padding: 15px;
+            /* Add some padding */
         }
-        section.visible .contact-item { /* Still needed for desktop fade/slide */
-            opacity: 1; transform: translateY(0) scale(1);
+
+        section.visible .contact-item {
+            /* Still needed for desktop fade/slide */
+            opacity: 1;
+            transform: translateY(0) scale(1);
             /* transition-delay applied above */
         }
+
         .contact-icon {
-            width: 70px; height: 70px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(5px);
-            border-radius: 50%; display: flex; justify-content: center; align-items: center;
-            margin: 0 auto 20px; font-size: 28px; color: #f5c518;
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: #f5c518;
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
         }
-        .contact-item:hover .contact-icon { transform: scale(1.35) rotate(10deg); box-shadow: 0 0 25px rgba(245, 197, 24, 0.6); }
-        .contact-title { font-size: 20px; margin-bottom: 15px; font-family: 'Montserrat', sans-serif; font-weight: 600; color: #e0e0e0; }
-        .contact-info { color: #b0b0b0; font-size: 16px; font-family: 'Roboto', sans-serif; font-weight: 400; word-wrap: break-word; } /* Added word-wrap */
+
+        .contact-item:hover .contact-icon {
+            transform: scale(1.35) rotate(10deg);
+            box-shadow: 0 0 25px rgba(245, 197, 24, 0.6);
+        }
+
+        .contact-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #e0e0e0;
+        }
+
+        .contact-info {
+            color: #b0b0b0;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            word-wrap: break-word;
+        }
+
+        /* Added word-wrap */
         .contact-info a {
-            color: #b0b0b0; text-decoration: none; position: relative;
-            transition: color 0.3s ease; padding-bottom: 2px;
-            word-break: break-all; /* Break long links/emails */
+            color: #b0b0b0;
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+            padding-bottom: 2px;
+            word-break: break-all;
+            /* Break long links/emails */
         }
+
         .contact-info a::after {
-             content: ''; position: absolute; bottom: 0; left: 0;
-             width: 0; height: 1px; background: #00c4b4; transition: width 0.3s ease;
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #00c4b4;
+            transition: width 0.3s ease;
         }
-        .contact-info a:hover { color: #00c4b4; }
-        .contact-info a:hover::after { width: 100%; }
-         @media (hover: none) { /* Disable link hover underline on touch */
-             .contact-info a:hover { color: #b0b0b0; }
-             .contact-info a:hover::after { width: 0; }
-         }
+
+        .contact-info a:hover {
+            color: #00c4b4;
+        }
+
+        .contact-info a:hover::after {
+            width: 100%;
+        }
+
+        @media (hover: none) {
+
+            /* Disable link hover underline on touch */
+            .contact-info a:hover {
+                color: #b0b0b0;
+            }
+
+            .contact-info a:hover::after {
+                width: 0;
+            }
+        }
+
         .contact-form {
-            max-width: 700px; margin: 60px auto 0; padding: 35px;
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px);
-            border-radius: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(245, 197, 24, 0.2); opacity: 0; transform: translateY(30px);
+            max-width: 700px;
+            margin: 60px auto 0;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(245, 197, 24, 0.2);
+            opacity: 0;
+            transform: translateY(30px);
             transition: opacity 0.8s ease-out 0.8s, transform 0.8s ease-out 0.8s;
         }
-         section.visible .contact-form { opacity: 1; transform: translateY(0); }
-        .contact-form label { display: block; margin-bottom: 12px; font-family: 'Montserrat', sans-serif; font-size: 16px; color: #f5c518; }
-        .contact-form input, .contact-form textarea {
-            width: 100%; padding: 14px; margin-bottom: 25px; background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #00c4b4; border-radius: 8px; color: white; font-family: 'Roboto', sans-serif;
-            font-size: 16px; transition: all 0.3s ease;
+
+        section.visible .contact-form {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            color: #f5c518;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #00c4b4;
+            border-radius: 8px;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            transition: all 0.3s ease;
             /* Improve mobile usability */
-            -webkit-appearance: none; /* Remove default iOS styling */
+            -webkit-appearance: none;
+            /* Remove default iOS styling */
             appearance: none;
         }
-        .contact-form input:focus, .contact-form textarea:focus {
-            outline: none; box-shadow: 0 0 15px rgba(0, 196, 180, 0.6);
-            transform: scale(1.01); background: rgba(255, 255, 255, 0.15);
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            box-shadow: 0 0 15px rgba(0, 196, 180, 0.6);
+            transform: scale(1.01);
+            background: rgba(255, 255, 255, 0.15);
         }
-        .contact-form textarea { resize: vertical; min-height: 120px; }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
         .contact-form button {
-            width: 100%; padding: 14px 30px; border-radius: 50px; font-size: 18px;
-            cursor: pointer; text-decoration: none; display: inline-block; position: relative;
-            font-family: 'Montserrat', sans-serif; font-weight: 600;
-            background: linear-gradient(45deg, #f5c518, #00c4b4); color: #1a1a1a; border: none;
-            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1); overflow: hidden; z-index: 1;
-            -webkit-appearance: none; /* Remove default iOS styling */
+            width: 100%;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            background: linear-gradient(45deg, #f5c518, #00c4b4);
+            color: #1a1a1a;
+            border: none;
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow: hidden;
+            z-index: 1;
+            -webkit-appearance: none;
+            /* Remove default iOS styling */
             appearance: none;
         }
-        .contact-form button:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 10px 30px rgba(0, 196, 180, 0.6); }
-         @media (hover: none) { /* Disable button hover on touch */
-             .contact-form button:hover {
-                 transform: none;
-                 box-shadow: none;
-             }
-         }
+
+        .contact-form button:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 196, 180, 0.6);
+        }
+
+        @media (hover: none) {
+
+            /* Disable button hover on touch */
+            .contact-form button:hover {
+                transform: none;
+                box-shadow: none;
+            }
+        }
+
         .question-section {
-            text-align: center; margin: 60px 0; opacity: 0; transform: translateY(20px);
+            text-align: center;
+            margin: 60px 0;
+            opacity: 0;
+            transform: translateY(20px);
             transition: opacity 0.8s ease-out 1s, transform 0.8s ease-out 1s;
         }
-         section.visible .question-section { opacity: 1; transform: translateY(0); }
-        .question-title { font-size: 24px; margin-bottom: 25px; font-family: 'Montserrat', sans-serif; font-weight: 600; color: #f5c518; }
-        .social-links {
-            display: flex; justify-content: center; gap: 30px; margin-top: 60px;
-            opacity: 0; transform: translateY(20px);
-            transition: opacity 0.8s ease-out 1.2s, transform 0.8s ease-out 1.2s;
-            flex-wrap: wrap; /* Allow wrapping on small screens */
+
+        section.visible .question-section {
+            opacity: 1;
+            transform: translateY(0);
         }
-         section.visible .social-links { opacity: 1; transform: translateY(0); }
+
+        .question-title {
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #f5c518;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 60px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out 1.2s, transform 0.8s ease-out 1.2s;
+            flex-wrap: wrap;
+            /* Allow wrapping on small screens */
+        }
+
+        section.visible .social-links {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .social-link {
-            font-size: 36px; color: #e0e0e0;
+            font-size: 36px;
+            color: #e0e0e0;
             transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), color 0.4s ease;
         }
-        .social-link:hover { color: #00c4b4; transform: scale(1.4) rotate(15deg) translateY(-5px); }
-         /* Disable social link hover on touch already covered by .card:hover */
+
+        .social-link:hover {
+            color: #00c4b4;
+            transform: scale(1.4) rotate(15deg) translateY(-5px);
+        }
+
+        /* Disable social link hover on touch already covered by .card:hover */
 
         /* --- Loading Overlay --- */
         #loading-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: radial-gradient(circle, #2c2c2c, #1a1a1a);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 9999; opacity: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 1;
             transition: opacity 0.8s ease-out 0.5s, visibility 0s linear 1.3s;
             visibility: visible;
         }
-        #loading-overlay.hidden { opacity: 0; visibility: hidden; }
+
+        #loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
         .maths-loader {
-            position: relative; width: 100px; height: 100px;
-            transform-style: preserve-3d; animation: rotateLoader 5s linear infinite;
+            position: relative;
+            width: 100px;
+            height: 100px;
+            transform-style: preserve-3d;
+            animation: rotateLoader 5s linear infinite;
         }
-        @keyframes rotateLoader { 0% { transform: rotateY(0deg) rotateX(0deg); } 100% { transform: rotateY(360deg) rotateX(360deg); } }
+
+        @keyframes rotateLoader {
+            0% {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+
+            100% {
+                transform: rotateY(360deg) rotateX(360deg);
+            }
+        }
+
         .maths-loader span {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-family: 'Playfair Display', serif; font-size: 30px; color: #f5c518;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+            color: #f5c518;
             text-shadow: 0 0 10px rgba(245, 197, 24, 0.8);
-            animation: mathPulse 1.5s ease-in-out infinite; backface-visibility: hidden;
+            animation: mathPulse 1.5s ease-in-out infinite;
+            backface-visibility: hidden;
         }
-        .maths-loader span:nth-child(1) { transform: translate(-50%, -50%) rotateY(0deg) translateZ(50px); animation-delay: 0s; }
-        .maths-loader span:nth-child(2) { transform: translate(-50%, -50%) rotateY(72deg) translateZ(50px); animation-delay: 0.2s; }
-        .maths-loader span:nth-child(3) { transform: translate(-50%, -50%) rotateY(144deg) translateZ(50px); animation-delay: 0.4s; }
-        .maths-loader span:nth-child(4) { transform: translate(-50%, -50%) rotateY(216deg) translateZ(50px); animation-delay: 0.6s; }
-        .maths-loader span:nth-child(5) { transform: translate(-50%, -50%) rotateY(288deg) translateZ(50px); animation-delay: 0.8s; }
-        @keyframes mathPulse { 0%, 100% { opacity: 1; transform-origin: center center; transform: translate(-50%, -50%) scale(1); } 50% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.8); } }
+
+        .maths-loader span:nth-child(1) {
+            transform: translate(-50%, -50%) rotateY(0deg) translateZ(50px);
+            animation-delay: 0s;
+        }
+
+        .maths-loader span:nth-child(2) {
+            transform: translate(-50%, -50%) rotateY(72deg) translateZ(50px);
+            animation-delay: 0.2s;
+        }
+
+        .maths-loader span:nth-child(3) {
+            transform: translate(-50%, -50%) rotateY(144deg) translateZ(50px);
+            animation-delay: 0.4s;
+        }
+
+        .maths-loader span:nth-child(4) {
+            transform: translate(-50%, -50%) rotateY(216deg) translateZ(50px);
+            animation-delay: 0.6s;
+        }
+
+        .maths-loader span:nth-child(5) {
+            transform: translate(-50%, -50%) rotateY(288deg) translateZ(50px);
+            animation-delay: 0.8s;
+        }
+
+        @keyframes mathPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform-origin: center center;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+        }
 
         /* --- Keyframe for Mobile Bounce Animation --- */
         @keyframes enterUpBounce {
@@ -643,16 +1319,22 @@
                 opacity: 0;
                 transform: translateY(50px) scale(0.95);
             }
+
             60% {
                 opacity: 1;
-                transform: translateY(-10px) scale(1.02); /* Bounce up past final position */
+                transform: translateY(-10px) scale(1.02);
+                /* Bounce up past final position */
             }
+
             80% {
-                transform: translateY(5px) scale(0.98); /* Bounce down */
+                transform: translateY(5px) scale(0.98);
+                /* Bounce down */
             }
+
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1); /* Settle */
+                transform: translateY(0) scale(1);
+                /* Settle */
             }
         }
 
@@ -661,174 +1343,467 @@
 
         /* Medium screens (Tablets, small laptops) */
         @media screen and (max-width: 992px) {
-            section { padding: 100px 30px; }
-            .section-title { font-size: 56px; }
-            .home-content { flex-direction: column; text-align: center; }
-            .home-text { padding-right: 0; animation-delay: 0.3s; text-align: center; } /* Center text */
-            .profession { /* Center typing text container */
+            section {
+                padding: 100px 30px;
+            }
+
+            .section-title {
+                font-size: 56px;
+            }
+
+            .home-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .home-text {
+                padding-right: 0;
+                animation-delay: 0.3s;
+                text-align: center;
+            }
+
+            /* Center text */
+            .profession {
+                /* Center typing text container */
                 margin-left: auto;
                 margin-right: auto;
-                width: fit-content; /* Adjust width to content */
-                min-width: 200px; /* Ensure some minimum width */
+                width: fit-content;
+                /* Adjust width to content */
+                min-width: 200px;
+                /* Ensure some minimum width */
             }
-            .profession::after { /* Adjust cursor position for centered text */
-                position: relative; /* Change from absolute */
+
+            .profession::after {
+                /* Adjust cursor position for centered text */
+                position: relative;
+                /* Change from absolute */
                 right: auto;
                 display: inline;
                 margin-left: 5px;
             }
-            .home-buttons { justify-content: center; }
+
+            .home-buttons {
+                justify-content: center;
+            }
+
             /* Ensure home image has margin and scales */
-            .home-image { margin-top: 60px; animation-delay: 0.6s; max-width: 80%; flex-basis: auto; width: auto; } /* Reset flex basis */
-            .about-content { flex-direction: column; gap: 50px; }
-            .about-left, .about-right { width: 100%; transition-delay: 0.3s; }
-            .about-left { align-items: center; text-align: center; margin-bottom: 40px; }
-            .contact-grid { justify-content: center; } /* Center items if they wrap */
-            .contact-item { flex-basis: calc(50% - 20px); } /* Allow two items per row */
+            .home-image {
+                margin-top: 60px;
+                animation-delay: 0.6s;
+                max-width: 80%;
+                flex-basis: auto;
+                width: auto;
+            }
+
+            /* Reset flex basis */
+            .about-content {
+                flex-direction: column;
+                gap: 50px;
+            }
+
+            .about-left,
+            .about-right {
+                width: 100%;
+                transition-delay: 0.3s;
+            }
+
+            .about-left {
+                align-items: center;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .contact-grid {
+                justify-content: center;
+            }
+
+            /* Center items if they wrap */
+            .contact-item {
+                flex-basis: calc(50% - 20px);
+            }
+
+            /* Allow two items per row */
         }
 
         /* Small screens (Mobiles) */
         @media screen and (max-width: 768px) {
-            section { padding: 80px 20px; min-height: auto; } /* Adjust padding and min-height */
-            #home { min-height: 100vh; padding-top: 100px; padding-bottom: 60px; justify-content: flex-start;} /* Keep home full height, adjust padding for nav */
+            section {
+                padding: 80px 20px;
+                min-height: auto;
+            }
 
-            nav { padding: 15px 20px; }
-            .logo { font-size: 20px; } /* Slightly smaller logo */
+            /* Adjust padding and min-height */
+            #home {
+                min-height: 100vh;
+                padding-top: 100px;
+                padding-bottom: 60px;
+                justify-content: flex-start;
+            }
+
+            /* Keep home full height, adjust padding for nav */
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            /* Slightly smaller logo */
 
             .nav-links {
-                position: fixed; right: 0; top: 0; background: rgba(20, 20, 20, 0.98);
-                backdrop-filter: blur(15px); height: 100vh; width: 100%;
-                flex-direction: column; align-items: center; justify-content: center;
-                transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-                z-index: 999; padding: 0; margin: 0; /* Reset margin/padding */
+                position: fixed;
+                right: 0;
+                top: 0;
+                background: rgba(20, 20, 20, 0.98);
+                backdrop-filter: blur(15px);
+                height: 100vh;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(100%);
+                transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+                z-index: 999;
+                padding: 0;
+                margin: 0;
+                /* Reset margin/padding */
             }
+
             /* Ensure nav links container doesn't affect body scroll when closed */
-             .nav-links:not(.nav-active) {
-                 pointer-events: none;
-             }
-            .nav-links.nav-active { /* Corrected selector */
-                transform: translateX(0%);
-                pointer-events: auto; /* Allow interaction when open */
+            .nav-links:not(.nav-active) {
+                pointer-events: none;
             }
-             body.nav-open {
-                 overflow: hidden; /* Prevent body scroll when menu is open */
-             }
+
+            .nav-links.nav-active {
+                /* Corrected selector */
+                transform: translateX(0%);
+                pointer-events: auto;
+                /* Allow interaction when open */
+            }
+
+            body.nav-open {
+                overflow: hidden;
+                /* Prevent body scroll when menu is open */
+            }
 
             .nav-links li {
-                margin: 25px 0; opacity: 0; transform: translateX(30px);
-                width: 100%; /* Ensure list items take full width for centering */
-                text-align: center; /* Center the link text */
+                margin: 25px 0;
+                opacity: 0;
+                transform: translateX(30px);
+                width: 100%;
+                /* Ensure list items take full width for centering */
+                text-align: center;
+                /* Center the link text */
             }
-            .nav-links.nav-active li { /* Corrected selector */
-                opacity: 1; transform: translateX(0);
+
+            .nav-links.nav-active li {
+                /* Corrected selector */
+                opacity: 1;
+                transform: translateX(0);
                 transition: opacity 0.5s ease forwards, transform 0.5s ease forwards;
             }
-            .nav-links.nav-active li:nth-child(1) { transition-delay: 0.2s; }
-            .nav-links.nav-active li:nth-child(2) { transition-delay: 0.3s; }
-            .nav-links.nav-active li:nth-child(3) { transition-delay: 0.4s; }
-            .nav-links.nav-active li:nth-child(4) { transition-delay: 0.5s; }
 
-            .burger { display: block; } /* Show burger */
+            .nav-links.nav-active li:nth-child(1) {
+                transition-delay: 0.2s;
+            }
+
+            .nav-links.nav-active li:nth-child(2) {
+                transition-delay: 0.3s;
+            }
+
+            .nav-links.nav-active li:nth-child(3) {
+                transition-delay: 0.4s;
+            }
+
+            .nav-links.nav-active li:nth-child(4) {
+                transition-delay: 0.5s;
+            }
+
+            .burger {
+                display: block;
+            }
+
+            /* Show burger */
 
             /* Styles already present for burger toggle animation */
             /* .toggle .line1 ... etc */
 
-            .section-title { font-size: 42px; margin-bottom: 30px; } /* Smaller title */
-            .section-subtitle { font-size: 18px; margin-bottom: 40px; } /* Smaller subtitle */
+            .section-title {
+                font-size: 42px;
+                margin-bottom: 30px;
+            }
 
-            .name { font-size: 36px; line-height: 1.3; } /* Adjust name size */
-            .hello { font-size: 24px; }
-            .profession { font-size: 22px; height: auto; min-height: 30px; margin-bottom: 30px; } /* Adjust profession text */
+            /* Smaller title */
+            .section-subtitle {
+                font-size: 18px;
+                margin-bottom: 40px;
+            }
 
-            .home-buttons { flex-direction: column; align-items: center; gap: 20px; } /* Stack buttons */
-            .btn { padding: 12px 28px; font-size: 16px; width: 80%; max-width: 250px; text-align: center; } /* Adjust button size */
+            /* Smaller subtitle */
+
+            .name {
+                font-size: 36px;
+                line-height: 1.3;
+            }
+
+            /* Adjust name size */
+            .hello {
+                font-size: 24px;
+            }
+
+            .profession {
+                font-size: 22px;
+                height: auto;
+                min-height: 30px;
+                margin-bottom: 30px;
+            }
+
+            /* Adjust profession text */
+
+            .home-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            /* Stack buttons */
+            .btn {
+                padding: 12px 28px;
+                font-size: 16px;
+                width: 80%;
+                max-width: 250px;
+                text-align: center;
+            }
+
+            /* Adjust button size */
 
             /* Show home image on small screens and adjust */
             .home-image {
-                 display: flex; /* Make it visible */
-                 margin-top: 50px; /* Add space above image */
-                 max-width: 70%; /* Control image size */
-                 width: auto; /* Let height adjust */
-                 order: 2; /* Ensure image comes after text in flex column */
-                 animation-delay: 0.5s; /* Adjust animation delay if needed */
+                display: flex;
+                /* Make it visible */
+                margin-top: 50px;
+                /* Add space above image */
+                max-width: 70%;
+                /* Control image size */
+                width: auto;
+                /* Let height adjust */
+                order: 2;
+                /* Ensure image comes after text in flex column */
+                animation-delay: 0.5s;
+                /* Adjust animation delay if needed */
             }
-            .home-text {
-                 padding: 0; /* Remove specific padding */
-                 order: 1; /* Ensure text comes first */
-                 width: 100%; /* Take full width */
-                 animation-delay: 0.2s; /* Adjust animation delay */
-             }
 
-            .about-content { gap: 40px; }
-            .about-image { width: 150px; height: 150px; } /* Smaller about image */
-            .about-details p, .about-right p, .about-info p { font-size: 16px; line-height: 1.7; } /* Adjust text size */
-            .skills-title { font-size: 20px; }
-            .skill-name { font-size: 15px; }
+            .home-text {
+                padding: 0;
+                /* Remove specific padding */
+                order: 1;
+                /* Ensure text comes first */
+                width: 100%;
+                /* Take full width */
+                animation-delay: 0.2s;
+                /* Adjust animation delay */
+            }
+
+            .about-content {
+                gap: 40px;
+            }
+
+            .about-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            /* Smaller about image */
+            .about-details p,
+            .about-right p,
+            .about-info p {
+                font-size: 16px;
+                line-height: 1.7;
+            }
+
+            /* Adjust text size */
+            .skills-title {
+                font-size: 20px;
+            }
+
+            .skill-name {
+                font-size: 15px;
+            }
 
             /* Mobile animation override for cards, contact items, skills */
             /* Initial state for elements that will animate on mobile */
-            .card, .contact-item, .skill {
-                 /* Keep initial hidden state consistent with desktop */
-                 opacity: 0;
-                 /* Adjust initial transform based on animation start */
-                 transform: translateY(50px) scale(0.95);
-                 /* Ensure desktop transition doesn't interfere */
-                 transition: none;
-             }
+            .card,
+            .contact-item,
+            .skill {
+                /* Keep initial hidden state consistent with desktop */
+                opacity: 0;
+                /* Adjust initial transform based on animation start */
+                transform: translateY(50px) scale(0.95);
+                /* Ensure desktop transition doesn't interfere */
+                transition: none;
+            }
 
-             /* Animation application via JS-added class */
-             .card.animate-bounce,
-             .contact-item.animate-bounce,
-             .skill.animate-bounce {
-                 /* Apply the bounce animation */
-                 animation-name: enterUpBounce;
-                 animation-duration: 0.9s; /* Adjust duration */
-                 animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Easing for bounce */
-                 animation-fill-mode: forwards; /* Keep final state */
-                 /* Delay is still picked up from inline style variable */
-                 animation-delay: var(--animation-delay, 0s);
-             }
+            /* Animation application via JS-added class */
+            .card.animate-bounce,
+            .contact-item.animate-bounce,
+            .skill.animate-bounce {
+                /* Apply the bounce animation */
+                animation-name: enterUpBounce;
+                animation-duration: 0.9s;
+                /* Adjust duration */
+                animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                /* Easing for bounce */
+                animation-fill-mode: forwards;
+                /* Keep final state */
+                /* Delay is still picked up from inline style variable */
+                animation-delay: var(--animation-delay, 0s);
+            }
 
-            .cards-container { grid-template-columns: 1fr; gap: 30px; } /* Single column grid */
-            .card { padding: 25px; } /* Adjust card padding */
-            .card-year { font-size: 20px; }
-            .card-title { font-size: 18px; }
-            .card-description { font-size: 15px; }
+            .cards-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
 
-            .contact-grid { flex-direction: column; align-items: center; gap: 40px; margin: 40px 0;} /* Stack contact items */
-            .contact-item { flex-basis: 100%; max-width: 400px; /* Take full width */ min-width: unset; }
-            .contact-icon { width: 60px; height: 60px; font-size: 24px; } /* Smaller icon */
-            .contact-title { font-size: 18px; }
-            .contact-info { font-size: 15px; }
+            /* Single column grid */
+            .card {
+                padding: 25px;
+            }
 
-            .contact-form { padding: 25px; margin-top: 40px; } /* Adjust form padding */
-            .contact-form label { font-size: 15px; }
-            .contact-form input, .contact-form textarea { padding: 12px; font-size: 15px; }
-            .contact-form button { font-size: 16px; }
+            /* Adjust card padding */
+            .card-year {
+                font-size: 20px;
+            }
 
-            .question-title { font-size: 20px; }
-            .social-links { gap: 25px; margin-top: 40px; }
-            .social-link { font-size: 30px; }
+            .card-title {
+                font-size: 18px;
+            }
+
+            .card-description {
+                font-size: 15px;
+            }
+
+            .contact-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+                margin: 40px 0;
+            }
+
+            /* Stack contact items */
+            .contact-item {
+                flex-basis: 100%;
+                max-width: 400px;
+                /* Take full width */
+                min-width: unset;
+            }
+
+            .contact-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+
+            /* Smaller icon */
+            .contact-title {
+                font-size: 18px;
+            }
+
+            .contact-info {
+                font-size: 15px;
+            }
+
+            .contact-form {
+                padding: 25px;
+                margin-top: 40px;
+            }
+
+            /* Adjust form padding */
+            .contact-form label {
+                font-size: 15px;
+            }
+
+            .contact-form input,
+            .contact-form textarea {
+                padding: 12px;
+                font-size: 15px;
+            }
+
+            .contact-form button {
+                font-size: 16px;
+            }
+
+            .question-title {
+                font-size: 20px;
+            }
+
+            .social-links {
+                gap: 25px;
+                margin-top: 40px;
+            }
+
+            .social-link {
+                font-size: 30px;
+            }
         }
 
-         /* Extra small screens (Optional: Further adjustments if needed) */
+        /* Extra small screens (Optional: Further adjustments if needed) */
         @media screen and (max-width: 480px) {
-             .logo { font-size: 18px; }
-             .section-title { font-size: 36px; }
-             .name { font-size: 30px; }
-             .hello { font-size: 20px; }
-             .profession { font-size: 18px; }
-             .btn { width: 90%; }
-             .home-image { max-width: 60%; margin-top: 40px; } /* Further reduce image size */
-             .about-image { width: 120px; height: 120px; }
-             .card-title { font-size: 17px; }
-             .card-description { font-size: 14px; }
-             .contact-title { font-size: 17px; }
-             .contact-info { font-size: 14px; }
-        }
+            .logo {
+                font-size: 18px;
+            }
 
+            .section-title {
+                font-size: 36px;
+            }
+
+            .name {
+                font-size: 30px;
+            }
+
+            .hello {
+                font-size: 20px;
+            }
+
+            .profession {
+                font-size: 18px;
+            }
+
+            .btn {
+                width: 90%;
+            }
+
+            .home-image {
+                max-width: 60%;
+                margin-top: 40px;
+            }
+
+            /* Further reduce image size */
+            .about-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .card-title {
+                font-size: 17px;
+            }
+
+            .card-description {
+                font-size: 14px;
+            }
+
+            .contact-title {
+                font-size: 17px;
+            }
+
+            .contact-info {
+                font-size: 14px;
+            }
+        }
     </style>
 </head>
+
 <body>
     <!-- Custom Cursor -->
     <div class="custom-cursor"></div>
@@ -872,13 +1847,15 @@
                 <div class="profession" id="typing-text"></div>
                 <div class="home-buttons">
                     <!-- Updated LinkedIn URL Placeholder -->
-                    <a href="https://www.linkedin.com/in/kanhaiyalalsuthar/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">LINKEDIN</a>
+                    <a href="https://www.linkedin.com/in/kanhaiyalalsuthar/" target="_blank" rel="noopener noreferrer"
+                        class="btn btn-primary">LINKEDIN</a>
                     <a href="#resume" class="btn btn-secondary">MY WORKS</a>
                 </div>
             </div>
             <!-- Profile Image (Now visible on mobile too via CSS changes) -->
             <div class="home-image" data-tilt>
-                <img src="https://github.com/Klsuthar/KanhaiyalalSuthar/blob/main/images/profile.png?raw=true" alt="Kanhaiya Lal Suthar">
+                <img src="https://github.com/Klsuthar/KanhaiyalalSuthar/blob/main/images/profile.png?raw=true"
+                    alt="Kanhaiya Lal Suthar">
             </div>
         </div>
     </section>
@@ -890,54 +1867,72 @@
             <div class="about-content">
                 <div class="about-left">
                     <div class="about-image">
-                         <!-- Updated About Image URL -->
-                        <img src="https://github.com/Klsuthar/KanhaiyalalSuthar/blob/main/images/about.png?raw=true" alt="Kanhaiya Lal">
+                        <!-- Updated About Image URL -->
+                        <img src="https://github.com/Klsuthar/KanhaiyalalSuthar/blob/main/images/about.png?raw=true"
+                            alt="Kanhaiya Lal">
                     </div>
                     <div class="about-details">
                         <p><strong>NAME:</strong> KANHAIYA LAL SUTHAR</p>
                         <p><strong>JOB ROLE:</strong> MATHS TEACHER</p>
                         <!-- Updated Experience -->
-                        <p><strong>EXPERIENCE:</strong> 2+ MONTHS INTERN</p>
+                        <p><strong>EXPERIENCE:</strong> 4+ MONTHS INTERN</p>
                         <p><strong>ADDRESS:</strong> DHADHERU, CHURU, RAJASTHAN</p>
                     </div>
                     <h3 class="skills-title">SKILLS</h3>
                     <div class="skills">
                         <div class="skill" style="--skill-index: 1; --animation-delay: 0.1s;">
-                            <div class="skill-name"><span>TEACHING</span><span>95%</span></div>
-                            <div class="skill-bar"><div class="skill-progress" style="--progress-width: 95%;"></div></div>
+                            <div class="skill-name"><span>TEACHING</span><span>90%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress-width: 95%;"></div>
+                            </div>
                             <div class="skill-tooltip">Expert in simplifying complex concepts</div>
                         </div>
                         <div class="skill" style="--skill-index: 2; --animation-delay: 0.2s;">
-                            <div class="skill-name"><span>COMPUTER SKILLS</span><span>90%</span></div>
-                            <div class="skill-bar"><div class="skill-progress" style="--progress-width: 90%;"></div></div>
+                            <div class="skill-name"><span>COMPUTER SKILLS</span><span>95%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress-width: 90%;"></div>
+                            </div>
                             <div class="skill-tooltip">MS Office, Tech Tools</div>
                         </div>
                         <div class="skill" style="--skill-index: 3; --animation-delay: 0.3s;">
                             <div class="skill-name"><span>COMMUNICATION</span><span>70%</span></div>
-                            <div class="skill-bar"><div class="skill-progress" style="--progress-width: 70%;"></div></div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress-width: 70%;"></div>
+                            </div>
                             <div class="skill-tooltip">Clear & Engaging Delivery</div>
                         </div>
                         <div class="skill" style="--skill-index: 4; --animation-delay: 0.4s;">
                             <div class="skill-name"><span>QUICK LEARNING</span><span>95%</span></div>
-                            <div class="skill-bar"><div class="skill-progress" style="--progress-width: 95%;"></div></div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress-width: 95%;"></div>
+                            </div>
                             <div class="skill-tooltip">Eager to master new skills</div>
                         </div>
                         <div class="skill" style="--skill-index: 5; --animation-delay: 0.5s;">
-                            <div class="skill-name"><span>ADAPTABILITY</span><span>80%</span></div>
-                            <div class="skill-bar"><div class="skill-progress" style="--progress-width: 80%;"></div></div>
-                            <div class="skill-tooltip">Flexible & Open to Change</div>
+                            <div class="skill-name"><span>AI Prompt Engineer</span><span>85%</span></div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--progress-width: 80%;"></div>
+                            </div>
+                            <div class="skill-tooltip">Mastering the art of talking to machines.</div>
                         </div>
                     </div>
-                     <!-- Removed "5+ Projects Completed" as it seems less relevant for a teacher profile -->
+                    <!-- Removed "5+ Projects Completed" as it seems less relevant for a teacher profile -->
                     <!-- <p class="completed-projects">5+ Projects Completed</p> -->
                 </div>
                 <div class="about-right">
-                    <p>My name is <strong>Kanhaiya Lal</strong>, and I am a dedicated mathematics teacher with a strong academic background. I hold a <em>Bachelor of Science (BSc)</em> and a <em>Bachelor of Education (BEd)</em> degree, and I am currently preparing for the <em>RPSC 2nd Grade Teacher exam</em>. I am passionate about making complex mathematical concepts accessible and engaging for students, using innovative teaching methods to enhance their learning experience.</p>
+                    <p>My name is <strong>Kanhaiya Lal</strong>, and I am a dedicated mathematics teacher with a strong
+                        academic background. I hold a <em>Bachelor of Science (BSc)</em> and a <em>Bachelor of Education
+                            (BEd)</em> degree, and I am currently preparing for the <em>RPSC 2nd Grade Teacher
+                            exam</em>. I am passionate about making complex mathematical concepts accessible and
+                        engaging for students, using innovative teaching methods to enhance their learning experience.
+                    </p>
                     <div class="about-info">
                         <p><strong>PROFILE:</strong> Maths Teacher</p>
                         <p><strong>EDUCATION:</strong> BSc, BEd</p>
                         <p><strong>LANGUAGE:</strong> Hindi, English</p>
-                        <p><strong>OTHER SKILLS:</strong> Computer Knowledge, Word, Excel, Tech Tools</p>
+                        <p><strong>Other Skills:</strong> 6+ years of computer experience, specializing in Microsoft
+                            Word, Excel (advanced), and web design.</p>
+
                         <p><strong>INTEREST:</strong> Teaching, Travelling, Photography, Learning Tech</p>
                     </div>
                 </div>
@@ -955,43 +1950,50 @@
                 <div class="cards-container">
                     <!-- Updated 2023 Internship -->
                     <div class="card" style="--card-index: 1; --animation-delay: 0.15s;" data-tilt>
-                        <p class="card-year">2023</p> <h4 class="card-title">MATHS TEACHER INTERN - SENIOR LEVEL</h4>
-                        <p class="card-description">Gov. Sen. Sec. School, Dhadheru (1 Month)</p>
+                        <p class="card-year">2023</p>
+                        <h4 class="card-title">Science TEACHER INTERN - SENIOR LEVEL</h4>
+                        <p class="card-description">Gov. Sen. Sec. School, Dhadheru (1+ Month)</p>
                     </div>
                     <!-- Added 2024 Internship -->
                     <div class="card" style="--card-index: 2; --animation-delay: 0.30s;" data-tilt>
-                        <p class="card-year">2024</p> <h4 class="card-title">MATHS TEACHER INTERN - SENIOR LEVEL</h4>
-                        <p class="card-description">Gov. Sen. Sec. School, Dhadheru (1 Month)</p>
+                        <p class="card-year">2024</p>
+                        <h4 class="card-title">MATHS TEACHER INTERN - SENIOR LEVEL</h4>
+                        <p class="card-description">Gov. Sen. Sec. School, Dhadheru (3+ Month)</p>
                     </div>
                 </div>
             </div>
             <div class="education-section">
                 <h3 class="resume-title">EDUCATION</h3>
-                 <!-- Corrected Card Indices for Animation (Start from 1 for each section if desired, or continue sequence) -->
-                 <!-- Let's continue the sequence for simplicity -->
+                <!-- Corrected Card Indices for Animation (Start from 1 for each section if desired, or continue sequence) -->
+                <!-- Let's continue the sequence for simplicity -->
                 <div class="cards-container">
                     <div class="card" style="--card-index: 3; --animation-delay: 0.45s;" data-tilt> <!-- Was 1 -->
-                        <p class="card-year">2017-2018</p> <h4 class="card-title">SECONDARY SCHOOL</h4>
+                        <p class="card-year">2017-2018</p>
+                        <h4 class="card-title">SECONDARY SCHOOL</h4>
                         <p class="card-description">Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu</p>
-                        <p class="card-description">Grade: <strong>First Class Distinction (84.33%)</strong></p>
+                        <p class="card-description">Grade: <strong>First Distinction (84.33%)</strong></p>
                     </div>
                     <div class="card" style="--card-index: 4; --animation-delay: 0.60s;" data-tilt> <!-- Was 2 -->
-                        <p class="card-year">2019-2020</p> <h4 class="card-title">HIGHER SECONDARY SCHOOL</h4>
+                        <p class="card-year">2019-2020</p>
+                        <h4 class="card-title">HIGHER SECONDARY SCHOOL</h4>
                         <p class="card-description">Abhilasha Shikshan Sansthani, Sandwa, Churu</p>
-                        <p class="card-description">Grade: <strong>First Class Distinction (87.60%)</strong></p>
+                        <p class="card-description">Grade: <strong>First Distinction (87.60%)</strong></p>
                     </div>
                     <div class="card" style="--card-index: 5; --animation-delay: 0.75s;" data-tilt> <!-- Was 3 -->
                         <!-- Corrected BSc Dates -->
-                        <p class="card-year">2020-2023</p> <h4 class="card-title">BACHELOR OF SCIENCE (BSc)</h4>
+                        <p class="card-year">2020-2023</p>
+                        <h4 class="card-title">BACHELOR OF SCIENCE (B.Sc.)</h4>
                         <!-- Corrected University/Institute Name -->
-                        <p class="card-description">Maharaja Ganga Singh University, Bikaner (via Lohia College, Churu)</p>
-                        <p class="card-description">Grade: <strong>First Class Distinction (64.15%)</strong></p>
+                        <p class="card-description">Maharaja Ganga Singh University, Bikaner (via Lohia College, Churu)
+                        </p>
+                        <p class="card-description">Grade: <strong>First Distinction (64.15%)</strong></p>
                     </div>
                     <div class="card" style="--card-index: 6; --animation-delay: 0.90s;" data-tilt> <!-- Was 4 -->
                         <!-- Corrected BEd Dates -->
-                        <p class="card-year">2022-2024</p> <h4 class="card-title">BACHELOR OF EDUCATION (BEd)</h4>
+                        <p class="card-year">2020-2024</p>
+                        <h4 class="card-title">BACHELOR OF EDUCATION (B.Ed.)</h4>
                         <p class="card-description">Sadguru Institute of Education, Sanganer, Jaipur</p>
-                        <p class="card-description">Grade: <strong>First Class Distinction</strong></p>
+                        <p class="card-description">Grade: <strong>First Distinction (65.70%)</strong></p>
                     </div>
                 </div>
             </div>
@@ -1007,7 +2009,8 @@
                 <div class="contact-item" style="--contact-index: 1; --animation-delay: 0.15s;" data-tilt>
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h3 class="contact-title">ADDRESS</h3>
-                    <p class="contact-info"><a href="https://maps.app.goo.gl/FoWhp6aNYvZx836EA" target="_blank" rel="noopener noreferrer">Dhadheru, Churu, Rajasthan, India</a></p>
+                    <p class="contact-info"><a href="https://maps.app.goo.gl/FoWhp6aNYvZx836EA" target="_blank"
+                            rel="noopener noreferrer">Dhadheru, Churu, Rajasthan, India</a></p>
                 </div>
                 <div class="contact-item" style="--contact-index: 2; --animation-delay: 0.30s;" data-tilt>
                     <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
@@ -1015,31 +2018,32 @@
                     <p class="contact-info"><a href="tel:+919001375139">+91 90013 75139</a></p>
                 </div>
                 <div class="contact-item" style="--contact-index: 3; --animation-delay: 0.45s;" data-tilt>
-                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <h3 class="contact-title">EMAIL ADDRESS</h3>
-                     <!-- Updated Email Address & Removed Cloudflare protection span as it will be rendered directly -->
+                    <!-- Updated Email Address & Removed Cloudflare protection span as it will be rendered directly -->
                     <p class="contact-info"><a href="mailto:klsuthar0987@gmail.com">klsuthar0987@gmail.com</a></p>
                 </div>
             </div>
-            <form class="contact-form" id="contact-form"> <!-- This form won't use the bounce animation based on current CSS selectors -->
-                <label for="name">Name</label> <input type="text" id="name" name="name" placeholder="Your Name" required>
-                <label for="email">Email</label> <input type="email" id="email" name="email" placeholder="Your Email" required>
-                <label for="message">Message</label> <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                <button type="button" onclick="submitForm()">Send Message</button>
-            </form>
+
+
             <div class="question-section"> <!-- This section won't use the bounce animation -->
                 <h3 class="question-title">HAVE A QUESTION?</h3>
-                 <!-- Updated Email Link -->
+                <!-- Updated Email Link -->
                 <a href="mailto:klsuthar0987@gmail.com" class="btn btn-primary">CLICK HERE TO EMAIL ME</a>
             </div>
             <div class="social-links"> <!-- This section won't use the bounce animation -->
-                 <!-- Added target="_blank" and rel="noopener noreferrer" to all social links -->
-                 <!-- Replaced placeholder URLs with actual/example URLs -->
-                <a href="https://youtube.com/@KanhaiyaLalSutharMaths?si=g18y5d62nI0i-1h0" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-youtube"></i></a>
-                <a href="https://linkedin.com/in/kanhaiyalalsuthar/" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="https://twitter.com/Kanhaiy13218049" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://facebook.com/kanhaiyalal.suthar.7543" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-facebook"></i></a>
-                <a href="https://instagram.com/klsuthar121" target="_blank" rel="noopener noreferrer" class="social-link"><i class="fab fa-instagram"></i></a>
+                <!-- Added target="_blank" and rel="noopener noreferrer" to all social links -->
+                <!-- Replaced placeholder URLs with actual/example URLs -->
+                <a href="https://youtube.com/@KanhaiyaLalSutharMaths?si=g18y5d62nI0i-1h0" target="_blank"
+                    rel="noopener noreferrer" class="social-link"><i class="fab fa-youtube"></i></a>
+                <a href="https://linkedin.com/in/kanhaiyalalsuthar/" target="_blank" rel="noopener noreferrer"
+                    class="social-link"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/Kanhaiy13218049" target="_blank" rel="noopener noreferrer"
+                    class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/kanhaiyalal.suthar.7543" target="_blank" rel="noopener noreferrer"
+                    class="social-link"><i class="fab fa-facebook"></i></a>
+                <a href="https://instagram.com/klsuthar121" target="_blank" rel="noopener noreferrer"
+                    class="social-link"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </section>
@@ -1056,12 +2060,12 @@
 
             // --- Custom Cursor ---
             const cursor = document.querySelector('.custom-cursor');
-             // Hide on touch AND specific mobile width check
-             if (cursor && !isTouchDevice && !isMobile) {
+            // Hide on touch AND specific mobile width check
+            if (cursor && !isTouchDevice && !isMobile) {
                 window.addEventListener('mousemove', (e) => {
                     requestAnimationFrame(() => {
-                         cursor.style.left = e.clientX + 'px';
-                         cursor.style.top = e.clientY + 'px';
+                        cursor.style.left = e.clientX + 'px';
+                        cursor.style.top = e.clientY + 'px';
                     });
                 });
                 // Apply hover effect only to specified elements
@@ -1071,7 +2075,7 @@
                 });
             } else if (cursor) {
                 cursor.style.display = 'none'; // Hide cursor if conditions not met
-                 document.body.style.cursor = 'auto'; // Ensure default cursor is shown
+                document.body.style.cursor = 'auto'; // Ensure default cursor is shown
             }
 
             // --- Loading Overlay ---
@@ -1080,18 +2084,18 @@
                 if (overlay) {
                     // Start fade out slightly earlier
                     setTimeout(() => { overlay.classList.add('hidden'); }, 300);
-                     // Remove the overlay from DOM after transition to prevent interference
-                     overlay.addEventListener('transitionend', () => {
-                         if (overlay.classList.contains('hidden')) {
-                             overlay.remove();
-                         }
-                     }, { once: true }); // Ensure listener runs only once
+                    // Remove the overlay from DOM after transition to prevent interference
+                    overlay.addEventListener('transitionend', () => {
+                        if (overlay.classList.contains('hidden')) {
+                            overlay.remove();
+                        }
+                    }, { once: true }); // Ensure listener runs only once
                 }
             };
             // Use 'load' to wait for all resources, including images and scripts
             window.addEventListener('load', hideLoadingOverlay);
-             // Fallback in case load event takes too long
-             setTimeout(hideLoadingOverlay, 3000); // Hide after 3 seconds max
+            // Fallback in case load event takes too long
+            setTimeout(hideLoadingOverlay, 3000); // Hide after 3 seconds max
 
             // --- Navigation ---
             const nav = document.querySelector('nav');
@@ -1101,7 +2105,7 @@
             const bodyEl = document.body; // Cache body element
 
             const handleScrollNav = () => {
-                 // Add/remove 'scrolled' class based on scroll position
+                // Add/remove 'scrolled' class based on scroll position
                 bodyEl.classList.toggle('scrolled', window.scrollY > 50);
             };
             window.addEventListener('scroll', handleScrollNav, { passive: true }); // Improve scroll performance
@@ -1126,25 +2130,25 @@
                         }
                     });
                 });
-                 // Close menu if user clicks outside the nav links area (optional)
-                 document.addEventListener('click', (event) => {
-                     if (navLinksContainer.classList.contains('nav-active') && !nav.contains(event.target) && !burger.contains(event.target)) { // Check if click is outside nav AND burger
-                          navLinksContainer.classList.remove('nav-active');
-                          burger.classList.remove('toggle');
-                          bodyEl.classList.remove('nav-open');
-                     }
-                 });
+                // Close menu if user clicks outside the nav links area (optional)
+                document.addEventListener('click', (event) => {
+                    if (navLinksContainer.classList.contains('nav-active') && !nav.contains(event.target) && !burger.contains(event.target)) { // Check if click is outside nav AND burger
+                        navLinksContainer.classList.remove('nav-active');
+                        burger.classList.remove('toggle');
+                        bodyEl.classList.remove('nav-open');
+                    }
+                });
             }
 
-             // --- Active Nav Link Highlighting ---
-             const sections = document.querySelectorAll('section[id]'); // Select sections with IDs
-             const highlightSection = () => {
+            // --- Active Nav Link Highlighting ---
+            const sections = document.querySelectorAll('section[id]'); // Select sections with IDs
+            const highlightSection = () => {
                 let current = '';
                 const scrollY = window.pageYOffset;
 
-                 // Find the section currently in view
+                // Find the section currently in view
                 sections.forEach(section => {
-                     // Adjust offsetTop to trigger highlighting slightly earlier/later
+                    // Adjust offsetTop to trigger highlighting slightly earlier/later
                     const sectionTop = section.offsetTop - 100; // Trigger 100px before section top
                     const sectionHeight = section.clientHeight;
                     if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
@@ -1152,29 +2156,29 @@
                     }
                 });
 
-                 // If no section is actively matched (e.g., at the very top/bottom), default to home or contact
-                 if (!current && scrollY < sections[0].offsetTop - 100) {
-                     current = 'home';
-                 } else if (!current && scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100) {
-                     // Find last section ID dynamically
-                      const lastSectionId = sections.length > 0 ? sections[sections.length - 1].getAttribute('id') : 'contact';
-                      current = lastSectionId;
-                 }
+                // If no section is actively matched (e.g., at the very top/bottom), default to home or contact
+                if (!current && scrollY < sections[0].offsetTop - 100) {
+                    current = 'home';
+                } else if (!current && scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100) {
+                    // Find last section ID dynamically
+                    const lastSectionId = sections.length > 0 ? sections[sections.length - 1].getAttribute('id') : 'contact';
+                    current = lastSectionId;
+                }
 
 
                 navLinks.forEach(link => {
-                     // Check if link's href matches the current section ID
+                    // Check if link's href matches the current section ID
                     link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
                 });
-             };
-             window.addEventListener('scroll', highlightSection, { passive: true });
-             highlightSection(); // Initial highlight check
+            };
+            window.addEventListener('scroll', highlightSection, { passive: true });
+            highlightSection(); // Initial highlight check
 
             // --- Typing Animation ---
             const typeWriter = () => {
                 const typingElement = document.getElementById('typing-text');
                 if (!typingElement) return;
-                const words = ["Maths Teacher", "Tech Enthusiast", "Excel Expert", "Lifelong Learner", "Innovator"];
+                const words = ["Maths Teacher", "Tech Enthusiast", "Excel Expert"];
                 const colors = ["#f5c518", "#00c4b4", "#ffffff", "#f5c518", "#00c4b4"];
                 let wordIndex = 0, charIndex = 0, isDeleting = false;
 
@@ -1216,46 +2220,46 @@
                         }
                     }
                 }
-                 // Start the animation after a short delay
+                // Start the animation after a short delay
                 typingElement.textContent = ''; // Clear initial content
                 setTimeout(type, 1200);
             };
             typeWriter();
 
-             // --- Scroll Animations (Intersection Observer for Sections) ---
-             const sectionObserverOptions = {
-                 root: null, // Observe relative to viewport
-                 rootMargin: '0px',
-                 threshold: 0.15 // Trigger when 15% of the section is visible
-             };
+            // --- Scroll Animations (Intersection Observer for Sections) ---
+            const sectionObserverOptions = {
+                root: null, // Observe relative to viewport
+                rootMargin: '0px',
+                threshold: 0.15 // Trigger when 15% of the section is visible
+            };
 
-             const sectionObserver = new IntersectionObserver((entries, observer) => {
-                 entries.forEach(entry => {
-                     if (entry.isIntersecting) {
-                         entry.target.classList.add('visible');
-                         // Animate skill bars fill when 'about' section becomes visible (desktop/mobile)
-                         if (entry.target.id === 'about') {
-                             entry.target.querySelectorAll('.skill-progress').forEach((bar) => {
-                                 setTimeout(() => bar.classList.add('animate'), 500);
-                             });
-                         }
-                         // Optionally unobserve section after first intersection
-                         // observer.unobserve(entry.target);
-                     } else if (!entry.target.classList.contains('no-reanimate')) {
-                         entry.target.classList.remove('visible');
-                         if (entry.target.id === 'about') {
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Animate skill bars fill when 'about' section becomes visible (desktop/mobile)
+                        if (entry.target.id === 'about') {
+                            entry.target.querySelectorAll('.skill-progress').forEach((bar) => {
+                                setTimeout(() => bar.classList.add('animate'), 500);
+                            });
+                        }
+                        // Optionally unobserve section after first intersection
+                        // observer.unobserve(entry.target);
+                    } else if (!entry.target.classList.contains('no-reanimate')) {
+                        entry.target.classList.remove('visible');
+                        if (entry.target.id === 'about') {
                             entry.target.querySelectorAll('.skill-progress.animate').forEach((bar) => {
                                 bar.classList.remove('animate');
                             });
-                         }
-                     }
-                 });
-             }, sectionObserverOptions);
+                        }
+                    }
+                });
+            }, sectionObserverOptions);
 
-             // Observe all sections for general visibility fade/transform
-             sections.forEach(section => {
-                 sectionObserver.observe(section);
-             });
+            // Observe all sections for general visibility fade/transform
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
 
             // --- Scroll Animations (Intersection Observer for Mobile Bounce Items) ---
             if (isMobile) {
@@ -1286,8 +2290,8 @@
             // --- Vanilla Tilt Initialization ---
             const tiltElements = document.querySelectorAll('[data-tilt]');
             if (tiltElements.length > 0 && typeof VanillaTilt !== 'undefined') {
-                 // Initialize tilt only if not touch device AND not mobile width
-                 if (!isTouchDevice && !isMobile) {
+                // Initialize tilt only if not touch device AND not mobile width
+                if (!isTouchDevice && !isMobile) {
                     VanillaTilt.init(tiltElements, {
                         max: 10,          // Reduced max tilt angle
                         perspective: 1000,
@@ -1296,102 +2300,102 @@
                         glare: true,
                         "max-glare": 0.25  // Reduced glare intensity
                     });
-                 }
-             } else if (tiltElements.length > 0) {
-                 console.warn("VanillaTilt script not loaded or failed to initialize.");
-             }
+                }
+            } else if (tiltElements.length > 0) {
+                console.warn("VanillaTilt script not loaded or failed to initialize.");
+            }
 
-             // --- tsParticles Background Initialization ---
-             const particlesContainer = document.getElementById('tsparticles-background');
-             if (particlesContainer && typeof tsParticles !== 'undefined') {
-                 tsParticles.load("tsparticles-background", {
-                     // Keep backgroundMode enabled
-                     backgroundMode: {
-                         enable: true,
-                         zIndex: 0
-                     },
-                     particles: {
-                         number: {
-                             value: 60, // Slightly fewer particles for potentially better performance
-                             density: {
-                                 enable: true,
-                                 value_area: 800
-                             }
-                         },
-                         color: {
-                             value: ["#f5c518", "#00c4b4", "#ffffff"]
-                         },
-                         shape: {
-                             type: "circle"
-                         },
-                         opacity: {
-                             value: { min: 0.1, max: 0.6 }, // Use range for value
-                             animation: { // Corrected structure for v2
-                                 enable: true,
-                                 speed: 0.5,
-                                 minimumValue: 0.1, // Renamed from opacity_min
-                                 sync: false
-                             }
-                         },
-                         size: {
-                             value: { min: 1, max: 3 }, // Use range for value
-                             random: true,
-                             animation: {
-                                 enable: false // Keep size animation disabled
-                             }
-                         },
-                         links: {
-                             enable: true,
-                             distance: 150,
-                             color: "#555555", // Slightly darker links
-                             opacity: 0.4,
-                             width: 1
-                         },
-                         move: {
-                             enable: true,
-                             speed: 1.2, // Slightly slower speed
-                             direction: "none",
-                             random: true,
-                             straight: false,
-                             outModes: { // Corrected structure for v2
-                                 default: "out" // Renamed from out_mode
-                             },
-                             attract: {
-                                 enable: false
-                             }
-                         }
-                     },
-                     interactivity: {
-                         detectsOn: "canvas", // Renamed from detect_on
-                         events: {
-                             onHover: { // Renamed from onhover
-                                 enable: true,
-                                 mode: "repulse"
-                             },
-                             onClick: { // Renamed from onclick
-                                 enable: true,
-                                 mode: "push"
-                             },
-                             resize: true
-                         },
-                         modes: {
-                             repulse: {
-                                 distance: 80, // Reduced repulse distance
-                                 duration: 0.4
-                             },
-                             push: {
-                                 quantity: 3 // Renamed from particles_nb, reduced quantity
-                             },
-                             // Removed grab, bubble, remove modes for simplicity
-                         }
-                     },
-                     detectRetina: true
-                 }).catch(error => {
-                      console.error("tsParticles load error:", error);
-                 });
-             } else if (particlesContainer) {
-                 console.warn("tsParticles library not loaded or #tsparticles-background not found.");
-             }
+            // --- tsParticles Background Initialization ---
+            const particlesContainer = document.getElementById('tsparticles-background');
+            if (particlesContainer && typeof tsParticles !== 'undefined') {
+                tsParticles.load("tsparticles-background", {
+                    // Keep backgroundMode enabled
+                    backgroundMode: {
+                        enable: true,
+                        zIndex: 0
+                    },
+                    particles: {
+                        number: {
+                            value: 60, // Slightly fewer particles for potentially better performance
+                            density: {
+                                enable: true,
+                                value_area: 800
+                            }
+                        },
+                        color: {
+                            value: ["#f5c518", "#00c4b4", "#ffffff"]
+                        },
+                        shape: {
+                            type: "circle"
+                        },
+                        opacity: {
+                            value: { min: 0.1, max: 0.6 }, // Use range for value
+                            animation: { // Corrected structure for v2
+                                enable: true,
+                                speed: 0.5,
+                                minimumValue: 0.1, // Renamed from opacity_min
+                                sync: false
+                            }
+                        },
+                        size: {
+                            value: { min: 1, max: 3 }, // Use range for value
+                            random: true,
+                            animation: {
+                                enable: false // Keep size animation disabled
+                            }
+                        },
+                        links: {
+                            enable: true,
+                            distance: 150,
+                            color: "#555555", // Slightly darker links
+                            opacity: 0.4,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 1.2, // Slightly slower speed
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            outModes: { // Corrected structure for v2
+                                default: "out" // Renamed from out_mode
+                            },
+                            attract: {
+                                enable: false
+                            }
+                        }
+                    },
+                    interactivity: {
+                        detectsOn: "canvas", // Renamed from detect_on
+                        events: {
+                            onHover: { // Renamed from onhover
+                                enable: true,
+                                mode: "repulse"
+                            },
+                            onClick: { // Renamed from onclick
+                                enable: true,
+                                mode: "push"
+                            },
+                            resize: true
+                        },
+                        modes: {
+                            repulse: {
+                                distance: 80, // Reduced repulse distance
+                                duration: 0.4
+                            },
+                            push: {
+                                quantity: 3 // Renamed from particles_nb, reduced quantity
+                            },
+                            // Removed grab, bubble, remove modes for simplicity
+                        }
+                    },
+                    detectRetina: true
+                }).catch(error => {
+                    console.error("tsParticles load error:", error);
+                });
+            } else if (particlesContainer) {
+                console.warn("tsParticles library not loaded or #tsparticles-background not found.");
+            }
 
         }); // End DOMContentLoaded
 
@@ -1405,13 +2409,13 @@
 
             // Basic Validation
             if (!name || !email || !message) {
-                 alert('Please fill in all required fields.');
-                 return;
+                alert('Please fill in all required fields.');
+                return;
             }
             // Simple email format check
             if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                 alert('Please enter a valid email address.');
-                 return;
+                alert('Please enter a valid email address.');
+                return;
             }
 
             // Construct mailto link (Ensure the target email is correct)
@@ -1422,15 +2426,15 @@
 
             // Attempt to open mail client
             try {
-                 // Use window.open for potentially better compatibility than location.href
-                 const mailWindow = window.open(mailtoLink, '_blank');
-                 // If window didn't open (popup blocker?), inform user
-                 if (!mailWindow) {
-                     alert('Could not open email client automatically. Please copy the details or try again.');
-                 }
+                // Use window.open for potentially better compatibility than location.href
+                const mailWindow = window.open(mailtoLink, '_blank');
+                // If window didn't open (popup blocker?), inform user
+                if (!mailWindow) {
+                    alert('Could not open email client automatically. Please copy the details or try again.');
+                }
             } catch (e) {
-                 console.error("Failed to open mailto link:", e);
-                 alert('An error occurred while trying to open your email client.');
+                console.error("Failed to open mailto link:", e);
+                alert('An error occurred while trying to open your email client.');
             }
 
             // Optionally reset the form after a short delay
@@ -1446,4 +2450,5 @@
     <!-- Removed Cloudflare Challenge Platform Script as it's often site-specific and not part of the core portfolio -->
 
 </body>
+
 </html>
