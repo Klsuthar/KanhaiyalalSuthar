@@ -8,22 +8,37 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Montserrat:wght@500;600&display=swap"
         rel="stylesheet">
-    
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Custom Keyframes for Animated Skill Cards -->
     <style>
         @keyframes shine {
-            0% { transform: translateX(-100%) skewX(-20deg); }
-            100% { transform: translateX(200%) skewX(-20deg); }
+            0% {
+                transform: translateX(-100%) skewX(-20deg);
+            }
+
+            100% {
+                transform: translateX(200%) skewX(-20deg);
+            }
         }
+
         @keyframes particle {
-            0% { transform: translateY(0) scale(1); opacity: 1; }
-            100% { transform: translateY(-20px) scale(0.5); opacity: 0; }
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-20px) scale(0.5);
+                opacity: 0;
+            }
         }
+
         .animate-\[shine_2s_linear_infinite\] {
             animation: shine 2s linear infinite;
         }
+
         .animate-\[particle_2s_linear_infinite\] {
             animation: particle 2s linear infinite;
         }
@@ -75,8 +90,8 @@
         <div class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                
-                                <div class="about-left">
+
+                <div class="about-left">
                     <div class="about-image">
                         <img src="images/about.png" alt="Kanhaiya Lal">
                     </div>
@@ -86,152 +101,250 @@
                         <p><strong>EXPERIENCE:</strong> 4+ MONTHS INTERN</p>
                         <p><strong>ADDRESS:</strong> DHADHERU, CHURU, RAJASTHAN</p>
                     </div>
-                    
+
                     <h3 class="skills-title">SKILLS</h3>
                     <div class="animated-skills-container mt-6 space-y-6">
 
                         <!-- Skill Card 1: TEACHING -->
-                        <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-                            <div class="mb-2.5 text-center sm:text-left">
-                                <span class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
-                                    Expert in simplifying complex concepts
-                                </span>
-                            </div>
+                        <div
+                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
+
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">TEACHING</span>
+                                    <span
+                                        class="text-gray-200 font-semibold text-sm uppercase tracking-wider">TEACHING</span>
                                     <span class="text-[#f5c518] font-bold text-sm">90%</span>
                                 </div>
                                 <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse"></div>
-                                    <div style="width: 90%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]"></div>
-                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]"></div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
+                                    </div>
+                                    <div style="width: 90%;"
+                                        class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                        </div>
                                         <div class="absolute inset-0">
-                                            <div style="top: 25%; left: 30%; animation-delay: 0s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
-                                            <div style="top: 65%; left: 70%; animation-delay: 0.8s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                            <div style="top: 25%; left: 30%; animation-delay: 0s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 0.8s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping"></div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping" style="animation-delay: 0.5s;"></div>
-                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none"></div>
+                                <div
+                                    class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping">
+                                </div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                    style="animation-delay: 0.5s;"></div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
+                                </div>
+                            </div>
+                            <div style="height: 15px; opacity: 0;"></div>
+                            <div class="mb-2.5 text-center sm:text-left">
+                                <span
+                                    class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
+                                    Expert in simplifying complex concepts
+                                </span>
                             </div>
                         </div>
 
                         <!-- Skill Card 2: COMPUTER SKILLS -->
-                        <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-                            <div class="mb-2.5 text-center sm:text-left">
-                                <span class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
-                                    MS Office, Tech Tools
-                                </span>
-                            </div>
+                        <div
+                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
+
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">COMPUTER SKILLS</span>
+                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">COMPUTER
+                                        SKILLS</span>
                                     <span class="text-[#f5c518] font-bold text-sm">95%</span>
                                 </div>
                                 <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse"></div>
-                                    <div style="width: 95%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]"></div>
-                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]"></div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
+                                    </div>
+                                    <div style="width: 95%;"
+                                        class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                        </div>
                                         <div class="absolute inset-0">
-                                            <div style="top: 25%; left: 30%; animation-delay: 0.1s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
-                                            <div style="top: 65%; left: 70%; animation-delay: 0.9s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                            <div style="top: 25%; left: 30%; animation-delay: 0.1s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 0.9s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping" style="animation-delay: 0.1s;"></div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping" style="animation-delay: 0.6s;"></div>
-                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none"></div>
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping"
+                                    style="animation-delay: 0.1s;"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                    style="animation-delay: 0.6s;"></div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
+                                </div>
+                            </div>
+                            <div style="height: 15px; opacity: 0;"></div>
+                            <div class="mb-2.5 text-center sm:text-left">
+                                <span
+                                    class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
+                                    MS Office, Tech Tools
+                                </span>
                             </div>
                         </div>
 
                         <!-- Skill Card 3: COMMUNICATION -->
-                        <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-                            <div class="mb-2.5 text-center sm:text-left">
-                                <span class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
-                                    Clear & Engaging Delivery
-                                </span>
-                            </div>
+                        <div
+                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
+
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">COMMUNICATION</span>
+                                    <span
+                                        class="text-gray-200 font-semibold text-sm uppercase tracking-wider">COMMUNICATION</span>
                                     <span class="text-[#f5c518] font-bold text-sm">70%</span>
                                 </div>
                                 <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse"></div>
-                                    <div style="width: 70%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]"></div>
-                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]"></div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
+                                    </div>
+                                    <div style="width: 70%;"
+                                        class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                        </div>
                                         <div class="absolute inset-0">
-                                            <div style="top: 25%; left: 30%; animation-delay: 0.2s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
-                                            <div style="top: 65%; left: 70%; animation-delay: 1.0s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                            <div style="top: 25%; left: 30%; animation-delay: 0.2s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 1.0s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping" style="animation-delay: 0.2s;"></div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping" style="animation-delay: 0.7s;"></div>
-                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none"></div>
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping"
+                                    style="animation-delay: 0.2s;"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                    style="animation-delay: 0.7s;"></div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
+                                </div>
+                            </div>
+                            <div style="height: 15px; opacity: 0;"></div>
+                            <div class="mb-2.5 text-center sm:text-left">
+                                <span
+                                    class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
+                                    Clear & Engaging Delivery
+                                </span>
                             </div>
                         </div>
 
                         <!-- Skill Card 4: QUICK LEARNING -->
-                        <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-                            <div class="mb-2.5 text-center sm:text-left">
-                                <span class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
-                                    Eager to master new skills
-                                </span>
-                            </div>
+                        <div
+                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
+
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">QUICK LEARNING</span>
+                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">QUICK
+                                        LEARNING</span>
                                     <span class="text-[#f5c518] font-bold text-sm">95%</span>
                                 </div>
                                 <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse"></div>
-                                    <div style="width: 95%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]"></div>
-                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]"></div>
-                                        <div class="absolute inset-0">
-                                            <div style="top: 25%; left: 30%; animation-delay: 0.3s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
-                                            <div style="top: 65%; left: 70%; animation-delay: 1.1s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
-                                        </div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
                                     </div>
+                                    <div style="width: 95%;"
+                                        class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                        </div>
+                                        <div class="absolute inset-0">
+                                            <div style="top: 25%; left: 30%; animation-delay: 0.3s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 1.1s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping" style="animation-delay: 0.3s;"></div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping" style="animation-delay: 0.8s;"></div>
-                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none"></div>
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping"
+                                    style="animation-delay: 0.3s;"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                    style="animation-delay: 0.8s;"></div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
+                                </div>
+                                <div style="height: 15px; opacity: 0;"></div>
+                                <div class="mb-2.5 text-center sm:text-left">
+                                    <span
+                                        class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
+                                        Eager to master new skills
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                        
+
                         <!-- Skill Card 5: AI Prompt Engineer -->
-                        <div class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-                            <div class="mb-2.5 text-center sm:text-left">
-                                <span class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
-                                    Mastering the art of talking to machines
-                                </span>
-                            </div>
+                        <div
+                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
+
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">AI Prompt Engineer</span>
+                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">AI Prompt
+                                        Engineer</span>
                                     <span class="text-[#f5c518] font-bold text-sm">85%</span>
                                 </div>
                                 <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
-                                    <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse"></div>
-                                    <div style="width: 85%;" class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]"></div>
-                                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]"></div>
+                                    <div
+                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
+                                    </div>
+                                    <div style="width: 85%;"
+                                        class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                        </div>
                                         <div class="absolute inset-0">
-                                            <div style="top: 25%; left: 30%; animation-delay: 0.4s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
-                                            <div style="top: 65%; left: 70%; animation-delay: 1.2s;" class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]"></div>
+                                            <div style="top: 25%; left: 30%; animation-delay: 0.4s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
+                                            <div style="top: 65%; left: 70%; animation-delay: 1.2s;"
+                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping" style="animation-delay: 0.4s;"></div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping" style="animation-delay: 0.9s;"></div>
-                                <div class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none"></div>
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping"
+                                    style="animation-delay: 0.4s;"></div>
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                    style="animation-delay: 0.9s;"></div>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
+                                </div>
+                                <div class="mb-2.5 text-center sm:text-left">
+                                    <div style="height: 15px; opacity: 0;"></div>
+                                    <span
+                                        class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
+                                        Mastering the art of talking to machines
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
@@ -346,8 +459,8 @@
                     class="social-link"><i class="fab fa-linkedin"></i></a>
                 <a href="https://twitter.com/Kanhaiy13218049" target="_blank" rel="noopener noreferrer"
                     class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer"
-                    class="social-link"><i class="fab fa-telegram"></i></a>
+                <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer" class="social-link"><i
+                        class="fab fa-telegram"></i></a>
                 <a href="https://instagram.com/klsuthar121" target="_blank" rel="noopener noreferrer"
                     class="social-link"><i class="fab fa-instagram"></i></a>
             </div>
