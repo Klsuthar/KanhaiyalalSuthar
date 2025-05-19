@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Custom Cursor ---
     const cursor = document.querySelector('.custom-cursor');
-    // Hide on touch AND specific mobile width check
     if (cursor && !isTouchDevice && !isMobile) {
         window.addEventListener('mousemove', (e) => {
             requestAnimationFrame(() => {
@@ -59,14 +58,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 cursor.style.top = e.clientY + 'px';
             });
         });
-        // Apply hover effect only to specified elements
         document.querySelectorAll('a, button, .btn, .card, .contact-item, .social-link, .burger, .logo, .skill').forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
     } else if (cursor) {
-        cursor.style.display = 'none'; // Hide cursor if conditions not met
-        document.body.style.cursor = 'auto'; // Ensure default cursor is shown
+        cursor.style.display = 'none';
+        document.body.style.cursor = 'auto';
     }
 
     // --- Navigation ---
@@ -74,25 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const burger = document.querySelector('.burger');
     const navLinksContainer = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li a');
-    const bodyEl = document.body; // Cache body element
+    const bodyEl = document.body;
 
     const handleScrollNav = () => {
-        // Add/remove 'scrolled' class based on scroll position
         bodyEl.classList.toggle('scrolled', window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScrollNav, { passive: true }); // Improve scroll performance
-    handleScrollNav(); // Initial check
+    window.addEventListener('scroll', handleScrollNav, { passive: true });
+    handleScrollNav();
 
     if (burger && navLinksContainer) {
         burger.addEventListener('click', () => {
-            // Toggle classes for burger animation and menu visibility
             navLinksContainer.classList.toggle('nav-active');
             burger.classList.toggle('toggle');
-            // Toggle body class to prevent scrolling when menu is open
             bodyEl.classList.toggle('nav-open', navLinksContainer.classList.contains('nav-active'));
         });
 
-        // Close menu when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (navLinksContainer.classList.contains('nav-active')) {
@@ -102,9 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
-        // Close menu if user clicks outside the nav links area (optional)
         document.addEventListener('click', (event) => {
-            if (navLinksContainer.classList.contains('nav-active') && !nav.contains(event.target) && !burger.contains(event.target)) { // Check if click is outside nav AND burger
+            if (navLinksContainer.classList.contains('nav-active') && !nav.contains(event.target) && !burger.contains(event.target)) {
                 navLinksContainer.classList.remove('nav-active');
                 burger.classList.remove('toggle');
                 bodyEl.classList.remove('nav-open');
@@ -113,111 +106,96 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Active Nav Link Highlighting ---
-    const sections = document.querySelectorAll('section[id]'); // Select sections with IDs
+    const sections = document.querySelectorAll('section[id]');
     const highlightSection = () => {
         let current = '';
         const scrollY = window.pageYOffset;
 
-        // Find the section currently in view
         sections.forEach(section => {
-            // Adjust offsetTop to trigger highlighting slightly earlier/later
-            const sectionTop = section.offsetTop - 100; // Trigger 100px before section top
+            const sectionTop = section.offsetTop - 100;
             const sectionHeight = section.clientHeight;
             if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                 current = section.getAttribute('id');
             }
         });
 
-        // If no section is actively matched (e.g., at the very top/bottom), default to home or contact
         if (!current && scrollY < sections[0].offsetTop - 100) {
             current = 'home';
         } else if (!current && scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100) {
-            // Find last section ID dynamically
             const lastSectionId = sections.length > 0 ? sections[sections.length - 1].getAttribute('id') : 'contact';
             current = lastSectionId;
         }
 
-
         navLinks.forEach(link => {
-            // Check if link's href matches the current section ID
             link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
         });
     };
     window.addEventListener('scroll', highlightSection, { passive: true });
-    highlightSection(); // Initial highlight check
+    highlightSection();
 
     // --- Typing Animation ---
     const typeWriter = () => {
         const typingElement = document.getElementById('typing-text');
         if (!typingElement) return;
         const words = ["Maths Teacher", "Tech Enthusiast", "Excel Expert"];
-        const colors = ["#f5c518", "#00c4b4", "#ffffff", "#f5c518", "#00c4b4"];
+        const colors = ["#f5c518", "#00c4b4", "#ffffff", "#f5c518", "#00c4b4"]; // Ensure enough colors for words
         let wordIndex = 0, charIndex = 0, isDeleting = false;
 
         function type() {
             const currentWord = words[wordIndex];
-            const currentColor = colors[wordIndex];
+            const currentColor = colors[wordIndex % colors.length]; // Cycle through colors
             typingElement.style.color = currentColor;
 
-            // Typing Speeds & Pauses
-            const typeSpeed = 120; // Speed of typing characters
-            const deleteSpeed = 60; // Speed of deleting characters
-            const pauseWord = 1500; // Pause after finishing a word
-            const pauseNext = 500;  // Pause before starting next word
+            const typeSpeed = 100;    // Faster typing
+            const deleteSpeed = 50;   // Faster deleting
+            const pauseWord = 1300;   // Shorter pause after word
+            const pauseNext = 400;    // Shorter pause before next word
 
             if (isDeleting) {
-                // Deleting characters
                 typingElement.textContent = currentWord.substring(0, charIndex - 1);
                 charIndex--;
                 if (charIndex === 0) {
-                    // Finished deleting, move to next word
                     isDeleting = false;
                     wordIndex = (wordIndex + 1) % words.length;
                     setTimeout(type, pauseNext);
                 } else {
-                    // Continue deleting
                     setTimeout(type, deleteSpeed);
                 }
             } else {
-                // Typing characters
                 typingElement.textContent = currentWord.substring(0, charIndex + 1);
                 charIndex++;
                 if (charIndex === currentWord.length) {
-                    // Finished typing word, start deleting after pause
                     isDeleting = true;
                     setTimeout(type, pauseWord);
                 } else {
-                    // Continue typing
                     setTimeout(type, typeSpeed);
                 }
             }
         }
-        // Start the animation after a short delay
-        typingElement.textContent = ''; // Clear initial content
-        setTimeout(type, 1200);
+        typingElement.textContent = '';
+        setTimeout(type, 1000); // Slightly shorter initial delay
     };
     typeWriter();
 
     // --- Scroll Animations (Intersection Observer for Sections) ---
     const sectionObserverOptions = {
-        root: null, // Observe relative to viewport
+        root: null,
         rootMargin: '0px',
-        threshold: 0.15 // Trigger when 15% of the section is visible
+        threshold: 0.15
     };
 
     const sectionObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Animate skill bars fill when 'about' section becomes visible (desktop/mobile)
                 if (entry.target.id === 'about') {
                     entry.target.querySelectorAll('.skill-progress').forEach((bar) => {
-                        setTimeout(() => bar.classList.add('animate'), 500);
+                        // Delay skill bar animation slightly after section is visible
+                        setTimeout(() => bar.classList.add('animate'), 300);
                     });
                 }
-                // Optionally unobserve section after first intersection
-                // observer.unobserve(entry.target);
-            } else if (!entry.target.classList.contains('no-reanimate')) {
+                // observer.unobserve(entry.target); // Uncomment to animate sections only once
+            } else if (!entry.target.classList.contains('no-reanimate')) { // Add 'no-reanimate' class to a section to prevent it from hiding
                 entry.target.classList.remove('visible');
                 if (entry.target.id === 'about') {
                     entry.target.querySelectorAll('.skill-progress.animate').forEach((bar) => {
@@ -228,7 +206,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, sectionObserverOptions);
 
-    // Observe all sections for general visibility fade/transform
     sections.forEach(section => {
         sectionObserver.observe(section);
     });
@@ -236,41 +213,35 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Scroll Animations (Intersection Observer for Mobile Bounce Items) ---
     if (isMobile) {
         const mobileAnimElements = document.querySelectorAll('.card, .contact-item, .skill');
-
         const mobileObserverOptions = {
             root: null,
-            rootMargin: '0px 0px -50px 0px', // Trigger slightly before element fully enters viewport bottom
-            threshold: 0.1 // Trigger when 10% is visible
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.1
         };
-
         const mobileElementObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-bounce');
-                    observer.unobserve(entry.target); // Animate only once
+                    observer.unobserve(entry.target);
                 }
-                // No 'else' needed as we unobserve
             });
         }, mobileObserverOptions);
-
         mobileAnimElements.forEach(el => {
             mobileElementObserver.observe(el);
         });
     }
 
-
     // --- Vanilla Tilt Initialization ---
     const tiltElements = document.querySelectorAll('[data-tilt]');
     if (tiltElements.length > 0 && typeof VanillaTilt !== 'undefined') {
-        // Initialize tilt only if not touch device AND not mobile width
         if (!isTouchDevice && !isMobile) {
             VanillaTilt.init(tiltElements, {
-                max: 10,          // Reduced max tilt angle
+                max: 8,           // Slightly reduced max tilt
                 perspective: 1000,
-                scale: 1.03,       // Slightly reduced scale
-                speed: 400,
+                scale: 1.02,      // Slightly reduced scale
+                speed: 300,       // Slightly faster
                 glare: true,
-                "max-glare": 0.25  // Reduced glare intensity
+                "max-glare": 0.2  // Slightly reduced glare
             });
         }
     } else if (tiltElements.length > 0) {
@@ -281,14 +252,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const particlesContainer = document.getElementById('tsparticles-background');
     if (particlesContainer && typeof tsParticles !== 'undefined') {
         tsParticles.load("tsparticles-background", {
-            // Keep backgroundMode enabled
             backgroundMode: {
                 enable: true,
                 zIndex: 0
             },
             particles: {
                 number: {
-                    value: 60, // Slightly fewer particles for potentially better performance
+                    value: 45, // Reduced particle count
                     density: {
                         enable: true,
                         value_area: 800
@@ -297,54 +267,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 color: {
                     value: ["#f5c518", "#00c4b4", "#ffffff"]
                 },
-                shape: {
-                    type: "circle"
-                },
+                shape: { type: "circle" },
                 opacity: {
-                    value: { min: 0.1, max: 0.6 }, // Use range for value
-                    animation: { // Corrected structure for v2
+                    value: { min: 0.1, max: 0.5 }, // Slightly reduced max opacity
+                    animation: {
                         enable: true,
-                        speed: 0.5,
-                        minimumValue: 0.1, // Renamed from opacity_min
+                        speed: 0.6, // Slightly faster opacity animation
+                        minimumValue: 0.1,
                         sync: false
                     }
                 },
                 size: {
-                    value: { min: 1, max: 3 }, // Use range for value
+                    value: { min: 1, max: 2.5 }, // Slightly smaller max size
                     random: true,
-                    animation: {
-                        enable: false // Keep size animation disabled
-                    }
+                    animation: { enable: false }
                 },
                 links: {
                     enable: true,
-                    distance: 150,
-                    color: "#555555", // Slightly darker links
-                    opacity: 0.4,
+                    distance: 130, // Reduced link distance
+                    color: "#555555",
+                    opacity: 0.35, // Slightly reduced opacity
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 1.2, // Slightly slower speed
+                    speed: 1, // Reduced speed
                     direction: "none",
                     random: true,
                     straight: false,
-                    outModes: { // Corrected structure for v2
-                        default: "out" // Renamed from out_mode
-                    },
-                    attract: {
-                        enable: false
-                    }
+                    outModes: { default: "out" },
+                    attract: { enable: false }
                 }
             },
             interactivity: {
-                detectsOn: "canvas", // Renamed from detect_on
+                detectsOn: "canvas",
                 events: {
-                    onHover: { // Renamed from onhover
+                    onHover: {
                         enable: true,
                         mode: "repulse"
                     },
-                    onClick: { // Renamed from onclick
+                    onClick: {
                         enable: true,
                         mode: "push"
                     },
@@ -352,13 +314,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 modes: {
                     repulse: {
-                        distance: 80, // Reduced repulse distance
+                        distance: 70, // Reduced repulse distance
                         duration: 0.4
                     },
                     push: {
-                        quantity: 3 // Renamed from particles_nb, reduced quantity
-                    },
-                    // Removed grab, bubble, remove modes for simplicity
+                        quantity: 2 // Reduced push quantity
+                    }
                 }
             },
             detectRetina: true
@@ -369,51 +330,66 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("tsParticles library not loaded or #tsparticles-background not found.");
     }
 
+    // Hide loading overlay after everything is set up
+    // The CSS transition handles the actual fade-out timing
+    const loadingOverlay = document.getElementById('loading-overlay');
+    if (loadingOverlay) {
+        // Ensure a minimum display time for the loader, then hide
+        // The CSS transition delay (0.4s) + transition duration (0.6s) = 1s total for fade
+        // JS can just add the class.
+         window.addEventListener('load', () => { // Wait for all resources
+            setTimeout(() => { // Optional: ensure loader shows for a tiny bit even if load is super fast
+                loadingOverlay.classList.add('hidden');
+            }, 200); // e.g., 200ms grace period
+        });
+    }
+
+
 }); // End DOMContentLoaded
 
 // --- Contact Form Submission ---
 function submitForm() {
     const form = document.getElementById('contact-form');
-    // Use optional chaining for safety in case elements don't exist
     const name = document.getElementById('name')?.value?.trim();
     const email = document.getElementById('email')?.value?.trim();
     const message = document.getElementById('message')?.value?.trim();
 
-    // Basic Validation
     if (!name || !email || !message) {
         alert('Please fill in all required fields.');
         return;
     }
-    // Simple email format check
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         alert('Please enter a valid email address.');
         return;
     }
 
-    // Construct mailto link (Ensure the target email is correct)
-    const recipientEmail = "klsuthar0987@gmail.com"; // <<<--- CONFIRM YOUR EMAIL HERE
+    const recipientEmail = "klsuthar0987@gmail.com";
     const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
     const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
 
-    // Attempt to open mail client
     try {
-        // Use window.open for potentially better compatibility than location.href
         const mailWindow = window.open(mailtoLink, '_blank');
-        // If window didn't open (popup blocker?), inform user
         if (!mailWindow) {
-            alert('Could not open email client automatically. Please copy the details or try again.');
+             // Fallback for browsers that block mailto via window.open or if it fails
+            window.location.href = mailtoLink;
         }
+         // Provide feedback after attempting to open, not contingent on mailWindow success
+        alert('Your email application should open shortly. If it doesn\'t, please check your popup/browser settings or manually send an email to ' + recipientEmail);
+
     } catch (e) {
         console.error("Failed to open mailto link:", e);
-        alert('An error occurred while trying to open your email client.');
+        // Fallback if window.open is blocked by very strict policies
+        try {
+            window.location.href = mailtoLink;
+            alert('Your email application should open shortly. If it doesn\'t, please check your popup/browser settings or manually send an email to ' + recipientEmail);
+        } catch (finalError) {
+            console.error("Fallback to window.location.href also failed:", finalError);
+            alert('An error occurred. Please manually send an email to ' + recipientEmail);
+        }
     }
 
-    // Optionally reset the form after a short delay
     setTimeout(() => {
         if (form) form.reset();
-    }, 1000); // Reset after 1 second
-
-    // Provide clearer feedback to the user
-    alert('Your email application should open shortly to send the message. If it doesn\'t, please check your popup settings or manually send an email to ' + recipientEmail);
+    }, 1000);
 }

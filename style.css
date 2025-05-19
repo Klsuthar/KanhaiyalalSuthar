@@ -15,7 +15,7 @@ body {
     color: white;
     line-height: 1.6;
     opacity: 0;
-    animation: fadeInBody 1.2s ease-out forwards;
+    animation: fadeInBody 0.8s ease-out forwards; /* Faster fade-in */
     font-weight: 400;
     cursor: none;
     /* Hide default cursor */
@@ -38,10 +38,10 @@ body {
 }
 
 .custom-cursor.hover {
-    transform: translate(-50%, -50%) scale(1.8);
-    opacity: 0.6;
-    width: 25px;
-    height: 25px;
+    transform: translate(-50%, -50%) scale(1.6); /* Slightly reduced scale */
+    opacity: 0.7; /* Slightly increased opacity for visibility */
+    width: 22px;  /* Adjusted to match scale change if desired */
+    height: 22px; /* Adjusted to match scale change if desired */
 }
 
 /* Hide custom cursor on touch devices/smaller screens */
@@ -77,7 +77,8 @@ section {
     overflow: hidden;
     opacity: 0;
     transform: translateY(50px) scale(0.98);
-    transition: opacity 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* Faster section appearance */
+    transition: opacity 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* Remove SVG pattern from home section specifically */
@@ -124,7 +125,7 @@ h6 {
     letter-spacing: 1px;
     opacity: 0;
     transform: translateY(15px);
-    transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s;
+    transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s; /* Good timing */
 }
 
 section.visible h2,
@@ -157,7 +158,7 @@ section.visible h6 {
     position: relative;
     z-index: 10;
     animation: glow 2s ease-in-out infinite alternate;
-    transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s;
+    transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s; /* Good timing */
 }
 
 section:not(.visible) .section-title {
@@ -184,7 +185,7 @@ section:not(.visible) .section-title {
     width: 0;
     height: 3px;
     background: linear-gradient(to right, transparent, #00c4b4, transparent);
-    transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s;
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s; /* Faster underline */
 }
 
 section.visible .section-title::after {
@@ -201,7 +202,7 @@ section.visible .section-title::after {
     font-style: italic;
     opacity: 0;
     transform: translateY(10px);
-    transition: opacity 0.7s ease-out 0.5s, transform 0.7s ease-out 0.5s;
+    transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s; /* Slightly faster */
 }
 
 section.visible .section-subtitle {
@@ -224,7 +225,6 @@ nav {
     z-index: 1000;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
-    /* Added padding transition */
 }
 
 body.scrolled nav {
@@ -239,7 +239,6 @@ body.scrolled nav {
     font-family: 'Poppins', sans-serif;
     letter-spacing: 2px;
     transition: transform 0.3s ease, font-size 0.3s ease;
-    /* Added font-size transition */
 }
 
 .logo:hover {
@@ -296,7 +295,6 @@ body.scrolled nav {
     position: relative;
 }
 
-/* Added z-index and relative pos */
 .burger div {
     width: 30px;
     height: 4px;
@@ -305,7 +303,6 @@ body.scrolled nav {
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
-/* Burger menu active state ('X' icon) */
 .toggle .line1 {
     transform: rotate(-45deg) translate(-7px, 7px);
 }
@@ -327,7 +324,6 @@ body.scrolled nav {
     justify-content: center;
     position: relative;
     overflow: hidden;
-    /* Gradient set above specifically for #home */
 }
 
 #tsparticles-background {
@@ -337,7 +333,6 @@ body.scrolled nav {
     width: 100%;
     height: 100%;
     z-index: 0;
-    /* Behind home-content */
 }
 
 .home-content {
@@ -347,7 +342,6 @@ body.scrolled nav {
     width: 100%;
     position: relative;
     z-index: 1;
-    /* Above particles */
 }
 
 .home-text {
@@ -355,7 +349,7 @@ body.scrolled nav {
     padding-right: 80px;
     opacity: 0;
     transform: translateX(-60px);
-    animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+    animation: slideInLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards; /* Faster */
 }
 
 @keyframes slideInLeft {
@@ -390,9 +384,7 @@ body.scrolled nav {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    /* Standard property */
     text-fill-color: transparent;
-    /* Standard property */
 }
 
 .profession {
@@ -405,36 +397,22 @@ body.scrolled nav {
     font-style: italic;
     text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
     min-width: 5px;
-    /* Ensure enough height for text */
     line-height: 1.3;
 }
 
 .profession::after {
     content: "|";
     position: absolute;
-    /* right: -10px; */
-    /* Adjusted below */
     animation: blink 0.7s infinite;
     color: #e0e0e0;
-    /* Adjust position relative to text */
     display: inline-block;
-    /* Helps with positioning */
     margin-left: 5px;
-    /* Space after text */
     top: 0;
-    /* Align with text */
 }
 
 @keyframes blink {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 .home-buttons {
@@ -480,39 +458,21 @@ body.scrolled nav {
 
 .btn:hover {
     color: #1a1a1a;
-    transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 10px 30px rgba(0, 196, 180, 0.6);
+    transform: translateY(-4px) scale(1.02); /* More subtle transform */
+    box-shadow: 0 8px 25px rgba(0, 196, 180, 0.5); /* More subtle shadow */
     border-color: transparent;
 }
 
-/* Remove hover effect on touch devices where :hover is problematic */
 @media (hover: none) {
     .btn:hover {
         color: white;
-        /* Revert color */
         transform: none;
-        /* Remove transform */
         box-shadow: none;
-        /* Remove shadow */
         border-color: #00c4b4;
-        /* Restore border */
     }
-
-    .btn:hover::before {
-        width: 0%;
-    }
-
-    /* Prevent background fill */
-    .btn-primary:hover {
-        color: #1a1a1a;
-    }
-
-    /* Keep primary button hover color */
-    .btn-secondary:hover {
-        color: white;
-    }
-
-    /* Revert secondary button hover color */
+    .btn:hover::before { width: 0%; }
+    .btn-primary:hover { color: #1a1a1a; }
+    .btn-secondary:hover { color: white; }
 }
 
 .btn-primary {
@@ -547,7 +507,7 @@ body.scrolled nav {
     justify-content: center;
     opacity: 0;
     transform: translateX(60px);
-    animation: slideInRight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s forwards;
+    animation: slideInRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards; /* Faster */
 }
 
 @keyframes slideInRight {
@@ -563,9 +523,7 @@ body.scrolled nav {
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(245, 197, 24, 0.4);
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.6s ease;
-    /* Ensure image scales down */
     display: block;
-    /* Remove extra space below image */
 }
 
 .home-image[data-tilt] {
@@ -590,7 +548,7 @@ body.scrolled nav {
     flex: 1;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out 0.4s, transform 0.8s ease-out 0.4s;
+    transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s; /* Slightly faster */
 }
 
 section.visible .about-left,
@@ -600,7 +558,7 @@ section.visible .about-right {
 }
 
 section.visible .about-right {
-    transition-delay: 0.6s;
+    transition-delay: 0.5s; /* Adjusted delay to match faster base transition */
 }
 
 .about-image {
@@ -612,7 +570,6 @@ section.visible .about-right {
     position: relative;
     box-shadow: 0 0 25px rgba(0, 196, 180, 0.6);
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    /* Ensure it doesn't overflow container on small screens */
     max-width: 100%;
 }
 
@@ -631,20 +588,9 @@ section.visible .about-right {
 }
 
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 0.3;
-    }
-
-    50% {
-        transform: scale(1.12);
-        opacity: 0.5;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 0.3;
-    }
+    0% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.12); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0.3; }
 }
 
 .about-image:hover {
@@ -665,7 +611,6 @@ section.visible .about-right {
     word-wrap: break-word;
 }
 
-/* Added word-wrap */
 .about-details p strong {
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
@@ -685,16 +630,13 @@ section.visible .about-right {
     position: relative;
     opacity: 0;
     transform: translateX(-20px);
-    /* Default transition for desktop */
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
     transition-delay: calc(0.1s * var(--skill-index, 1));
 }
 
 section.visible .skill {
-    /* Still needed for desktop fade/slide */
     opacity: 1;
     transform: translateX(0);
-    /* transition-delay applied above */
 }
 
 .skill-name {
@@ -705,7 +647,6 @@ section.visible .skill {
     font-weight: 500;
     font-size: 16px;
     flex-wrap: wrap;
-    /* Allow wrapping if name is long */
 }
 
 .skill-name span:last-child {
@@ -725,7 +666,7 @@ section.visible .skill {
     background: linear-gradient(90deg, #f5c518, #00c4b4);
     border-radius: 6px;
     width: 0;
-    transition: width 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Faster progress bar */
 }
 
 .skill-progress.animate {
@@ -772,14 +713,12 @@ section.visible .skill {
     word-wrap: break-word;
 }
 
-/* Added word-wrap */
 .about-info p {
     margin-bottom: 15px;
     color: #e0e0e0;
     word-wrap: break-word;
 }
 
-/* Added word-wrap */
 .about-info p strong {
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
@@ -819,44 +758,33 @@ section.visible .skill {
     border: 1px solid rgba(245, 197, 24, 0.2);
     opacity: 0;
     transform: translateY(40px) scale(0.95);
-    /* Default transition for desktop */
     transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     transition-delay: calc(0.12s * var(--card-index, 1));
     transform-style: preserve-3d;
 }
 
 section.visible .card {
-    /* Still needed for desktop fade/slide */
     opacity: 1;
     transform: translateY(0) scale(1);
-    /* transition-delay applied above */
 }
 
 .card:hover {
-    transform: translateY(-12px) scale(1.03);
-    box-shadow: 0 15px 40px rgba(0, 196, 180, 0.55);
+    transform: translateY(-8px) scale(1.02); /* More subtle transform */
+    box-shadow: 0 12px 30px rgba(0, 196, 180, 0.45); /* More subtle shadow */
 }
 
-/* Remove hover effect on touch devices */
 @media (hover: none) {
     .card:hover {
         transform: translateY(0) scale(1);
-        /* Reset transform */
         box-shadow: none;
-        /* Reset shadow */
     }
-
     .contact-item:hover .contact-icon {
         transform: scale(1) rotate(0deg);
-        /* Reset icon transform */
         box-shadow: none;
     }
-
     .social-link:hover {
         color: #e0e0e0;
-        /* Reset color */
         transform: none;
-        /* Reset transform */
     }
 }
 
@@ -877,7 +805,6 @@ section.visible .card {
     line-height: 1.4;
 }
 
-/* Added line-height */
 .card-description {
     color: #b0b0b0;
     font-size: 16px;
@@ -888,12 +815,10 @@ section.visible .card {
     margin-bottom: 5px;
 }
 
-/* Added word-wrap and reduced bottom margin */
 .card-description:last-of-type {
     margin-bottom: 0;
 }
 
-/* Remove margin from last description */
 .card-description strong {
     color: #f0f0f0;
 }
@@ -917,19 +842,15 @@ section.visible .card {
     text-align: center;
     opacity: 0;
     transform: translateY(40px) scale(0.95);
-    /* Default transition for desktop */
     transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition-delay: calc(0.12s * var(--contact-index, 1));
     transform-style: preserve-3d;
     padding: 15px;
-    /* Add some padding */
 }
 
 section.visible .contact-item {
-    /* Still needed for desktop fade/slide */
     opacity: 1;
     transform: translateY(0) scale(1);
-    /* transition-delay applied above */
 }
 
 .contact-icon {
@@ -948,8 +869,8 @@ section.visible .contact-item {
 }
 
 .contact-item:hover .contact-icon {
-    transform: scale(1.35) rotate(10deg);
-    box-shadow: 0 0 25px rgba(245, 197, 24, 0.6);
+    transform: scale(1.25) rotate(8deg); /* More subtle transform */
+    box-shadow: 0 0 20px rgba(245, 197, 24, 0.5); /* More subtle shadow */
 }
 
 .contact-title {
@@ -968,7 +889,6 @@ section.visible .contact-item {
     word-wrap: break-word;
 }
 
-/* Added word-wrap */
 .contact-info a {
     color: #b0b0b0;
     text-decoration: none;
@@ -976,7 +896,6 @@ section.visible .contact-item {
     transition: color 0.3s ease;
     padding-bottom: 2px;
     word-break: break-all;
-    /* Break long links/emails */
 }
 
 .contact-info a::after {
@@ -999,15 +918,8 @@ section.visible .contact-item {
 }
 
 @media (hover: none) {
-
-    /* Disable link hover underline on touch */
-    .contact-info a:hover {
-        color: #b0b0b0;
-    }
-
-    .contact-info a:hover::after {
-        width: 0;
-    }
+    .contact-info a:hover { color: #b0b0b0; }
+    .contact-info a:hover::after { width: 0; }
 }
 
 .contact-form {
@@ -1021,7 +933,7 @@ section.visible .contact-item {
     border: 1px solid rgba(245, 197, 24, 0.2);
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease-out 0.8s, transform 0.8s ease-out 0.8s;
+    transition: opacity 0.6s ease-out 0.6s, transform 0.6s ease-out 0.6s; /* Slightly faster */
 }
 
 section.visible .contact-form {
@@ -1049,9 +961,7 @@ section.visible .contact-form {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     transition: all 0.3s ease;
-    /* Improve mobile usability */
     -webkit-appearance: none;
-    /* Remove default iOS styling */
     appearance: none;
 }
 
@@ -1086,18 +996,15 @@ section.visible .contact-form {
     overflow: hidden;
     z-index: 1;
     -webkit-appearance: none;
-    /* Remove default iOS styling */
     appearance: none;
 }
 
 .contact-form button:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(0, 196, 180, 0.6);
+    transform: translateY(-4px) scale(1.01); /* More subtle transform */
+    box-shadow: 0 8px 25px rgba(0, 196, 180, 0.5); /* More subtle shadow */
 }
 
 @media (hover: none) {
-
-    /* Disable button hover on touch */
     .contact-form button:hover {
         transform: none;
         box-shadow: none;
@@ -1109,7 +1016,7 @@ section.visible .contact-form {
     margin: 60px 0;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease-out 1s, transform 0.8s ease-out 1s;
+    transition: opacity 0.6s ease-out 0.8s, transform 0.6s ease-out 0.8s; /* Slightly faster */
 }
 
 section.visible .question-section {
@@ -1132,9 +1039,8 @@ section.visible .question-section {
     margin-top: 60px;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.8s ease-out 1.2s, transform 0.8s ease-out 1.2s;
+    transition: opacity 0.6s ease-out 1s, transform 0.6s ease-out 1s; /* Slightly faster */
     flex-wrap: wrap;
-    /* Allow wrapping on small screens */
 }
 
 section.visible .social-links {
@@ -1150,10 +1056,8 @@ section.visible .social-links {
 
 .social-link:hover {
     color: #00c4b4;
-    transform: scale(1.4) rotate(15deg) translateY(-5px);
+    transform: scale(1.3) rotate(10deg) translateY(-4px); /* More subtle transform */
 }
-
-/* Disable social link hover on touch already covered by .card:hover */
 
 /* --- Loading Overlay --- */
 #loading-overlay {
@@ -1168,7 +1072,8 @@ section.visible .social-links {
     align-items: center;
     z-index: 9999;
     opacity: 1;
-    transition: opacity 0.8s ease-out 0.5s, visibility 0s linear 1.3s;
+    /* Faster fade, shorter overall visible time */
+    transition: opacity 0.6s ease-out 0.4s, visibility 0s linear 1s;
     visibility: visible;
 }
 
@@ -1177,76 +1082,22 @@ section.visible .social-links {
     visibility: hidden;
 }
 
-.maths-loader {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    transform-style: preserve-3d;
-    animation: rotateLoader 5s linear infinite;
+.simple-loader { /* New simpler loader */
+    width: 50px; /* Slightly smaller */
+    height: 50px; /* Slightly smaller */
+    border: 4px solid rgba(245, 197, 24, 0.25); /* Lighter border base */
+    border-top-color: #f5c518; /* Accent color for spinning part */
+    border-radius: 50%;
+    animation: spinLoader 0.8s linear infinite; /* Faster spin */
 }
 
-@keyframes rotateLoader {
-    0% {
-        transform: rotateY(0deg) rotateX(0deg);
-    }
-
-    100% {
-        transform: rotateY(360deg) rotateX(360deg);
+@keyframes spinLoader {
+    to {
+        transform: rotate(360deg);
     }
 }
 
-.maths-loader span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: 'Playfair Display', serif;
-    font-size: 30px;
-    color: #f5c518;
-    text-shadow: 0 0 10px rgba(245, 197, 24, 0.8);
-    animation: mathPulse 1.5s ease-in-out infinite;
-    backface-visibility: hidden;
-}
-
-.maths-loader span:nth-child(1) {
-    transform: translate(-50%, -50%) rotateY(0deg) translateZ(50px);
-    animation-delay: 0s;
-}
-
-.maths-loader span:nth-child(2) {
-    transform: translate(-50%, -50%) rotateY(72deg) translateZ(50px);
-    animation-delay: 0.2s;
-}
-
-.maths-loader span:nth-child(3) {
-    transform: translate(-50%, -50%) rotateY(144deg) translateZ(50px);
-    animation-delay: 0.4s;
-}
-
-.maths-loader span:nth-child(4) {
-    transform: translate(-50%, -50%) rotateY(216deg) translateZ(50px);
-    animation-delay: 0.6s;
-}
-
-.maths-loader span:nth-child(5) {
-    transform: translate(-50%, -50%) rotateY(288deg) translateZ(50px);
-    animation-delay: 0.8s;
-}
-
-@keyframes mathPulse {
-
-    0%,
-    100% {
-        opacity: 1;
-        transform-origin: center center;
-        transform: translate(-50%, -50%) scale(1);
-    }
-
-    50% {
-        opacity: 0.6;
-        transform: translate(-50%, -50%) scale(0.8);
-    }
-}
+/* Removed old .maths-loader, .maths-loader span, @keyframes rotateLoader, @keyframes mathPulse */
 
 /* --- Keyframe for Mobile Bounce Animation --- */
 @keyframes enterUpBounce {
@@ -1254,22 +1105,16 @@ section.visible .social-links {
         opacity: 0;
         transform: translateY(50px) scale(0.95);
     }
-
     60% {
         opacity: 1;
-        transform: translateY(-10px) scale(1.02);
-        /* Bounce up past final position */
+        transform: translateY(-8px) scale(1.01); /* Adjusted bounce */
     }
-
     80% {
-        transform: translateY(5px) scale(0.98);
-        /* Bounce down */
+        transform: translateY(4px) scale(0.99); /* Adjusted bounce */
     }
-
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
-        /* Settle */
     }
 }
 
@@ -1293,25 +1138,19 @@ section.visible .social-links {
 
     .home-text {
         padding-right: 0;
-        animation-delay: 0.3s;
+        animation-delay: 0.2s; /* Adjusted for faster base animation */
         text-align: center;
     }
 
-    /* Center text */
     .profession {
-        /* Center typing text container */
         margin-left: auto;
         margin-right: auto;
         width: fit-content;
-        /* Adjust width to content */
         min-width: 200px;
-        /* Ensure some minimum width */
     }
 
     .profession::after {
-        /* Adjust cursor position for centered text */
         position: relative;
-        /* Change from absolute */
         right: auto;
         display: inline;
         margin-left: 5px;
@@ -1321,16 +1160,14 @@ section.visible .social-links {
         justify-content: center;
     }
 
-    /* Ensure home image has margin and scales */
     .home-image {
         margin-top: 60px;
-        animation-delay: 0.6s;
+        animation-delay: 0.4s; /* Adjusted for faster base animation */
         max-width: 80%;
         flex-basis: auto;
         width: auto;
     }
 
-    /* Reset flex basis */
     .about-content {
         flex-direction: column;
         gap: 50px;
@@ -1339,7 +1176,7 @@ section.visible .social-links {
     .about-left,
     .about-right {
         width: 100%;
-        transition-delay: 0.3s;
+        transition-delay: 0.2s; /* Adjusted for faster base transition */
     }
 
     .about-left {
@@ -1352,12 +1189,9 @@ section.visible .social-links {
         justify-content: center;
     }
 
-    /* Center items if they wrap */
     .contact-item {
         flex-basis: calc(50% - 20px);
     }
-
-    /* Allow two items per row */
 }
 
 /* Small screens (Mobiles) */
@@ -1367,15 +1201,12 @@ section.visible .social-links {
         min-height: auto;
     }
 
-    /* Adjust padding and min-height */
     #home {
         min-height: 100vh;
         padding-top: 100px;
         padding-bottom: 60px;
         justify-content: flex-start;
     }
-
-    /* Keep home full height, adjust padding for nav */
 
     nav {
         padding: 15px 20px;
@@ -1384,8 +1215,6 @@ section.visible .social-links {
     .logo {
         font-size: 20px;
     }
-
-    /* Slightly smaller logo */
 
     .nav-links {
         position: fixed;
@@ -1403,24 +1232,19 @@ section.visible .social-links {
         z-index: 999;
         padding: 0;
         margin: 0;
-        /* Reset margin/padding */
     }
 
-    /* Ensure nav links container doesn't affect body scroll when closed */
     .nav-links:not(.nav-active) {
         pointer-events: none;
     }
 
     .nav-links.nav-active {
-        /* Corrected selector */
         transform: translateX(0%);
         pointer-events: auto;
-        /* Allow interaction when open */
     }
 
     body.nav-open {
         overflow: hidden;
-        /* Prevent body scroll when menu is open */
     }
 
     .nav-links li {
@@ -1428,66 +1252,40 @@ section.visible .social-links {
         opacity: 0;
         transform: translateX(30px);
         width: 100%;
-        /* Ensure list items take full width for centering */
         text-align: center;
-        /* Center the link text */
     }
 
     .nav-links.nav-active li {
-        /* Corrected selector */
         opacity: 1;
         transform: translateX(0);
         transition: opacity 0.5s ease forwards, transform 0.5s ease forwards;
     }
 
-    .nav-links.nav-active li:nth-child(1) {
-        transition-delay: 0.2s;
-    }
-
-    .nav-links.nav-active li:nth-child(2) {
-        transition-delay: 0.3s;
-    }
-
-    .nav-links.nav-active li:nth-child(3) {
-        transition-delay: 0.4s;
-    }
-
-    .nav-links.nav-active li:nth-child(4) {
-        transition-delay: 0.5s;
-    }
+    .nav-links.nav-active li:nth-child(1) { transition-delay: 0.2s; }
+    .nav-links.nav-active li:nth-child(2) { transition-delay: 0.3s; }
+    .nav-links.nav-active li:nth-child(3) { transition-delay: 0.4s; }
+    .nav-links.nav-active li:nth-child(4) { transition-delay: 0.5s; }
 
     .burger {
         display: block;
     }
 
-    /* Show burger */
-
-    /* Styles already present for burger toggle animation */
-    /* .toggle .line1 ... etc */
-
     .section-title {
         font-size: 42px;
         margin-bottom: 30px;
     }
-
-    /* Smaller title */
     .section-subtitle {
         font-size: 18px;
         margin-bottom: 40px;
     }
 
-    /* Smaller subtitle */
-
     .name {
         font-size: 36px;
         line-height: 1.3;
     }
-
-    /* Adjust name size */
     .hello {
         font-size: 24px;
     }
-
     .profession {
         font-size: 22px;
         height: auto;
@@ -1495,15 +1293,11 @@ section.visible .social-links {
         margin-bottom: 30px;
     }
 
-    /* Adjust profession text */
-
     .home-buttons {
         flex-direction: column;
         align-items: center;
         gap: 20px;
     }
-
-    /* Stack buttons */
     .btn {
         padding: 12px 28px;
         font-size: 16px;
@@ -1512,33 +1306,20 @@ section.visible .social-links {
         text-align: center;
     }
 
-    /* Adjust button size */
-
-    /* Show home image on small screens and adjust */
     .home-image {
         display: flex;
-        /* Make it visible */
         margin-top: 50px;
-        /* Add space above image */
         max-width: 70%;
-        /* Control image size */
         width: auto;
-        /* Let height adjust */
         order: 2;
-        /* Ensure image comes after text in flex column */
-        animation-delay: 0.5s;
-        /* Adjust animation delay if needed */
+        animation-delay: 0.4s; /* Adjusted for faster base animation */
     }
 
     .home-text {
         padding: 0;
-        /* Remove specific padding */
         order: 1;
-        /* Ensure text comes first */
         width: 100%;
-        /* Take full width */
-        animation-delay: 0.2s;
-        /* Adjust animation delay */
+        animation-delay: 0.1s; /* Adjusted for faster base animation */
     }
 
     .about-content {
@@ -1549,50 +1330,34 @@ section.visible .social-links {
         width: 150px;
         height: 150px;
     }
-
-    /* Smaller about image */
     .about-details p,
     .about-right p,
     .about-info p {
         font-size: 16px;
         line-height: 1.7;
     }
-
-    /* Adjust text size */
     .skills-title {
         font-size: 20px;
     }
-
     .skill-name {
         font-size: 15px;
     }
 
-    /* Mobile animation override for cards, contact items, skills */
-    /* Initial state for elements that will animate on mobile */
     .card,
     .contact-item,
     .skill {
-        /* Keep initial hidden state consistent with desktop */
         opacity: 0;
-        /* Adjust initial transform based on animation start */
         transform: translateY(50px) scale(0.95);
-        /* Ensure desktop transition doesn't interfere */
         transition: none;
     }
 
-    /* Animation application via JS-added class */
     .card.animate-bounce,
     .contact-item.animate-bounce,
     .skill.animate-bounce {
-        /* Apply the bounce animation */
         animation-name: enterUpBounce;
-        animation-duration: 0.9s;
-        /* Adjust duration */
+        animation-duration: 0.7s; /* Faster bounce */
         animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        /* Easing for bounce */
         animation-fill-mode: forwards;
-        /* Keep final state */
-        /* Delay is still picked up from inline style variable */
         animation-delay: var(--animation-delay, 0s);
     }
 
@@ -1600,24 +1365,12 @@ section.visible .social-links {
         grid-template-columns: 1fr;
         gap: 30px;
     }
-
-    /* Single column grid */
     .card {
         padding: 25px;
     }
-
-    /* Adjust card padding */
-    .card-year {
-        font-size: 20px;
-    }
-
-    .card-title {
-        font-size: 18px;
-    }
-
-    .card-description {
-        font-size: 15px;
-    }
+    .card-year { font-size: 20px; }
+    .card-title { font-size: 18px; }
+    .card-description { font-size: 15px; }
 
     .contact-grid {
         flex-direction: column;
@@ -1625,114 +1378,57 @@ section.visible .social-links {
         gap: 40px;
         margin: 40px 0;
     }
-
-    /* Stack contact items */
     .contact-item {
         flex-basis: 100%;
         max-width: 400px;
-        /* Take full width */
         min-width: unset;
     }
-
     .contact-icon {
         width: 60px;
         height: 60px;
         font-size: 24px;
     }
-
-    /* Smaller icon */
-    .contact-title {
-        font-size: 18px;
-    }
-
-    .contact-info {
-        font-size: 15px;
-    }
+    .contact-title { font-size: 18px; }
+    .contact-info { font-size: 15px; }
 
     .contact-form {
         padding: 25px;
         margin-top: 40px;
     }
-
-    /* Adjust form padding */
-    .contact-form label {
-        font-size: 15px;
-    }
-
+    .contact-form label { font-size: 15px; }
     .contact-form input,
     .contact-form textarea {
         padding: 12px;
         font-size: 15px;
     }
+    .contact-form button { font-size: 16px; }
 
-    .contact-form button {
-        font-size: 16px;
-    }
-
-    .question-title {
-        font-size: 20px;
-    }
-
+    .question-title { font-size: 20px; }
     .social-links {
         gap: 25px;
         margin-top: 40px;
     }
-
-    .social-link {
-        font-size: 30px;
-    }
+    .social-link { font-size: 30px; }
 }
 
-/* Extra small screens (Optional: Further adjustments if needed) */
+/* Extra small screens */
 @media screen and (max-width: 480px) {
-    .logo {
-        font-size: 18px;
-    }
-
-    .section-title {
-        font-size: 36px;
-    }
-
-    .name {
-        font-size: 30px;
-    }
-
-    .hello {
-        font-size: 20px;
-    }
-
-    .profession {
-        font-size: 18px;
-    }
-
-    .btn {
-        width: 90%;
-    }
-
+    .logo { font-size: 18px; }
+    .section-title { font-size: 36px; }
+    .name { font-size: 30px; }
+    .hello { font-size: 20px; }
+    .profession { font-size: 18px; }
+    .btn { width: 90%; }
     .home-image {
         max-width: 60%;
         margin-top: 40px;
     }
-
-    /* Further reduce image size */
     .about-image {
         width: 120px;
         height: 120px;
     }
-
-    .card-title {
-        font-size: 17px;
-    }
-
-    .card-description {
-        font-size: 14px;
-    }
-
-    .contact-title {
-        font-size: 17px;
-    }
-
-    .contact-info {
-        font-size: 14px;
-    }
+    .card-title { font-size: 17px; }
+    .card-description { font-size: 14px; }
+    .contact-title { font-size: 17px; }
+    .contact-info { font-size: 14px; }
 }
