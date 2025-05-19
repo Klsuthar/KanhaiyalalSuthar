@@ -14,14 +14,9 @@ body {
     background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
     color: white;
     line-height: 1.6;
-    /* Removed initial opacity and fadeInBody animation for faster load */
     font-weight: 400;
-    /* Removed custom cursor, so default cursor will be used */
-    overflow-x: hidden;
-    /* Prevent horizontal scrollbars */
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
 }
-
-/* Removed custom-cursor styles */
 
 /* --- Section Styling & Animations --- */
 section {
@@ -31,9 +26,8 @@ section {
     flex-direction: column;
     justify-content: center;
     position: relative;
-    background: linear-gradient(45deg, rgba(26, 26, 26, 0.9), rgba(44, 44, 44, 0.9)); /* Simplified background */
+    background: linear-gradient(45deg, rgba(26, 26, 26, 0.9), rgba(44, 44, 44, 0.9));
     overflow: hidden;
-    /* Simplified section appearance: removed transform, using simpler opacity transition */
     opacity: 0;
     transition: opacity 0.6s ease-out;
 }
@@ -42,11 +36,8 @@ section {
     background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
 }
 
-/* Removed section::before wavy divider for cleaner look and minor performance gain */
-
 section.visible {
     opacity: 1;
-    /* Removed transform for section.visible */
 }
 
 /* --- Headings and Titles --- */
@@ -59,7 +50,6 @@ h6 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
-    /* Simplified heading animation */
     opacity: 0;
     transition: opacity 0.5s ease-out 0.2s;
 }
@@ -87,11 +77,9 @@ section.visible h6 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     color: #f5c518;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Simplified shadow */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     position: relative;
     z-index: 10;
-    /* Removed glow animation */
-    /* Simplified section title animation */
     opacity: 0;
     transition: opacity 0.5s ease-out;
 }
@@ -112,12 +100,12 @@ section.visible .section-title {
     transform: translateX(-50%);
     width: 0;
     height: 3px;
-    background: #00c4b4; /* Simplified background */
-    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s; /* Slightly faster */
+    background: #00c4b4;
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s;
 }
 
 section.visible .section-title::after {
-    width: 100px; /* Slightly shorter */
+    width: 100px;
 }
 
 .section-subtitle {
@@ -128,7 +116,6 @@ section.visible .section-title::after {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-style: italic;
-    /* Simplified subtitle animation */
     opacity: 0;
     transition: opacity 0.5s ease-out 0.2s;
 }
@@ -144,19 +131,19 @@ nav {
     left: 0;
     width: 100%;
     background: rgba(26, 26, 26, 0.85);
-    backdrop-filter: blur(10px); /* Slightly reduced blur */
+    backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 18px 50px;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); /* Simplified shadow */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
 }
 
 body.scrolled nav {
     background: rgba(20, 20, 20, 0.9);
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5); /* Simplified shadow */
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -165,11 +152,11 @@ body.scrolled nav {
     color: #f5c518;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 2px;
-    transition: transform 0.2s ease; /* Faster transform */
+    transition: transform 0.2s ease;
 }
 
 .logo:hover {
-    transform: scale(1.03); /* Subtle scale */
+    transform: scale(1.03);
 }
 
 .nav-links {
@@ -188,7 +175,7 @@ body.scrolled nav {
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
-    transition: color 0.2s ease; /* Faster color transition */
+    transition: color 0.2s ease;
     position: relative;
     padding-bottom: 5px;
 }
@@ -199,9 +186,9 @@ body.scrolled nav {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px; /* Thinner underline */
+    height: 2px;
     background: #00c4b4;
-    transition: width 0.3s cubic-bezier(0.23, 1, 0.320, 1); /* Faster width transition */
+    transition: width 0.3s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
 .nav-links a:hover::after,
@@ -212,7 +199,6 @@ body.scrolled nav {
 .nav-links a:hover,
 .nav-links a.active {
     color: #00c4b4;
-    /* Removed transform on hover for nav links for minimalism */
 }
 
 .burger {
@@ -224,14 +210,14 @@ body.scrolled nav {
 
 .burger div {
     width: 30px;
-    height: 3px; /* Slightly thinner lines */
+    height: 3px;
     background-color: #f5c518;
-    margin: 5px; /* Adjusted margin */
-    transition: all 0.3s ease-in-out; /* Smoother, slightly faster transition */
+    margin: 5px;
+    transition: all 0.3s ease-in-out;
 }
 
 .toggle .line1 {
-    transform: rotate(-45deg) translate(-6px, 6px); /* Adjusted for thinner lines */
+    transform: rotate(-45deg) translate(-6px, 6px);
 }
 
 .toggle .line2 {
@@ -240,7 +226,7 @@ body.scrolled nav {
 }
 
 .toggle .line3 {
-    transform: rotate(45deg) translate(-6px, -6px); /* Adjusted for thinner lines */
+    transform: rotate(45deg) translate(-6px, -6px);
 }
 
 
@@ -252,8 +238,6 @@ body.scrolled nav {
     position: relative;
     overflow: hidden;
 }
-
-/* Removed #tsparticles-background styles */
 
 .home-content {
     display: flex;
@@ -267,7 +251,6 @@ body.scrolled nav {
 .home-text {
     flex: 1;
     padding-right: 80px;
-    /* Simplified animation, relies on section.visible */
 }
 
 .hello {
@@ -276,7 +259,7 @@ body.scrolled nav {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: #00c4b4;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Simplified shadow */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 .name {
@@ -291,7 +274,6 @@ body.scrolled nav {
 .name span {
     color: #f5c518;
     font-style: italic;
-    /* Simpler text color, removed gradient for potential performance */
 }
 
 .profession {
@@ -302,7 +284,7 @@ body.scrolled nav {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
     font-style: italic;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* Simplified shadow */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     min-width: 5px;
     line-height: 1.3;
 }
@@ -310,7 +292,7 @@ body.scrolled nav {
 .profession::after {
     content: "|";
     position: absolute;
-    animation: blink 0.8s infinite; /* Slightly slower blink */
+    animation: blink 0.8s infinite;
     color: #e0e0e0;
     display: inline-block;
     margin-left: 5px;
@@ -342,18 +324,16 @@ body.scrolled nav {
     background: transparent;
     color: white;
     border: 2px solid #00c4b4;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease; /* Simplified transitions */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     overflow: hidden;
     z-index: 1;
 }
 
-/* Removed .btn::before for simpler hover */
-
 .btn:hover {
     background: #00c4b4;
     color: #1a1a1a;
-    transform: translateY(-3px); /* Subtle lift */
-    box-shadow: 0 5px 15px rgba(0, 196, 180, 0.4); /* Softer shadow */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 196, 180, 0.4);
     border-color: #00c4b4;
 }
 
@@ -364,7 +344,7 @@ body.scrolled nav {
 }
 
 .btn-primary:hover {
-    background: linear-gradient(45deg, #e0b004, #00a090); /* Darken on hover */
+    background: linear-gradient(45deg, #e0b004, #00a090);
     color: #000;
     box-shadow: 0 5px 15px rgba(245, 197, 24, 0.5);
 }
@@ -385,20 +365,17 @@ body.scrolled nav {
     flex: 1;
     display: flex;
     justify-content: center;
-    /* Relies on section.visible for animation */
 }
 
 .home-image img {
     max-width: 100%;
     height: auto;
     border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(245, 197, 24, 0.3); /* Softer shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Simple transition */
+    box-shadow: 0 8px 30px rgba(245, 197, 24, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: block;
 }
 
-/* Removed .home-image[data-tilt] styles */
-/* Removed hover effect for home image to reduce animation */
 
 /* --- About Section --- */
 #about {
@@ -415,7 +392,6 @@ body.scrolled nav {
 .about-left,
 .about-right {
     flex: 1;
-    /* Relies on section.visible for animation */
 }
 
 .about-image {
@@ -425,15 +401,13 @@ body.scrolled nav {
     overflow: hidden;
     margin: 0 auto 30px;
     position: relative;
-    box-shadow: 0 0 20px rgba(0, 196, 180, 0.5); /* Softer shadow */
-    transition: transform 0.3s ease; /* Simple transition */
+    box-shadow: 0 0 20px rgba(0, 196, 180, 0.5);
+    transition: transform 0.3s ease;
     max-width: 100%;
 }
 
-/* Removed .about-image::before pulse animation */
-
 .about-image:hover {
-    transform: scale(1.05); /* Subtle scale on hover */
+    transform: scale(1.05);
 }
 
 .about-image img {
@@ -464,10 +438,9 @@ body.scrolled nav {
     color: #00c4b4;
 }
 
-.skill {
+.skill { /* This is a container for skill name, bar, and tooltip */
     margin-bottom: 25px;
     position: relative;
-    /* Removed individual skill animation, relies on section.visible */
 }
 
 .skill-name {
@@ -496,34 +469,31 @@ body.scrolled nav {
     height: 100%;
     background: linear-gradient(90deg, #f5c518, #00c4b4);
     border-radius: 6px;
-    /* Width will be set directly in HTML or via JS if dynamic, removed CSS transition here */
 }
-
-/* Removed .skill-progress.animate */
 
 .skill-tooltip {
     position: absolute;
-    top: -45px; /* Adjusted position */
+    top: -45px;
     left: 50%;
-    transform: translateX(-50%); /* Simpler positioning */
-    background: rgba(34, 34, 34, 0.95); /* Slightly more opaque */
-    backdrop-filter: blur(3px); /* Reduced blur */
+    transform: translateX(-50%);
+    background: rgba(34, 34, 34, 0.95);
+    backdrop-filter: blur(3px);
     color: #f5c518;
-    padding: 6px 10px; /* Slightly smaller padding */
+    padding: 6px 10px;
     border-radius: 6px;
-    font-size: 13px; /* Slightly smaller font */
+    font-size: 13px;
     font-family: 'Montserrat', sans-serif;
     opacity: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease; /* Faster transition */
+    transition: opacity 0.2s ease, transform 0.2s ease;
     pointer-events: none;
     border: 1px solid #00c4b4;
     white-space: nowrap;
-    visibility: hidden; /* Hide by default */
+    visibility: hidden;
 }
 
 .skill:hover .skill-tooltip {
     opacity: 1;
-    transform: translateX(-50%) translateY(-5px); /* Subtle lift */
+    transform: translateX(-50%) translateY(-5px);
     visibility: visible;
 }
 
@@ -577,22 +547,21 @@ body.scrolled nav {
 .cards-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px; /* Reduced gap */
+    gap: 30px;
 }
 
 .card {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px); /* Reduced blur */
-    border-radius: 12px; /* Slightly smaller radius */
-    padding: 25px; /* Slightly smaller padding */
-    border: 1px solid rgba(245, 197, 24, 0.15); /* Softer border */
-    /* Removed card animation, relies on section.visible */
-    transition: transform 0.25s ease, box-shadow 0.25s ease; /* Simplified hover */
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid rgba(245, 197, 24, 0.15);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
-    transform: translateY(-6px); /* Subtle lift */
-    box-shadow: 0 8px 25px rgba(0, 196, 180, 0.3); /* Softer shadow */
+    transform: translateY(-6px);
+    box-shadow: 0 8px 25px rgba(0, 196, 180, 0.3);
 }
 
 .card-year {
@@ -639,7 +608,7 @@ body.scrolled nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    gap: 25px; /* Reduced gap */
+    gap: 25px;
     margin: 60px 0;
 }
 
@@ -647,33 +616,32 @@ body.scrolled nav {
     flex: 1;
     min-width: 220px;
     text-align: center;
-    /* Removed item animation, relies on section.visible */
     padding: 15px;
-    transition: transform 0.25s ease; /* Simplified hover */
+    transition: transform 0.25s ease;
 }
 
 .contact-item:hover {
-    transform: translateY(-5px); /* Subtle lift */
+    transform: translateY(-5px);
 }
 
 .contact-icon {
-    width: 65px; /* Slightly smaller */
-    height: 65px; /* Slightly smaller */
-    background: rgba(255, 255, 255, 0.08); /* Softer background */
-    backdrop-filter: blur(4px); /* Reduced blur */
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto 20px;
-    font-size: 26px; /* Slightly smaller icon */
+    font-size: 26px;
     color: #f5c518;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Simplified icon hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-item:hover .contact-icon {
-    transform: scale(1.15); /* Subtle scale */
-    box-shadow: 0 0 15px rgba(245, 197, 24, 0.4); /* Softer shadow */
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(245, 197, 24, 0.4);
 }
 
 .contact-title {
@@ -696,7 +664,7 @@ body.scrolled nav {
     color: #b0b0b0;
     text-decoration: none;
     position: relative;
-    transition: color 0.2s ease; /* Faster transition */
+    transition: color 0.2s ease;
     padding-bottom: 2px;
     word-break: break-all;
 }
@@ -709,7 +677,7 @@ body.scrolled nav {
     width: 0;
     height: 1px;
     background: #00c4b4;
-    transition: width 0.25s ease; /* Faster transition */
+    transition: width 0.25s ease;
 }
 
 .contact-info a:hover {
@@ -720,21 +688,20 @@ body.scrolled nav {
     width: 100%;
 }
 
-.contact-form {
+.contact-form { /* Styles for the optional contact form if implemented */
     max-width: 700px;
     margin: 60px auto 0;
-    padding: 30px; /* Slightly smaller padding */
+    padding: 30px;
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px); /* Reduced blur */
-    border-radius: 12px; /* Smaller radius */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Softer shadow */
-    border: 1px solid rgba(245, 197, 24, 0.15); /* Softer border */
-    /* Relies on section.visible for animation */
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(245, 197, 24, 0.15);
 }
 
 .contact-form label {
     display: block;
-    margin-bottom: 10px; /* Reduced margin */
+    margin-bottom: 10px;
     font-family: 'Montserrat', sans-serif;
     font-size: 16px;
     color: #f5c518;
@@ -743,15 +710,15 @@ body.scrolled nav {
 .contact-form input,
 .contact-form textarea {
     width: 100%;
-    padding: 12px; /* Slightly smaller padding */
-    margin-bottom: 20px; /* Reduced margin */
-    background: rgba(255, 255, 255, 0.08); /* Softer background */
+    padding: 12px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.08);
     border: 1px solid #00c4b4;
-    border-radius: 6px; /* Smaller radius */
+    border-radius: 6px;
     color: white;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    transition: box-shadow 0.25s ease, background-color 0.25s ease; /* Simplified focus */
+    transition: box-shadow 0.25s ease, background-color 0.25s ease;
     -webkit-appearance: none;
     appearance: none;
 }
@@ -759,8 +726,8 @@ body.scrolled nav {
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    box-shadow: 0 0 10px rgba(0, 196, 180, 0.5); /* Softer shadow */
-    background: rgba(255, 255, 255, 0.12); /* Slightly lighter on focus */
+    box-shadow: 0 0 10px rgba(0, 196, 180, 0.5);
+    background: rgba(255, 255, 255, 0.12);
 }
 
 .contact-form textarea {
@@ -768,7 +735,7 @@ body.scrolled nav {
     min-height: 120px;
 }
 
-.contact-form button {
+.contact-form button { /* Style for a submit button if form is used */
     width: 100%;
     padding: 14px 30px;
     border-radius: 50px;
@@ -782,7 +749,7 @@ body.scrolled nav {
     background: linear-gradient(45deg, #f5c518, #00c4b4);
     color: #1a1a1a;
     border: none;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Simplified transitions */
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     overflow: hidden;
     z-index: 1;
     -webkit-appearance: none;
@@ -790,15 +757,15 @@ body.scrolled nav {
 }
 
 .contact-form button:hover {
-    background: linear-gradient(45deg, #e0b004, #00a090); /* Darken on hover */
-    transform: translateY(-3px); /* Subtle lift */
-    box-shadow: 0 5px 15px rgba(0, 196, 180, 0.4); /* Softer shadow */
+    background: linear-gradient(45deg, #e0b004, #00a090);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 196, 180, 0.4);
 }
+
 
 .question-section {
     text-align: center;
     margin: 60px 0;
-    /* Relies on section.visible for animation */
 }
 
 .question-title {
@@ -812,30 +779,21 @@ body.scrolled nav {
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 25px; /* Reduced gap */
+    gap: 25px;
     margin-top: 60px;
     flex-wrap: wrap;
-    /* Relies on section.visible for animation */
 }
 
 .social-link {
-    font-size: 32px; /* Slightly smaller */
+    font-size: 32px;
     color: #e0e0e0;
-    transition: transform 0.25s ease, color 0.25s ease; /* Simplified hover */
+    transition: transform 0.25s ease, color 0.25s ease;
 }
 
 .social-link:hover {
     color: #00c4b4;
-    transform: scale(1.2) translateY(-3px); /* Subtle scale and lift */
+    transform: scale(1.2) translateY(-3px);
 }
-
-/* --- Loading Overlay --- */
-/* Removed #loading-overlay and .maths-loader styles as the overlay is removed from HTML */
-
-
-/* --- Keyframe for Mobile Bounce Animation --- */
-/* Removed enterUpBounce keyframes as mobile bounce animation is removed for minimalism */
-
 
 /* --- Responsive Styles --- */
 
@@ -914,6 +872,16 @@ body.scrolled nav {
     section {
         padding: 80px 20px;
         min-height: auto;
+        /* Mobile Animation: Initial state for sections */
+        opacity: 0; /* Already set globally, but ensure it's here */
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    section.visible {
+        /* Mobile Animation: Visible state for sections */
+        opacity: 1;
+        transform: translateY(0);
     }
 
     #home {
@@ -936,14 +904,14 @@ body.scrolled nav {
         right: 0;
         top: 0;
         background: rgba(20, 20, 20, 0.98);
-        backdrop-filter: blur(12px); /* Slightly more blur for mobile menu */
+        backdrop-filter: blur(12px);
         height: 100vh;
         width: 100%;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* Slightly faster */
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
         z-index: 999;
         padding: 0;
         margin: 0;
@@ -963,9 +931,9 @@ body.scrolled nav {
     }
 
     .nav-links li {
-        margin: 20px 0; /* Reduced margin */
+        margin: 20px 0;
         opacity: 0;
-        transform: translateX(20px); /* Reduced translate */
+        transform: translateX(20px);
         width: 100%;
         text-align: center;
     }
@@ -973,7 +941,7 @@ body.scrolled nav {
     .nav-links.nav-active li {
         opacity: 1;
         transform: translateX(0);
-        transition: opacity 0.3s ease forwards, transform 0.3s ease forwards; /* Faster transition */
+        transition: opacity 0.3s ease forwards, transform 0.3s ease forwards;
     }
 
     /* Staggered animation for nav links on mobile */
@@ -1026,18 +994,24 @@ body.scrolled nav {
         max-width: 250px;
         text-align: center;
     }
+    /* Mobile Animation: Button active state for touch feedback */
+    .btn:active {
+        transform: translateY(1px) scale(0.98);
+        box-shadow: 0 2px 8px rgba(0, 196, 180, 0.3);
+    }
+
 
     .home-image {
         display: flex;
         margin-top: 50px;
         max-width: 70%;
         width: auto;
-        order: 2;
+        order: 2; /* Image below text on mobile */
     }
 
     .home-text {
         padding: 0;
-        order: 1;
+        order: 1; /* Text above image on mobile */
         width: 100%;
     }
 
@@ -1065,22 +1039,49 @@ body.scrolled nav {
         font-size: 15px;
     }
 
-    /* Removed mobile bounce animation for cards, contact items, skills */
+    /* Mobile Animation: Individual items (cards, skills, contact items) */
     .card,
     .contact-item,
-    .skill {
-        /* Relies on section.visible for simple fade-in */
-        transition: opacity 0.4s ease-out; /* Basic fade-in for mobile */
+    .skill { /* .skill is the container for each skill block */
+        opacity: 0;
+        transform: translateY(15px);
+        transition: opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s; /* Added a small base delay */
     }
+
+    section.visible .card,
+    section.visible .contact-item,
+    section.visible .skill {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Mobile Animation: Staggered animation for items within a container */
+    section.visible .cards-container .card:nth-child(1) { transition-delay: 0.15s; }
+    section.visible .cards-container .card:nth-child(2) { transition-delay: 0.25s; }
+    section.visible .cards-container .card:nth-child(3) { transition-delay: 0.35s; }
+    section.visible .cards-container .card:nth-child(4) { transition-delay: 0.45s; }
+    /* Add more if you have more cards */
+
+    section.visible .skills .skill:nth-child(1) { transition-delay: 0.15s; }
+    section.visible .skills .skill:nth-child(2) { transition-delay: 0.25s; }
+    section.visible .skills .skill:nth-child(3) { transition-delay: 0.35s; }
+    section.visible .skills .skill:nth-child(4) { transition-delay: 0.45s; }
+    section.visible .skills .skill:nth-child(5) { transition-delay: 0.55s; }
+    /* Add more for skills */
+
+    section.visible .contact-grid .contact-item:nth-child(1) { transition-delay: 0.15s; }
+    section.visible .contact-grid .contact-item:nth-child(2) { transition-delay: 0.25s; }
+    section.visible .contact-grid .contact-item:nth-child(3) { transition-delay: 0.35s; }
+     /* Add more for contact items */
 
 
     .cards-container {
         grid-template-columns: 1fr;
-        gap: 25px; /* Reduced gap */
+        gap: 25px;
     }
 
     .card {
-        padding: 20px; /* Reduced padding */
+        padding: 20px;
     }
 
     .card-year {
@@ -1098,7 +1099,7 @@ body.scrolled nav {
     .contact-grid {
         flex-direction: column;
         align-items: center;
-        gap: 30px; /* Reduced gap */
+        gap: 30px;
         margin: 40px 0;
     }
 
@@ -1122,8 +1123,8 @@ body.scrolled nav {
         font-size: 15px;
     }
 
-    .contact-form {
-        padding: 20px; /* Reduced padding */
+    .contact-form { /* Styles for the optional contact form on mobile */
+        padding: 20px;
         margin-top: 40px;
     }
 
@@ -1146,12 +1147,12 @@ body.scrolled nav {
     }
 
     .social-links {
-        gap: 20px; /* Reduced gap */
+        gap: 20px;
         margin-top: 40px;
     }
 
     .social-link {
-        font-size: 28px; /* Slightly smaller */
+        font-size: 28px;
     }
 }
 
@@ -1182,7 +1183,7 @@ body.scrolled nav {
     }
 
     .home-image {
-        max-width: 60%;
+        max-width: 60%; /* Further reduce image size if needed */
         margin-top: 40px;
     }
 
