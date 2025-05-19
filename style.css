@@ -807,48 +807,43 @@ section.visible .skill {
 
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjusted minmax slightly */
-    gap: 35px; /* Adjusted gap slightly */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
 }
 
 .card {
-    /* MODIFIED STYLES */
-    background: linear-gradient(170deg, #383838 0%, #2a2a2a 100%); /* Darker, inspired by image */
-    border-radius: 18px; /* Slightly more rounded */
-    padding: 30px 20px; /* Adjusted padding */
-    border: 1px solid rgba(255, 255, 255, 0.08); /* More subtle border */
-    
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(245, 197, 24, 0.2);
     opacity: 0;
     transform: translateY(40px) scale(0.95);
+    /* Default transition for desktop */
     transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     transition-delay: calc(0.12s * var(--card-index, 1));
     transform-style: preserve-3d;
-
-    /* NEW LAYOUT STYLES */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center content horizontally */
-    text-align: center;   /* Center text within elements */
-    min-height: 290px;    /* Approximate height to allow content to breathe and be consistent */
-    justify-content: flex-start; /* Align items to the start, spacing controlled by margins */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35); /* Adjusted shadow */
 }
 
 section.visible .card {
+    /* Still needed for desktop fade/slide */
     opacity: 1;
     transform: translateY(0) scale(1);
+    /* transition-delay applied above */
 }
 
 .card:hover {
-    transform: translateY(-10px) scale(1.02); /* Slightly less dramatic hover */
-    box-shadow: 0 12px 35px rgba(0, 196, 180, 0.45); /* Keep accent color in shadow */
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 15px 40px rgba(0, 196, 180, 0.55);
 }
 
 /* Remove hover effect on touch devices */
 @media (hover: none) {
     .card:hover {
-        transform: translateY(0) scale(1); /* Reset transform */
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35); /* Revert to non-hover shadow */
+        transform: translateY(0) scale(1);
+        /* Reset transform */
+        box-shadow: none;
+        /* Reset shadow */
     }
 
     .contact-item:hover .contact-icon {
@@ -865,7 +860,6 @@ section.visible .card {
     }
 }
 
-/* COMMENTED OUT OLD CARD STYLES
 .card-year {
     font-size: 24px;
     color: #f5c518;
@@ -883,6 +877,7 @@ section.visible .card {
     line-height: 1.4;
 }
 
+/* Added line-height */
 .card-description {
     color: #b0b0b0;
     font-size: 16px;
@@ -892,58 +887,16 @@ section.visible .card {
     word-wrap: break-word;
     margin-bottom: 5px;
 }
+
+/* Added word-wrap and reduced bottom margin */
 .card-description:last-of-type {
     margin-bottom: 0;
 }
+
+/* Remove margin from last description */
 .card-description strong {
     color: #f0f0f0;
 }
-*/
-
-/* NEW STYLES FOR CARD CONTENT */
-.card-main-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.2rem; /* Adjust as needed */
-    font-weight: 600;
-    color: #f5c518; /* Portfolio accent color */
-    margin-bottom: 6px;
-    line-height: 1.3;
-}
-
-.card-subtitle-year {
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.85rem;
-    color: #b0b0b0; /* Lighter grey for less emphasis */
-    text-transform: uppercase; /* Like "PARTLY CLOUDY" */
-    letter-spacing: 0.5px;
-    margin-bottom: 24px; /* More space before central detail */
-}
-
-.card-central-detail {
-    font-family: 'Poppins', sans-serif; /* Using Poppins for more impact */
-    font-size: 1.7rem; /* Prominent, like the temperature */
-    font-weight: 600;
-    color: #ffffff;
-    margin-bottom: 20px;
-    line-height: 1.4;
-}
-
-.card-central-detail strong {
-    font-weight: 700; /* Ensure strong is bold */
-    color: #f0f0f0; /* Or inherit, #ffffff also works well */
-}
-
-.card-additional-info {
-    font-family: 'Roboto', sans-serif;
-    font-size: 0.9rem;
-    color: #a0a0a0; /* Subtler than year */
-    font-style: italic;
-    line-height: 1.5;
-    margin-top: auto; /* Pushes this to the bottom if card has extra space due to min-height */
-    padding-top: 10px; /* Adds some space if pushed to bottom */
-    word-wrap: break-word; /* Ensure long text wraps */
-}
-
 
 /* --- Contact Section --- */
 #contact {
@@ -1651,27 +1604,10 @@ section.visible .social-links {
     /* Single column grid */
     .card {
         padding: 25px;
-        min-height: 270px; /* Adjust min-height for mobile if needed */
     }
-    
-    .card-main-title {
-        font-size: 1.1rem;
-    }
-    .card-subtitle-year {
-        font-size: 0.8rem;
-        margin-bottom: 20px;
-    }
-    .card-central-detail {
-        font-size: 1.5rem;
-        margin-bottom: 18px;
-    }
-    .card-additional-info {
-        font-size: 0.85rem;
-    }
-
 
     /* Adjust card padding */
-    /* .card-year {
+    .card-year {
         font-size: 20px;
     }
 
@@ -1681,7 +1617,7 @@ section.visible .social-links {
 
     .card-description {
         font-size: 15px;
-    } */
+    }
 
     .contact-grid {
         flex-direction: column;
@@ -1783,33 +1719,14 @@ section.visible .social-links {
         width: 120px;
         height: 120px;
     }
-    
-    .card {
-        padding: 20px;
-        min-height: 250px; /* Further adjust card min-height if needed */
-    }
-    .card-main-title {
-        font-size: 1rem;
-    }
-    .card-subtitle-year {
-        font-size: 0.75rem;
-        margin-bottom: 16px;
-    }
-    .card-central-detail {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-    }
-    .card-additional-info {
-        font-size: 0.8rem;
-    }
 
-    /* .card-title {
+    .card-title {
         font-size: 17px;
     }
 
     .card-description {
         font-size: 14px;
-    } */
+    }
 
     .contact-title {
         font-size: 17px;
