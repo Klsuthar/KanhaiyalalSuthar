@@ -10,16 +10,11 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- Ensure defer for non-blocking script loading -->
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js" defer></script>
 </head>
 
 <body>
-    <div id="loading-overlay">
-        <div class="simple-loader"></div> <!-- Updated loader -->
-    </div>
-
     <div class="custom-cursor"></div>
     <nav>
         <div class="logo">KANHAIYA LAL SUTHAR</div>
@@ -42,7 +37,7 @@
             <div class="home-text">
                 <p class="hello">HELLO!</p>
                 <h1 class="name">I'm <span>KANHAIYA LAL SUTHAR</span></h1>
-                <div class="profession" id="typing-text"></div> <!-- Text content set by JS -->
+                <div class="profession" id="typing-text"></div>
                 <div class="home-buttons">
                     <a href="https://www.linkedin.com/in/kanhaiyalalsuthar/" target="_blank" rel="noopener noreferrer"
                         class="btn btn-primary">LINKEDIN</a>
@@ -74,14 +69,14 @@
                         <div class="skill" style="--skill-index: 1; --animation-delay: 0.1s;">
                             <div class="skill-name"><span>TEACHING</span><span>90%</span></div>
                             <div class="skill-bar">
-                                <div class="skill-progress" style="--progress-width: 90%;"></div> <!-- Corrected 95 to 90 -->
+                                <div class="skill-progress" style="--progress-width: 95%;"></div>
                             </div>
                             <div class="skill-tooltip">Expert in simplifying complex concepts</div>
                         </div>
                         <div class="skill" style="--skill-index: 2; --animation-delay: 0.2s;">
                             <div class="skill-name"><span>COMPUTER SKILLS</span><span>95%</span></div>
                             <div class="skill-bar">
-                                <div class="skill-progress" style="--progress-width: 95%;"></div> <!-- Corrected 90 to 95 -->
+                                <div class="skill-progress" style="--progress-width: 90%;"></div>
                             </div>
                             <div class="skill-tooltip">MS Office, Tech Tools</div>
                         </div>
@@ -102,7 +97,7 @@
                         <div class="skill" style="--skill-index: 5; --animation-delay: 0.5s;">
                             <div class="skill-name"><span>AI Prompt Engineer</span><span>85%</span></div>
                             <div class="skill-bar">
-                                <div class="skill-progress" style="--progress-width: 85%;"></div> <!-- Corrected 80 to 85 -->
+                                <div class="skill-progress" style="--progress-width: 80%;"></div>
                             </div>
                             <div class="skill-tooltip">Mastering the art of talking to machines.</div>
                         </div>
@@ -203,17 +198,12 @@
                 </div>
             </div>
 
-            <!-- Removed the redundant contact form as per previous iterations if submitForm() uses mailto -->
-            <!-- If you want to keep a form that uses mailto, it can be added back here. -->
-            <!-- For now, directly linking to email is cleaner -->
+
 
             <div class="question-section">
                 <h3 class="question-title">HAVE A QUESTION?</h3>
-                <!-- Using onclick for the button to call submitForm which now handles mailto directly -->
-                <!-- or simply use a direct mailto link if the JS function is not needed -->
                 <a href="mailto:klsuthar0987@gmail.com" class="btn btn-primary">CLICK HERE TO EMAIL ME</a>
             </div>
-
             <div class="social-links">
                 <a href="https://youtube.com/@KanhaiyaLalSutharMaths?si=g18y5d62nI0i-1h0" target="_blank"
                     rel="noopener noreferrer" class="social-link"><i class="fab fa-youtube"></i></a>
@@ -221,7 +211,7 @@
                     class="social-link"><i class="fab fa-linkedin"></i></a>
                 <a href="https://twitter.com/Kanhaiy13218049" target="_blank" rel="noopener noreferrer"
                     class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer"  <!-- Consider adding your actual Telegram profile link -->
+                <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer"
                     class="social-link"><i class="fab fa-telegram"></i></a>
                 <a href="https://instagram.com/klsuthar121" target="_blank" rel="noopener noreferrer"
                     class="social-link"><i class="fab fa-instagram"></i></a>
