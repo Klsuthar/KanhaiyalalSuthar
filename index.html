@@ -11,6 +11,7 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Tailwind animation keyframes - kept as they are not card-specific */
         @keyframes shine {
             0% {
                 transform: translateX(-100%) skewX(-20deg);
@@ -51,66 +52,67 @@
 
             /* Sizing & Layout - Made responsive */
             width: 100%;
-            max-width: 360px; /* UPDATED: Increased from 320px for better heading fit */
-            min-height: 190px;    /* Adjusted height for content, was 180px */
-            height: auto; /* Allow height to adjust to content */
-            border-radius: 15px; /* Consistent with your site's rounding */
+            max-width: 360px;
+            min-height: 190px;
+            height: auto;
+            border-radius: 15px;
             
-            font-family: 'Roboto', sans-serif; /* Default font for card content */
-            color: #e0e0e0; /* Light gray for text */
+            font-family: 'Roboto', sans-serif;
+            color: #e0e0e0;
             display: grid;
-            cursor: pointer;
-            grid-template-rows: 60px 1fr; /* Banner height / Rest for description */
+            /* cursor: pointer; REMOVED - no longer interactive with hover animations */
+            grid-template-rows: 60px 1fr;
             box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-            transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                        box-shadow 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            margin-bottom: 1.5rem; /* Add some margin between cards if they stack */
-            /* Added margin-left and margin-right auto to center cards if they don't fill width */
+            /* transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+                        box-shadow 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); REMOVED ANIMATION */
+            margin-bottom: 1.5rem;
             margin-left: auto;
             margin-right: auto;
         }
 
+        /* REMOVED HOVER STYLES FOR CARD
         .card.uiverse-style:hover {
-            transform: translateY(-6px); /* Lift effect on hover */
+            transform: translateY(-6px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.45);
         }
 
         .card.uiverse-style:hover .img-section {
             transform: translateY(0.7em);
         }
+        */
 
         .card.uiverse-style .card-desc {
             border-radius: 15px;
             padding: 15px;
             position: relative;
-            top: -15px; /* Overlap amount */
-            display: flex; /* Changed to flex for better control */
-            flex-direction: column; /* Stack content vertically */
-            gap: 8px; /* Spacing between elements in desc */
+            top: -15px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
             background: var(--primary-clr);
             border: 1px solid rgba(255,255,255,0.08);
-            min-height: calc(100% - 60px + 15px); /* Ensure desc fills space */
+            min-height: calc(100% - 60px + 15px);
         }
 
-        .card.uiverse-style .card-time { /* This will be the main role/degree title */
-            font-family: 'Montserrat', sans-serif; /* From your theme */
-            font-size: 1.1em; /* Adjusted size, was 1.2em */
+        .card.uiverse-style .card-time {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1em;
             font-weight: 600;
-            color: #f0f0f0; /* Bright white for title */
+            color: #f0f0f0;
             line-height: 1.3;
-            margin-top: 5px; /* Add some space after header */
+            margin-top: 5px;
         }
 
-        .card.uiverse-style .img-section { /* Top banner */
-            transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        .card.uiverse-style .img-section {
+            /* transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); REMOVED ANIMATION */
             border-top-left-radius: 15px;
             border-top-right-radius: 15px;
-            background: var(--banner-bg); /* Teal */
-            display: flex; /* To position SVG */
-            justify-content: flex-end; /* Push SVG to the right */
+            background: var(--banner-bg);
+            display: flex;
+            justify-content: flex-end;
             align-items: center;
-            padding: 0 15px; /* Padding for SVG */
-            overflow: hidden; /* Hide SVG overflow if it's too large */
+            padding: 0 15px;
+            overflow: hidden;
         }
         
         .card.uiverse-style .card-header {
@@ -119,10 +121,10 @@
             width: 100%;
         }
 
-        .card.uiverse-style .card-title { /* This will be the Year */
-            font-family: 'Poppins', sans-serif; /* From your theme */
+        .card.uiverse-style .card-title {
+            font-family: 'Poppins', sans-serif;
             flex: 1;
-            font-size: 1em; /* Year size, was 1.1em */
+            font-size: 1em;
             font-weight: 600;
             color: #e0e0e0;
         }
@@ -143,30 +145,26 @@
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: var(--dot-clr); /* Gold */
+            background: var(--dot-clr);
         }
 
-        .card.uiverse-style .recent { /* This will be the detailed description */
+        .card.uiverse-style .recent {
             font-family: 'Roboto', sans-serif;
-            line-height: 1.5; /* Adjusted for readability */
-            font-size: 0.875em; /* was 0.85em */
-            color: #b0b0b0; /* Lighter gray */
-            flex-grow: 1; /* Allow it to take remaining space */
+            line-height: 1.5;
+            font-size: 0.875em;
+            color: #b0b0b0;
+            flex-grow: 1;
         }
         .card.uiverse-style .recent strong {
             color: #d0d0d0;
             font-weight: 500;
         }
-        /* CSS rule for .cards-container removed as the element is removed. 
-           Individual cards will now stack vertically by default within their parent sections.
-           The .card.uiverse-style has margin-bottom for spacing, 
-           and margin-left/right auto to center them if the parent section is wider.
-        */
 
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css"> <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js" defer></script>
 </head>
 
@@ -200,8 +198,8 @@
                     <a href="#resume" class="btn btn-secondary">MY WORKS</a>
                 </div>
             </div>
-            <div class="home-image" data-tilt>
-                <img src="images/profile.png" alt="Kanhaiya Lal Suthar">
+            <div class="home-image"> 
+                <img src="images/profile.png" alt="Kanhaiya Lal Suthar" onerror="this.onerror=null;this.src='https://placehold.co/400x400/2c2c2c/f5c518?text=Profile+Image';">
             </div>
         </div>
     </section>
@@ -213,7 +211,7 @@
 
                 <div class="about-left">
                     <div class="about-image">
-                        <img src="images/about.png" alt="Kanhaiya Lal">
+                        <img src="images/about.png" alt="Kanhaiya Lal" onerror="this.onerror=null;this.src='https://placehold.co/180x180/2c2c2c/f5c518?text=About+Me';">
                     </div>
                     <div class="about-details">
                         <p><strong>NAME:</strong> KANHAIYA LAL SUTHAR</p>
@@ -224,10 +222,8 @@
 
                     <h3 class="skills-title">SKILLS</h3>
                     <div class="animated-skills-container mt-6 space-y-6">
-
                         <div
                             class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
                                     <span
@@ -492,7 +488,7 @@
             <p class="section-subtitle">Experience & Education Journey</p>
             <div class="experience-section">
                 <h3 class="resume-title">EXPERIENCE</h3>
-                <div class="card uiverse-style" style="--card-index: 1; --animation-delay: 0.15s;" data-tilt>
+                <div class="card uiverse-style" style="--card-index: 1; --animation-delay: 0.15s;">
                     <div class="img-section">
                         <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
                     </div>
@@ -509,7 +505,7 @@
                         <p class="recent">Gov. Sen. Sec. School, Dhadheru (1+ Month)</p>
                     </div>
                 </div>
-                <div class="card uiverse-style" style="--card-index: 2; --animation-delay: 0.30s;" data-tilt>
+                <div class="card uiverse-style" style="--card-index: 2; --animation-delay: 0.30s;">
                     <div class="img-section">
                             <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
                     </div>
@@ -529,7 +525,7 @@
             </div>
             <div class="education-section">
                 <h3 class="resume-title">EDUCATION</h3>
-                <div class="card uiverse-style" style="--card-index: 3; --animation-delay: 0.45s;" data-tilt>
+                <div class="card uiverse-style" style="--card-index: 3; --animation-delay: 0.45s;">
                     <div class="img-section">
                             <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
                     </div>
@@ -546,7 +542,7 @@
                         <p class="recent">Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu<br>Grade: <strong>First Distinction (84.33%)</strong></p>
                     </div>
                 </div>
-                <div class="card uiverse-style" style="--card-index: 4; --animation-delay: 0.60s;" data-tilt>
+                <div class="card uiverse-style" style="--card-index: 4; --animation-delay: 0.60s;">
                     <div class="img-section">
                             <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
                     </div>
@@ -563,7 +559,7 @@
                         <p class="recent">Abhilasha Shikshan Sansthani, Sandwa, Churu<br>Grade: <strong>First Distinction (PCM 94%)</strong></p>
                     </div>
                 </div>
-                <div class="card uiverse-style" style="--card-index: 5; --animation-delay: 0.75s;" data-tilt>
+                <div class="card uiverse-style" style="--card-index: 5; --animation-delay: 0.75s;">
                     <div class="img-section">
                         <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
                     </div>
@@ -580,7 +576,7 @@
                         <p class="recent">Sadguru Institute of Education, Sanganer, Jaipur<br>Grade: <strong>First Distinction (64.15%)</strong></p>
                     </div>
                 </div>
-                <div class="card uiverse-style" style="--card-index: 6; --animation-delay: 0.90s;" data-tilt>
+                <div class="card uiverse-style" style="--card-index: 6; --animation-delay: 0.90s;">
                     <div class="img-section">
                         <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
                     </div>
@@ -606,25 +602,23 @@
             <h2 class="section-title">Contact Me</h2>
             <p class="section-subtitle">Get in Touch - Let's Connect!</p>
             <div class="contact-grid">
-                <div class="contact-item" style="--contact-index: 1; --animation-delay: 0.15s;" data-tilt>
+                <div class="contact-item" style="--contact-index: 1; --animation-delay: 0.15s;">
                     <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h3 class="contact-title">ADDRESS</h3>
                     <p class="contact-info"><a href="https://maps.app.goo.gl/FoWhp6aNYvZx836EA" target="_blank"
                             rel="noopener noreferrer">Dhadheru, Churu, Rajasthan, India</a></p>
                 </div>
-                <div class="contact-item" style="--contact-index: 2; --animation-delay: 0.30s;" data-tilt>
+                <div class="contact-item" style="--contact-index: 2; --animation-delay: 0.30s;">
                     <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                     <h3 class="contact-title">CONTACT NUMBER</h3>
                     <p class="contact-info"><a href="tel:+919001375139">+91 90013 75139</a></p>
                 </div>
-                <div class="contact-item" style="--contact-index: 3; --animation-delay: 0.45s;" data-tilt>
+                <div class="contact-item" style="--contact-index: 3; --animation-delay: 0.45s;">
                     <div class="contact-icon"><i class="fas fa-envelope"></i></div>
                     <h3 class="contact-title">EMAIL ADDRESS</h3>
                     <p class="contact-info"><a href="mailto:klsuthar0987@gmail.com">klsuthar0987@gmail.com</a></p>
                 </div>
             </div>
-
-
 
             <div class="question-section">
                 <h3 class="question-title">HAVE A QUESTION?</h3>
@@ -637,7 +631,7 @@
                     class="social-link"><i class="fab fa-linkedin"></i></a>
                 <a href="https://twitter.com/Kanhaiy13218049" target="_blank" rel="noopener noreferrer"
                     class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer" class="social-link"><i
+                <a href="https://t.me/kanhaiyalalsuthar" target="_blank" rel="noopener noreferrer" class="social-link"><i
                         class="fab fa-telegram"></i></a>
                 <a href="https://instagram.com/klsuthar121" target="_blank" rel="noopener noreferrer"
                     class="social-link"><i class="fab fa-instagram"></i></a>
@@ -647,5 +641,3 @@
 
     <script src="script.js" defer></script>
 </body>
-
-</html>
