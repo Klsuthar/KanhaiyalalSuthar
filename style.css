@@ -1438,37 +1438,7 @@ section.visible .social-links {
 
     /* Mobile animation override for cards, contact items, skills */
     /* Initial state for elements that will animate on mobile */
-    .card,
-    .contact-item,
-    .skill {
-        /* Keep initial hidden state consistent with desktop */
-        opacity: 0;
-        /* Adjust initial transform based on animation start */
-        transform: translateY(50px) scale(0.95);
-        /* Ensure desktop transition doesn't interfere */
-        transition: none;
-    }
 
-    /* Animation application via JS-added class */
-    .card.animate-bounce,
-    .contact-item.animate-bounce,
-    .skill.animate-bounce {
-        /* Apply the bounce animation */
-        animation-name: enterUpBounce;
-        animation-duration: 0.9s;
-        /* Adjust duration */
-        animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        /* Easing for bounce */
-        animation-fill-mode: forwards;
-        /* Keep final state */
-        /* Delay is still picked up from inline style variable */
-        animation-delay: var(--animation-delay, 0s);
-    }
-
-    .cards-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
 
     /* Single column grid */
     .card {
@@ -1516,26 +1486,6 @@ section.visible .social-links {
 
     .contact-info {
         font-size: 15px;
-    }
-
-    .contact-form {
-        padding: 25px;
-        margin-top: 40px;
-    }
-
-    /* Adjust form padding */
-    .contact-form label {
-        font-size: 15px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        padding: 12px;
-        font-size: 15px;
-    }
-
-    .contact-form button {
-        font-size: 16px;
     }
 
     .question-title {
