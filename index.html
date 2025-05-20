@@ -46,9 +46,12 @@
         /* Adapted CSS from Uiverse.io by satyamchaudharydev */
         .card.uiverse-style {
             /* Theme colors from your website */
-            --primary-clr: #2d2d2d; /* Dark gray for card description bg - similar to your themed cards */
-            --dot-clr: #f5c518;     /* Gold from your theme for dots */
-            --banner-bg: #00c4b4;   /* Teal from your theme for banner */
+            --primary-clr: #2d2d2d;
+            /* Dark gray for card description bg - similar to your themed cards */
+            --dot-clr: #f5c518;
+            /* Gold from your theme for dots */
+            --banner-bg: #00c4b4;
+            /* Teal from your theme for banner */
 
             /* Sizing & Layout - Made responsive */
             width: 100%;
@@ -56,13 +59,13 @@
             min-height: 190px;
             height: auto;
             border-radius: 15px;
-            
+
             font-family: 'Roboto', sans-serif;
             color: #e0e0e0;
             display: grid;
             /* cursor: pointer; REMOVED - no longer interactive with hover animations */
             grid-template-rows: 60px 1fr;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
             /* transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
                         box-shadow 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94); REMOVED ANIMATION */
             margin-bottom: 1.5rem;
@@ -90,7 +93,7 @@
             flex-direction: column;
             gap: 8px;
             background: var(--primary-clr);
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             min-height: calc(100% - 60px + 15px);
         }
 
@@ -114,7 +117,7 @@
             padding: 0 15px;
             overflow: hidden;
         }
-        
+
         .card.uiverse-style .card-header {
             display: flex;
             align-items: center;
@@ -135,12 +138,12 @@
         }
 
         .card.uiverse-style .img-section svg {
-            height: 55px; 
-            width: auto;  
-            opacity: 0.3; 
-            fill: #1a1a1a; 
+            height: 55px;
+            width: auto;
+            opacity: 0.3;
+            fill: #1a1a1a;
         }
-        
+
         .card.uiverse-style .dot {
             width: 5px;
             height: 5px;
@@ -155,11 +158,11 @@
             color: #b0b0b0;
             flex-grow: 1;
         }
+
         .card.uiverse-style .recent strong {
             color: #d0d0d0;
             font-weight: 500;
         }
-
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -198,8 +201,9 @@
                     <a href="#resume" class="btn btn-secondary">MY WORKS</a>
                 </div>
             </div>
-            <div class="home-image"> 
-                <img src="images/profile.png" alt="Kanhaiya Lal Suthar" onerror="this.onerror=null;this.src='https://placehold.co/400x400/2c2c2c/f5c518?text=Profile+Image';">
+            <div class="home-image">
+                <img src="images/profile.png" alt="Kanhaiya Lal Suthar"
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/2c2c2c/f5c518?text=Profile+Image';">
             </div>
         </div>
     </section>
@@ -211,7 +215,8 @@
 
                 <div class="about-left">
                     <div class="about-image">
-                        <img src="images/about.png" alt="Kanhaiya Lal" onerror="this.onerror=null;this.src='https://placehold.co/180x180/2c2c2c/f5c518?text=About+Me';">
+                        <img src="images/about.png" alt="Kanhaiya Lal"
+                            onerror="this.onerror=null;this.src='https://placehold.co/180x180/2c2c2c/f5c518?text=About+Me';">
                     </div>
                     <div class="about-details">
                         <p><strong>NAME:</strong> KANHAIYA LAL SUTHAR</p>
@@ -490,7 +495,7 @@
                 <h3 class="resume-title">EXPERIENCE</h3>
                 <div class="card uiverse-style" style="--card-index: 1; --animation-delay: 0.15s;">
                     <div class="img-section">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                        <img src="icon/Rocket.svg" alt="" style="opacity: 0.3;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
@@ -507,8 +512,9 @@
                 </div>
                 <div class="card uiverse-style" style="--card-index: 2; --animation-delay: 0.30s;">
                     <div class="img-section">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                        <img src="icon/maths.svg" alt="" style="width: 40px; height: auto; opacity: 0.3;">
                     </div>
+
                     <div class="card-desc">
                         <div class="card-header">
                             <div class="card-title">2024</div>
@@ -527,7 +533,7 @@
                 <h3 class="resume-title">EDUCATION</h3>
                 <div class="card uiverse-style" style="--card-index: 3; --animation-delay: 0.45s;">
                     <div class="img-section">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                        <img src="icon/School.svg" alt="" style="width: 70px; height: auto; opacity: 0.3;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
@@ -539,15 +545,16 @@
                             </div>
                         </div>
                         <div class="card-time">SECONDARY SCHOOL</div>
-                        <p class="recent">Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu<br>Grade: <strong>First Distinction (84.33%)</strong></p>
+                        <p class="recent">Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu<br>Grade: <strong>First
+                                Distinction (84.33%)</strong></p>
                     </div>
                 </div>
                 <div class="card uiverse-style" style="--card-index: 4; --animation-delay: 0.60s;">
                     <div class="img-section">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                        <img src="icon/School.svg" alt="" style="width: 70px; height: auto; opacity: 0.3;">
                     </div>
                     <div class="card-desc">
-                            <div class="card-header">
+                        <div class="card-header">
                             <div class="card-title">2019-2020</div>
                             <div class="card-menu">
                                 <div class="dot"></div>
@@ -556,12 +563,13 @@
                             </div>
                         </div>
                         <div class="card-time">HIGHER SECONDARY SCHOOL</div>
-                        <p class="recent">Abhilasha Shikshan Sansthani, Sandwa, Churu<br>Grade: <strong>First Distinction (PCM 94%)</strong></p>
+                        <p class="recent">Abhilasha Shikshan Sansthani, Sandwa, Churu<br>Grade: <strong>First
+                                Distinction (PCM 94%)</strong></p>
                     </div>
                 </div>
                 <div class="card uiverse-style" style="--card-index: 5; --animation-delay: 0.75s;">
                     <div class="img-section">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                        <img src="icon/college.svg" alt="" style="width: 50px; height: auto; opacity: 0.3;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
@@ -573,12 +581,13 @@
                             </div>
                         </div>
                         <div class="card-time">BACHELOR OF SCIENCE (B.Sc.)</div>
-                        <p class="recent">Sadguru Institute of Education, Sanganer, Jaipur<br>Grade: <strong>First Distinction (64.15%)</strong></p>
+                        <p class="recent">Sadguru Institute of Education, Sanganer, Jaipur<br>Grade: <strong>First
+                                Distinction (64.15%)</strong></p>
                     </div>
                 </div>
                 <div class="card uiverse-style" style="--card-index: 6; --animation-delay: 0.90s;">
                     <div class="img-section">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                        <img src="icon/college.svg" alt="" style="width: 50px; height: auto; opacity: 0.3;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
@@ -590,7 +599,8 @@
                             </div>
                         </div>
                         <div class="card-time">BACHELOR OF EDUCATION (B.Ed.)</div>
-                        <p class="recent">Sadguru Institute of Education, Sanganer, Jaipur<br>Grade: <strong>First Distinction (65.70%)</strong></p>
+                        <p class="recent">Sadguru Institute of Education, Sanganer, Jaipur<br>Grade: <strong>First
+                                Distinction (65.70%)</strong></p>
                     </div>
                 </div>
             </div>
@@ -631,8 +641,8 @@
                     class="social-link"><i class="fab fa-linkedin"></i></a>
                 <a href="https://twitter.com/Kanhaiy13218049" target="_blank" rel="noopener noreferrer"
                     class="social-link"><i class="fab fa-twitter"></i></a>
-                <a href="https://t.me/kanhaiyalalsuthar" target="_blank" rel="noopener noreferrer" class="social-link"><i
-                        class="fab fa-telegram"></i></a>
+                <a href="https://t.me/kanhaiyalalsuthar" target="_blank" rel="noopener noreferrer"
+                    class="social-link"><i class="fab fa-telegram"></i></a>
                 <a href="https://instagram.com/klsuthar121" target="_blank" rel="noopener noreferrer"
                     class="social-link"><i class="fab fa-instagram"></i></a>
             </div>
