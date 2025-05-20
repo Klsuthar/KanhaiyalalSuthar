@@ -9,9 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;500&family=Playfair+Display:wght@400;700&family=Montserrat:wght@500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Custom Keyframes for Animated Skill Cards -->
     <style>
         @keyframes shine {
             0% {
@@ -67,6 +65,9 @@
             transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
                         box-shadow 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             margin-bottom: 1.5rem; /* Add some margin between cards if they stack */
+            /* Added margin-left and margin-right auto to center cards if they don't fill width */
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .card.uiverse-style:hover {
@@ -156,19 +157,16 @@
             color: #d0d0d0;
             font-weight: 500;
         }
-        /* Ensure cards-container in resume section handles layout well */
-        #resume .cards-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around; /* or space-between, or center */
-            gap: 1rem; /* Adjust gap between cards */
-        }
+        /* CSS rule for .cards-container removed as the element is removed. 
+           Individual cards will now stack vertically by default within their parent sections.
+           The .card.uiverse-style has margin-bottom for spacing, 
+           and margin-left/right auto to center them if the parent section is wider.
+        */
 
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js" defer></script>
+    <link rel="stylesheet" href="style.css"> <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js" defer></script>
 </head>
 
@@ -227,7 +225,6 @@
                     <h3 class="skills-title">SKILLS</h3>
                     <div class="animated-skills-container mt-6 space-y-6">
 
-                        <!-- Skill Card 1: TEACHING -->
                         <div
                             class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
 
@@ -276,7 +273,6 @@
                             </div>
                         </div>
 
-                        <!-- Skill Card 2: COMPUTER SKILLS -->
                         <div
                             class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
 
@@ -324,7 +320,6 @@
                             </div>
                         </div>
 
-                        <!-- Skill Card 3: COMMUNICATION -->
                         <div
                             class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
 
@@ -372,7 +367,6 @@
                             </div>
                         </div>
 
-                        <!-- Skill Card 4: QUICK LEARNING -->
                         <div
                             class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
 
@@ -422,7 +416,6 @@
                             </div>
                         </div>
 
-                        <!-- Skill Card 5: AI Prompt Engineer -->
                         <div
                             class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
 
@@ -499,113 +492,109 @@
             <p class="section-subtitle">Experience & Education Journey</p>
             <div class="experience-section">
                 <h3 class="resume-title">EXPERIENCE</h3>
-                <div class="cards-container">
-                    <div class="card uiverse-style" style="--card-index: 1; --animation-delay: 0.15s;" data-tilt>
-                        <div class="img-section">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
-                        </div>
-                        <div class="card-desc">
-                            <div class="card-header">
-                                <div class="card-title">2023</div>
-                                <div class="card-menu">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
-                            </div>
-                            <div class="card-time">Science TEACHER INTERN - SENIOR LEVEL</div>
-                            <p class="recent">Gov. Sen. Sec. School, Dhadheru (1+ Month)</p>
-                        </div>
+                <div class="card uiverse-style" style="--card-index: 1; --animation-delay: 0.15s;" data-tilt>
+                    <div class="img-section">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
                     </div>
-                    <div class="card uiverse-style" style="--card-index: 2; --animation-delay: 0.30s;" data-tilt>
-                        <div class="img-section">
-                             <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
-                        </div>
-                        <div class="card-desc">
-                            <div class="card-header">
-                                <div class="card-title">2024</div>
-                                <div class="card-menu">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
+                    <div class="card-desc">
+                        <div class="card-header">
+                            <div class="card-title">2023</div>
+                            <div class="card-menu">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
                             </div>
-                            <div class="card-time">MATHS TEACHER INTERN - SENIOR LEVEL</div>
-                            <p class="recent">Gov. Sen. Sec. School, Dhadheru (3+ Month)</p>
                         </div>
+                        <div class="card-time">Science TEACHER INTERN - SENIOR LEVEL</div>
+                        <p class="recent">Gov. Sen. Sec. School, Dhadheru (1+ Month)</p>
+                    </div>
+                </div>
+                <div class="card uiverse-style" style="--card-index: 2; --animation-delay: 0.30s;" data-tilt>
+                    <div class="img-section">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                    </div>
+                    <div class="card-desc">
+                        <div class="card-header">
+                            <div class="card-title">2024</div>
+                            <div class="card-menu">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                        <div class="card-time">MATHS TEACHER INTERN - SENIOR LEVEL</div>
+                        <p class="recent">Gov. Sen. Sec. School, Dhadheru (3+ Month)</p>
                     </div>
                 </div>
             </div>
             <div class="education-section">
                 <h3 class="resume-title">EDUCATION</h3>
-                <div class="cards-container">
-                    <div class="card uiverse-style" style="--card-index: 3; --animation-delay: 0.45s;" data-tilt>
-                        <div class="img-section">
-                             <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
-                        </div>
-                        <div class="card-desc">
-                            <div class="card-header">
-                                <div class="card-title">2017-2018</div>
-                                <div class="card-menu">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
-                            </div>
-                            <div class="card-time">SECONDARY SCHOOL</div>
-                            <p class="recent">Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu<br>Grade: <strong>First Distinction (84.33%)</strong></p>
-                        </div>
-                    </div>
-                    <div class="card uiverse-style" style="--card-index: 4; --animation-delay: 0.60s;" data-tilt>
-                        <div class="img-section">
-                             <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
-                        </div>
-                        <div class="card-desc">
-                             <div class="card-header">
-                                <div class="card-title">2019-2020</div>
-                                <div class="card-menu">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
-                            </div>
-                            <div class="card-time">HIGHER SECONDARY SCHOOL</div>
-                            <p class="recent">Abhilasha Shikshan Sansthani, Sandwa, Churu<br>Grade: <strong>First Distinction (PCM 94%)</strong></p>
-                        </div>
-                    </div>
-                    <div class="card uiverse-style" style="--card-index: 5; --animation-delay: 0.75s;" data-tilt>
-                        <div class="img-section">
+                <div class="card uiverse-style" style="--card-index: 3; --animation-delay: 0.45s;" data-tilt>
+                    <div class="img-section">
                             <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
-                        </div>
-                        <div class="card-desc">
-                            <div class="card-header">
-                                <div class="card-title">2020-2023</div>
-                                <div class="card-menu">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
-                            </div>
-                            <div class="card-time">BACHELOR OF SCIENCE (B.Sc.)</div>
-                            <p class="recent">Sadguru Institute of Education, Sanganer, Jaipur<br>Grade: <strong>First Distinction (64.15%)</strong></p>
-                        </div>
                     </div>
-                    <div class="card uiverse-style" style="--card-index: 6; --animation-delay: 0.90s;" data-tilt>
-                        <div class="img-section">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
-                        </div>
-                        <div class="card-desc">
-                            <div class="card-header">
-                                <div class="card-title">2020-2024</div>
-                                <div class="card-menu">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
+                    <div class="card-desc">
+                        <div class="card-header">
+                            <div class="card-title">2017-2018</div>
+                            <div class="card-menu">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
                             </div>
-                            <div class="card-time">BACHELOR OF EDUCATION (B.Ed.)</div>
-                            <p class="recent">Sadguru Institute of Education, Sanganer, Jaipur<br>Grade: <strong>First Distinction (65.70%)</strong></p>
                         </div>
+                        <div class="card-time">SECONDARY SCHOOL</div>
+                        <p class="recent">Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu<br>Grade: <strong>First Distinction (84.33%)</strong></p>
+                    </div>
+                </div>
+                <div class="card uiverse-style" style="--card-index: 4; --animation-delay: 0.60s;" data-tilt>
+                    <div class="img-section">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                    </div>
+                    <div class="card-desc">
+                            <div class="card-header">
+                            <div class="card-title">2019-2020</div>
+                            <div class="card-menu">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                        <div class="card-time">HIGHER SECONDARY SCHOOL</div>
+                        <p class="recent">Abhilasha Shikshan Sansthani, Sandwa, Churu<br>Grade: <strong>First Distinction (PCM 94%)</strong></p>
+                    </div>
+                </div>
+                <div class="card uiverse-style" style="--card-index: 5; --animation-delay: 0.75s;" data-tilt>
+                    <div class="img-section">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                    </div>
+                    <div class="card-desc">
+                        <div class="card-header">
+                            <div class="card-title">2020-2023</div>
+                            <div class="card-menu">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                        <div class="card-time">BACHELOR OF SCIENCE (B.Sc.)</div>
+                        <p class="recent">Sadguru Institute of Education, Sanganer, Jaipur<br>Grade: <strong>First Distinction (64.15%)</strong></p>
+                    </div>
+                </div>
+                <div class="card uiverse-style" style="--card-index: 6; --animation-delay: 0.90s;" data-tilt>
+                    <div class="img-section">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="77" width="76"><path fill-rule="nonzero" d="m60.91 71.846 12.314-19.892c3.317-5.36 3.78-13.818-2.31-19.908l-26.36-26.36c-4.457-4.457-12.586-6.843-19.908-2.31L4.753 15.69c-5.4 3.343-6.275 10.854-1.779 15.35a7.773 7.773 0 0 0 7.346 2.035l7.783-1.945a3.947 3.947 0 0 1 3.731 1.033l22.602 22.602c.97.97 1.367 2.4 1.033 3.732l-1.945 7.782a7.775 7.775 0 0 0 2.037 7.349c4.49 4.49 12.003 3.624 15.349-1.782Zm-24.227-46.12-1.891-1.892-1.892 1.892a2.342 2.342 0 0 1-3.312-3.312l1.892-1.892-1.892-1.891a2.342 2.342 0 0 1 3.312-3.312l1.892 1.891 1.891-1.891a2.342 2.342 0 0 1 3.312 3.312l-1.891 1.891 1.891 1.892a2.342 2.342 0 0 1-3.312 3.312Zm14.19 14.19a2.343 2.343 0 1 1 3.315-3.312 2.343 2.343 0 0 1-3.314 3.312Zm0 7.096a2.343 2.343 0 0 1 3.313-3.312 2.343 2.343 0 0 1-3.312 3.312Zm7.096-7.095a2.343 2.343 0 1 1 3.312 0 2.343 2.343 0 0 1-3.312 0Zm0 7.095a2.343 2.343 0 0 1 3.312-3.312 2.343 2.343 0 0 1-3.312 3.312Z"></path></svg>
+                    </div>
+                    <div class="card-desc">
+                        <div class="card-header">
+                            <div class="card-title">2020-2024</div>
+                            <div class="card-menu">
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                                <div class="dot"></div>
+                            </div>
+                        </div>
+                        <div class="card-time">BACHELOR OF EDUCATION (B.Ed.)</div>
+                        <p class="recent">Sadguru Institute of Education, Sanganer, Jaipur<br>Grade: <strong>First Distinction (65.70%)</strong></p>
                     </div>
                 </div>
             </div>

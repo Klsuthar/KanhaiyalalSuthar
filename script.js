@@ -198,6 +198,35 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     typeWriter();
 
+    // --- Scroll Animations (Intersection Observer for Sections) ---
+    const sectionObserverOptions = {
+        root: null, // Observe relative to viewport
+        rootMargin: '0px',
+        threshold: 0.15 // Trigger when 15% of the section is visible
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                // Animate skill bars fill when 'about' section becomes visible (desktop/mobile)
+                if (entry.target.id === 'about') {
+                    entry.target.querySelectorAll('.skill-progress').forEach((bar) => {
+                        setTimeout(() => bar.classList.add('animate'), 500);
+                    });
+                }
+                // Optionally unobserve section after first intersection
+                // observer.unobserve(entry.target);
+            } else if (!entry.target.classList.contains('no-reanimate')) {
+                entry.target.classList.remove('visible');
+                if (entry.target.id === 'about') {
+                    entry.target.querySelectorAll('.skill-progress.animate').forEach((bar) => {
+                        bar.classList.remove('animate');
+                    });
+                }
+            }
+        });
+    }, sectionObserverOptions);
 
     // Observe all sections for general visibility fade/transform
     sections.forEach(section => {
@@ -217,8 +246,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileElementObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-bounce');
-                    observer.unobserve(entry.target); // Animate only once
+                    // entry.target.classList.add('animate-bounce'); // MODIFIED: Bounce animation removed
+                    observer.unobserve(entry.target); // Animate only once (or perform other actions)
                 }
                 // No 'else' needed as we unobserve
             });
