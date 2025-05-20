@@ -814,34 +814,6 @@ section.visible .card {
     /* transition-delay applied above */
 }
 
-.card:hover {
-    transform: translateY(-12px) scale(1.03);
-    box-shadow: 0 15px 40px rgba(0, 196, 180, 0.55);
-}
-
-/* Remove hover effect on touch devices */
-@media (hover: none) {
-    .card:hover {
-        transform: translateY(0) scale(1);
-        /* Reset transform */
-        box-shadow: none;
-        /* Reset shadow */
-    }
-
-    .contact-item:hover .contact-icon {
-        transform: scale(1) rotate(0deg);
-        /* Reset icon transform */
-        box-shadow: none;
-    }
-
-    .social-link:hover {
-        color: #e0e0e0;
-        /* Reset color */
-        transform: none;
-        /* Reset transform */
-    }
-}
-
 .card-year {
     font-size: 24px;
     color: #f5c518;
