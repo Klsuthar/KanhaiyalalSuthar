@@ -42,61 +42,63 @@
             animation: particle 2s linear infinite;
         }
 
-        /* Styles for new Resume Cards from code.html */
-        /* Adapted CSS from Uiverse.io by satyamchaudharydev */
+        /* Styles for new Resume Cards from code.html - Light Theme Adaptation */
         .card.uiverse-style {
-            /* Theme colors from your website */
-            --primary-clr: #2d2d2d;
-            --dot-clr: #f5c518;
-            --banner-bg: #00c4b4;
+            /* Theme colors from your website - Light Theme */
+            --primary-clr: #ffffff; /* Card background */
+            --dot-clr: #f39c12;     /* Accent gold for dots */
+            --banner-bg: #00b8a9;   /* Accent teal for banner */
+            --text-dark-card: #2c3e50;
+            --text-medium-card: #566573;
+            --text-light-card: #7f8c8d;
+            --card-border-clr: rgba(0, 0, 0, 0.09);
 
-            /* Sizing & Layout - Made responsive */
             width: 100%;
-            max-width: 432px; /* INCREASED from 360px */
-            min-height: 228px; /* INCREASED from 190px */
+            max-width: 432px;
+            min-height: 228px;
             height: auto;
-            border-radius: 18px; /* Slightly increased */
+            border-radius: 18px;
 
             font-family: 'Roboto', sans-serif;
-            color: #e0e0e0;
+            color: var(--text-medium-card); /* Default text color for card */
             display: grid;
-            grid-template-rows: 72px 1fr; /* INCREASED from 60px */
-            box-shadow: 0 7px 22px rgba(0, 0, 0, 0.35); /* Slightly adjusted shadow */
-            /* margin-bottom: 1.5rem; This will be overridden by style.css for cards in grid */
+            grid-template-rows: 72px 1fr;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08); /* Softer shadow */
             margin-left: auto;
             margin-right: auto;
+            border: 1px solid var(--card-border-clr); /* Subtle border */
         }
 
         .card.uiverse-style .card-desc {
-            border-radius: 18px; /* Slightly increased */
-            padding: 18px; /* INCREASED from 15px */
+            border-radius: 18px;
+            padding: 18px;
             position: relative;
-            top: -18px; /* Adjusted to match padding */
+            top: -18px;
             display: flex;
             flex-direction: column;
-            gap: 10px; /* INCREASED from 8px */
+            gap: 10px;
             background: var(--primary-clr);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            min-height: calc(100% - 72px + 18px); /* Adjusted to match grid-template-rows and padding */
+            /* border top handled by img-section, other borders by main card border if needed */
+            min-height: calc(100% - 72px + 18px);
         }
 
         .card.uiverse-style .card-time { /* Main title in card */
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.3em; /* INCREASED from 1.1em */
+            font-size: 1.3em;
             font-weight: 600;
-            color: #f0f0f0;
-            line-height: 1.35; /* Slightly adjusted */
-            margin-top: 6px; /* Adjusted */
+            color: var(--text-dark-card); /* Darker text for title */
+            line-height: 1.35;
+            margin-top: 6px;
         }
 
         .card.uiverse-style .img-section {
-            border-top-left-radius: 18px; /* Adjusted */
-            border-top-right-radius: 18px; /* Adjusted */
-            background: var(--banner-bg);
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            background: var(--banner-bg); /* Teal banner */
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            padding: 0 18px; /* Adjusted */
+            padding: 0 18px;
             overflow: hidden;
         }
 
@@ -106,43 +108,51 @@
             width: 100%;
         }
 
-        .card.uiverse-style .card-title { /* Text used for YEAR in screenshot (e.g., "2017-2018") */
+        .card.uiverse-style .card-title { /* Text used for YEAR (e.g., "2017-2018") */
             font-family: 'Poppins', sans-serif;
             flex: 1;
-            font-size: 1.2em; /* INCREASED from 1em - note: color is applied inline in your HTML */
-            font-weight: 700; /* Made bolder to match screenshot */
-            color: #e0e0e0; /* Base color, often overridden by inline style */
+            font-size: 1.2em;
+            font-weight: 700;
+            color: var(--text-light-card); /* Lighter for year, often overridden by inline style */
         }
+        /* Inline style for year will be like: style="color: var(--accent1-darker);" */
+
 
         .card.uiverse-style .card-menu {
             display: flex;
-            gap: 5px; /* Adjusted */
+            gap: 5px;
         }
 
-        .card.uiverse-style .img-section svg {
-            height: 66px; /* INCREASED from 55px */
+        .card.uiverse-style .img-section svg, 
+        .card.uiverse-style .img-section img { /* Targeting img for your PNGs too */
+            height: 66px;
             width: auto;
-            opacity: 0.3;
-            fill: #1a1a1a;
+            fill: #ffffff; /* SVGs on teal banner should be white */
+            opacity: 0.5; /* Adjusted opacity for white icon on teal */
         }
+        /* Your specific image opacities are inline, e.g., style="opacity:0.3;"
+           Consider adjusting those if the icons are not clear.
+           Or use a class to control SVG fill.
+        */
+
 
         .card.uiverse-style .dot {
-            width: 6px; /* Adjusted */
-            height: 6px; /* Adjusted */
+            width: 6px;
+            height: 6px;
             border-radius: 50%;
-            background: var(--dot-clr);
+            background: var(--dot-clr); /* Gold dots */
         }
 
         .card.uiverse-style .recent { /* Main description text */
             font-family: 'Roboto', sans-serif;
-            line-height: 1.6; /* Adjusted */
-            font-size: 1.05em; /* INCREASED from 0.875em */
-            color: #b0b0b0;
+            line-height: 1.6;
+            font-size: 1.05em;
+            color: var(--text-medium-card); /* Medium dark text for description */
             flex-grow: 1;
         }
 
         .card.uiverse-style .recent strong {
-            color: #d0d0d0;
+            color: var(--text-dark-card); /* Strong text darker */
             font-weight: 500;
         }
     </style>
@@ -154,16 +164,16 @@
 </head>
 
 <body>
-    <div class="custom-cursor"></div>
+    <div class="custom-cursor"></div> <!-- Custom cursor color defined in style.css -->
     <nav>
-        <div class="logo">KANHAIYA LAL SUTHAR</div>
+        <div class="logo">KANHAIYA LAL SUTHAR</div> <!-- Logo color defined in style.css -->
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="burger">
+        <div class="burger"> <!-- Burger color defined in style.css -->
             <div class="line1"></div>
             <div class="line2"></div>
             <div class="line3"></div>
@@ -171,285 +181,283 @@
     </nav>
 
     <section id="home">
-        <div id="tsparticles-background"></div>
+        <div id="tsparticles-background"></div> <!-- Particle colors in script.js -->
         <div class="container home-content">
             <div class="home-text">
-                <p class="hello">HELLO!</p>
-                <h1 class="name">I'm <span>KANHAIYA LAL SUTHAR</span></h1>
-                <div class="profession" id="typing-text"></div>
+                <p class="hello">HELLO!</p> <!-- Colors in style.css -->
+                <h1 class="name">I'm <span>KANHAIYA LAL SUTHAR</span></h1> <!-- Colors in style.css -->
+                <div class="profession" id="typing-text"></div> <!-- Typing colors in script.js -->
                 <div class="home-buttons">
                     <a href="pdf/KanhaiyalalResume.pdf" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-primary">Resume PDF</a>
-                    <a href="#resume" class="btn btn-secondary">MY WORKS</a>
+                        class="btn btn-primary">Resume PDF</a> <!-- Button styles in style.css -->
+                    <a href="#resume" class="btn btn-secondary">MY WORKS</a> <!-- Button styles in style.css -->
                 </div>
             </div>
             <div class="home-image">
                 <img src="images/profile.png" alt="Kanhaiya Lal Suthar"
-                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/2c2c2c/f5c518?text=Profile+Image';">
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/e9ecef/2c3e50?text=Profile+Image';"> <!-- Placeholder updated for light theme -->
             </div>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2>
+            <h2 class="section-title">About Me</h2> <!-- Title colors in style.css -->
             <div class="about-content">
 
                 <div class="about-left">
                     <div class="about-image">
                         <img src="images/about.png" alt="Kanhaiya Lal"
-                            onerror="this.onerror=null;this.src='https://placehold.co/180x180/2c2c2c/f5c518?text=About+Me';">
+                            onerror="this.onerror=null;this.src='https://placehold.co/180x180/e9ecef/2c3e50?text=About+Me';"> <!-- Placeholder updated -->
                     </div>
-                    <div class="about-details">
+                    <div class="about-details"> <!-- Text colors in style.css -->
                         <p><strong>NAME:</strong> KANHAIYA LAL SUTHAR</p>
                         <p><strong>JOB ROLE:</strong> MATHS TEACHER</p>
                         <p><strong>EXPERIENCE:</strong> 4+ MONTHS INTERN</p>
                         <p><strong>ADDRESS:</strong> DHADHERU, CHURU, RAJASTHAN</p>
                     </div>
 
-                    <h3 class="skills-title">SKILLS</h3>
+                    <h3 class="skills-title">SKILLS</h3> <!-- Title color in style.css -->
                     <div class="animated-skills-container mt-6 space-y-6">
+                        <!-- Tailwind Skill Bar 1: TEACHING -->
                         <div
-                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
+                            class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
                                     <span
-                                        class="text-gray-200 font-semibold text-sm uppercase tracking-wider">TEACHING</span>
-                                    <span class="text-[#f5c518] font-bold text-sm">90%</span>
+                                        class="text-gray-700 font-semibold text-sm uppercase tracking-wider">TEACHING</span>
+                                    <span class="text-orange-500 font-bold text-sm">90%</span> <!-- Changed from #f5c518 to Tailwind orange -->
                                 </div>
-                                <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
+                                <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden"> <!-- Light background for bar -->
                                     <div
-                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
+                                        class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-teal-500/20 animate-pulse"> <!-- Adjusted accent colors -->
                                     </div>
                                     <div style="width: 90%;"
                                         class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-teal-500"> <!-- Main progress gradient -->
                                         </div>
                                         <div
-                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]"> <!-- Shine effect lighter -->
                                         </div>
                                         <div class="absolute inset-0">
                                             <div style="top: 25%; left: 30%; animation-delay: 0s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                             <div style="top: 65%; left: 70%; animation-delay: 0.8s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div
-                                    class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping">
+                                    class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-orange-500/50 rounded-full animate-ping">
                                 </div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.5s;"></div>
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
+                                    class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none"> <!-- Very subtle top gloss -->
                                 </div>
                             </div>
                             <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
-                                    class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
+                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100"> <!-- Lighter bg for tag -->
                                     Expert in simplifying complex concepts
                                 </span>
                             </div>
                         </div>
 
+                        <!-- Tailwind Skill Bar 2: COMPUTER SKILLS -->
                         <div
-                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-
+                            class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">COMPUTER
+                                    <span class="text-gray-700 font-semibold text-sm uppercase tracking-wider">COMPUTER
                                         SKILLS</span>
-                                    <span class="text-[#f5c518] font-bold text-sm">95%</span>
+                                    <span class="text-orange-500 font-bold text-sm">95%</span>
                                 </div>
-                                <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
+                                <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
                                     <div
-                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
+                                        class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-teal-500/20 animate-pulse">
                                     </div>
                                     <div style="width: 95%;"
                                         class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-teal-500">
                                         </div>
                                         <div
-                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]">
                                         </div>
                                         <div class="absolute inset-0">
                                             <div style="top: 25%; left: 30%; animation-delay: 0.1s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                             <div style="top: 65%; left: 70%; animation-delay: 0.9s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping"
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-orange-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.1s;"></div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.6s;"></div>
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
+                                    class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none">
                                 </div>
                             </div>
                             <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
-                                    class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
+                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100">
                                     MS Office, Tech Tools
                                 </span>
                             </div>
                         </div>
 
-                        <div
-                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-
+                        <!-- Tailwind Skill Bar 3: COMMUNICATION -->
+                         <div
+                            class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
                                     <span
-                                        class="text-gray-200 font-semibold text-sm uppercase tracking-wider">COMMUNICATION</span>
-                                    <span class="text-[#f5c518] font-bold text-sm">70%</span>
+                                        class="text-gray-700 font-semibold text-sm uppercase tracking-wider">COMMUNICATION</span>
+                                    <span class="text-orange-500 font-bold text-sm">70%</span>
                                 </div>
-                                <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
+                                <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
                                     <div
-                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
+                                        class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-teal-500/20 animate-pulse">
                                     </div>
                                     <div style="width: 70%;"
                                         class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-teal-500">
                                         </div>
                                         <div
-                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]">
                                         </div>
                                         <div class="absolute inset-0">
                                             <div style="top: 25%; left: 30%; animation-delay: 0.2s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                             <div style="top: 65%; left: 70%; animation-delay: 1.0s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping"
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-orange-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.2s;"></div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.7s;"></div>
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
+                                    class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none">
                                 </div>
                             </div>
                             <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
-                                    class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
+                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100">
                                     Clear & Engaging Delivery
                                 </span>
                             </div>
                         </div>
-
+                        
+                        <!-- Tailwind Skill Bar 4: QUICK LEARNING -->
                         <div
-                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-
+                            class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">QUICK
+                                    <span class="text-gray-700 font-semibold text-sm uppercase tracking-wider">QUICK
                                         LEARNING</span>
-                                    <span class="text-[#f5c518] font-bold text-sm">95%</span>
+                                    <span class="text-orange-500 font-bold text-sm">95%</span>
                                 </div>
-                                <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
+                                <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
                                     <div
-                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
+                                        class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-teal-500/20 animate-pulse">
                                     </div>
                                     <div style="width: 95%;"
                                         class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-teal-500">
                                         </div>
                                         <div
-                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]">
                                         </div>
                                         <div class="absolute inset-0">
                                             <div style="top: 25%; left: 30%; animation-delay: 0.3s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                             <div style="top: 65%; left: 70%; animation-delay: 1.1s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
-                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping"
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-orange-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.3s;"></div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.8s;"></div>
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
+                                    class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none">
                                 </div>
-                                <div style="height: 15px; opacity: 0;"></div>
-                                <div class="mb-2.5 text-center sm:text-left">
-                                    <span
-                                        class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
-                                        Eager to master new skills
-                                    </span>
-                                </div>
+                            </div>
+                             <div style="height: 15px; opacity: 0;"></div>
+                            <div class="mb-2.5 text-center sm:text-left">
+                                <span
+                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100">
+                                    Eager to master new skills
+                                </span>
                             </div>
                         </div>
 
+                        <!-- Tailwind Skill Bar 5: AI Prompt Engineer -->
                         <div
-                            class="w-full p-5 rounded-2xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1f1f1f]/90 backdrop-blur-sm shadow-xl border border-[#f5c518]/30">
-
+                            class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-200 font-semibold text-sm uppercase tracking-wider">AI Prompt
+                                    <span class="text-gray-700 font-semibold text-sm uppercase tracking-wider">AI Prompt
                                         Engineer</span>
-                                    <span class="text-[#f5c518] font-bold text-sm">85%</span>
+                                    <span class="text-orange-500 font-bold text-sm">85%</span>
                                 </div>
-                                <div class="relative h-2.5 bg-black/40 rounded-full overflow-hidden">
+                                <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
                                     <div
-                                        class="absolute inset-0 bg-gradient-to-r from-[#f5c518]/20 to-[#00c4b4]/20 animate-pulse">
+                                        class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-teal-500/20 animate-pulse">
                                     </div>
                                     <div style="width: 85%;"
                                         class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-[#f5c518] to-[#00c4b4]">
+                                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-teal-500">
                                         </div>
                                         <div
-                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent animate-[shine_2s_linear_infinite]">
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]">
                                         </div>
                                         <div class="absolute inset-0">
                                             <div style="top: 25%; left: 30%; animation-delay: 0.4s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                             <div style="top: 65%; left: 70%; animation-delay: 1.2s;"
-                                                class="absolute w-0.5 h-0.5 bg-white/60 rounded-full animate-[particle_2s_linear_infinite]">
+                                                class="absolute w-0.5 h-0.5 bg-white/70 rounded-full animate-[particle_2s_linear_infinite]">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-[#f5c518]/50 rounded-full animate-ping"
+                                <div class="absolute -top-0.5 -left-0.5 w-1.5 h-1.5 bg-orange-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.4s;"></div>
-                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-[#00c4b4]/50 rounded-full animate-ping"
+                                <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.9s;"></div>
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-b from-white/[.02] to-transparent rounded-full pointer-events-none">
-                                </div>
-                                <div class="mb-2.5 text-center sm:text-left">
-                                    <div style="height: 15px; opacity: 0;"></div>
-                                    <span
-                                        class="inline-block px-3 py-1 border border-[#00c4b4]/70 rounded-md text-[#f5c518] text-xs font-medium bg-black/40">
-                                        Mastering the art of talking to machines
-                                    </span>
+                                    class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none">
                                 </div>
                             </div>
+                             <div style="height: 15px; opacity: 0;"></div>
+                            <div class="mb-2.5 text-center sm:text-left">
+                                <span
+                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100">
+                                    Mastering the art of talking to machines
+                                </span>
+                            </div>
                         </div>
-
                     </div>
                 </div>
 
-                <div class="about-right">
+                <div class="about-right"> <!-- Text colors in style.css -->
                     <p>My name is <strong>Kanhaiya Lal</strong>, and I am a dedicated mathematics teacher with a strong
                         academic background. I hold a <em>Bachelor of Science (BSc)</em> and a <em>Bachelor of Education
                             (BEd)</em> degree, and I am currently preparing for the <em>RPSC 2nd Grade Teacher
@@ -471,17 +479,18 @@
 
     <section id="resume">
         <div class="container">
-            <h2 class="section-title">Resume</h2>
-            <p class="section-subtitle">Experience & Education Journey</p>
+            <h2 class="section-title">Resume</h2> <!-- Title colors in style.css -->
+            <p class="section-subtitle">Experience & Education Journey</p> <!-- Subtitle color in style.css -->
             <div class="experience-section">
-                <h3 class="resume-title">EXPERIENCE</h3>
+                <h3 class="resume-title">EXPERIENCE</h3> <!-- Title color in style.css -->
                 <div class="card uiverse-style" style="--card-index: 1; --animation-delay: 0.15s;">
                     <div class="img-section">
-                        <img src="icon/Rocket.svg" alt="" style="opacity: 0.3;">
+                        <!-- Assuming Rocket.svg is dark or has defined colors, opacity makes it fit -->
+                        <img src="icon/Rocket.svg" alt="" style="opacity: 0.5;"> <!-- Adjusted opacity for white icon on teal -->
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
-                            <div class="card-title" style="color: #f5c518;">2023</div>
+                            <div class="card-title" style="color: #c87f0a;">2023</div> <!-- Darker gold for year -->
                             <div class="card-menu">
                                 <div class="dot"></div>
                                 <div class="dot"></div>
@@ -494,12 +503,11 @@
                 </div>
                 <div class="card uiverse-style" style="--card-index: 2; --animation-delay: 0.30s;">
                     <div class="img-section">
-                        <img src="icon/maths.svg" alt="" style="width: 40px; height: auto; opacity: 0.3;">
+                        <img src="icon/maths.svg" alt="" style="width: 40px; height: auto; opacity: 0.5;"> <!-- Adjusted opacity -->
                     </div>
-
                     <div class="card-desc">
                         <div class="card-header">
-                            <div class="card-title" style="color: #f5c518;">2024</div>
+                            <div class="card-title" style="color: #c87f0a;">2024</div>
                             <div class="card-menu">
                                 <div class="dot"></div>
                                 <div class="dot"></div>
@@ -515,11 +523,11 @@
                 <h3 class="resume-title">EDUCATION</h3>
                 <div class="card uiverse-style" style="--card-index: 3; --animation-delay: 0.45s;">
                     <div class="img-section">
-                        <img src="icon/school.png" alt="" style="width: 40px; height: auto; opacity: 0.5;">
+                        <img src="icon/school.png" alt="" style="width: 40px; height: auto; opacity: 0.6;"> <!-- Adjusted opacity -->
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
-                            <div class="card-title" style="color: #f5c518;">2017-2018</div>
+                            <div class="card-title" style="color: #c87f0a;">2017-2018</div>
                             <div class="card-menu">
                                 <div class="dot"></div>
                                 <div class="dot"></div>
@@ -533,11 +541,11 @@
                 </div>
                 <div class="card uiverse-style" style="--card-index: 4; --animation-delay: 0.60s;">
                     <div class="img-section">
-                        <img src="icon/school.png" alt="" style="width: 40px; height: auto; opacity: 0.5;">
+                        <img src="icon/school.png" alt="" style="width: 40px; height: auto; opacity: 0.6;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
-                            <div class="card-title" style="color: #f5c518;">2019-2020</div>
+                            <div class="card-title" style="color: #c87f0a;">2019-2020</div>
                             <div class="card-menu">
                                 <div class="dot"></div>
                                 <div class="dot"></div>
@@ -551,11 +559,11 @@
                 </div>
                 <div class="card uiverse-style" style="--card-index: 5; --animation-delay: 0.75s;">
                     <div class="img-section">
-                        <img src="icon/college.svg" alt="" style="width: 50px; height: auto; opacity: 0.3;">
+                        <img src="icon/college.svg" alt="" style="width: 50px; height: auto; opacity: 0.5;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
-                            <div class="card-title" style="color: #f5c518;">2020-2023</div>
+                            <div class="card-title" style="color: #c87f0a;">2020-2023</div>
                             <div class="card-menu">
                                 <div class="dot"></div>
                                 <div class="dot"></div>
@@ -569,11 +577,11 @@
                 </div>
                 <div class="card uiverse-style" style="--card-index: 6; --animation-delay: 0.90s;">
                     <div class="img-section">
-                        <img src="icon/bed.svg" alt="" style="width: 50px; height: auto; opacity: 0.3;">
+                        <img src="icon/bed.svg" alt="" style="width: 50px; height: auto; opacity: 0.5;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
-                            <div class="card-title" style="color: #f5c518;">2020-2024</div>
+                            <div class="card-title" style="color: #c87f0a;">2020-2024</div>
                             <div class="card-menu">
                                 <div class="dot"></div>
                                 <div class="dot"></div>
@@ -589,7 +597,7 @@
         </div>
     </section>
 
-    <section id="contact">
+    <section id="contact"> <!-- Text/icon colors in style.css -->
         <div class="container">
             <h2 class="section-title">Contact Me</h2>
             <p class="section-subtitle">Get in Touch - Let's Connect!</p>
@@ -633,3 +641,4 @@
 
     <script src="script.js" defer></script>
 </body>
+</html>

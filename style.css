@@ -6,13 +6,52 @@
     font-family: 'Roboto', sans-serif;
 }
 
+:root {
+    --bg-main: #fdfdff; /* Slightly off-white */
+    --bg-alt: #f0f2f5;
+    --bg-section-overlay1: rgba(255, 255, 255, 0.95);
+    --bg-section-overlay2: rgba(248, 249, 250, 0.95);
+
+    --text-dark: #2c3e50; /* Dark grayish blue */
+    --text-medium: #566573;
+    --text-light: #7f8c8d;
+    --text-on-accent: #ffffff;
+
+    --accent1: #f39c12; /* Slightly deeper gold/orange */
+    --accent1-darker: #c87f0a;
+    --accent1-rgb: 243, 156, 18;
+
+    --accent2: #00b8a9; /* Slightly adjusted teal */
+    --accent2-darker: #008d80;
+    --accent2-rgb: 0, 184, 169;
+
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --nav-bg-scrolled: rgba(248, 249, 250, 0.95);
+    --nav-shadow: rgba(0, 0, 0, 0.07);
+    --nav-shadow-scrolled: rgba(0, 0, 0, 0.09);
+
+    --card-bg: #ffffff;
+    --card-border: rgba(0, 0, 0, 0.09);
+    --card-shadow: rgba(0, 0, 0, 0.08);
+
+    --loader-bg1: var(--bg-alt);
+    --loader-bg2: var(--bg-main);
+    --loader-symbol: var(--accent1-darker);
+    --loader-symbol-shadow: rgba(var(--accent1-rgb), 0.3);
+
+    --svg-pattern-fill: #888888; /* Darker gray for pattern */
+    --svg-pattern-opacity: 0.05; /* More subtle */
+    --svg-separator-fill: #e0e0e0; /* Light gray separator */
+}
+
+
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
-    color: white;
+    background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-alt) 100%);
+    color: var(--text-dark);
     line-height: 1.6;
     opacity: 0;
     animation: fadeInBody 1.2s ease-out forwards;
@@ -26,18 +65,20 @@ body {
     position: fixed;
     width: 15px;
     height: 15px;
-    background: radial-gradient(circle, #f5c518, #00c4b4);
+    /* For light theme, a darker cursor with difference blend mode works well */
+    background: radial-gradient(circle, var(--accent1-darker), var(--accent2-darker));
+    /* Or a simple dark color: background: #333; */
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transition: transform 0.15s ease-out, opacity 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out;
     transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
+    mix-blend-mode: difference; /* This will invert colors against the light background */
 }
 
 .custom-cursor.hover {
     transform: translate(-50%, -50%) scale(1.8);
-    opacity: 0.6;
+    opacity: 0.7; /* Adjusted opacity for better visibility with difference mode */
     width: 25px;
     height: 25px;
 }
@@ -65,7 +106,8 @@ section {
     flex-direction: column;
     justify-content: center;
     position: relative;
-    background: linear-gradient(45deg, rgba(26, 26, 26, 0.9), rgba(44, 44, 44, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.04"><text x="50" y="50" font-family=\"Playfair Display, serif\" font-size="50" fill="#f5c518">Σ</text></svg>') repeat;
+    background: linear-gradient(45deg, var(--bg-section-overlay1), var(--bg-section-overlay2)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="var(--svg-pattern-opacity)"><text x="50" y="50" font-family=\"Playfair Display, serif\" font-size="50" fill="var(--svg-pattern-fill)">Σ</text></svg>') repeat;
     overflow: hidden;
     opacity: 0;
     transform: translateY(50px) scale(0.98);
@@ -73,17 +115,17 @@ section {
 }
 
 #home {
-    background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+    background: linear-gradient(135deg, var(--bg-main), var(--bg-alt));
 }
 
 section::before {
     content: '';
     position: absolute;
-    bottom: -50px;
+    bottom: -50px; /* Adjust if shape looks odd with light theme */
     left: 0;
     width: 100%;
     height: 100px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48V0h1200v120z" fill="#f5c518" opacity="0.1"></path></svg>') no-repeat bottom;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48V0h1200v120z" fill="var(--svg-separator-fill)" opacity="0.3"></path></svg>') no-repeat bottom;
     background-size: cover;
     z-index: 0;
     pointer-events: none;
@@ -112,6 +154,7 @@ h6 {
     opacity: 0;
     transform: translateY(15px);
     transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s;
+    color: var(--text-dark); /* Ensure headings are dark */
 }
 
 section.visible h2,
@@ -137,11 +180,11 @@ section.visible h6 {
     margin-bottom: 40px;
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    color: #f5c518;
-    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    color: var(--accent1-darker); /* Darker gold for title */
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Softer shadow */
     position: relative;
     z-index: 10;
-    animation: glow 2s ease-in-out infinite alternate;
+    animation: glow 2.5s ease-in-out infinite alternate; /* Slightly slower glow */
     transition: opacity 0.6s ease-out 0.2s, transform 0.6s ease-out 0.2s;
 }
 
@@ -152,11 +195,11 @@ section:not(.visible) .section-title {
 
 @keyframes glow {
     from {
-        text-shadow: 0 4px 10px rgba(245, 197, 24, 0.4);
+        text-shadow: 0 2px 6px rgba(var(--accent1-rgb), 0.25);
     }
 
     to {
-        text-shadow: 0 4px 20px rgba(245, 197, 24, 0.8);
+        text-shadow: 0 3px 12px rgba(var(--accent1-rgb), 0.45);
     }
 }
 
@@ -168,7 +211,7 @@ section:not(.visible) .section-title {
     transform: translateX(-50%);
     width: 0;
     height: 3px;
-    background: linear-gradient(to right, transparent, #00c4b4, transparent);
+    background: linear-gradient(to right, transparent, var(--accent2), transparent); /* Teal underline */
     transition: width 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.6s;
 }
 
@@ -180,7 +223,7 @@ section.visible .section-title::after {
     font-size: 22px;
     text-align: center;
     margin-bottom: 50px;
-    color: #e0e0e0;
+    color: var(--text-medium);
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-style: italic;
@@ -200,26 +243,26 @@ nav {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(26, 26, 26, 0.85);
+    background: var(--nav-bg);
     backdrop-filter: blur(12px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 18px 50px;
     z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 2px 8px var(--nav-shadow);
     transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
 }
 
 body.scrolled nav {
-    background: rgba(20, 20, 20, 0.9);
-    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.7);
+    background: var(--nav-bg-scrolled);
+    box-shadow: 0 3px 12px var(--nav-shadow-scrolled);
 }
 
 .logo {
     font-size: 28px;
     font-weight: 700;
-    color: #f5c518;
+    color: var(--accent1-darker);
     font-family: 'Poppins', sans-serif;
     letter-spacing: 2px;
     transition: transform 0.3s ease, font-size 0.3s ease;
@@ -241,7 +284,7 @@ body.scrolled nav {
 
 .nav-links a {
     text-decoration: none;
-    color: white;
+    color: var(--text-dark);
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -257,7 +300,7 @@ body.scrolled nav {
     left: 0;
     width: 0;
     height: 3px;
-    background: #00c4b4;
+    background: var(--accent2);
     transition: width 0.4s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
@@ -268,7 +311,7 @@ body.scrolled nav {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: #00c4b4;
+    color: var(--accent2);
     transform: translateY(-3px);
 }
 
@@ -282,7 +325,7 @@ body.scrolled nav {
 .burger div {
     width: 30px;
     height: 4px;
-    background-color: #f5c518;
+    background-color: var(--accent1-darker);
     margin: 6px;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
@@ -348,8 +391,8 @@ body.scrolled nav {
     margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: #00c4b4;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    color: var(--accent2);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .name {
@@ -359,12 +402,13 @@ body.scrolled nav {
     font-weight: 700;
     letter-spacing: 1.5px;
     line-height: 1.2;
+    color: var(--text-dark);
 }
 
 .name span {
-    color: #f5c518;
+    color: var(--accent1); /* Fallback if gradient not supported */
     font-style: italic;
-    background: linear-gradient(45deg, #f5c518, #00c4b4);
+    background: linear-gradient(45deg, var(--accent1), var(--accent2));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -379,16 +423,17 @@ body.scrolled nav {
     font-family: 'Playfair Display', serif;
     font-weight: 400;
     font-style: italic;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
     min-width: 5px;
     line-height: 1.3;
+    color: var(--text-medium); /* Ensure typing text is visible */
 }
 
 .profession::after {
     content: "|";
     position: absolute;
     animation: blink 0.7s infinite;
-    color: #e0e0e0;
+    color: var(--text-light);
     display: inline-block;
     margin-left: 5px;
     top: 0;
@@ -422,8 +467,8 @@ body.scrolled nav {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     background: transparent;
-    color: white;
-    border: 2px solid #00c4b4;
+    color: var(--accent2-darker); /* Button text color */
+    border: 2px solid var(--accent2);
     transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
     overflow: hidden;
     z-index: 1;
@@ -436,7 +481,7 @@ body.scrolled nav {
     left: 0;
     width: 0%;
     height: 100%;
-    background: linear-gradient(45deg, #f5c518, #00c4b4);
+    background: linear-gradient(45deg, var(--accent1), var(--accent2));
     transition: width 0.4s cubic-bezier(0.23, 1, 0.320, 1);
     z-index: -1;
 }
@@ -446,52 +491,52 @@ body.scrolled nav {
 }
 
 .btn:hover {
-    color: #1a1a1a;
+    color: var(--text-on-accent);
     transform: translateY(-6px) scale(1.03);
-    box-shadow: 0 10px 30px rgba(0, 196, 180, 0.6);
+    box-shadow: 0 8px 25px rgba(var(--accent2-rgb), 0.3);
     border-color: transparent;
 }
 
 @media (hover: none) {
     .btn:hover {
-        color: white;
+        color: var(--accent2-darker);
         transform: none;
         box-shadow: none;
-        border-color: #00c4b4;
+        border-color: var(--accent2);
     }
     .btn:hover::before {
         width: 0%;
     }
-    .btn-primary:hover {
-        color: #1a1a1a;
+    .btn-primary:hover { /* Primary button text on hover, should be light */
+        color: var(--text-on-accent);
     }
-    .btn-secondary:hover {
-        color: white;
+    .btn-secondary:hover { /* Secondary button text on hover (after fill) */
+        color: var(--text-on-accent);
     }
 }
 
 .btn-primary {
-    background: linear-gradient(45deg, #f5c518, #00c4b4);
-    color: #1a1a1a;
+    background: linear-gradient(45deg, var(--accent1), var(--accent2));
+    color: var(--text-on-accent);
     border: none;
 }
 
-.btn-primary::before {
-    background: linear-gradient(45deg, #f5c518cc, #00c4b4cc);
+.btn-primary::before { /* This overlay on hover needs to be slightly different from base */
+    background: linear-gradient(45deg, rgba(var(--accent1-rgb),0.85), rgba(var(--accent2-rgb),0.85));
     width: 100%;
 }
 
 .btn-primary:hover {
-    color: #000;
+    color: var(--text-on-accent); /* Ensure it stays light on hover */
 }
 
 .btn-secondary {
     background: transparent;
-    color: white;
+    color: var(--accent2-darker); /* Default text for secondary */
 }
 
 .btn-secondary:hover {
-    color: #1a1a1a;
+    color: var(--text-on-accent); /* Text color when filled */
 }
 
 
@@ -516,13 +561,13 @@ body.scrolled nav {
     max-width: 100%;
     height: auto;
     border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(245, 197, 24, 0.4);
+    box-shadow: 0 8px 30px rgba(var(--accent1-rgb), 0.2); /* Softer shadow for light theme */
     display: block;
 }
 
 /* --- About Section --- */
 #about {
-    background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+    background: linear-gradient(135deg, var(--bg-alt), var(--bg-main));
 }
 
 .about-content {
@@ -557,12 +602,12 @@ section.visible .about-right {
     overflow: hidden;
     margin: 0 auto 30px;
     position: relative;
-    box-shadow: 0 0 25px rgba(0, 196, 180, 0.6);
+    box-shadow: 0 0 20px rgba(var(--accent2-rgb), 0.25); /* Softer shadow */
     transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     max-width: 100%;
 }
 
-.about-image::before {
+.about-image::before { /* Pulse effect */
     content: '';
     position: absolute;
     top: -10px;
@@ -570,8 +615,8 @@ section.visible .about-right {
     right: -10px;
     bottom: -10px;
     border-radius: 50%;
-    background: linear-gradient(45deg, #f5c518, #00c4b4);
-    opacity: 0.3;
+    background: linear-gradient(45deg, var(--accent1), var(--accent2));
+    opacity: 0.15; /* More subtle pulse opacity */
     z-index: -1;
     animation: pulse 2.5s ease-in-out infinite;
 }
@@ -579,15 +624,15 @@ section.visible .about-right {
 @keyframes pulse {
     0% {
         transform: scale(1);
-        opacity: 0.3;
+        opacity: 0.15;
     }
     50% {
         transform: scale(1.12);
-        opacity: 0.5;
+        opacity: 0.25;
     }
     100% {
         transform: scale(1);
-        opacity: 0.3;
+        opacity: 0.15;
     }
 }
 
@@ -605,14 +650,14 @@ section.visible .about-right {
 .about-details p {
     margin-bottom: 20px;
     font-size: 18px;
-    color: #e0e0e0;
+    color: var(--text-medium);
     word-wrap: break-word;
 }
 
 .about-details p strong {
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
-    color: #f5c518;
+    color: var(--accent1-darker);
 }
 
 .skills-title {
@@ -620,7 +665,7 @@ section.visible .about-right {
     margin: 40px 0 25px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: #00c4b4;
+    color: var(--accent2-darker);
 }
 
 .skill { /* This is for the old skill bars, not the Tailwind ones */
@@ -645,23 +690,24 @@ section.visible .skill {
     font-weight: 500;
     font-size: 16px;
     flex-wrap: wrap;
+    color: var(--text-dark);
 }
 
 .skill-name span:last-child {
     font-weight: 700;
-    color: #f5c518;
+    color: var(--accent1-darker);
 }
 
 .skill-bar { /* Old skill bar background */
     height: 12px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.07); /* Light gray background for bar */
     border-radius: 6px;
     overflow: hidden;
 }
 
 .skill-progress { /* Old skill bar progress */
     height: 100%;
-    background: linear-gradient(90deg, #f5c518, #00c4b4);
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
     border-radius: 6px;
     width: 0;
     transition: width 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -676,9 +722,9 @@ section.visible .skill {
     top: -50px;
     left: 50%;
     transform: translateX(-50%) translateY(10px);
-    background: rgba(34, 34, 34, 0.9);
+    background: rgba(250, 250, 250, 0.95); /* Light background for tooltip */
     backdrop-filter: blur(5px);
-    color: #f5c518;
+    color: var(--accent1-darker);
     padding: 8px 12px;
     border-radius: 8px;
     font-size: 14px;
@@ -686,8 +732,9 @@ section.visible .skill {
     opacity: 0;
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
-    border: 1px solid #00c4b4;
+    border: 1px solid var(--accent2);
     white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .skill:hover .skill-tooltip {
@@ -701,90 +748,83 @@ section.visible .skill {
     font-family: 'Roboto', sans-serif;
     font-style: italic;
     font-weight: 400;
-    color: #00c4b4;
+    color: var(--accent2-darker);
 }
 
 .about-right p {
     margin-bottom: 25px;
     line-height: 1.9;
-    color: #e0e0e0;
+    color: var(--text-medium);
     word-wrap: break-word;
 }
 
 .about-info p {
     margin-bottom: 15px;
-    color: #e0e0e0;
+    color: var(--text-medium);
     word-wrap: break-word;
 }
 
 .about-info p strong {
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
-    color: #f5c518;
+    color: var(--accent1-darker);
 }
 
 /* --- Resume Section --- */
 #resume {
-    background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+    background: linear-gradient(135deg, var(--bg-main), var(--bg-alt));
 }
 
-/* Main H2 "Resume" title and P subtitle for the whole section */
-#resume > .container > .section-title { /* This is the H2 "Resume" */
-    margin-bottom: 20px; /* Adjust spacing */
+#resume > .container > .section-title {
+    margin-bottom: 20px;
 }
-#resume > .container > .section-subtitle { /* This is "Experience & Education Journey" */
-    margin-bottom: 70px; /* Increased space before the first sub-section (Experience) */
+#resume > .container > .section-subtitle {
+    margin-bottom: 70px;
 }
 
-/* Styling for "EXPERIENCE" and "EDUCATION" sub-headings (h3.resume-title) */
-#resume .resume-title { /* This targets the H3 elements */
-    font-size: 42px; /* Larger, prominent font */
+#resume .resume-title {
+    font-size: 42px;
     text-align: center;
-    margin-top: 0; /* Reset any default H3 margin-top */
-    margin-bottom: 20px; /* Space between H3 text and its underline */
-    font-family: 'Playfair Display', serif; /* Match main section title font */
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
-    color: #ffffff; /* White color as in your desired screenshot */
-    grid-column: 1 / -1; /* Crucial: Makes H3 span all columns in its parent grid container */
-    position: relative;   /* For positioning the ::after pseudo-element (underline) */
-    padding-bottom: 20px; /* Space below text for the underline */
-    /* Opacity/transform animations are inherited from general H3, H4 styles */
-    /* Ensure transition delays from general H3 styles apply as desired */
+    color: var(--text-dark); /* Was white */
+    grid-column: 1 / -1;
+    position: relative;
+    padding-bottom: 20px;
 }
 
-#resume .resume-title::after { /* Underline for "EXPERIENCE" / "EDUCATION" H3s */
+#resume .resume-title::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%) scaleX(0); /* Initial state for animation: invisible and scaled to 0 width */
-    transform-origin: center; /* Ensures scaling happens from the center */
-    width: 20%;               /* Actual width of the underline (e.g., 20% of H3's width) */
-    max-width: 120px;         /* Caps the maximum width of the underline */
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    width: 20%;
+    max-width: 120px;
     height: 2px;
-    background-color: #f5c518; /* Accent color for the line */
-    transition: transform 0.5s ease-out 0.4s; /* Animation: scales to full width (scaleX(1)) */
-                                             /* 0.4s delay after the H3 starts appearing */
+    background-color: var(--accent1);
+    transition: transform 0.5s ease-out 0.4s;
 }
 
 #resume section.visible .resume-title::after {
-    transform: translateX(-50%) scaleX(1); /* Final state: visible */
+    transform: translateX(-50%) scaleX(1);
 }
 
-/* Grid container for cards within Experience and Education sections */
 .experience-section,
 .education-section {
     display: grid;
     gap: 30px;
-    grid-template-columns: 1fr; /* Default: 1 column for mobile */
-    max-width: 900px;           /* Constrain the max width of the card grid area */
-    margin-left: auto;          /* Center the grid area within its parent (.container) */
-    margin-right: auto;         /* Center the grid area */
-    margin-top: 30px;           /* Space below the H3.resume-title and its underline */
-    margin-bottom: 70px;        /* Space after this section of cards */
+    grid-template-columns: 1fr;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 70px;
 }
 
-/* If Education is the last sub-section in Resume, remove its bottom margin to avoid too much space before Contact */
 #resume .education-section {
     margin-bottom: 0;
 }
@@ -793,50 +833,40 @@ section.visible .skill {
 @media screen and (min-width: 768px) {
     .experience-section,
     .education-section {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet and desktop */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
-/* Note: The 3-column layout at min-width: 993px was removed to maintain 2 columns for desktop,
-   matching the visual style of your provided screenshots. If you need 3 columns on very wide screens,
-   you can re-add/adjust that breakpoint. */
 
-
-/* Styles for the .card.uiverse-style are now in the <style> tag in index.html */
-/* Animation for cards when section becomes visible */
 section.visible .card.uiverse-style {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* Override margin-bottom for cards within these grid sections to use grid-gap */
 .experience-section > .card.uiverse-style,
 .education-section > .card.uiverse-style {
     margin-bottom: 0;
-    /* max-width: 360px; is already on the card from the HTML style block. */
-    /* margin-left: auto; and margin-right: auto; are also on the card,
-       which will center it within its grid cell if the cell is wider than the card's max-width. */
 }
 
-/* These styles are for the OLD card structure, not .uiverse-style. Kept for reference or if old cards are re-introduced. */
+/* OLD card structure styles, converted to light theme */
 .card-year {
     font-size: 24px;
-    color: #f5c518;
+    color: var(--accent1-darker);
     margin-bottom: 15px;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
 }
 
-.card-title { /* This is for old card structure, not the H3 .resume-title */
+.card-title { /* This is for old card structure */
     font-size: 20px;
     margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: #e0e0e0;
+    color: var(--text-dark); /* Was e0e0e0 */
     line-height: 1.4;
 }
 
 .card-description {
-    color: #b0b0b0;
+    color: var(--text-light); /* Was b0b0b0 */
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
     font-style: italic;
@@ -850,11 +880,11 @@ section.visible .card.uiverse-style {
 }
 
 .card-description strong {
-    color: #f0f0f0;
+    color: var(--text-medium); /* Was f0f0f0 */
 }
 /* --- Contact Section --- */
 #contact {
-    background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+    background: linear-gradient(135deg, var(--bg-alt), var(--bg-main));
 }
 
 .contact-grid {
@@ -874,6 +904,10 @@ section.visible .card.uiverse-style {
     transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition-delay: calc(0.12s * var(--contact-index, 1));
     padding: 15px;
+    /* Optional: add a light border or subtle shadow to contact items if desired */
+    /* border: 1px solid var(--card-border); */
+    /* border-radius: 10px; */
+    /* background-color: var(--card-bg); */
 }
 
 section.visible .contact-item {
@@ -884,7 +918,7 @@ section.visible .contact-item {
 .contact-icon {
     width: 70px;
     height: 70px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.04); /* Very light gray background for icon */
     backdrop-filter: blur(5px);
     border-radius: 50%;
     display: flex;
@@ -892,13 +926,13 @@ section.visible .contact-item {
     align-items: center;
     margin: 0 auto 20px;
     font-size: 28px;
-    color: #f5c518;
+    color: var(--accent1-darker);
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
 }
 
 .contact-item:hover .contact-icon {
     transform: scale(1.35) rotate(10deg);
-    box-shadow: 0 0 25px rgba(245, 197, 24, 0.6);
+    box-shadow: 0 0 20px rgba(var(--accent1-rgb), 0.25); /* Softer shadow */
 }
 
 .contact-title {
@@ -906,11 +940,11 @@ section.visible .contact-item {
     margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: #e0e0e0;
+    color: var(--text-dark); /* Was e0e0e0 */
 }
 
 .contact-info {
-    color: #b0b0b0;
+    color: var(--text-light); /* Was b0b0b0 */
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -918,7 +952,7 @@ section.visible .contact-item {
 }
 
 .contact-info a {
-    color: #b0b0b0;
+    color: var(--text-light);
     text-decoration: none;
     position: relative;
     transition: color 0.3s ease;
@@ -933,12 +967,12 @@ section.visible .contact-item {
     left: 0;
     width: 0;
     height: 1px;
-    background: #00c4b4;
+    background: var(--accent2);
     transition: width 0.3s ease;
 }
 
 .contact-info a:hover {
-    color: #00c4b4;
+    color: var(--accent2);
 }
 
 .contact-info a:hover::after {
@@ -947,12 +981,12 @@ section.visible .contact-item {
 
 @media (hover: none) {
     .contact-info a:hover {
-        color: #b0b0b0;
+        color: var(--text-light);
     }
     .contact-info a:hover::after {
         width: 0;
     }
-    .contact-form button:hover { /* Assuming there was a form, this is general cleanup */
+    .contact-form button:hover {
         transform: none;
         box-shadow: none;
     }
@@ -977,7 +1011,7 @@ section.visible .question-section {
     margin-bottom: 25px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: #f5c518;
+    color: var(--accent1-darker);
 }
 
 .social-links {
@@ -998,12 +1032,12 @@ section.visible .social-links {
 
 .social-link {
     font-size: 36px;
-    color: #e0e0e0;
+    color: var(--text-medium); /* Was e0e0e0 */
     transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), color 0.4s ease;
 }
 
 .social-link:hover {
-    color: #00c4b4;
+    color: var(--accent2);
     transform: scale(1.4) rotate(15deg) translateY(-5px);
 }
 
@@ -1014,7 +1048,7 @@ section.visible .social-links {
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle, #2c2c2c, #1a1a1a);
+    background: radial-gradient(circle, var(--loader-bg1), var(--loader-bg2));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1053,8 +1087,8 @@ section.visible .social-links {
     transform: translate(-50%, -50%);
     font-family: 'Playfair Display', serif;
     font-size: 30px;
-    color: #f5c518;
-    text-shadow: 0 0 10px rgba(245, 197, 24, 0.8);
+    color: var(--loader-symbol);
+    text-shadow: 0 0 8px var(--loader-symbol-shadow);
     animation: mathPulse 1.5s ease-in-out infinite;
     backface-visibility: hidden;
 }
@@ -1177,8 +1211,6 @@ section.visible .social-links {
     .contact-item {
         flex-basis: calc(50% - 20px);
     }
-    /* Resume section cards already handled by min-width queries, but ensure 1 column below 768px */
-    /* No specific changes needed here as the base is 1 column and 768px+ changes it */
 }
 
 @media screen and (max-width: 768px) {
@@ -1202,7 +1234,7 @@ section.visible .social-links {
         position: fixed;
         right: 0;
         top: 0;
-        background: rgba(20, 20, 20, 0.98);
+        background: rgba(248, 249, 250, 0.98); /* Light background for mobile nav */
         backdrop-filter: blur(15px);
         height: 100vh;
         width: 100%;
@@ -1232,6 +1264,7 @@ section.visible .social-links {
         width: 100%;
         text-align: center;
     }
+    /* Nav link color in mobile menu is already var(--text-dark), hover var(--accent2) */
     .nav-links.nav-active li {
         opacity: 1;
         transform: translateX(0);
@@ -1318,15 +1351,13 @@ section.visible .social-links {
     .skill-name {
         font-size: 15px;
     }
-    /* Resume section cards: base is 1 column, this is covered by default. */
-    /* .experience-section, .education-section already default to 1 column */
-    .card-year { /* Old card style, adjust if re-used */
+    .card-year {
         font-size: 20px;
     }
-    .card-title { /* Old card style, adjust if re-used */
+    .card-title {
         font-size: 18px;
     }
-    .card-description { /* Old card style, adjust if re-used */
+    .card-description {
         font-size: 15px;
     }
     .contact-grid {
@@ -1390,10 +1421,10 @@ section.visible .social-links {
         width: 120px;
         height: 120px;
     }
-    .card-title { /* Old card style, adjust if re-used */
+    .card-title {
         font-size: 17px;
     }
-    .card-description { /* Old card style, adjust if re-used */
+    .card-description {
         font-size: 14px;
     }
     .contact-title {
