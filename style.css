@@ -408,7 +408,7 @@ body.scrolled nav {
 
 .hello {
     font-size: 28px;
-    margin-bottom: 25px;
+    margin-bottom: 15px; /* MODIFIED: Was 25px */
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: var(--accent2-darker); 
@@ -417,7 +417,7 @@ body.scrolled nav {
 
 .name {
     font-size: 55px;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* MODIFIED: Was 15px */
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -438,7 +438,7 @@ body.scrolled nav {
 .profession {
     font-size: 26px;
     height: 35px;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* MODIFIED: Was 20px */
     position: relative;
     font-family: 'Playfair Display', serif;
     font-weight: 400;
@@ -472,7 +472,7 @@ body.scrolled nav {
 .home-buttons {
     display: flex;
     gap: 25px;
-    margin-top: 30px;
+    margin-top: 20px; /* MODIFIED: Was 30px */
 }
 
 /* --- Button Styles & Animations --- */
@@ -1344,11 +1344,11 @@ section.visible .social-links {
     .hello {
         font-size: 24px;
     }
-    .profession {
+    .profession { /* Mobile specific margin-bottom for profession is already here */
         font-size: 22px;
         height: auto;
         min-height: 30px;
-        margin-bottom: 30px;
+        margin-bottom: 30px; /* This will override the base style change for .profession on mobile */
     }
     .home-buttons {
         flex-direction: column;
