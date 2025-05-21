@@ -362,15 +362,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // --- Contact Form Submission (using mailto, no actual form submission to server) ---
+// This function is now called by the "CLICK HERE TO EMAIL ME" button
 function submitViaEmailClient() {
-    const nameEl = document.getElementById('form-name');
-    const emailEl = document.getElementById('form-email');
+    const nameEl = document.getElementById('form-name'); // These elements don't exist for the generic button
+    const emailEl = document.getElementById('form-email'); // but the function handles their absence.
     const messageEl = document.getElementById('form-message');
     const name = nameEl?.value?.trim();
     const email = emailEl?.value?.trim();
     const message = messageEl?.value?.trim();
 
-    // Basic validation if elements exist
+    // Basic validation if elements exist (will be skipped for the generic button)
     if (nameEl && emailEl && messageEl) {
         if (!name || !email || !message) {
             alert('Please fill in all required fields if using a form.');
@@ -391,7 +392,7 @@ function submitViaEmailClient() {
 
     try {
         const mailWindow = window.open(mailtoLink, '_blank');
-        const isMobileCheck = window.matchMedia("(max-width: 768px)").matches; // Re-check for mobile here if not globally available
+        const isMobileCheck = window.matchMedia("(max-width: 768px)").matches; 
         if (!mailWindow && !isMobileCheck) { 
             alert('Could not open email client automatically. Please copy the email address: ' + recipientEmail);
         }

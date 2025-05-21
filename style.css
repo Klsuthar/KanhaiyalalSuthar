@@ -97,6 +97,38 @@ body {
     }
 }
 
+/* --- Tailwind animation keyframes - Moved from HTML --- */
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) skewX(-20deg);
+    }
+
+    100% {
+        transform: translateX(200%) skewX(-20deg);
+    }
+}
+
+@keyframes particle {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-20px) scale(0.5);
+        opacity: 0;
+    }
+}
+
+.animate-\[shine_2s_linear_infinite\] {
+    animation: shine 2s linear infinite;
+}
+
+.animate-\[particle_2s_linear_infinite\] {
+    animation: particle 2s linear infinite;
+}
+
+
 /* --- Section Styling & Animations --- */
 section {
     min-height: 100vh;
@@ -117,20 +149,6 @@ section {
     background: linear-gradient(135deg, var(--bg-main), var(--bg-alt));
 }
 
-/* SEPARATOR REMOVED 
-section::before {
-    content: '';
-    position: absolute;
-    bottom: -50px;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48V0h1200v120z" fill="var(--svg-separator-fill)" opacity="0.3"></path></svg>') no-repeat bottom;
-    background-size: cover;
-    z-index: 0;
-    pointer-events: none;
-}
-*/
 
 #home::before { /* This was to hide the separator specifically on home, can be removed if above is removed */
     display: none;
@@ -176,7 +194,7 @@ section.visible h6 {
 }
 
 .section-title { 
-    font-size: 72px;
+    font-size: 70px;
     text-align: center;
     margin-bottom: 40px;
     font-family: 'Playfair Display', serif;
@@ -390,7 +408,7 @@ body.scrolled nav {
 
 .hello {
     font-size: 28px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: var(--accent2-darker); 
@@ -398,8 +416,8 @@ body.scrolled nav {
 }
 
 .name {
-    font-size: 56px;
-    margin-bottom: 25px;
+    font-size: 55px;
+    margin-bottom: 15px;
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -420,7 +438,7 @@ body.scrolled nav {
 .profession {
     font-size: 26px;
     height: 35px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     position: relative;
     font-family: 'Playfair Display', serif;
     font-weight: 400;
@@ -788,6 +806,125 @@ section.visible .card.uiverse-style {
 .experience-section > .card.uiverse-style,
 .education-section > .card.uiverse-style {
     margin-bottom: 0;
+}
+
+
+/* --- Styles for new Resume Cards - Light Theme Adaptation (Moved from HTML) --- */
+.card.uiverse-style {
+    /* Theme colors from your website - Light Theme */
+    --primary-clr: #ffffff;
+    --dot-clr: #f39c12;
+    --banner-bg: #00b8a9;
+    /* --- Updated text colors for cards to match global CSS vars --- */
+    --text-primary-card: #1a202c;
+    /* For titles in card */
+    --text-secondary-card: #4a5568;
+    /* For description text in card */
+    --text-tertiary-card: #718096;
+    /* For year or less important details in card */
+    --card-border-clr: rgba(0, 0, 0, 0.09);
+
+    width: 100%;
+    max-width: 432px;
+    min-height: 228px;
+    height: auto;
+    border-radius: 18px;
+
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-secondary-card);
+    /* Default text color for card */
+    display: grid;
+    grid-template-rows: 72px 1fr;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid var(--card-border-clr);
+}
+
+.card.uiverse-style .card-desc {
+    border-radius: 18px;
+    padding: 18px;
+    position: relative;
+    top: -18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--primary-clr);
+    min-height: calc(100% - 72px + 18px);
+}
+
+.card.uiverse-style .card-time {
+    /* Main title in card (e.g., "Science TEACHER INTERN") */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--text-primary-card);
+    line-height: 1.35;
+    margin-top: 6px;
+}
+
+.card.uiverse-style .img-section {
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    background: var(--banner-bg);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 18px;
+    overflow: hidden;
+}
+
+.card.uiverse-style .card-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.card.uiverse-style .card-title {
+    /* Text used for YEAR (e.g., "2017-2018") */
+    font-family: 'Poppins', sans-serif;
+    flex: 1;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: var(--accent1-darker); /* MODIFIED: Changed from --text-tertiary-card to use global accent */
+}
+
+
+.card.uiverse-style .card-menu {
+    display: flex;
+    gap: 5px;
+}
+
+.card.uiverse-style .img-section svg,
+.card.uiverse-style .img-section img {
+    height: 66px;
+    width: auto;
+    fill: #ffffff;
+    opacity: 0.5;
+}
+
+
+.card.uiverse-style .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--dot-clr);
+}
+
+.card.uiverse-style .recent {
+    /* Main description text */
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    font-size: 1.05em;
+    color: var(--text-secondary-card);
+    flex-grow: 1;
+}
+
+.card.uiverse-style .recent strong {
+    color: var(--text-primary-card);
+    /* Strong text darker */
+    font-weight: 500;
+    /* Adjusted for better visual hierarchy */
 }
 
 
