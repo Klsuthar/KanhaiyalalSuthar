@@ -40,9 +40,9 @@
     --loader-symbol: var(--accent1-darker);
     --loader-symbol-shadow: rgba(var(--accent1-rgb), 0.3);
 
-    --svg-pattern-fill: #6b7280; /* Updated to match text-tertiary or similar */
-    --svg-pattern-opacity: 0.04; /* Slightly more subtle */
-    --svg-separator-fill: #e2e8f0; /* Lighter gray separator (Tailwind gray-200) */
+    --svg-pattern-fill: #6b7280; 
+    --svg-pattern-opacity: 0.04; 
+    --svg-separator-fill: #e2e8f0; 
 }
 
 
@@ -52,7 +52,7 @@ html {
 
 body {
     background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-alt) 100%);
-    color: var(--text-secondary); /* Default body text to secondary for a softer feel than primary */
+    color: var(--text-secondary); 
     line-height: 1.6;
     opacity: 0;
     animation: fadeInBody 1.2s ease-out forwards;
@@ -117,8 +117,22 @@ section {
     background: linear-gradient(135deg, var(--bg-main), var(--bg-alt));
 }
 
+/* SEPARATOR REMOVED 
+section::before {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48V0h1200v120z" fill="var(--svg-separator-fill)" opacity="0.3"></path></svg>') no-repeat bottom;
+    background-size: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+*/
 
-#home::before {
+#home::before { /* This was to hide the separator specifically on home, can be removed if above is removed */
     display: none;
 }
 
@@ -129,8 +143,8 @@ section.visible {
 }
 
 /* --- Headings and Titles --- */
-h2, /* General h2, will be overridden by .section-title for main titles */
-h3:not(.resume-title):not(.contact-title):not(.skills-title):not(.question-title), /* More specific h3s handled below */
+h2, 
+h3:not(.resume-title):not(.contact-title):not(.skills-title):not(.question-title), 
 h4,
 h5,
 h6 {
@@ -141,7 +155,7 @@ h6 {
     opacity: 0;
     transform: translateY(15px);
     transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s;
-    color: var(--text-primary); /* All general headings are primary text color */
+    color: var(--text-primary); 
 }
 
 section.visible h2,
@@ -161,7 +175,7 @@ section.visible h6 {
     width: 100%;
 }
 
-.section-title { /* This is the main H2 for sections */
+.section-title { 
     font-size: 72px;
     text-align: center;
     margin-bottom: 40px;
@@ -210,7 +224,7 @@ section.visible .section-title::after {
     font-size: 22px;
     text-align: center;
     margin-bottom: 50px;
-    color: var(--text-secondary); /* Subtitles use secondary text color */
+    color: var(--text-secondary); 
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-style: italic;
@@ -249,12 +263,11 @@ body.scrolled nav {
 .logo {
     font-size: 28px;
     font-weight: 700;
-    color: var(--accent1-darker); /* Logo uses accent */
+    color: var(--accent1-darker); 
     font-family: 'Poppins', sans-serif;
     letter-spacing: 2px;
     transition: transform 0.3s ease, font-size 0.3s ease;
-    /* Add this if it's not already there from a reset or other style */
-    text-decoration: none;
+    text-decoration: none; /* Ensure no underline for a.logo */
 }
 
 .logo:hover {
@@ -273,7 +286,7 @@ body.scrolled nav {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--text-primary); /* Nav links are primary text color */
+    color: var(--text-primary); 
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -300,7 +313,7 @@ body.scrolled nav {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: var(--accent2); /* Hover/active state uses accent2 */
+    color: var(--accent2); 
     transform: translateY(-3px);
 }
 
@@ -314,7 +327,7 @@ body.scrolled nav {
 .burger div {
     width: 30px;
     height: 4px;
-    background-color: var(--accent1-darker); /* Burger icon uses accent */
+    background-color: var(--accent1-darker); 
     margin: 6px;
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
@@ -380,7 +393,7 @@ body.scrolled nav {
     margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: var(--accent2-darker); /* Using darker teal for "HELLO!" for more pop */
+    color: var(--accent2-darker); 
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
@@ -391,10 +404,10 @@ body.scrolled nav {
     font-weight: 700;
     letter-spacing: 1.5px;
     line-height: 1.2;
-    color: var(--text-primary); /* Name is primary text color */
+    color: var(--text-primary); 
 }
 
-.name span { /* Gradient part of name */
+.name span { 
     color: var(--accent1); 
     font-style: italic;
     background: linear-gradient(45deg, var(--accent1), var(--accent2));
@@ -415,10 +428,10 @@ body.scrolled nav {
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
     min-width: 5px;
     line-height: 1.3;
-    color: var(--text-secondary); /* Typing text base color from CSS */
+    color: var(--text-secondary); 
 }
 
-.profession::after { /* Blinking cursor */
+.profession::after { 
     content: "|";
     position: absolute;
     animation: blink 0.7s infinite;
@@ -561,14 +574,17 @@ body.scrolled nav {
 
 .about-content {
     display: flex;
+    flex-wrap: wrap; 
     justify-content: space-between;
-    gap: 80px;
+    gap: 40px; 
     margin-top: 50px;
+    margin-bottom: 60px; 
 }
 
 .about-left,
 .about-right {
     flex: 1;
+    min-width: 300px; 
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease-out 0.4s, transform 0.8s ease-out 0.4s;
@@ -636,128 +652,65 @@ section.visible .about-right {
     display: block;
 }
 
-.about-details p { /* Text about Name, Job Role etc. */
+.about-details p { 
     margin-bottom: 20px;
     font-size: 18px;
     color: var(--text-secondary);
     word-wrap: break-word;
 }
 
-.about-details p strong { /* "NAME:", "JOB ROLE:" parts */
+.about-details p strong { 
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
-    color: var(--accent1-darker); /* Accent for the label */
+    color: var(--accent1-darker); 
 }
 
-.skills-title { /* H3 "SKILLS" */
-    font-size: 22px;
-    margin: 40px 0 25px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    color: var(--accent2-darker); /* Skills title in accent color */
-}
-
-/* Old skill bar styles - colors updated */
-.skill { 
-    margin-bottom: 25px;
-    position: relative;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    transition-delay: calc(0.1s * var(--skill-index, 1));
-}
-
-section.visible .skill {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.skill-name {
-    margin-bottom: 8px;
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    flex-wrap: wrap;
-    color: var(--text-primary); /* Skill name text */
-}
-
-.skill-name span:last-child { /* Percentage */
-    font-weight: 700;
-    color: var(--accent1-darker);
-}
-
-.skill-bar { 
-    height: 12px;
-    background-color: rgba(0, 0, 0, 0.07); 
-    border-radius: 6px;
-    overflow: hidden;
-}
-
-.skill-progress { 
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent1), var(--accent2));
-    border-radius: 6px;
-    width: 0;
-    transition: width 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.skill-progress.animate {
-    width: var(--progress-width);
-}
-
-.skill-tooltip {
-    position: absolute;
-    top: -50px;
-    left: 50%;
-    transform: translateX(-50%) translateY(10px);
-    background: rgba(250, 250, 250, 0.95); 
-    backdrop-filter: blur(5px);
-    color: var(--accent1-darker);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-family: 'Montserrat', sans-serif;
-    opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    pointer-events: none;
-    border: 1px solid var(--accent2);
-    white-space: nowrap;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-.skill:hover .skill-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-.completed-projects {
-    margin-top: 40px;
-    font-size: 18px;
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent2-darker); /* Using accent for this line */
-}
-
-.about-right p { /* Main paragraph text in about-right */
+.about-right p { 
     margin-bottom: 25px;
     line-height: 1.9;
     color: var(--text-secondary);
     word-wrap: break-word;
 }
 
-.about-info p { /* "PROFILE:", "EDUCATION:" lines */
+.about-info p { 
     margin-bottom: 15px;
     color: var(--text-secondary);
     word-wrap: break-word;
 }
 
-.about-info p strong { /* "PROFILE:", "EDUCATION:" labels */
+.about-info p strong { 
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
     color: var(--accent1-darker);
+}
+
+/* New Skills Section Styling */
+.skills-section-container {
+    width: 100%; 
+    margin-top: 50px; 
+    padding-top: 30px; 
+}
+
+.skills-title { /* General skills title if used outside of .about-left */
+    font-size: 36px; 
+    margin-bottom: 40px; 
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; 
+    color: var(--accent2-darker); 
+    /* text-align is applied via class in HTML */
+}
+
+.animated-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.animated-skills-grid > div { 
+    width: 100%;
 }
 
 /* --- Resume Section --- */
@@ -772,14 +725,14 @@ section.visible .skill {
     margin-bottom: 70px;
 }
 
-#resume .resume-title { /* H3 for "EXPERIENCE" / "EDUCATION" */
+#resume .resume-title { 
     font-size: 42px;
     text-align: center;
     margin-top: 0;
     margin-bottom: 20px;
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    color: var(--text-primary); /* Primary text for these sub-section titles */
+    color: var(--text-primary); 
     grid-column: 1 / -1;
     position: relative;
     padding-bottom: 20px;
@@ -837,41 +790,7 @@ section.visible .card.uiverse-style {
     margin-bottom: 0;
 }
 
-/* OLD card structure styles, colors updated */
-.card-year {
-    font-size: 24px;
-    color: var(--accent1-darker);
-    margin-bottom: 15px;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-}
 
-.card-title:not(.uiverse-style .card-title) { /* Old card title, not the uiverse one */
-    font-size: 20px;
-    margin-bottom: 15px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.4;
-}
-
-.card-description {
-    color: var(--text-tertiary); /* Lighter for description */
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    font-weight: 600; /* Keeping italic bold as per original */
-    word-wrap: break-word;
-    margin-bottom: 5px;
-}
-
-.card-description:last-of-type {
-    margin-bottom: 0;
-}
-
-.card-description strong {
-    color: var(--text-secondary); /* Strong parts within description */
-}
 /* --- Contact Section --- */
 #contact {
     background: linear-gradient(135deg, var(--bg-alt), var(--bg-main));
@@ -912,7 +831,7 @@ section.visible .contact-item {
     align-items: center;
     margin: 0 auto 20px;
     font-size: 28px;
-    color: var(--accent1-darker); /* Icon color */
+    color: var(--accent1-darker); 
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
 }
 
@@ -921,7 +840,7 @@ section.visible .contact-item {
     box-shadow: 0 0 20px rgba(var(--accent1-rgb), 0.25);
 }
 
-.contact-title { /* H3 for "ADDRESS", "CONTACT NUMBER" etc. */
+.contact-title { 
     font-size: 20px;
     margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
@@ -929,7 +848,7 @@ section.visible .contact-item {
     color: var(--text-primary);
 }
 
-.contact-info { /* Actual address, phone, email */
+.contact-info { 
     color: var(--text-secondary);
     font-size: 16px;
     font-family: 'Roboto', sans-serif;
@@ -938,7 +857,7 @@ section.visible .contact-item {
 }
 
 .contact-info a {
-    color: var(--text-secondary); /* Links initially same as surrounding text */
+    color: var(--text-secondary); 
     text-decoration: none;
     position: relative;
     transition: color 0.3s ease;
@@ -958,7 +877,7 @@ section.visible .contact-item {
 }
 
 .contact-info a:hover {
-    color: var(--accent2); /* Hover to accent color */
+    color: var(--accent2); 
 }
 
 .contact-info a:hover::after {
@@ -992,12 +911,12 @@ section.visible .question-section {
     transform: translateY(0);
 }
 
-.question-title { /* H3 "HAVE A QUESTION?" */
+.question-title { 
     font-size: 24px;
     margin-bottom: 25px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: var(--accent1-darker); /* Accent color for this title */
+    color: var(--accent1-darker); 
 }
 
 .social-links {
@@ -1018,12 +937,12 @@ section.visible .social-links {
 
 .social-link {
     font-size: 36px;
-    color: var(--text-secondary); /* Social icons use secondary text color */
+    color: var(--text-secondary); 
     transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), color 0.4s ease;
 }
 
 .social-link:hover {
-    color: var(--accent2); /* Hover to accent color */
+    color: var(--accent2); 
     transform: scale(1.4) rotate(15deg) translateY(-5px);
 }
 
@@ -1177,20 +1096,20 @@ section.visible .social-links {
         flex-basis: auto;
         width: auto;
     }
+    /* About Section Responsive */
     .about-content {
-        flex-direction: column;
-        gap: 50px;
-    }
-    .about-left,
-    .about-right {
-        width: 100%;
-        transition-delay: 0.3s;
-    }
-    .about-left {
-        align-items: center;
-        text-align: center;
+        gap: 30px; 
         margin-bottom: 40px;
     }
+     .animated-skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+    .skills-title {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
     .contact-grid {
         justify-content: center;
     }
@@ -1201,7 +1120,7 @@ section.visible .social-links {
 
 @media screen and (max-width: 768px) {
     body {
-      color: var(--text-primary); /* On smaller screens, make default body text primary for max readability */
+      color: var(--text-primary); 
     }
     section {
         padding: 80px 20px;
@@ -1236,7 +1155,6 @@ section.visible .social-links {
         padding: 0;
         margin: 0;
     }
-    /* Mobile nav link color is var(--text-primary) by default, hover var(--accent2) */
     .nav-links:not(.nav-active) {
         pointer-events: none;
     }
@@ -1321,31 +1239,49 @@ section.visible .social-links {
         width: 100%;
         animation-delay: 0.2s;
     }
+    /* About Section Responsive Small */
     .about-content {
-        gap: 40px;
+        flex-direction: column; 
+        align-items: center; 
+        text-align: center; 
+    }
+    .about-left, .about-right {
+        width: 100%; 
+        max-width: 500px; 
+        text-align: center; 
+    }
+    .about-details p {
+        text-align: center; 
+    }
+     .about-details p strong {
+        display: block; 
+        margin-bottom: 2px;
+    }
+    .about-info p {
+        text-align: center;
+    }
+     .about-info p strong {
+        display: block;
+        margin-bottom: 2px;
     }
     .about-image {
         width: 150px;
         height: 150px;
     }
-    .about-details p,
+    .skills-section-container {
+        margin-top: 40px;
+    }
+    .skills-title {
+        font-size: 28px;
+    }
+    .animated-skills-grid {
+        grid-template-columns: 1fr; 
+        gap: 20px;
+    }
     .about-right p,
     .about-info p {
         font-size: 16px;
         line-height: 1.7;
-    }
-    .skills-title {
-        font-size: 20px;
-    }
-    .skill-name {
-        font-size: 15px;
-    }
-    .card-year {
-        font-size: 20px;
-    }
-    /* .card-title is general, uiverse-style .card-time is more specific */
-    .card-description {
-        font-size: 15px;
     }
     .contact-grid {
         flex-direction: column;
@@ -1408,13 +1344,131 @@ section.visible .social-links {
         width: 120px;
         height: 120px;
     }
-    .card-description {
-        font-size: 14px;
-    }
     .contact-title {
         font-size: 17px;
     }
     .contact-info {
         font-size: 14px;
     }
+}
+
+/* --- Old Skill Bar Styles (if any were used outside Tailwind) --- */
+/* Kept for reference, but new skills section uses Tailwind structure */
+.skill { 
+    margin-bottom: 25px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition-delay: calc(0.1s * var(--skill-index, 1));
+}
+
+section.visible .skill {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.skill-name {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    flex-wrap: wrap;
+    color: var(--text-primary); 
+}
+
+.skill-name span:last-child { 
+    font-weight: 700;
+    color: var(--accent1-darker);
+}
+
+.skill-bar { 
+    height: 12px;
+    background-color: rgba(0, 0, 0, 0.07); 
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.skill-progress { 
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent1), var(--accent2));
+    border-radius: 6px;
+    width: 0;
+    transition: width 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.skill-progress.animate {
+    width: var(--progress-width);
+}
+
+.skill-tooltip {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: rgba(250, 250, 250, 0.95); 
+    backdrop-filter: blur(5px);
+    color: var(--accent1-darker);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    border: 1px solid var(--accent2);
+    white-space: nowrap;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.skill:hover .skill-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+.completed-projects {
+    margin-top: 40px;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent2-darker); 
+}
+
+/* Remove if old card styles are not used at all */
+.card-year {
+    font-size: 24px;
+    color: var(--accent1-darker);
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+}
+
+.card-title:not(.uiverse-style .card-title) { 
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.card-description {
+    color: var(--text-tertiary); 
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    font-weight: 600; 
+    word-wrap: break-word;
+    margin-bottom: 5px;
+}
+
+.card-description:last-of-type {
+    margin-bottom: 0;
+}
+
+.card-description strong {
+    color: var(--text-secondary); 
 }
