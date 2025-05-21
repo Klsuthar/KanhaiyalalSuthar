@@ -17,7 +17,7 @@ body {
     opacity: 0;
     animation: fadeInBody 1.2s ease-out forwards;
     font-weight: 400;
-    cursor: none; 
+    cursor: none;
     overflow-x: hidden;
 }
 
@@ -65,7 +65,7 @@ section {
     flex-direction: column;
     justify-content: center;
     position: relative;
-    background: linear-gradient(45deg, rgba(26, 26, 26, 0.9), rgba(44, 44, 44, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" width="100" height="100" opacity="0.04"><text x="50" y="50" font-family=\"Playfair Display, serif\" font-size="50" fill="#f5c518">Σ</text></svg>') repeat;
+    background: linear-gradient(45deg, rgba(26, 26, 26, 0.9), rgba(44, 44, 44, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.04"><text x="50" y="50" font-family=\"Playfair Display, serif\" font-size="50" fill="#f5c518">Σ</text></svg>') repeat;
     overflow: hidden;
     opacity: 0;
     transform: translateY(50px) scale(0.98);
@@ -83,7 +83,7 @@ section::before {
     left: 0;
     width: 100%;
     height: 100px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48V0h1200v120z" fill="#f5c518" opacity="0.1"></path></svg>') no-repeat bottom;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48V0h1200v120z" fill="#f5c518" opacity="0.1"></path></svg>') no-repeat bottom;
     background-size: cover;
     z-index: 0;
     pointer-events: none;
@@ -517,16 +517,8 @@ body.scrolled nav {
     height: auto;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(245, 197, 24, 0.4);
-    /* transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.6s ease; REMOVED TILT RELATED TRANSITION */
     display: block;
 }
-
-/* REMOVED TILT STYLES
-.home-image[data-tilt] {
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
-}
-*/
 
 /* --- About Section --- */
 #about {
@@ -631,7 +623,8 @@ section.visible .about-right {
     color: #00c4b4;
 }
 
-.skill { /* This is for the old skill bars, not the Tailwind ones */
+/* Styles for OLD skill bars (if any remain and are not Tailwind) */
+.skill {
     margin-bottom: 25px;
     position: relative;
     opacity: 0;
@@ -660,14 +653,14 @@ section.visible .skill {
     color: #f5c518;
 }
 
-.skill-bar { /* Old skill bar background */
+.skill-bar {
     height: 12px;
     background-color: rgba(255, 255, 255, 0.1);
     border-radius: 6px;
     overflow: hidden;
 }
 
-.skill-progress { /* Old skill bar progress */
+.skill-progress {
     height: 100%;
     background: linear-gradient(90deg, #f5c518, #00c4b4);
     border-radius: 6px;
@@ -736,12 +729,7 @@ section.visible .skill {
     background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
 }
 
-.experience-section,
-.education-section {
-    margin-top: 60px;
-}
-
-.resume-title {
+.resume-title { /* This is for the "EXPERIENCE" and "EDUCATION" subheadings */
     font-size: 22px;
     text-align: center;
     margin-bottom: 40px;
@@ -750,14 +738,13 @@ section.visible .skill {
     color: #00c4b4;
 }
 
-/* Styles for the .card.uiverse-style are now in the <style> tag in index.html */
-/* The section.visible .card style below is for the general section reveal, not card-specific hover/tilt */
+/* General reveal for cards on section visibility */
 section.visible .card {
     opacity: 1;
     transform: translateY(0) scale(1);
 }
 
-/* These styles are for the OLD card structure, not .uiverse-style. Kept for reference or if old cards are re-introduced. */
+/* Styles for OLD card structure (if any remain and are not .uiverse-style) */
 .card-year {
     font-size: 24px;
     color: #f5c518;
@@ -814,7 +801,6 @@ section.visible .card {
     transform: translateY(40px) scale(0.95);
     transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition-delay: calc(0.12s * var(--contact-index, 1));
-    /* transform-style: preserve-3d; REMOVED TILT RELATED */
     padding: 15px;
 }
 
@@ -838,7 +824,7 @@ section.visible .contact-item {
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
 }
 
-.contact-item:hover .contact-icon { /* This hover is for icon, not related to card tilt */
+.contact-item:hover .contact-icon {
     transform: scale(1.35) rotate(10deg);
     box-shadow: 0 0 25px rgba(245, 197, 24, 0.6);
 }
@@ -894,7 +880,7 @@ section.visible .contact-item {
     .contact-info a:hover::after {
         width: 0;
     }
-    .contact-form button:hover { /* Assuming there was a form, this is general cleanup */
+    .contact-form button:hover {
         transform: none;
         box-shadow: none;
     }
@@ -1039,8 +1025,7 @@ section.visible .social-links {
     }
 }
 
-/* --- Keyframe for Mobile Bounce Animation --- */
-/* This animation is no longer applied to cards in script.js, but kept for reference */
+/* --- Keyframe for Mobile Bounce Animation (Reference) --- */
 @keyframes enterUpBounce {
     0% {
         opacity: 0;
@@ -1057,6 +1042,41 @@ section.visible .social-links {
         opacity: 1;
         transform: translateY(0) scale(1);
     }
+}
+
+/* --- Responsive Grid for Skills in About Section --- */
+/* The .animated-skills-container is where your Tailwind skill cards are */
+#about .animated-skills-container {
+    display: grid;
+    /* Creates as many columns as can fit, each at least 280px wide.
+       On wider screens, this typically results in 2 or 3 columns.
+       On narrower screens, it will go to 1. */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px; /* Space between skill cards */
+}
+
+/* --- Responsive Grid for Resume Cards (Experience & Education Sections) --- */
+.experience-section,
+.education-section {
+    margin-top: 60px; /* Existing style */
+    display: grid;
+    /* Resume cards have a max-width of 360px (from inline style in HTML).
+       This aims for columns allowing cards between 300px and 360px wide. */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Space between resume cards */
+    /* Centers cards within their grid cells if the cell is wider
+       than the card's max-width (360px). */
+    justify-items: center;
+}
+
+/* Override specific inline styles for .uiverse-style cards
+   to ensure they behave correctly within the new grid layout. */
+.experience-section .card.uiverse-style,
+.education-section .card.uiverse-style {
+    margin-left: 0;  /* Override 'auto' from the internal style block */
+    margin-right: 0; /* Override 'auto' from the internal style block */
+    width: 100%;     /* Makes the card use the full width of its grid cell,
+                        respecting its own max-width: 360px. */
 }
 
 
@@ -1256,10 +1276,31 @@ section.visible .social-links {
     .skills-title {
         font-size: 20px;
     }
-    .skill-name {
+    .skill-name { /* Old skill name style */
         font-size: 15px;
     }
-    /* Card style adjustments for mobile are handled by the .card.uiverse-style itself */
+
+    /* Responsive Grid Adjustments for Mobile (Single Column) */
+    #about .animated-skills-container,
+    .experience-section,
+    .education-section {
+        grid-template-columns: 1fr; /* Force single column */
+        gap: 20px; /* Adjust gap for single column */
+    }
+
+    /* Re-center resume cards if the single column is wider than the card's max-width */
+    .experience-section .card.uiverse-style,
+    .education-section .card.uiverse-style {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    /* Ensure grid items stretch in single column if not self-centering */
+    .experience-section,
+    .education-section {
+       justify-items: stretch; /* Cards will still center due to their own margin:auto */
+    }
+
+
     .card-year { /* Old card style, adjust if re-used */
         font-size: 20px;
     }
