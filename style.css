@@ -18,11 +18,11 @@
     --text-tertiary: #718096;  /* Medium gray (e.g., Tailwind gray-600) */
     --text-on-accent: #ffffff;
 
-    --accent1: #f39c12;
+    --accent1: #8f1ebb;
     --accent1-darker: #c87f0a;
     --accent1-rgb: 243, 156, 18;
 
-    --accent2: #00b8a9;
+    --accent2: #eb8b0d;
     --accent2-darker: #008d80;
     --accent2-rgb: 0, 184, 169;
 
@@ -40,7 +40,7 @@
     --loader-symbol: var(--accent1-darker);
     --loader-symbol-shadow: rgba(var(--accent1-rgb), 0.3);
 
-    --svg-pattern-fill: #6b7280; 
+    --svg-pattern-fill: #243557; 
     --svg-pattern-opacity: 0.04; 
     --svg-separator-fill: #e2e8f0; 
 }
