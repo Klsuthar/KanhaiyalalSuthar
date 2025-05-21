@@ -13,9 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 cursor.style.top = e.clientY + 'px';
             });
         });
-        // Apply hover effect only to specified elements
-        // Note: .card is still here, but its primary animations are CSS-driven or were from VanillaTilt
-        document.querySelectorAll('a, button, .btn, .card, .contact-item, .social-link, .burger, .logo, .skill').forEach(el => {
+        // Apply hover effect to specified elements
+        document.querySelectorAll('a, button, .btn, .card.uiverse-style, .skill-card-item, .contact-item, .social-link, .burger, .logo, .about-image, .home-image').forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
         });
@@ -32,10 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const bodyEl = document.body;
 
     const handleScrollNav = () => {
-        bodyEl.classList.toggle('scrolled', window.scrollY > 50);
+        if (window.scrollY > 50) {
+            bodyEl.classList.add('scrolled');
+        } else {
+            bodyEl.classList.remove('scrolled');
+        }
     };
     window.addEventListener('scroll', handleScrollNav, { passive: true });
-    handleScrollNav();
+    handleScrollNav(); // Initial check
 
     if (burger && navLinksContainer) {
         burger.addEventListener('click', () => {
@@ -53,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+        // Close nav if clicked outside on mobile
         document.addEventListener('click', (event) => {
             if (navLinksContainer.classList.contains('nav-active') && !nav.contains(event.target) && !burger.contains(event.target)) {
                 navLinksContainer.classList.remove('nav-active');
@@ -65,45 +69,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Active Nav Link Highlighting ---
     const sections = document.querySelectorAll('section[id]');
     const highlightSection = () => {
-        let current = '';
+        let current = 'home'; // Default to home
         const scrollY = window.pageYOffset;
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - 100;
+            const sectionTop = section.offsetTop - 100; // Adjusted offset
             const sectionHeight = section.clientHeight;
             if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
                 current = section.getAttribute('id');
             }
         });
-
-        if (!current && sections.length > 0 && scrollY < sections[0].offsetTop - 100) {
-            current = 'home';
-        } else if (!current && sections.length > 0 && scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100) {
-            const lastSectionId = sections[sections.length - 1].getAttribute('id');
-            current = lastSectionId;
-        } else if (!current && sections.length === 0) { // Fallback if no sections
-             current = 'home';
+        
+        // Check if at the very bottom of the page
+        if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 100 && sections.length > 0) {
+             current = sections[sections.length - 1].getAttribute('id');
         }
 
 
         navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
         });
     };
     window.addEventListener('scroll', highlightSection, { passive: true });
-    highlightSection();
+    highlightSection(); // Initial check
 
     // --- Typing Animation ---
     const typeWriter = () => {
         const typingElement = document.getElementById('typing-text');
         if (!typingElement) return;
-        const words = ["Maths Teacher", "Tech Enthusiast", "Excel Expert"];
-        const colors = ["#f5c518", "#00c4b4", "#ffffff", "#f5c518", "#00c4b4"]; // Ensure enough colors
+        const words = ["Maths Teacher", "Tech Enthusiast", "Excel Expert", "Quick Learner"];
+        const colors = ["#f5c518", "#00c4b4", "#ffffff", "#f5c518", "#00c4b4", "#e0e0e0"];
         let wordIndex = 0, charIndex = 0, isDeleting = false;
 
         function type() {
             const currentWord = words[wordIndex];
-            const currentColor = colors[wordIndex % colors.length]; // Use modulo for safety
+            const currentColor = colors[wordIndex % colors.length];
             typingElement.style.color = currentColor;
 
             const typeSpeed = 120;
@@ -132,36 +135,43 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-        typingElement.textContent = '';
-        setTimeout(type, 1200);
+        typingElement.textContent = ''; // Clear initial content
+        setTimeout(type, 1200); // Initial delay
     };
     typeWriter();
 
-    // --- Scroll Animations (Intersection Observer for Sections) ---
-    const sectionObserverOptions = {
+    // --- Scroll Animations (Intersection Observer for Sections & Elements) ---
+    const observerOptions = {
         root: null,
         rootMargin: '0px',
-        threshold: 0.15
+        threshold: 0.1 // Lower threshold for earlier trigger
     };
 
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+    const observerCallback = (entries, observer) => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Animate OLD skill bars fill when 'about' section becomes visible
+
+                // Staggered animation for resume cards
+                if (entry.target.classList.contains('uiverse-style') || entry.target.classList.contains('skill-card-item') || entry.target.classList.contains('contact-item')) {
+                    // Calculate delay based on its position in the grid or list
+                    // This is a simple way; for complex grids, you might need more specific indexing
+                    const delay = (entry.target.dataset.cardIndex || index) * 100; // 100ms stagger
+                    entry.target.style.transitionDelay = `${delay}ms`;
+                }
+
+                // Animate OLD skill bars (if they exist and are not the new Tailwind ones)
                 if (entry.target.id === 'about') {
-                    // This targets the OLD skill bar structure if it exists.
-                    // The new Tailwind skill bars animate via CSS keyframes and are not directly controlled here.
                     entry.target.querySelectorAll('.skill-progress').forEach((bar) => {
-                         // Check if it's the old skill bar structure before animating
-                        if (!bar.closest('.animated-skills-container')) { // Avoid animating new skill bars here
-                            setTimeout(() => bar.classList.add('animate'), 500);
+                        if (!bar.closest('.animated-skills-container')) { // Exclude new skill bars
+                            setTimeout(() => bar.classList.add('animate'), 500 + index * 100); // Stagger old skill bars too
                         }
                     });
                 }
-                // observer.unobserve(entry.target); // Optional: unobserve after first intersection
-            } else if (!entry.target.classList.contains('no-reanimate')) {
+                 // observer.unobserve(entry.target); // Optional: unobserve after first intersection if no re-animation needed
+            } else if (!entry.target.classList.contains('no-reanimate')) { // For re-animation on scroll up
                 entry.target.classList.remove('visible');
+                entry.target.style.transitionDelay = '0ms'; // Reset delay
                 if (entry.target.id === 'about') {
                     entry.target.querySelectorAll('.skill-progress.animate').forEach((bar) => {
                         if (!bar.closest('.animated-skills-container')) {
@@ -171,79 +181,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         });
-    }, sectionObserverOptions);
+    };
 
+    const sectionObserver = new IntersectionObserver(observerCallback, observerOptions);
     sections.forEach(section => {
         sectionObserver.observe(section);
-    });
-
-    // --- Scroll Animations (Intersection Observer for Mobile Bounce Items) ---
-    // Card bounce animation was removed as per request. This observer is kept for other elements if needed.
-    if (isMobile) {
-        // Only selecting .contact-item and .skill for potential mobile animations now.
-        // .card was removed from this selector.
-        const mobileAnimElements = document.querySelectorAll('.contact-item, .skill'); // .card removed
-
-        const mobileObserverOptions = {
-            root: null,
-            rootMargin: '0px 0px -50px 0px',
-            threshold: 0.1
-        };
-
-        const mobileElementObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // entry.target.classList.add('animate-bounce'); // Bounce animation was previously here
-                    // If you want a different animation for .contact-item or .skill on mobile, add it here.
-                    // For example: entry.target.classList.add('some-mobile-animation');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, mobileObserverOptions);
-
-        mobileAnimElements.forEach(el => {
-            mobileElementObserver.observe(el);
+        // Observe individual cards within sections for staggered animation
+        section.querySelectorAll('.card.uiverse-style, .skill-card-item, .contact-item').forEach((card, cardIndex) => {
+            card.dataset.cardIndex = cardIndex; // Add an index for staggering
+            sectionObserver.observe(card);
         });
-    }
+    });
 
 
     // --- Vanilla Tilt Initialization ---
-    // REMOVED: Tilt initialization for cards is no longer needed.
-    // const tiltElements = document.querySelectorAll('[data-tilt]'); // Select ALL data-tilt elements
-    // if (tiltElements.length > 0 && typeof VanillaTilt !== 'undefined') {
-    //     if (!isTouchDevice && !isMobile) {
-    //         // Filter out cards if we only want tilt on non-card elements
-    //         const nonCardTiltElements = Array.from(tiltElements).filter(el => !el.classList.contains('card'));
-    //         if (nonCardTiltElements.length > 0) {
-    //            VanillaTilt.init(nonCardTiltElements, { // Initialize only for non-card elements
-    //                 max: 10,
-    //                 perspective: 1000,
-    //                 scale: 1.03,
-    //                 speed: 400,
-    //                 glare: true,
-    //                 "max-glare": 0.25
-    //             });
-    //         }
-    //          // If you still want tilt on .home-image and .contact-item specifically:
-            const specificTiltElements = document.querySelectorAll('.home-image, .contact-item');
-            if (specificTiltElements.length > 0 && typeof VanillaTilt !== 'undefined') {
-                if (!isTouchDevice && !isMobile) {
-                     VanillaTilt.init(specificTiltElements, {
-                        max: 10,
-                        perspective: 1000,
-                        scale: 1.03,
-                        speed: 400,
-                        glare: true,
-                        "max-glare": 0.25
-                    });
-                }
-            } else if (specificTiltElements.length > 0) {
-                 console.warn("VanillaTilt script not loaded or failed to initialize for specific elements.");
-            }
-    //     }
-    // } else if (tiltElements.length > 0) {
-    //     console.warn("VanillaTilt script not loaded or failed to initialize.");
-    // }
+    // Initialize tilt for elements with data-tilt attribute
+    // Ensure VanillaTilt is loaded before this script or use a load event listener for it
+    if (typeof VanillaTilt !== 'undefined') {
+        const tiltElements = document.querySelectorAll('[data-tilt]');
+        if (!isTouchDevice && !isMobile && tiltElements.length > 0) {
+            VanillaTilt.init(tiltElements, {
+                max: 8, // Reduced max tilt
+                perspective: 1000,
+                scale: 1.02, // Reduced scale
+                speed: 400,
+                glare: true,
+                "max-glare": 0.15 // Reduced glare
+            });
+        }
+    } else {
+        console.warn("VanillaTilt script not loaded or failed to initialize.");
+    }
 
 
     // --- tsParticles Background Initialization ---
@@ -252,11 +220,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tsParticles.load("tsparticles-background", {
             backgroundMode: {
                 enable: true,
-                zIndex: 0
+                zIndex: 0 // Ensure it's behind content
             },
             particles: {
                 number: {
-                    value: 60,
+                    value: isMobile ? 30 : 60, // Fewer particles on mobile
                     density: {
                         enable: true,
                         value_area: 800
@@ -280,28 +248,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 size: {
                     value: { min: 1, max: 3 },
                     random: true,
-                    animation: {
-                        enable: false
-                    }
                 },
                 links: {
                     enable: true,
                     distance: 150,
-                    color: "#555555",
-                    opacity: 0.4,
+                    color: "#555555", // Darker link color
+                    opacity: 0.3, // More subtle links
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 1.2,
+                    speed: 1.0, // Slightly slower particle speed
                     direction: "none",
                     random: true,
                     straight: false,
                     outModes: {
-                        default: "out"
-                    },
-                    attract: {
-                        enable: false
+                        default: "out" // Particles disappear when they go out of bounds
                     }
                 }
             },
@@ -309,26 +271,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 detectsOn: "canvas",
                 events: {
                     onHover: {
-                        enable: true,
+                        enable: !isTouchDevice, // Disable hover on touch devices
                         mode: "repulse"
                     },
                     onClick: {
                         enable: true,
                         mode: "push"
                     },
-                    resize: true
+                    resize: true // Ensure particles adapt to resize
                 },
                 modes: {
                     repulse: {
-                        distance: 80,
+                        distance: 70, // Smaller repulse distance
                         duration: 0.4
                     },
                     push: {
-                        quantity: 3
+                        quantity: 2 // Push fewer particles
                     },
                 }
             },
-            detectRetina: true
+            detectRetina: true // For sharper particles on high-DPI screens
         }).catch(error => {
             console.error("tsParticles load error:", error);
         });
@@ -336,49 +298,81 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("tsParticles library not loaded or #tsparticles-background not found.");
     }
 
+    // --- Loading Overlay ---
+    // Hide loading overlay after a delay or when content is loaded
+    // This is a simple timeout, for more robust loading, listen to window.onload or specific asset loads
+    const loadingOverlay = document.getElementById('loading-overlay');
+    if (loadingOverlay) {
+        // Fallback if other load events are not reliable
+         setTimeout(() => {
+            loadingOverlay.classList.add('hidden');
+        }, 1500); // Adjust time as needed
+
+        window.addEventListener('load', () => {
+             loadingOverlay.classList.add('hidden');
+        });
+    }
+
+
 }); // End DOMContentLoaded
 
-// --- Contact Form Submission ---
-// This function remains as it's not related to card animations or unnecessary code.
-function submitForm() {
-    const form = document.getElementById('contact-form'); // Assuming a form with this ID exists
-    const nameEl = document.getElementById('name');
-    const emailEl = document.getElementById('email');
-    const messageEl = document.getElementById('message');
+
+// --- Contact Form Submission (using mailto, no actual form submission to server) ---
+// This function is designed to open the user's default email client.
+// It's not actually submitting a form via HTTP.
+// If you had a <form id="contact-form">, this function would be attached to its submit event.
+// Since there's no form in the HTML, this function is currently not directly used by an event listener.
+// It's kept here for completeness if a form were to be added.
+function submitViaEmailClient() { // Renamed for clarity
+    // Assuming you have input fields with these IDs if you were to add a form:
+    const nameEl = document.getElementById('form-name'); // Example ID
+    const emailEl = document.getElementById('form-email'); // Example ID
+    const messageEl = document.getElementById('form-message'); // Example ID
 
     // Use optional chaining for safety in case elements don't exist
     const name = nameEl?.value?.trim();
     const email = emailEl?.value?.trim();
     const message = messageEl?.value?.trim();
 
-    if (!name || !email || !message) {
-        // Consider using a less obtrusive notification than alert if possible
-        alert('Please fill in all required fields.');
-        return;
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        alert('Please enter a valid email address.');
-        return;
+    // Basic validation if elements exist
+    if (nameEl && emailEl && messageEl) { // Check if form elements are actually present
+        if (!name || !email || !message) {
+            alert('Please fill in all required fields if using a form.'); // User-friendly message
+            return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            alert('Please enter a valid email address if using a form.');
+            return;
+        }
     }
 
+
     const recipientEmail = "klsuthar0987@gmail.com";
-    const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    // If form fields are present and filled, use them, otherwise use a generic subject/body
+    const subject = name ? encodeURIComponent(`Portfolio Contact: ${name}`) : encodeURIComponent("Portfolio Inquiry");
+    const body = (name && email && message)
+        ? encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)
+        : encodeURIComponent("I'd like to get in touch regarding your portfolio.");
+
     const mailtoLink = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
 
     try {
         const mailWindow = window.open(mailtoLink, '_blank');
-        if (!mailWindow) {
-            alert('Could not open email client automatically. Please copy the details or try again.');
+        if (!mailWindow && !isMobile) { // On desktop, if it fails, provide feedback
+            alert('Could not open email client automatically. Please copy the email address: ' + recipientEmail);
         }
+        // On mobile, window.open for mailto often works seamlessly or the OS handles it.
     } catch (e) {
         console.error("Failed to open mailto link:", e);
-        alert('An error occurred while trying to open your email client.');
+        if (!isMobile) {
+            alert('An error occurred. Please manually send an email to ' + recipientEmail);
+        }
     }
 
-    setTimeout(() => {
-        if (form) form.reset(); // Reset form if it exists
-    }, 1000);
+    // If there was a form, you might reset it:
+    // const form = document.getElementById('contact-form');
+    // if (form) setTimeout(() => form.reset(), 1000);
 
-    alert('Your email application should open shortly to send the message. If it doesn\'t, please check your popup settings or manually send an email to ' + recipientEmail);
+    // The "CLICK HERE TO EMAIL ME" button already uses a direct mailto link, so this JS function
+    // is more for a scenario where you have an actual <form> element.
 }
