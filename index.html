@@ -42,15 +42,16 @@
             animation: particle 2s linear infinite;
         }
 
-        /* Styles for new Resume Cards from code.html - Light Theme Adaptation */
+        /* Styles for new Resume Cards - Light Theme Adaptation */
         .card.uiverse-style {
             /* Theme colors from your website - Light Theme */
-            --primary-clr: #ffffff; /* Card background */
-            --dot-clr: #f39c12;     /* Accent gold for dots */
-            --banner-bg: #00b8a9;   /* Accent teal for banner */
-            --text-dark-card: #2c3e50;
-            --text-medium-card: #566573;
-            --text-light-card: #7f8c8d;
+            --primary-clr: #ffffff; 
+            --dot-clr: #f39c12;     
+            --banner-bg: #00b8a9;   
+            /* --- Updated text colors for cards to match global CSS vars --- */
+            --text-primary-card: #1a202c;   /* For titles in card */
+            --text-secondary-card: #4a5568; /* For description text in card */
+            --text-tertiary-card: #718096;  /* For year or less important details in card */
             --card-border-clr: rgba(0, 0, 0, 0.09);
 
             width: 100%;
@@ -60,13 +61,13 @@
             border-radius: 18px;
 
             font-family: 'Roboto', sans-serif;
-            color: var(--text-medium-card); /* Default text color for card */
+            color: var(--text-secondary-card); /* Default text color for card */
             display: grid;
             grid-template-rows: 72px 1fr;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08); /* Softer shadow */
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08); 
             margin-left: auto;
             margin-right: auto;
-            border: 1px solid var(--card-border-clr); /* Subtle border */
+            border: 1px solid var(--card-border-clr); 
         }
 
         .card.uiverse-style .card-desc {
@@ -78,15 +79,14 @@
             flex-direction: column;
             gap: 10px;
             background: var(--primary-clr);
-            /* border top handled by img-section, other borders by main card border if needed */
             min-height: calc(100% - 72px + 18px);
         }
 
-        .card.uiverse-style .card-time { /* Main title in card */
+        .card.uiverse-style .card-time { /* Main title in card (e.g., "Science TEACHER INTERN") */
             font-family: 'Montserrat', sans-serif;
             font-size: 1.3em;
             font-weight: 600;
-            color: var(--text-dark-card); /* Darker text for title */
+            color: var(--text-primary-card); 
             line-height: 1.35;
             margin-top: 6px;
         }
@@ -94,7 +94,7 @@
         .card.uiverse-style .img-section {
             border-top-left-radius: 18px;
             border-top-right-radius: 18px;
-            background: var(--banner-bg); /* Teal banner */
+            background: var(--banner-bg); 
             display: flex;
             justify-content: flex-end;
             align-items: center;
@@ -113,9 +113,9 @@
             flex: 1;
             font-size: 1.2em;
             font-weight: 700;
-            color: var(--text-light-card); /* Lighter for year, often overridden by inline style */
+            color: var(--text-tertiary-card); /* Year text color */
         }
-        /* Inline style for year will be like: style="color: var(--accent1-darker);" */
+        /* Inline style for year will be like: style="color: #c87f0a;" (accent1-darker) which is good */
 
 
         .card.uiverse-style .card-menu {
@@ -124,36 +124,32 @@
         }
 
         .card.uiverse-style .img-section svg, 
-        .card.uiverse-style .img-section img { /* Targeting img for your PNGs too */
+        .card.uiverse-style .img-section img { 
             height: 66px;
             width: auto;
-            fill: #ffffff; /* SVGs on teal banner should be white */
-            opacity: 0.5; /* Adjusted opacity for white icon on teal */
+            fill: #ffffff; 
+            opacity: 0.5; 
         }
-        /* Your specific image opacities are inline, e.g., style="opacity:0.3;"
-           Consider adjusting those if the icons are not clear.
-           Or use a class to control SVG fill.
-        */
 
 
         .card.uiverse-style .dot {
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--dot-clr); /* Gold dots */
+            background: var(--dot-clr); 
         }
 
         .card.uiverse-style .recent { /* Main description text */
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             font-size: 1.05em;
-            color: var(--text-medium-card); /* Medium dark text for description */
+            color: var(--text-secondary-card); 
             flex-grow: 1;
         }
 
         .card.uiverse-style .recent strong {
-            color: var(--text-dark-card); /* Strong text darker */
-            font-weight: 500;
+            color: var(--text-primary-card); /* Strong text darker */
+            font-weight: 500; /* Adjusted for better visual hierarchy */
         }
     </style>
 
@@ -164,16 +160,16 @@
 </head>
 
 <body>
-    <div class="custom-cursor"></div> <!-- Custom cursor color defined in style.css -->
-    <nav>
-        <div class="logo">KANHAIYA LAL SUTHAR</div> <!-- Logo color defined in style.css -->
+    <div class="custom-cursor"></div> 
+            <nav>
+        <a href="#home" class="logo">KANHAIYA LAL SUTHAR</a>
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="burger"> <!-- Burger color defined in style.css -->
+        <div class="burger">
             <div class="line1"></div>
             <div class="line2"></div>
             <div class="line3"></div>
@@ -181,43 +177,43 @@
     </nav>
 
     <section id="home">
-        <div id="tsparticles-background"></div> <!-- Particle colors in script.js -->
+        <div id="tsparticles-background"></div> 
         <div class="container home-content">
             <div class="home-text">
-                <p class="hello">HELLO!</p> <!-- Colors in style.css -->
-                <h1 class="name">I'm <span>KANHAIYA LAL SUTHAR</span></h1> <!-- Colors in style.css -->
+                <p class="hello">HELLO!</p> 
+                <h1 class="name">I'm <span>KANHAIYA LAL SUTHAR</span></h1> 
                 <div class="profession" id="typing-text"></div> <!-- Typing colors in script.js -->
                 <div class="home-buttons">
                     <a href="pdf/KanhaiyalalResume.pdf" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-primary">Resume PDF</a> <!-- Button styles in style.css -->
-                    <a href="#resume" class="btn btn-secondary">MY WORKS</a> <!-- Button styles in style.css -->
+                        class="btn btn-primary">Resume PDF</a> 
+                    <a href="#resume" class="btn btn-secondary">MY WORKS</a> 
                 </div>
             </div>
             <div class="home-image">
                 <img src="images/profile.png" alt="Kanhaiya Lal Suthar"
-                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/e9ecef/2c3e50?text=Profile+Image';"> <!-- Placeholder updated for light theme -->
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/e9ecef/1a202c?text=Profile+Image';"> 
             </div>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2> <!-- Title colors in style.css -->
+            <h2 class="section-title">About Me</h2> 
             <div class="about-content">
 
                 <div class="about-left">
                     <div class="about-image">
                         <img src="images/about.png" alt="Kanhaiya Lal"
-                            onerror="this.onerror=null;this.src='https://placehold.co/180x180/e9ecef/2c3e50?text=About+Me';"> <!-- Placeholder updated -->
+                            onerror="this.onerror=null;this.src='https://placehold.co/180x180/e9ecef/1a202c?text=About+Me';"> 
                     </div>
-                    <div class="about-details"> <!-- Text colors in style.css -->
+                    <div class="about-details"> 
                         <p><strong>NAME:</strong> KANHAIYA LAL SUTHAR</p>
                         <p><strong>JOB ROLE:</strong> MATHS TEACHER</p>
                         <p><strong>EXPERIENCE:</strong> 4+ MONTHS INTERN</p>
                         <p><strong>ADDRESS:</strong> DHADHERU, CHURU, RAJASTHAN</p>
                     </div>
 
-                    <h3 class="skills-title">SKILLS</h3> <!-- Title color in style.css -->
+                    <h3 class="skills-title">SKILLS</h3> 
                     <div class="animated-skills-container mt-6 space-y-6">
                         <!-- Tailwind Skill Bar 1: TEACHING -->
                         <div
@@ -225,19 +221,19 @@
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
                                     <span
-                                        class="text-gray-700 font-semibold text-sm uppercase tracking-wider">TEACHING</span>
-                                    <span class="text-orange-500 font-bold text-sm">90%</span> <!-- Changed from #f5c518 to Tailwind orange -->
+                                        class="text-gray-800 font-semibold text-sm uppercase tracking-wider">TEACHING</span> <!-- Darker label -->
+                                    <span class="text-orange-600 font-bold text-sm">90%</span> <!-- Darker accent -->
                                 </div>
-                                <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden"> <!-- Light background for bar -->
+                                <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden"> 
                                     <div
-                                        class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-teal-500/20 animate-pulse"> <!-- Adjusted accent colors -->
+                                        class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-teal-500/20 animate-pulse"> 
                                     </div>
                                     <div style="width: 90%;"
                                         class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-teal-500"> <!-- Main progress gradient -->
+                                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-teal-500"> 
                                         </div>
                                         <div
-                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]"> <!-- Shine effect lighter -->
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]"> 
                                         </div>
                                         <div class="absolute inset-0">
                                             <div style="top: 25%; left: 30%; animation-delay: 0s;"
@@ -255,13 +251,13 @@
                                 <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.5s;"></div>
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none"> <!-- Very subtle top gloss -->
+                                    class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none"> 
                                 </div>
                             </div>
                             <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
-                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100"> <!-- Lighter bg for tag -->
+                                    class="inline-block px-3 py-1 border border-teal-600/70 rounded-md text-orange-700 text-xs font-medium bg-gray-100"> <!-- Darker accents for tag -->
                                     Expert in simplifying complex concepts
                                 </span>
                             </div>
@@ -272,9 +268,9 @@
                             class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-700 font-semibold text-sm uppercase tracking-wider">COMPUTER
+                                    <span class="text-gray-800 font-semibold text-sm uppercase tracking-wider">COMPUTER
                                         SKILLS</span>
-                                    <span class="text-orange-500 font-bold text-sm">95%</span>
+                                    <span class="text-orange-600 font-bold text-sm">95%</span>
                                 </div>
                                 <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
                                     <div
@@ -308,7 +304,7 @@
                             <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
-                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100">
+                                    class="inline-block px-3 py-1 border border-teal-600/70 rounded-md text-orange-700 text-xs font-medium bg-gray-100">
                                     MS Office, Tech Tools
                                 </span>
                             </div>
@@ -320,8 +316,8 @@
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
                                     <span
-                                        class="text-gray-700 font-semibold text-sm uppercase tracking-wider">COMMUNICATION</span>
-                                    <span class="text-orange-500 font-bold text-sm">70%</span>
+                                        class="text-gray-800 font-semibold text-sm uppercase tracking-wider">COMMUNICATION</span>
+                                    <span class="text-orange-600 font-bold text-sm">70%</span>
                                 </div>
                                 <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
                                     <div
@@ -355,7 +351,7 @@
                             <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
-                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100">
+                                    class="inline-block px-3 py-1 border border-teal-600/70 rounded-md text-orange-700 text-xs font-medium bg-gray-100">
                                     Clear & Engaging Delivery
                                 </span>
                             </div>
@@ -366,9 +362,9 @@
                             class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-700 font-semibold text-sm uppercase tracking-wider">QUICK
+                                    <span class="text-gray-800 font-semibold text-sm uppercase tracking-wider">QUICK
                                         LEARNING</span>
-                                    <span class="text-orange-500 font-bold text-sm">95%</span>
+                                    <span class="text-orange-600 font-bold text-sm">95%</span>
                                 </div>
                                 <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
                                     <div
@@ -402,7 +398,7 @@
                              <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
-                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100">
+                                    class="inline-block px-3 py-1 border border-teal-600/70 rounded-md text-orange-700 text-xs font-medium bg-gray-100">
                                     Eager to master new skills
                                 </span>
                             </div>
@@ -413,9 +409,9 @@
                             class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
-                                    <span class="text-gray-700 font-semibold text-sm uppercase tracking-wider">AI Prompt
+                                    <span class="text-gray-800 font-semibold text-sm uppercase tracking-wider">AI Prompt
                                         Engineer</span>
-                                    <span class="text-orange-500 font-bold text-sm">85%</span>
+                                    <span class="text-orange-600 font-bold text-sm">85%</span>
                                 </div>
                                 <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
                                     <div
@@ -449,7 +445,7 @@
                              <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
-                                    class="inline-block px-3 py-1 border border-teal-500/70 rounded-md text-orange-600 text-xs font-medium bg-gray-100">
+                                    class="inline-block px-3 py-1 border border-teal-600/70 rounded-md text-orange-700 text-xs font-medium bg-gray-100">
                                     Mastering the art of talking to machines
                                 </span>
                             </div>
@@ -457,7 +453,7 @@
                     </div>
                 </div>
 
-                <div class="about-right"> <!-- Text colors in style.css -->
+                <div class="about-right"> 
                     <p>My name is <strong>Kanhaiya Lal</strong>, and I am a dedicated mathematics teacher with a strong
                         academic background. I hold a <em>Bachelor of Science (BSc)</em> and a <em>Bachelor of Education
                             (BEd)</em> degree, and I am currently preparing for the <em>RPSC 2nd Grade Teacher
@@ -479,18 +475,17 @@
 
     <section id="resume">
         <div class="container">
-            <h2 class="section-title">Resume</h2> <!-- Title colors in style.css -->
-            <p class="section-subtitle">Experience & Education Journey</p> <!-- Subtitle color in style.css -->
+            <h2 class="section-title">Resume</h2> 
+            <p class="section-subtitle">Experience & Education Journey</p> 
             <div class="experience-section">
-                <h3 class="resume-title">EXPERIENCE</h3> <!-- Title color in style.css -->
+                <h3 class="resume-title">EXPERIENCE</h3> 
                 <div class="card uiverse-style" style="--card-index: 1; --animation-delay: 0.15s;">
                     <div class="img-section">
-                        <!-- Assuming Rocket.svg is dark or has defined colors, opacity makes it fit -->
-                        <img src="icon/Rocket.svg" alt="" style="opacity: 0.5;"> <!-- Adjusted opacity for white icon on teal -->
+                        <img src="icon/Rocket.svg" alt="" style="opacity: 0.5;"> 
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
-                            <div class="card-title" style="color: #c87f0a;">2023</div> <!-- Darker gold for year -->
+                            <div class="card-title" style="color: #c87f0a;">2023</div> <!-- Accent1-darker -->
                             <div class="card-menu">
                                 <div class="dot"></div>
                                 <div class="dot"></div>
@@ -503,7 +498,7 @@
                 </div>
                 <div class="card uiverse-style" style="--card-index: 2; --animation-delay: 0.30s;">
                     <div class="img-section">
-                        <img src="icon/maths.svg" alt="" style="width: 40px; height: auto; opacity: 0.5;"> <!-- Adjusted opacity -->
+                        <img src="icon/maths.svg" alt="" style="width: 40px; height: auto; opacity: 0.5;"> 
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
@@ -523,7 +518,7 @@
                 <h3 class="resume-title">EDUCATION</h3>
                 <div class="card uiverse-style" style="--card-index: 3; --animation-delay: 0.45s;">
                     <div class="img-section">
-                        <img src="icon/school.png" alt="" style="width: 40px; height: auto; opacity: 0.6;"> <!-- Adjusted opacity -->
+                        <img src="icon/school.png" alt="" style="width: 40px; height: auto; opacity: 0.6;"> 
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
@@ -597,7 +592,7 @@
         </div>
     </section>
 
-    <section id="contact"> <!-- Text/icon colors in style.css -->
+    <section id="contact"> 
         <div class="container">
             <h2 class="section-title">Contact Me</h2>
             <p class="section-subtitle">Get in Touch - Let's Connect!</p>
