@@ -17,7 +17,7 @@ body {
     opacity: 0;
     animation: fadeInBody 1.2s ease-out forwards;
     font-weight: 400;
-    cursor: none; 
+    cursor: none;
     overflow-x: hidden;
 }
 
@@ -65,7 +65,7 @@ section {
     flex-direction: column;
     justify-content: center;
     position: relative;
-    background: linear-gradient(45deg, rgba(26, 26, 26, 0.9), rgba(44, 44, 44, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" width="100" height="100" opacity="0.04"><text x="50" y="50" font-family=\"Playfair Display, serif\" font-size="50" fill="#f5c518">Σ</text></svg>') repeat;
+    background: linear-gradient(45deg, rgba(26, 26, 26, 0.9), rgba(44, 44, 44, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.04"><text x="50" y="50" font-family=\"Playfair Display, serif\" font-size="50" fill="#f5c518">Σ</text></svg>') repeat;
     overflow: hidden;
     opacity: 0;
     transform: translateY(50px) scale(0.98);
@@ -83,7 +83,7 @@ section::before {
     left: 0;
     width: 100%;
     height: 100px;
-    background: url('data:image/svg+xml;utf8,<svg xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48V0h1200v120z" fill="#f5c518" opacity="0.1"></path></svg>') no-repeat bottom;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M1200 120L0 16.48V0h1200v120z" fill="#f5c518" opacity="0.1"></path></svg>') no-repeat bottom;
     background-size: cover;
     z-index: 0;
     pointer-events: none;
@@ -517,16 +517,8 @@ body.scrolled nav {
     height: auto;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(245, 197, 24, 0.4);
-    /* transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.6s ease; REMOVED TILT RELATED TRANSITION */
     display: block;
 }
-
-/* REMOVED TILT STYLES
-.home-image[data-tilt] {
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
-}
-*/
 
 /* --- About Section --- */
 #about {
@@ -736,25 +728,93 @@ section.visible .skill {
     background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
 }
 
+/* Main H2 "Resume" title and P subtitle for the whole section */
+#resume > .container > .section-title { /* This is the H2 "Resume" */
+    margin-bottom: 20px; /* Adjust spacing */
+}
+#resume > .container > .section-subtitle { /* This is "Experience & Education Journey" */
+    margin-bottom: 70px; /* Increased space before the first sub-section (Experience) */
+}
+
+/* Styling for "EXPERIENCE" and "EDUCATION" sub-headings (h3.resume-title) */
+#resume .resume-title { /* This targets the H3 elements */
+    font-size: 42px; /* Larger, prominent font */
+    text-align: center;
+    margin-top: 0; /* Reset any default H3 margin-top */
+    margin-bottom: 20px; /* Space between H3 text and its underline */
+    font-family: 'Playfair Display', serif; /* Match main section title font */
+    font-weight: 700;
+    color: #ffffff; /* White color as in your desired screenshot */
+    grid-column: 1 / -1; /* Crucial: Makes H3 span all columns in its parent grid container */
+    position: relative;   /* For positioning the ::after pseudo-element (underline) */
+    padding-bottom: 20px; /* Space below text for the underline */
+    /* Opacity/transform animations are inherited from general H3, H4 styles */
+    /* Ensure transition delays from general H3 styles apply as desired */
+}
+
+#resume .resume-title::after { /* Underline for "EXPERIENCE" / "EDUCATION" H3s */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0); /* Initial state for animation: invisible and scaled to 0 width */
+    transform-origin: center; /* Ensures scaling happens from the center */
+    width: 20%;               /* Actual width of the underline (e.g., 20% of H3's width) */
+    max-width: 120px;         /* Caps the maximum width of the underline */
+    height: 2px;
+    background-color: #f5c518; /* Accent color for the line */
+    transition: transform 0.5s ease-out 0.4s; /* Animation: scales to full width (scaleX(1)) */
+                                             /* 0.4s delay after the H3 starts appearing */
+}
+
+#resume section.visible .resume-title::after {
+    transform: translateX(-50%) scaleX(1); /* Final state: visible */
+}
+
+/* Grid container for cards within Experience and Education sections */
 .experience-section,
 .education-section {
-    margin-top: 60px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr; /* Default: 1 column for mobile */
+    max-width: 900px;           /* Constrain the max width of the card grid area */
+    margin-left: auto;          /* Center the grid area within its parent (.container) */
+    margin-right: auto;         /* Center the grid area */
+    margin-top: 30px;           /* Space below the H3.resume-title and its underline */
+    margin-bottom: 70px;        /* Space after this section of cards */
 }
 
-.resume-title {
-    font-size: 22px;
-    text-align: center;
-    margin-bottom: 40px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    color: #00c4b4;
+/* If Education is the last sub-section in Resume, remove its bottom margin to avoid too much space before Contact */
+#resume .education-section {
+    margin-bottom: 0;
 }
+
+
+@media screen and (min-width: 768px) {
+    .experience-section,
+    .education-section {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for tablet and desktop */
+    }
+}
+/* Note: The 3-column layout at min-width: 993px was removed to maintain 2 columns for desktop,
+   matching the visual style of your provided screenshots. If you need 3 columns on very wide screens,
+   you can re-add/adjust that breakpoint. */
+
 
 /* Styles for the .card.uiverse-style are now in the <style> tag in index.html */
-/* The section.visible .card style below is for the general section reveal, not card-specific hover/tilt */
-section.visible .card {
+/* Animation for cards when section becomes visible */
+section.visible .card.uiverse-style {
     opacity: 1;
     transform: translateY(0) scale(1);
+}
+
+/* Override margin-bottom for cards within these grid sections to use grid-gap */
+.experience-section > .card.uiverse-style,
+.education-section > .card.uiverse-style {
+    margin-bottom: 0;
+    /* max-width: 360px; is already on the card from the HTML style block. */
+    /* margin-left: auto; and margin-right: auto; are also on the card,
+       which will center it within its grid cell if the cell is wider than the card's max-width. */
 }
 
 /* These styles are for the OLD card structure, not .uiverse-style. Kept for reference or if old cards are re-introduced. */
@@ -766,7 +826,7 @@ section.visible .card {
     font-weight: 700;
 }
 
-.card-title {
+.card-title { /* This is for old card structure, not the H3 .resume-title */
     font-size: 20px;
     margin-bottom: 15px;
     font-family: 'Montserrat', sans-serif;
@@ -792,7 +852,6 @@ section.visible .card {
 .card-description strong {
     color: #f0f0f0;
 }
-
 /* --- Contact Section --- */
 #contact {
     background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
@@ -814,7 +873,6 @@ section.visible .card {
     transform: translateY(40px) scale(0.95);
     transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transition-delay: calc(0.12s * var(--contact-index, 1));
-    /* transform-style: preserve-3d; REMOVED TILT RELATED */
     padding: 15px;
 }
 
@@ -838,7 +896,7 @@ section.visible .contact-item {
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
 }
 
-.contact-item:hover .contact-icon { /* This hover is for icon, not related to card tilt */
+.contact-item:hover .contact-icon {
     transform: scale(1.35) rotate(10deg);
     box-shadow: 0 0 25px rgba(245, 197, 24, 0.6);
 }
@@ -1040,7 +1098,6 @@ section.visible .social-links {
 }
 
 /* --- Keyframe for Mobile Bounce Animation --- */
-/* This animation is no longer applied to cards in script.js, but kept for reference */
 @keyframes enterUpBounce {
     0% {
         opacity: 0;
@@ -1120,6 +1177,8 @@ section.visible .social-links {
     .contact-item {
         flex-basis: calc(50% - 20px);
     }
+    /* Resume section cards already handled by min-width queries, but ensure 1 column below 768px */
+    /* No specific changes needed here as the base is 1 column and 768px+ changes it */
 }
 
 @media screen and (max-width: 768px) {
@@ -1259,7 +1318,8 @@ section.visible .social-links {
     .skill-name {
         font-size: 15px;
     }
-    /* Card style adjustments for mobile are handled by the .card.uiverse-style itself */
+    /* Resume section cards: base is 1 column, this is covered by default. */
+    /* .experience-section, .education-section already default to 1 column */
     .card-year { /* Old card style, adjust if re-used */
         font-size: 20px;
     }
