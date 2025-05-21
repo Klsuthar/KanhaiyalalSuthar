@@ -10,7 +10,7 @@
         rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
-        <style>
+    <style>
         /* Tailwind animation keyframes - kept as they are not card-specific */
         @keyframes shine {
             0% {
@@ -45,13 +45,16 @@
         /* Styles for new Resume Cards - Light Theme Adaptation */
         .card.uiverse-style {
             /* Theme colors from your website - Light Theme */
-            --primary-clr: #ffffff; 
-            --dot-clr: #f39c12;     
-            --banner-bg: #00b8a9;   
+            --primary-clr: #ffffff;
+            --dot-clr: #f39c12;
+            --banner-bg: #00b8a9;
             /* --- Updated text colors for cards to match global CSS vars --- */
-            --text-primary-card: #1a202c;   /* For titles in card */
-            --text-secondary-card: #4a5568; /* For description text in card */
-            --text-tertiary-card: #718096;  /* For year or less important details in card */
+            --text-primary-card: #1a202c;
+            /* For titles in card */
+            --text-secondary-card: #4a5568;
+            /* For description text in card */
+            --text-tertiary-card: #718096;
+            /* For year or less important details in card */
             --card-border-clr: rgba(0, 0, 0, 0.09);
 
             width: 100%;
@@ -61,13 +64,14 @@
             border-radius: 18px;
 
             font-family: 'Roboto', sans-serif;
-            color: var(--text-secondary-card); /* Default text color for card */
+            color: var(--text-secondary-card);
+            /* Default text color for card */
             display: grid;
             grid-template-rows: 72px 1fr;
-            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08); 
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
             margin-left: auto;
             margin-right: auto;
-            border: 1px solid var(--card-border-clr); 
+            border: 1px solid var(--card-border-clr);
         }
 
         .card.uiverse-style .card-desc {
@@ -82,11 +86,12 @@
             min-height: calc(100% - 72px + 18px);
         }
 
-        .card.uiverse-style .card-time { /* Main title in card (e.g., "Science TEACHER INTERN") */
+        .card.uiverse-style .card-time {
+            /* Main title in card (e.g., "Science TEACHER INTERN") */
             font-family: 'Montserrat', sans-serif;
             font-size: 1.3em;
             font-weight: 600;
-            color: var(--text-primary-card); 
+            color: var(--text-primary-card);
             line-height: 1.35;
             margin-top: 6px;
         }
@@ -94,7 +99,7 @@
         .card.uiverse-style .img-section {
             border-top-left-radius: 18px;
             border-top-right-radius: 18px;
-            background: var(--banner-bg); 
+            background: var(--banner-bg);
             display: flex;
             justify-content: flex-end;
             align-items: center;
@@ -108,13 +113,16 @@
             width: 100%;
         }
 
-        .card.uiverse-style .card-title { /* Text used for YEAR (e.g., "2017-2018") */
+        .card.uiverse-style .card-title {
+            /* Text used for YEAR (e.g., "2017-2018") */
             font-family: 'Poppins', sans-serif;
             flex: 1;
             font-size: 1.2em;
             font-weight: 700;
-            color: var(--text-tertiary-card); /* Year text color */
+            color: var(--text-tertiary-card);
+            /* Year text color */
         }
+
         /* Inline style for year will be like: style="color: #c87f0a;" (accent1-darker) which is good */
 
 
@@ -123,12 +131,12 @@
             gap: 5px;
         }
 
-        .card.uiverse-style .img-section svg, 
-        .card.uiverse-style .img-section img { 
+        .card.uiverse-style .img-section svg,
+        .card.uiverse-style .img-section img {
             height: 66px;
             width: auto;
-            fill: #ffffff; 
-            opacity: 0.5; 
+            fill: #ffffff;
+            opacity: 0.5;
         }
 
 
@@ -136,20 +144,23 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--dot-clr); 
+            background: var(--dot-clr);
         }
 
-        .card.uiverse-style .recent { /* Main description text */
+        .card.uiverse-style .recent {
+            /* Main description text */
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             font-size: 1.05em;
-            color: var(--text-secondary-card); 
+            color: var(--text-secondary-card);
             flex-grow: 1;
         }
 
         .card.uiverse-style .recent strong {
-            color: var(--text-primary-card); /* Strong text darker */
-            font-weight: 500; /* Adjusted for better visual hierarchy */
+            color: var(--text-primary-card);
+            /* Strong text darker */
+            font-weight: 500;
+            /* Adjusted for better visual hierarchy */
         }
     </style>
 
@@ -160,8 +171,8 @@
 </head>
 
 <body>
-    <div class="custom-cursor"></div> 
-            <nav>
+    <div class="custom-cursor"></div>
+    <nav>
         <a href="#home" class="logo">KANHAIYA LAL SUTHAR</a>
         <ul class="nav-links">
             <li><a href="#home" class="active">Home</a></li>
@@ -177,43 +188,44 @@
     </nav>
 
     <section id="home">
-        <div id="tsparticles-background"></div> 
+        <div id="tsparticles-background"></div>
         <div class="container home-content">
             <div class="home-text">
-                <p class="hello">HELLO!</p> 
-                <h1 class="name">I'm <span>KANHAIYA LAL SUTHAR</span></h1> 
+                <p class="hello">HELLO!</p>
+                <h1 class="name">I'm <span>KANHAIYA LAL SUTHAR</span></h1>
                 <div class="profession" id="typing-text"></div> <!-- Typing colors in script.js -->
                 <div class="home-buttons">
                     <a href="pdf/KanhaiyalalResume.pdf" target="_blank" rel="noopener noreferrer"
-                        class="btn btn-primary">Resume PDF</a> 
-                    <a href="#resume" class="btn btn-secondary">MY WORKS</a> 
+                        class="btn btn-primary">Resume PDF</a>
+                    <a href="#resume" class="btn btn-secondary">MY WORKS</a>
                 </div>
             </div>
+            <!-- In your #home section -->
             <div class="home-image">
-                <img src="images/profile.png" alt="Kanhaiya Lal Suthar"
-                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/e9ecef/1a202c?text=Profile+Image';"> 
+                <img src="images/profile.png" alt="Kanhaiya Lal Suthar" id="profileImage"
+                    onerror="this.onerror=null;this.src='https://placehold.co/400x400/e9ecef/1a202c?text=Profile+Image';">
             </div>
         </div>
     </section>
 
     <section id="about">
         <div class="container">
-            <h2 class="section-title">About Me</h2> 
+            <h2 class="section-title">About Me</h2>
             <div class="about-content">
 
                 <div class="about-left">
                     <div class="about-image">
                         <img src="images/about.png" alt="Kanhaiya Lal"
-                            onerror="this.onerror=null;this.src='https://placehold.co/180x180/e9ecef/1a202c?text=About+Me';"> 
+                            onerror="this.onerror=null;this.src='https://placehold.co/180x180/e9ecef/1a202c?text=About+Me';">
                     </div>
-                    <div class="about-details"> 
+                    <div class="about-details">
                         <p><strong>NAME:</strong> KANHAIYA LAL SUTHAR</p>
                         <p><strong>JOB ROLE:</strong> MATHS TEACHER</p>
                         <p><strong>EXPERIENCE:</strong> 4+ MONTHS INTERN</p>
                         <p><strong>ADDRESS:</strong> DHADHERU, CHURU, RAJASTHAN</p>
                     </div>
 
-                    <h3 class="skills-title">SKILLS</h3> 
+                    <h3 class="skills-title">SKILLS</h3>
                     <div class="animated-skills-container mt-6 space-y-6">
                         <!-- Tailwind Skill Bar 1: TEACHING -->
                         <div
@@ -221,19 +233,20 @@
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
                                     <span
-                                        class="text-gray-800 font-semibold text-sm uppercase tracking-wider">TEACHING</span> <!-- Darker label -->
+                                        class="text-gray-800 font-semibold text-sm uppercase tracking-wider">TEACHING</span>
+                                    <!-- Darker label -->
                                     <span class="text-orange-600 font-bold text-sm">90%</span> <!-- Darker accent -->
                                 </div>
-                                <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden"> 
+                                <div class="relative h-2.5 bg-gray-200 rounded-full overflow-hidden">
                                     <div
-                                        class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-teal-500/20 animate-pulse"> 
+                                        class="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-teal-500/20 animate-pulse">
                                     </div>
                                     <div style="width: 90%;"
                                         class="h-full rounded-full transition-all duration-300 ease-out relative overflow-hidden">
-                                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-teal-500"> 
+                                        <div class="absolute inset-0 bg-gradient-to-r from-orange-500 to-teal-500">
                                         </div>
                                         <div
-                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]"> 
+                                            class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shine_2s_linear_infinite]">
                                         </div>
                                         <div class="absolute inset-0">
                                             <div style="top: 25%; left: 30%; animation-delay: 0s;"
@@ -251,13 +264,14 @@
                                 <div class="absolute -bottom-0.5 -right-0.5 w-1.5 h-1.5 bg-teal-500/50 rounded-full animate-ping"
                                     style="animation-delay: 0.5s;"></div>
                                 <div
-                                    class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none"> 
+                                    class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none">
                                 </div>
                             </div>
                             <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
-                                    class="inline-block px-3 py-1 border border-teal-600/70 rounded-md text-orange-700 text-xs font-medium bg-gray-100"> <!-- Darker accents for tag -->
+                                    class="inline-block px-3 py-1 border border-teal-600/70 rounded-md text-orange-700 text-xs font-medium bg-gray-100">
+                                    <!-- Darker accents for tag -->
                                     Expert in simplifying complex concepts
                                 </span>
                             </div>
@@ -311,7 +325,7 @@
                         </div>
 
                         <!-- Tailwind Skill Bar 3: COMMUNICATION -->
-                         <div
+                        <div
                             class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
                             <div class="relative">
                                 <div class="flex justify-between mb-1">
@@ -356,7 +370,7 @@
                                 </span>
                             </div>
                         </div>
-                        
+
                         <!-- Tailwind Skill Bar 4: QUICK LEARNING -->
                         <div
                             class="w-full p-5 rounded-2xl bg-white/80 backdrop-blur-sm shadow-lg border border-gray-200/70">
@@ -395,7 +409,7 @@
                                     class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none">
                                 </div>
                             </div>
-                             <div style="height: 15px; opacity: 0;"></div>
+                            <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
                                     class="inline-block px-3 py-1 border border-teal-600/70 rounded-md text-orange-700 text-xs font-medium bg-gray-100">
@@ -442,7 +456,7 @@
                                     class="absolute inset-0 bg-gradient-to-b from-black/[.01] to-transparent rounded-full pointer-events-none">
                                 </div>
                             </div>
-                             <div style="height: 15px; opacity: 0;"></div>
+                            <div style="height: 15px; opacity: 0;"></div>
                             <div class="mb-2.5 text-center sm:text-left">
                                 <span
                                     class="inline-block px-3 py-1 border border-teal-600/70 rounded-md text-orange-700 text-xs font-medium bg-gray-100">
@@ -453,7 +467,7 @@
                     </div>
                 </div>
 
-                <div class="about-right"> 
+                <div class="about-right">
                     <p>My name is <strong>Kanhaiya Lal</strong>, and I am a dedicated mathematics teacher with a strong
                         academic background. I hold a <em>Bachelor of Science (BSc)</em> and a <em>Bachelor of Education
                             (BEd)</em> degree, and I am currently preparing for the <em>RPSC 2nd Grade Teacher
@@ -475,13 +489,13 @@
 
     <section id="resume">
         <div class="container">
-            <h2 class="section-title">Resume</h2> 
-            <p class="section-subtitle">Experience & Education Journey</p> 
+            <h2 class="section-title">Resume</h2>
+            <p class="section-subtitle">Experience & Education Journey</p>
             <div class="experience-section">
-                <h3 class="resume-title">EXPERIENCE</h3> 
+                <h3 class="resume-title">EXPERIENCE</h3>
                 <div class="card uiverse-style" style="--card-index: 1; --animation-delay: 0.15s;">
                     <div class="img-section">
-                        <img src="icon/Rocket.svg" alt="" style="opacity: 0.5;"> 
+                        <img src="icon/Rocket.svg" alt="" style="opacity: 0.5;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
@@ -498,7 +512,7 @@
                 </div>
                 <div class="card uiverse-style" style="--card-index: 2; --animation-delay: 0.30s;">
                     <div class="img-section">
-                        <img src="icon/maths.svg" alt="" style="width: 40px; height: auto; opacity: 0.5;"> 
+                        <img src="icon/maths.svg" alt="" style="width: 40px; height: auto; opacity: 0.5;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
@@ -518,7 +532,7 @@
                 <h3 class="resume-title">EDUCATION</h3>
                 <div class="card uiverse-style" style="--card-index: 3; --animation-delay: 0.45s;">
                     <div class="img-section">
-                        <img src="icon/school.png" alt="" style="width: 40px; height: auto; opacity: 0.6;"> 
+                        <img src="icon/school.png" alt="" style="width: 40px; height: auto; opacity: 0.6;">
                     </div>
                     <div class="card-desc">
                         <div class="card-header">
@@ -592,7 +606,7 @@
         </div>
     </section>
 
-    <section id="contact"> 
+    <section id="contact">
         <div class="container">
             <h2 class="section-title">Contact Me</h2>
             <p class="section-subtitle">Get in Touch - Let's Connect!</p>
@@ -636,4 +650,5 @@
 
     <script src="script.js" defer></script>
 </body>
+
 </html>

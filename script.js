@@ -296,12 +296,72 @@ document.addEventListener('DOMContentLoaded', () => {
          setTimeout(() => {
             loadingOverlay.classList.add('hidden');
         }, 1500);
-        window.addEventListener('load', () => {
+        window.addEventListener('load', () => { // Fallback for hiding if above timeout is too short
              loadingOverlay.classList.add('hidden');
         });
     }
+
+    // --- Function to change profile image on mobile ---
+    const adaptProfileImage = () => {
+        const profileImgElement = document.getElementById('profileImage');
+        if (!profileImgElement) {
+            // console.warn('Profile image element with ID "profileImage" not found.'); // Optional: uncomment for debugging
+            return;
+        }
+
+        const mobileImagePath = 'images/profile_small.png';
+        const desktopImagePath = 'images/profile.png'; // Your default large image
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            // Only change if the current src is not already the mobile one
+            if (profileImgElement.src.endsWith(desktopImagePath) || !profileImgElement.src.endsWith(mobileImagePath)) {
+                const tempImg = new Image();
+                tempImg.onload = () => { 
+                    profileImgElement.src = mobileImagePath;
+                };
+                tempImg.onerror = () => { 
+                    console.warn(`Mobile profile image not found at: ${mobileImagePath}. Keeping default or current.`);
+                    // If small image fails, and current is not desktop, set to desktop as a fallback
+                    if (!profileImgElement.src.endsWith(desktopImagePath)) {
+                        profileImgElement.src = desktopImagePath;
+                    }
+                };
+                tempImg.src = mobileImagePath; 
+            }
+        } else {
+            // On larger screens, ensure the desktop image is shown
+            // Only change if it's not already the desktop one
+            if (!profileImgElement.src.endsWith(desktopImagePath)) {
+                const tempDesktopImg = new Image();
+                tempDesktopImg.onload = () => {
+                    profileImgElement.src = desktopImagePath;
+                };
+                tempDesktopImg.onerror = () => {
+                    console.warn(`Desktop profile image not found at: ${desktopImagePath}.`);
+                    // If desktop image fails (unlikely if it's the default), what to do?
+                    // For now, it will just keep whatever src it had.
+                };
+                tempDesktopImg.src = desktopImagePath;
+            }
+        }
+    };
+
+    // Call the function on initial load
+    adaptProfileImage();
+
+    // Optional: Call it also on window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            adaptProfileImage();
+        }, 250); // Debounce for 250ms
+    });
+
 }); // End DOMContentLoaded
 
+
+// --- Contact Form Submission (using mailto, no actual form submission to server) ---
 function submitViaEmailClient() {
     const nameEl = document.getElementById('form-name');
     const emailEl = document.getElementById('form-email');
@@ -310,6 +370,7 @@ function submitViaEmailClient() {
     const email = emailEl?.value?.trim();
     const message = messageEl?.value?.trim();
 
+    // Basic validation if elements exist
     if (nameEl && emailEl && messageEl) {
         if (!name || !email || !message) {
             alert('Please fill in all required fields if using a form.');
@@ -330,12 +391,14 @@ function submitViaEmailClient() {
 
     try {
         const mailWindow = window.open(mailtoLink, '_blank');
-        if (!mailWindow && !isMobile) {
+        const isMobileCheck = window.matchMedia("(max-width: 768px)").matches; // Re-check for mobile here if not globally available
+        if (!mailWindow && !isMobileCheck) { 
             alert('Could not open email client automatically. Please copy the email address: ' + recipientEmail);
         }
     } catch (e) {
         console.error("Failed to open mailto link:", e);
-        if (!isMobile) {
+        const isMobileCheck = window.matchMedia("(max-width: 768px)").matches;
+        if (!isMobileCheck) {
             alert('An error occurred. Please manually send an email to ' + recipientEmail);
         }
     }
