@@ -44,14 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- SCROLL HANDLING (NAV & ACTIVE LINKS) ---
     function handleScroll() {
         if (!nav || !sections || sections.length === 0) {
-            // console.warn("handleScroll: Nav or sections not found.");
             return;
         }
         let currentSectionId = 'home';
         const navHeight = nav.offsetHeight;
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - navHeight - 70; // Increased offset slightly
+            const sectionTop = section.offsetTop - navHeight - 70;
             if (window.scrollY >= sectionTop) {
                 currentSectionId = section.getAttribute('id');
             }
@@ -82,10 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
             let charIndex = 0;
             let currentText = "";
             let isDeleting = false;
-            let typeTimeout; // To clear previous timeout
+            let typeTimeout; 
 
             function type() {
-                clearTimeout(typeTimeout); // Clear any existing timeout
+                clearTimeout(typeTimeout); 
 
                 const currentProfession = professions[professionIndex];
                 
@@ -101,46 +100,47 @@ document.addEventListener('DOMContentLoaded', () => {
                 let typeSpeed = isDeleting ? 60 : 120;
 
                 if (!isDeleting && charIndex === currentProfession.length) {
-                    typeSpeed = 1800; // Pause at end
+                    typeSpeed = 1800; 
                     isDeleting = true;
                 } else if (isDeleting && charIndex === 0) {
                     isDeleting = false;
                     professionIndex = (professionIndex + 1) % professions.length;
-                    currentText = ""; // Ensure text is cleared for next profession
-                    typeSpeed = 300; // Pause before typing new
+                    currentText = ""; 
+                    typeSpeed = 300; 
                 }
-                // console.log(`Typing: '${currentText}', Prof: ${professionIndex}, Char: ${charIndex}, Del: ${isDeleting}`);
                 typeTimeout = setTimeout(type, typeSpeed);
             }
-            typeTimeout = setTimeout(type, 800); // Initial delay
+            typeTimeout = setTimeout(type, 800); 
         } catch (e) {
             console.error("Error in Typing Effect:", e);
-            if(typingTextElement) typingTextElement.textContent = "A Maths Teacher"; // Fallback text
+            if(typingTextElement) typingTextElement.textContent = "A Maths Teacher"; 
         }
     } else {
         console.warn("Typing text element not found.");
     }
 
     // --- VANILLA TILT INITIALIZATION ---
-    const tiltElements = document.querySelectorAll('[data-tilt]');
-    if (tiltElements.length > 0) {
-        if (typeof VanillaTilt !== 'undefined') {
-            try {
-                VanillaTilt.init(tiltElements, { max: 10, speed: 300, glare: true, "max-glare": 0.15 });
-                console.log("VanillaTilt initialized for", tiltElements.length, "elements.");
-            } catch (e) {
-                console.error("Error initializing VanillaTilt:", e);
-            }
-        } else {
-            console.warn("VanillaTilt library not found, but data-tilt attributes are present.");
-        }
-    }
+    // const tiltElements = document.querySelectorAll('[data-tilt]'); // No longer needed if data-tilt is removed
+    // if (tiltElements.length > 0) {
+    //     if (typeof VanillaTilt !== 'undefined') {
+    //         try {
+    //             VanillaTilt.init(tiltElements, { max: 10, speed: 300, glare: true, "max-glare": 0.15 });
+    //             console.log("VanillaTilt initialized for", tiltElements.length, "elements.");
+    //         } catch (e) {
+    //             console.error("Error initializing VanillaTilt:", e);
+    //         }
+    //     } else {
+    //         console.warn("VanillaTilt library not found, but data-tilt attributes are present.");
+    //     }
+    // } else {
+    //    console.log("No elements with data-tilt found for VanillaTilt initialization.");
+    // }
 
     // --- TSPARTICLES INITIALIZATION ---
     const particlesContainer = document.getElementById('tsparticles-background');
     if (particlesContainer) {
         if (typeof tsParticles !== 'undefined' && typeof tsParticles.load === 'function') {
-            tsParticles.load("tsparticles-background", { /* ... your existing config ... */
+            tsParticles.load("tsparticles-background", {
                 fpsLimit: 60, interactivity: {events: {onHover: {enable: true, mode: "repulse"}, onClick: {enable: true, mode: "push"}, resize: true}, modes: {repulse: {distance: 100, duration: 0.4}, push: {particles_nb: 4}}}, particles: {number: {value: 60, density: {enable: true, value_area: 700}}, color: {value: "#ffffff"}, shape: {type: "circle"}, opacity: {value: 0.4}, size: {value: 2.5, random: true}, links: {enable: true, distance: 120, color: "#ffffff", opacity: 0.3, width: 1}, move: {enable: true, speed: 1.5, direction: "none", random: false, straight: false, out_mode: "out"}}, detectRetina: true
             }).then(() => console.log("tsParticles loaded successfully."))
               .catch(error => console.error("tsParticles loading FAILED:", error));
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 customCursor.style.left = e.clientX + 'px';
                 customCursor.style.top = e.clientY + 'px';
             });
-            document.querySelectorAll('a, button, .burger, [data-tilt], .contact-item, .social-link, input, textarea, select')
+            document.querySelectorAll('a, button, .burger, input, textarea, select, .contact-item, .social-link') // Removed [data-tilt]
                 .forEach(el => {
                     el.addEventListener('mouseenter', () => customCursor.classList.add('pointer'));
                     el.addEventListener('mouseleave', () => customCursor.classList.remove('pointer'));
@@ -170,11 +170,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     if (animatedElements.length > 0) {
         try {
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 }; // Adjusted threshold
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 }; 
             const observerCallback = (entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // console.log("Element is intersecting:", entry.target);
                         entry.target.classList.add('is-visible');
                         observer.unobserve(entry.target);
                     }
@@ -182,13 +181,11 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
             animatedElements.forEach(el => {
-                // console.log("Observing element:", el);
                 scrollObserver.observe(el);
             });
             console.log("On-scroll animations initialized for", animatedElements.length, "elements.");
         } catch (e) {
             console.error("Error in On-Scroll Animation Logic:", e);
-             // If observer fails, make all animatable elements visible to prevent them from staying hidden
             animatedElements.forEach(el => el.classList.add('is-visible'));
         }
     }
@@ -201,17 +198,16 @@ function hideLoadingOverlay() {
     const overlay = document.getElementById('loading-overlay');
     if (overlay && !overlay.classList.contains('hidden')) {
         console.log("Script.js: Attempting to hide loading overlay.");
-        setTimeout(() => { // Ensure a minimum display time
+        setTimeout(() => { 
             overlay.classList.add('hidden');
-            document.body.classList.remove('loading'); // Enable body scroll
+            document.body.classList.remove('loading'); 
             console.log("Script.js: Loading overlay hidden and body scroll enabled.");
-        }, 300); // Minimum display time, adjust as needed
+        }, 300); 
     } else if (overlay && overlay.classList.contains('hidden')) {
-        // console.log("Script.js: Loading overlay already hidden.");
-         document.body.classList.remove('loading'); // Still ensure scroll is enabled
+         document.body.classList.remove('loading'); 
     } else {
         console.error("CRITICAL: Loading overlay element NOT FOUND when trying to hide.");
-        document.body.classList.remove('loading'); // Enable scroll anyway
+        document.body.classList.remove('loading'); 
     }
 }
 
@@ -220,7 +216,6 @@ window.addEventListener('load', () => {
     hideLoadingOverlay();
 });
 
-// Fallback: If 'load' event is unusually delayed or fails.
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         const overlay = document.getElementById('loading-overlay');
@@ -228,11 +223,9 @@ document.addEventListener('DOMContentLoaded', () => {
             console.warn("Script.js Fallback: Loader was still visible. Forcing hide.");
             hideLoadingOverlay();
         }
-    }, 3500); // 3.5 seconds fallback
+    }, 3500); 
 });
 
-
-// --- EMAIL CLIENT FUNCTION (Global Scope) ---
 function submitViaEmailClient() {
     const email = "klsuthar0987@gmail.com";
     const subject = "Question from Portfolio Website";
