@@ -754,7 +754,7 @@ footer .container {
     50% { border-right-color: transparent; }
 }
 
-/* Scroll Animations - UPDATED for .about-left and .about-right */
+/* Scroll Animations */
 .animate-on-scroll {
     opacity: 0;
     transition: opacity 0.6s ease-out, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
@@ -778,13 +778,12 @@ footer .container {
     transform: translateX(60px) scale(0.95); 
 }
 
-/* UPDATED: About section scroll animations for PC - simpler slide-in */
 .about-left.animate-on-scroll {
-    transform: translateX(-80px); /* Slide from left, no rotation */
+    transform: translateX(-80px); 
 }
 
 .about-right.animate-on-scroll {
-    transform: translateX(80px); /* Slide from right, no rotation */
+    transform: translateX(80px); 
 }
 
 .skill-item.animate-on-scroll,
@@ -821,9 +820,8 @@ footer .container {
 
     .about-content {
         flex-direction: row;
-        align-items: flex-start; /* Keep this for desktop layout */
+        align-items: flex-start; 
     }
-    /* Desktop scroll animations are defined above for .about-left and .about-right */
 
     .animated-skills-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -847,7 +845,7 @@ footer .container {
 }
 
 
-/* Mobile Navigation */
+/* Mobile Navigation - UPDATED */
 @media (max-width: 768px) {
     html { font-size: 15px; } 
     h1 { font-size: 2.5rem; }
@@ -873,7 +871,7 @@ footer .container {
     }
     .nav-links li {
         margin-left: 0;
-        opacity: 0; 
+        /* opacity: 0;  <-- REMOVED FROM HERE */
         width: 100%;
         text-align: center;
     }
@@ -882,6 +880,7 @@ footer .container {
         padding: 15px 0;
         display: block; 
         width: 100%;
+        /* opacity is handled by navLinkFade animation directly on 'a' */
     }
     .nav-links li a::after { 
         display: none; 
@@ -932,14 +931,13 @@ footer .container {
         background-color: transparent; 
         padding: 0;
     }
-    /* Mobile-specific scroll animations for about section */
     .about-left.animate-on-scroll,
     .about-right.animate-on-scroll {
-        transform: translateY(40px) scale(0.95); /* Revert to a simpler up-scale for mobile */
+        transform: translateY(40px) scale(0.95); 
     }
      .home-text.animate-on-scroll,
      .home-image.animate-on-scroll {
-        transform: translateY(40px) scale(0.95); /* Revert to simpler up-scale for home too on mobile */
+        transform: translateY(40px) scale(0.95); 
     }
 
 
@@ -951,6 +949,7 @@ footer .container {
     }
 }
 
+/* Animation for mobile nav links */
 @keyframes navLinkFade {
     from {
         opacity: 0;
