@@ -27,7 +27,7 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 16px; /* Base font size */
+    font-size: 16px; 
 }
 
 body {
@@ -126,11 +126,7 @@ img {
     );
     transform: rotate(20deg);
     animation: shine 3s linear infinite;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-.animate-shine-card:hover .project-image::after {
-    opacity: 1;
+    opacity: 0; 
 }
 
 
@@ -172,31 +168,14 @@ img {
 .maths-loader span:nth-child(8) { animation-delay: -0.04s; }
 
 
-/* Custom Cursor */
-.custom-cursor {
-    position: fixed;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--primary-color);
-    border-radius: 50%;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 10000;
-    transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
-}
-.custom-cursor.pointer {
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0, 123, 255, 0.2);
-    border-color: transparent;
-}
+/* Custom Cursor CSS Rules Removed */
+/*
+.custom-cursor { ... }
+.custom-cursor.pointer { ... }
 @media (max-width: 768px) {
-    .custom-cursor {
-        display: none;
-    }
+    .custom-cursor { display: none; }
 }
+*/
 
 /* Navigation */
 #navbar {
@@ -525,11 +504,10 @@ img {
     padding: 20px;
     border-radius: 8px;
     box-shadow: var(--box-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: none; 
 }
 .skill-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--box-shadow-lg);
+    box-shadow: var(--box-shadow); 
 }
 .skill-info {
     display: flex;
@@ -591,13 +569,12 @@ img {
     margin-bottom: 20px;
     position: relative;
     border-left: 5px solid var(--primary-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: none; 
 }
 .card.uiverse-style:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: var(--box-shadow-lg);
+    box-shadow: var(--box-shadow); 
 }
-.card-icon { /* This was for the SVGs, can be removed if not used elsewhere */
+.card-icon {
     width: 40px;
     height: 40px;
     position: absolute;
@@ -636,11 +613,10 @@ img {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: none; 
 }
 .project-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--box-shadow-lg);
+    box-shadow: var(--box-shadow); 
 }
 .project-image {
     position: relative; 
@@ -651,10 +627,9 @@ img {
     height: auto; 
     aspect-ratio: 16 / 10; 
     object-fit: cover;
-    transition: transform 0.4s ease;
 }
 .project-card:hover .project-image img {
-    transform: scale(1.05);
+    /* No transform on hover */
 }
 .project-info {
     padding: 20px;
@@ -695,22 +670,19 @@ img {
     border-radius: 10px;
     box-shadow: var(--box-shadow);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: none; 
 }
 .contact-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--box-shadow-lg);
+    box-shadow: var(--box-shadow); 
 }
 
-/* Styling for Font Awesome icons in contact cards */
 .contact-icon-fa {
-    display: block; /* Allows margin auto to center */
+    display: block; 
     margin: 0 auto 15px auto;
-    color: var(--primary-color); /* Themed color */
-    /* fa-3x class (used in HTML) controls the size, typically around 48px */
+    color: var(--primary-color); 
 }
 
-.contact-item h3 { /* Adjusted margin if icon is taller */
+.contact-item h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
 }

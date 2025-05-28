@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 speed: 400,
                 glare: true,
                 "max-glare": 0.3,
-                scale: 1.03
+                scale: 1.03 // Tilt still provides a slight scale, can be set to 1 if no scale is desired
             });
         } catch (e) {
             console.error("VanillaTilt initialization error:", e);
@@ -215,25 +215,17 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn("tsParticles library or container not found.");
     }
 
-    // --- Custom Cursor Logic ---
+    // --- Custom Cursor Logic Removed ---
+    /*
     const customCursor = document.querySelector('.custom-cursor');
     if (customCursor) {
-        console.log("Initializing custom cursor.");
-        document.addEventListener('mousemove', e => {
-            customCursor.style.left = e.clientX + 'px';
-            customCursor.style.top = e.clientY + 'px';
-        });
-
-        const interactiveElements = document.querySelectorAll(
-            'a, button, .project-card, [data-tilt], .burger, .nav-link, .logo, .contact-item'
-        );
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseenter', () => customCursor.classList.add('pointer'));
-            el.addEventListener('mouseleave', () => customCursor.classList.remove('pointer'));
-        });
+        // ... (rest of the custom cursor logic was here)
     } else {
         console.warn("Custom cursor element not found.");
     }
+    */
+    console.log("Custom cursor logic has been removed.");
+
 
     // --- On-Scroll Animation Logic ---
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
