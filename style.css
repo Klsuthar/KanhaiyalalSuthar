@@ -499,7 +499,7 @@ img {
     flex-basis: 60%; 
 }
 .about-right h3:first-of-type { 
-    font-family: var(--font-accent); /* Using accent font for this heading */
+    font-family: var(--font-accent); 
     font-size: 1.8rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
@@ -553,15 +553,12 @@ img {
     overflow: hidden;
     margin-bottom: 8px;
 }
-.progress-bar { /* This will be the default gradient for all skill bars */
+.progress-bar { 
     height: 100%;
     background: linear-gradient(to right, var(--primary-color), var(--accent-color));
     border-radius: 5px;
     transition: width 1s ease-in-out;
 }
-/* If specific colors are needed per skill, define classes like:
-.teaching-progress { background: linear-gradient(to right, #ff6b6b, #ffb36b); } 
-*/
 .skill-description {
     font-size: 0.85rem;
     color: var(--text-light);
@@ -600,7 +597,7 @@ img {
     transform: translateY(-5px) scale(1.02);
     box-shadow: var(--box-shadow-lg);
 }
-.card-icon {
+.card-icon { /* This was for the SVGs, can be removed if not used elsewhere */
     width: 40px;
     height: 40px;
     position: absolute;
@@ -704,12 +701,16 @@ img {
     transform: translateY(-5px);
     box-shadow: var(--box-shadow-lg);
 }
-.contact-icon {
-    width: 50px;
-    height: 50px;
+
+/* Styling for Font Awesome icons in contact cards */
+.contact-icon-fa {
+    display: block; /* Allows margin auto to center */
     margin: 0 auto 15px auto;
+    color: var(--primary-color); /* Themed color */
+    /* fa-3x class (used in HTML) controls the size, typically around 48px */
 }
-.contact-item h3 {
+
+.contact-item h3 { /* Adjusted margin if icon is taller */
     font-size: 1.2rem;
     margin-bottom: 10px;
 }
@@ -838,7 +839,7 @@ footer .container {
 
 @media (min-width: 992px) {
     .projects-grid {
-        grid-template-columns: repeat(2, 1fr); /* Changed from 3 to 2 as there are only two projects now. If more are added, can revert to 3. */
+        grid-template-columns: repeat(2, 1fr); 
     }
 }
 
@@ -932,7 +933,7 @@ footer .container {
     .contact-grid {
         grid-template-columns: 1fr;
     }
-    .projects-grid { /* Ensure projects stack on mobile */
+    .projects-grid { 
         grid-template-columns: 1fr;
     }
 }

@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const typingTextElement = document.getElementById('typing-text');
     if (typingTextElement) {
         console.log("Initializing typing effect.");
-        const professions = ["Maths Teacher", "Web Developer", "Tech Enthusiast"]; // UPDATED
+        const professions = ["Maths Teacher", "Web Developer", "Tech Enthusiast"];
         let typeIndex = 0;
         let charIndex = 0;
         let currentText = '';
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     modes: {
                         grab: {
                             distance: 140,
-                             line_linked: { // This was inside grab, should be line_linked if that's a tsparticles v1 option, or links for v2
+                             line_linked: { 
                                 opacity: 0.7,
                             }
                         },
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     color: {
                         value: "#ffffff",
                     },
-                    links: { // Corrected from line_linked to links for tsParticles v2+
+                    links: { 
                         color: "#ffffff",
                         distance: 150,
                         enable: true,
@@ -292,7 +292,7 @@ window.addEventListener('load', () => {
 
 function submitViaEmailClient(subject = 'General Inquiry') {
     console.log(`Preparing mailto link with subject: ${subject}`);
-    const email = 'klsuthar0987@gmail.com'; // UPDATED email
+    const email = 'klsuthar0987@gmail.com'; 
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent('Hello Kanhaiya,\n\nI would like to discuss...\n\nBest regards,\n[Your Name]')}`;
     try {
         window.location.href = mailtoLink;
