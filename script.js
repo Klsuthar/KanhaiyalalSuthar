@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('main section');
     const loadingOverlay = document.getElementById('loading-overlay');
     const customCursor = document.querySelector('.custom-cursor');
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
 
     // --- LOADING OVERLAY ---
     window.addEventListener('load', () => {
@@ -224,20 +225,40 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (particlesContainer) {
         console.warn("tsParticles library not found, but 'tsparticles-background' element exists.");
     }
+    if (animatedElements.length > 0) {
+        const observerOptions = {
+            root: null, // observes intersections relative to the document viewport
+            rootMargin: '0px', // no margin around the root
+            threshold: 0.1   // callback is run when 10% of the target is visible
+        };
 
-    // --- CUSTOM CURSOR LOGIC ---
-    if (customCursor) {
-        document.addEventListener('mousemove', (e) => {
-            customCursor.style.left = e.clientX + 'px';
-            customCursor.style.top = e.clientY + 'px';
-        });
-
-        document.querySelectorAll('a, button, .burger, [data-tilt], .contact-item, .social-link')
-            .forEach(el => {
-                el.addEventListener('mouseenter', () => customCursor.classList.add('pointer'));
-                el.addEventListener('mouseleave', () => customCursor.classList.remove('pointer'));
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Stop observing the element once it's visible
+                }
             });
+        };
+
+        const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+        animatedElements.forEach(el => scrollObserver.observe(el));
     }
+
+});
+// --- CUSTOM CURSOR LOGIC ---
+if (customCursor) {
+    document.addEventListener('mousemove', (e) => {
+        customCursor.style.left = e.clientX + 'px';
+        customCursor.style.top = e.clientY + 'px';
+    });
+
+    document.querySelectorAll('a, button, .burger, [data-tilt], .contact-item, .social-link')
+        .forEach(el => {
+            el.addEventListener('mouseenter', () => customCursor.classList.add('pointer'));
+            el.addEventListener('mouseleave', () => customCursor.classList.remove('pointer'));
+        });
+}
 
 }); // End DOMContentLoaded
 
