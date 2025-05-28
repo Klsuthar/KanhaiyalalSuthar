@@ -818,83 +818,224 @@ footer p {
 
 
 /* Mobile Navigation */
+body {
+    -webkit-tap-highlight-color: transparent; /* Remove blue tap highlight */
+    /* Ensure no unintended horizontal scroll */
+    /* overflow-x: hidden; /* Add this if you absolutely can't find the cause of horizontal scroll */
+}
+
+.container {
+    width: 90%;
+    padding-left: 15px; /* Ensure consistent padding */
+    padding-right: 15px;
+    box-sizing: border-box; /* Ensure padding doesn't add to width */
+}
+
+/* --- General Typography & Spacing for Mobile --- */
 @media screen and (max-width: 768px) {
+    h1 { font-size: 2.3rem; line-height: 1.2; }
+    h2 { font-size: 1.9rem; line-height: 1.2; }
+    .section-title { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .section-title::after { width: 60px; height: 3px; }
+    .section-subtitle { font-size: 0.9rem; margin-bottom: 2rem; }
+
+    section {
+        padding: 40px 0; /* Reduce section padding */
+    }
+
+    /* --- NAVIGATION --- */
+    nav {
+        padding: 0.7rem 5%;
+    }
+    nav .logo {
+        font-size: 1.25rem; /* Slightly smaller logo */
+    }
     nav .nav-links {
-        position: absolute;
-        right: 0;
-        top: 70px; /* Height of nav */
-        background-color: var(--white);
-        display: flex;
+        /* Ensure top matches actual nav height if it changed */
+        /* top: 60px; (Example, check your nav's rendered height) */
+        width: 65%; /* Adjust width as needed */
+        max-width: 280px;
+    }
+    nav .nav-links li a {
+        padding: 1.1rem 0; /* Good tap size */
+        font-size: 0.95rem;
+    }
+    .burger div { /* Ensure burger lines are clearly visible */
+        background-color: var(--text-primary);
+    }
+
+
+    /* --- HOME SECTION --- */
+    #home {
+        min-height: 90vh; /* Slightly less than full viewport to avoid scroll issues with URL bar */
+        padding-top: 70px; /* Adjust based on nav height */
+    }
+    .home-content {
+        gap: 1.5rem; /* Reduced gap */
+    }
+    .home-text .name {
+        font-size: 2rem; /* Was 2.5rem */
+    }
+    .home-text .profession {
+        font-size: 1.2rem; /* Was 1.5rem */
+        min-height: 2rem; /* For text wrapping */
+    }
+    .home-buttons .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+        margin: 0.4rem;
+    }
+    .home-image img {
+        width: 180px; /* Was 200px, adjust as needed */
+        height: 180px;
+        border-width: 3px;
+    }
+
+    /* --- ABOUT SECTION --- */
+    #about .about-content {
+        gap: 1.5rem; /* Further reduce gap */
+    }
+    .about-image img {
+        width: 130px; /* Smaller image */
+        height: 130px;
+    }
+    .about-details p,
+    .about-info p {
+        font-size: 0.85rem; /* Readability */
+        word-break: break-word; /* Prevent overflow */
+    }
+    .about-right p:first-of-type {
+        font-size: 0.95rem;
+    }
+    .skills-section-container {
+        margin-top: 2.5rem;
+        padding: 1rem 0.5rem;
+    }
+    .skills-title {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+    /* Tailwind skill cards text: ensure readability */
+    .animated-skills-grid .text-sm { font-size: 0.8rem !important; }
+    .animated-skills-grid .text-xs { font-size: 0.7rem !important; }
+    .animated-skills-grid .p-5 { padding: 1rem !important; }
+
+
+    /* --- RESUME SECTION --- */
+    #resume .resume-title {
+        font-size: 1.3rem;
+    }
+    .card.uiverse-style {
+        flex-direction: column; /* Stack icon and text */
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 0.8rem;
+    }
+    .uiverse-style .img-section {
+        margin-bottom: 0.5rem; /* Space below icon */
+    }
+    .uiverse-style .img-section img {
+        width: 30px;
+    }
+    .uiverse-style .card-time {
+        font-size: 0.95rem;
+    }
+    .uiverse-style .recent {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    /* --- PROJECTS SECTION --- */
+    .projects-grid {
+        grid-template-columns: 1fr; /* Ensure single column */
+        gap: 1.5rem;
+    }
+    .project-image img {
+        height: 200px; /* Adjust height */
+    }
+    .project-info {
+        padding: 1rem;
+    }
+    .project-title {
+        font-size: 1.15rem;
+    }
+    .project-description {
+        font-size: 0.85rem;
+    }
+    /* Project buttons: Stack them for better UI on small screens */
+    .project-links {
         flex-direction: column;
-        align-items: center;
-        width: 60%;
-        max-width: 300px;
-        transform: translateX(100%);
-        transition: transform 0.5s ease-in;
-        box-shadow: -5px 5px 10px rgba(0,0,0,0.1);
-        border-top: 1px solid var(--border-color);
+        align-items: stretch; /* Make buttons take full width of their container */
+        gap: 0.5rem; /* Space between stacked buttons */
     }
-
-    nav .nav-links.nav-active {
-        transform: translateX(0%);
-    }
-
-    nav .nav-links li {
+    .project-links .btn {
         width: 100%;
+        box-sizing: border-box; /* Include padding and border in the element's total width and height */
         text-align: center;
     }
 
-    nav .nav-links li a {
-        margin: 0;
-        padding: 1.5rem 0;
-        display: block;
-        width: 100%;
-        border-bottom: 1px solid var(--bg-alt);
-    }
-    nav .nav-links li:last-child a {
-        border-bottom: none;
-    }
 
-    nav .nav-links li a::after {
-        display: none; /* Simpler active state for mobile */
-    }
-    nav .nav-links li a.active {
-        background-color: var(--accent-color);
-        color: var(--text-primary);
-    }
-
-
-    .burger {
-        display: block;
-    }
-
-    .burger.toggle .line1 {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-    .burger.toggle .line2 {
-        opacity: 0;
-    }
-    .burger.toggle .line3 {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-
-    .home-content {
-        padding: 0 1rem; /* Padding for home text on mobile */
-    }
-    .home-text .name {
-        font-size: 2.5rem;
-    }
-    .home-text .profession {
-        font-size: 1.5rem;
-    }
-
-    .section-title { font-size: 2rem; }
-    .section-subtitle { font-size: 1rem; margin-bottom: 2rem;}
-
-    .animated-skills-grid {
-        grid-template-columns: 1fr; /* Stack skills on mobile */
-    }
+    /* --- CONTACT SECTION --- */
     .contact-grid {
-        grid-template-columns: 1fr; /* Stack contact items on mobile */
+        grid-template-columns: 1fr; /* Ensure single column */
+        gap: 1rem;
     }
+    .contact-item {
+        padding: 1.2rem;
+    }
+    .contact-icon {
+        font-size: 1.8rem;
+    }
+    .contact-title {
+        font-size: 1.05rem;
+    }
+    .contact-info a {
+        font-size: 0.9rem;
+    }
+    .question-title {
+        font-size: 1.2rem;
+    }
+    .question-section .btn-primary {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.9rem;
+        width: 100%; /* Make button full width */
+        max-width: 300px; /* Optional: max width for the button */
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+    .social-links .social-link {
+        width: 38px;
+        height: 38px;
+        font-size: 1.05rem;
+        margin: 0 0.25rem;
+    }
+
+    /* --- FOOTER --- */
+    footer {
+        padding: 15px 10px; /* Adjust padding */
+        font-size: 0.8rem;
+    }
+    footer p {
+        word-break: break-word;
+    }
+}
+
+/* Optional: Further adjustments for very small screens */
+@media screen and (max-width: 360px) {
+    .container {
+        width: 95%;
+    }
+    h1 { font-size: 1.9rem; }
+    .home-text .name { font-size: 1.7rem; }
+    .home-text .profession { font-size: 1rem; }
+    .home-image img { width: 140px; height: 140px; }
+
+    .btn, .btn-primary, .btn-secondary {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+    nav .logo { font-size: 1.1rem; }
+    .animated-skills-grid .text-sm { font-size: 0.75rem !important; }
+    .animated-skills-grid .text-xs { font-size: 0.65rem !important; }
 }
