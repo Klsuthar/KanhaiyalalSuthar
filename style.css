@@ -10,7 +10,7 @@
     --bg-white: #ffffff;
     --border-color: #dee2e6;
     --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.075);
-    --box-shadow-lg: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+    /* --box-shadow-lg is defined but not used for card hover anymore */
     --font-primary: 'Poppins', sans-serif;
     --font-secondary: 'Roboto', sans-serif;
     --font-display: 'Playfair Display', serif;
@@ -35,7 +35,7 @@ body {
     background-color: var(--bg-light);
     color: var(--text-color);
     line-height: 1.7;
-    overflow-x: hidden;
+    overflow-x: hidden; 
     transition: background-color 0.3s ease; 
 }
 
@@ -167,16 +167,6 @@ img {
 .maths-loader span:nth-child(7) { animation-delay: -0.08s; }
 .maths-loader span:nth-child(8) { animation-delay: -0.04s; }
 
-
-/* Custom Cursor CSS Rules Removed */
-/*
-.custom-cursor { ... }
-.custom-cursor.pointer { ... }
-@media (max-width: 768px) {
-    .custom-cursor { display: none; }
-}
-*/
-
 /* Navigation */
 #navbar {
     position: fixed;
@@ -278,7 +268,7 @@ img {
 .section-padding {
     padding: 80px 0;
 }
-.section-title {
+.section-title { 
     text-align: center;
     margin-bottom: 1rem;
     font-family: var(--font-display);
@@ -296,7 +286,7 @@ img {
     height: 3px;
     background-color: var(--primary-color);
 }
-.section-subtitle {
+.section-subtitle { 
     text-align: center;
     margin-bottom: 40px;
     font-size: 1.1rem;
@@ -336,7 +326,7 @@ img {
     position: relative; 
     z-index: 1;
 }
-.home-text {
+.home-text { 
     max-width: 600px;
 }
 .home-text .hello-text {
@@ -364,7 +354,7 @@ img {
 .home-buttons .btn {
     margin: 0.5rem;
 }
-.home-image {
+.home-image { 
     max-width: 320px; 
 }
 .home-image img {
@@ -442,7 +432,7 @@ img {
     gap: 30px;
     align-items: center; 
 }
-.about-left {
+.about-left { 
     flex-basis: 40%; 
     position: relative;
 }
@@ -474,7 +464,7 @@ img {
     color: var(--primary-color);
 }
 
-.about-right {
+.about-right { 
     flex-basis: 60%; 
 }
 .about-right h3:first-of-type { 
@@ -764,16 +754,55 @@ footer .container {
     50% { border-right-color: transparent; }
 }
 
-/* Scroll Animations */
+/* Scroll Animations - UPDATED for .about-left and .about-right */
 .animate-on-scroll {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: opacity 0.6s ease-out, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
 }
+
 .animate-on-scroll.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0) translateY(0) scale(1) rotate(0); 
 }
+
+.section-title.animate-on-scroll,
+.section-subtitle.animate-on-scroll {
+    transform: translateY(-40px); 
+}
+
+.home-text.animate-on-scroll {
+    transform: translateX(-60px) scale(0.95); 
+}
+
+.home-image.animate-on-scroll {
+    transform: translateX(60px) scale(0.95); 
+}
+
+/* UPDATED: About section scroll animations for PC - simpler slide-in */
+.about-left.animate-on-scroll {
+    transform: translateX(-80px); /* Slide from left, no rotation */
+}
+
+.about-right.animate-on-scroll {
+    transform: translateX(80px); /* Slide from right, no rotation */
+}
+
+.skill-item.animate-on-scroll,
+.resume-grid .animate-on-scroll, 
+.projects-grid .animate-on-scroll, 
+.contact-grid .animate-on-scroll,  
+.question-section.animate-on-scroll,
+.social-links.animate-on-scroll {
+    transform: translateY(60px) scale(0.9); 
+}
+
+.animated-skills-grid .skill-item.animate-on-scroll:nth-child(1) { transition-delay: 0.0s; }
+.animated-skills-grid .skill-item.animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+.animated-skills-grid .skill-item.animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+.animated-skills-grid .skill-item.animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+.animated-skills-grid .skill-item.animate-on-scroll:nth-child(5) { transition-delay: 0.4s; }
+.animated-skills-grid .skill-item.animate-on-scroll:nth-child(6) { transition-delay: 0.5s; }
+
 
 /* Responsive Design */
 
@@ -792,8 +821,10 @@ footer .container {
 
     .about-content {
         flex-direction: row;
-        align-items: flex-start;
+        align-items: flex-start; /* Keep this for desktop layout */
     }
+    /* Desktop scroll animations are defined above for .about-left and .about-right */
+
     .animated-skills-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -901,6 +932,16 @@ footer .container {
         background-color: transparent; 
         padding: 0;
     }
+    /* Mobile-specific scroll animations for about section */
+    .about-left.animate-on-scroll,
+    .about-right.animate-on-scroll {
+        transform: translateY(40px) scale(0.95); /* Revert to a simpler up-scale for mobile */
+    }
+     .home-text.animate-on-scroll,
+     .home-image.animate-on-scroll {
+        transform: translateY(40px) scale(0.95); /* Revert to simpler up-scale for home too on mobile */
+    }
+
 
     .contact-grid {
         grid-template-columns: 1fr;
