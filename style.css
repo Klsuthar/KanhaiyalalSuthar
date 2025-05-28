@@ -4,10 +4,10 @@
    GLOBAL STYLES & VARIABLES
    ==================== */
 :root {
-    --primary-color: #007bff; /* Example: Blue */
-    --secondary-color: #6c757d; /* Example: Gray */
-    --accent-color: #ffc107; /* Example: Yellow/Orange for highlights */
-    --text-primary: #212529; /* Dark gray for text */
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --accent-color: #ffc107;
+    --text-primary: #212529;
     --text-secondary: #495057;
     --text-tertiary: #6c757d;
     --bg-light: #f8f9fa;
@@ -39,14 +39,21 @@ body {
     line-height: 1.6;
     color: var(--text-primary);
     background-color: var(--bg-light);
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden; /* Prevent horizontal scroll by default */
+    -webkit-tap-highlight-color: transparent; /* Remove blue tap highlight on mobile */
 }
+
+/* Initial state for body when loader is active */
+body.loading {
+    overflow: hidden;
+}
+
 
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 20px 15px; /* Consistent horizontal padding */
 }
 
 img {
@@ -70,6 +77,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
     color: var(--text-primary);
     line-height: 1.3;
+    word-break: break-word; /* Prevent overflow from long words */
 }
 
 h1 { font-size: 2.8rem; }
@@ -120,8 +128,18 @@ h3 { font-size: 1.8rem; }
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    opacity: 1; /* Start visible */
+    visibility: visible; /* Start visible */
+    transition: opacity 0.5s ease, visibility 0.5s ease, display 0s linear 0.5s; /* Delay display none */
 }
+
+/* This class will be added by JS to fully hide it */
+#loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    display: none; /* Remove from layout flow */
+}
+
 
 .maths-loader {
     display: flex;
@@ -259,7 +277,7 @@ main {
 
 section {
     padding: 60px 0;
-    min-height: 80vh; /* Ensure sections have some height */
+    min-height: 80vh;
 }
 
 section:nth-child(even) {
@@ -273,12 +291,12 @@ section:nth-child(even) {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Full viewport height */
+    min-height: 100vh;
     position: relative;
-    background-color: var(--bg-dark); /* Fallback if particles don't load */
+    background-color: var(--bg-dark);
     color: var(--white);
     text-align: center;
-    padding-top: 80px; /* Extra padding due to fixed nav */
+    padding-top: 80px;
 }
 
 #tsparticles-background {
@@ -326,7 +344,7 @@ section:nth-child(even) {
     font-family: var(--font-primary);
     color: var(--bg-light);
     margin-bottom: 2rem;
-    min-height: 2.2rem; /* To prevent layout shift during typing */
+    min-height: 2.2rem;
 }
 
 .home-buttons .btn {
@@ -445,33 +463,14 @@ section:nth-child(even) {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
-    padding: 0 1rem; /* Padding for smaller screens */
+    padding: 0 1rem;
 }
 
-/* Skill bar card - using Tailwind classes already */
-.animated-skills-grid > div {
-    /* Tailwind classes handle most styling */
-    /* Add transition for tilt if needed, but vanilla-tilt handles its own */
-    transition: transform 0.3s ease;
-}
-/* Ensure Tailwind classes are effective: */
-.bg-white\/80 { background-color: rgba(255,255,255,0.8); }
-.backdrop-blur-sm { backdrop-filter: blur(4px); }
-.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
-.border-gray-200\/70 { border-color: rgba(229,231,235,0.7); }
-.text-gray-800 { color: #2d3748; }
-.text-orange-600 { color: #dd6b20; }
-.bg-gray-200 { background-color: #e2e8f0; }
-.from-orange-500\/20 { --tw-gradient-from: rgba(249,153,59,0.2); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(249,153,59, 0)); }
-.to-teal-500\/20 { --tw-gradient-to: rgba(66,153,225,0.2); } /* Adjusted teal to a lighter shade */
-.from-orange-500 { --tw-gradient-from: #f9993b; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(249,153,59, 0)); }
-.to-teal-500 { --tw-gradient-to: #4299e1; } /* Adjusted teal */
-.animate-\[shine_2s_linear_infinite\] { animation: shine 2s linear infinite; }
-
-@keyframes shine {
-  0% { transform: translateX(-100%) skewX(-20deg); }
-  100% { transform: translateX(100%) skewX(-20deg); }
-}
+/* Skill bar card - Tailwind classes handle most styling. */
+/* Ensuring text content within cards is visible by default */
+.animated-skills-grid .text-gray-800 { color: #2d3748 !important; }
+.animated-skills-grid .text-orange-600 { color: #dd6b20 !important; }
+.animated-skills-grid .text-orange-700 { color: #c05621 !important; } /* For the description span */
 
 
 /* ====================
@@ -491,6 +490,18 @@ section:nth-child(even) {
     padding-left: 1rem;
 }
 
+/* Removed hover transform from previous step */
+.card.uiverse-style:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+.project-card:hover {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+.contact-item:hover {
+    box-shadow: var(--shadow-medium);
+}
+
+
 .card.uiverse-style {
     background-color: var(--white);
     border-radius: 10px;
@@ -500,12 +511,7 @@ section:nth-child(even) {
     display: flex;
     gap: 1.5rem;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card.uiverse-style:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease; /* Only transition shadow */
 }
 
 .uiverse-style .img-section {
@@ -519,9 +525,9 @@ section:nth-child(even) {
 }
 
 .uiverse-style .img-section img {
-    width: 40px; /* Default, overridden by inline styles */
+    width: 40px;
     height: auto;
-    opacity: 0.7; /* Default, overridden by inline styles */
+    opacity: 0.7;
 }
 
 .uiverse-style .card-desc {
@@ -585,17 +591,12 @@ section:nth-child(even) {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    transition: box-shadow 0.3s ease;
 }
 
 .project-image img {
     width: 100%;
-    height: 220px; /* Fixed height for consistency */
+    height: 220px;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
@@ -622,7 +623,7 @@ section:nth-child(even) {
     font-size: 0.95rem;
     color: var(--text-secondary);
     margin-bottom: 1rem;
-    flex-grow: 1; /* Pushes links to bottom */
+    flex-grow: 1;
 }
 
 .project-tech {
@@ -635,7 +636,7 @@ section:nth-child(even) {
 }
 
 .project-links {
-    margin-top: auto; /* Pushes to bottom if description is short */
+    margin-top: auto;
     display: flex;
     gap: 0.75rem;
     align-items: center;
@@ -645,10 +646,6 @@ section:nth-child(even) {
     padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
     border-radius: 20px;
-}
-
-.project-links .btn i {
-    margin-left: 0.5rem;
 }
 
 .btn-project-view {
@@ -661,17 +658,6 @@ section:nth-child(even) {
     border-color: darken(var(--primary-color), 10%);
     color: var(--white);
 }
-
-.btn-project-code { /* Assuming an outline style */
-    background-color: transparent;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-}
-.btn-project-code:hover {
-    background-color: var(--primary-color);
-    color: var(--white);
-}
-
 
 /* ====================
    CONTACT SECTION
@@ -689,12 +675,7 @@ section:nth-child(even) {
     border-radius: 10px;
     text-align: center;
     box-shadow: var(--shadow-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.contact-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-medium);
+    transition: box-shadow 0.3s ease;
 }
 
 .contact-icon {
@@ -772,13 +753,50 @@ footer p {
     margin: 0;
 }
 
+/* ====================
+   ON-SCROLL ANIMATION STYLES
+   ==================== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+/* DEBUG: Temporarily make all .animate-on-scroll visible to check content
+.animate-on-scroll {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+*/
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects-grid > .animate-on-scroll.is-visible:nth-child(1),
+.animated-skills-grid > .animate-on-scroll.is-visible:nth-child(1),
+#resume .experience-section > .animate-on-scroll.is-visible:nth-child(odd),
+#resume .education-section > .animate-on-scroll.is-visible:nth-child(odd),
+.contact-grid > .animate-on-scroll.is-visible:nth-child(1) { transition-delay: 0.1s; }
+
+.projects-grid > .animate-on-scroll.is-visible:nth-child(2),
+.animated-skills-grid > .animate-on-scroll.is-visible:nth-child(2),
+#resume .experience-section > .animate-on-scroll.is-visible:nth-child(even),
+#resume .education-section > .animate-on-scroll.is-visible:nth-child(even),
+.contact-grid > .animate-on-scroll.is-visible:nth-child(2) { transition-delay: 0.2s; }
+
+.animated-skills-grid > .animate-on-scroll.is-visible:nth-child(3),
+.contact-grid > .animate-on-scroll.is-visible:nth-child(3) { transition-delay: 0.3s; }
+
+.animated-skills-grid > .animate-on-scroll.is-visible:nth-child(4) { transition-delay: 0.4s; }
+.animated-skills-grid > .animate-on-scroll.is-visible:nth-child(5) { transition-delay: 0.5s; }
+.animated-skills-grid > .animate-on-scroll.is-visible:nth-child(6) { transition-delay: 0.6s; }
+
 
 /* ====================
    RESPONSIVE DESIGN (Mobile First Adjustments)
    ==================== */
-
-/* Tablet and smaller desktop */
-@media (min-width: 768px) {
+@media (min-width: 769px) { /* Changed to 769px to avoid overlap with mobile rules */
     h1 { font-size: 3.5rem; }
     h2 { font-size: 2.8rem; }
     .section-title { font-size: 3rem; }
@@ -802,10 +820,10 @@ footer p {
         gap: 4rem;
     }
     .about-left {
-        align-items: flex-start; /* Or center if preferred */
+        align-items: flex-start;
     }
      .animated-skills-grid {
-        padding: 0; /* Remove padding on larger screens */
+        padding: 0; /* Remove horizontal padding on larger screens */
     }
 
     .uiverse-style .img-section {
@@ -816,23 +834,14 @@ footer p {
     }
 }
 
-
-/* Mobile Navigation */
-body {
-    -webkit-tap-highlight-color: transparent; /* Remove blue tap highlight */
-    /* Ensure no unintended horizontal scroll */
-    /* overflow-x: hidden; /* Add this if you absolutely can't find the cause of horizontal scroll */
-}
-
-.container {
-    width: 90%;
-    padding-left: 15px; /* Ensure consistent padding */
-    padding-right: 15px;
-    box-sizing: border-box; /* Ensure padding doesn't add to width */
-}
-
-/* --- General Typography & Spacing for Mobile --- */
+/* Mobile Navigation & General Adjustments */
 @media screen and (max-width: 768px) {
+    .container {
+        width: 90%; /* Ensures content doesn't touch edges */
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
     h1 { font-size: 2.3rem; line-height: 1.2; }
     h2 { font-size: 1.9rem; line-height: 1.2; }
     .section-title { font-size: 1.8rem; margin-bottom: 0.8rem; }
@@ -840,202 +849,152 @@ body {
     .section-subtitle { font-size: 0.9rem; margin-bottom: 2rem; }
 
     section {
-        padding: 40px 0; /* Reduce section padding */
+        padding: 40px 0;
     }
 
-    /* --- NAVIGATION --- */
     nav {
-        padding: 0.7rem 5%;
+        padding: 0.8rem 5%; /* Adjusted padding */
     }
     nav .logo {
-        font-size: 1.25rem; /* Slightly smaller logo */
+        font-size: 1.25rem;
     }
     nav .nav-links {
-        /* Ensure top matches actual nav height if it changed */
-        /* top: 60px; (Example, check your nav's rendered height) */
-        width: 65%; /* Adjust width as needed */
-        max-width: 280px;
-    }
-    nav .nav-links li a {
-        padding: 1.1rem 0; /* Good tap size */
-        font-size: 0.95rem;
-    }
-    .burger div { /* Ensure burger lines are clearly visible */
-        background-color: var(--text-primary);
-    }
-
-
-    /* --- HOME SECTION --- */
-    #home {
-        min-height: 90vh; /* Slightly less than full viewport to avoid scroll issues with URL bar */
-        padding-top: 70px; /* Adjust based on nav height */
-    }
-    .home-content {
-        gap: 1.5rem; /* Reduced gap */
-    }
-    .home-text .name {
-        font-size: 2rem; /* Was 2.5rem */
-    }
-    .home-text .profession {
-        font-size: 1.2rem; /* Was 1.5rem */
-        min-height: 2rem; /* For text wrapping */
-    }
-    .home-buttons .btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.85rem;
-        margin: 0.4rem;
-    }
-    .home-image img {
-        width: 180px; /* Was 200px, adjust as needed */
-        height: 180px;
-        border-width: 3px;
-    }
-
-    /* --- ABOUT SECTION --- */
-    #about .about-content {
-        gap: 1.5rem; /* Further reduce gap */
-    }
-    .about-image img {
-        width: 130px; /* Smaller image */
-        height: 130px;
-    }
-    .about-details p,
-    .about-info p {
-        font-size: 0.85rem; /* Readability */
-        word-break: break-word; /* Prevent overflow */
-    }
-    .about-right p:first-of-type {
-        font-size: 0.95rem;
-    }
-    .skills-section-container {
-        margin-top: 2.5rem;
-        padding: 1rem 0.5rem;
-    }
-    .skills-title {
-        font-size: 1.4rem;
-        margin-bottom: 1rem;
-    }
-    /* Tailwind skill cards text: ensure readability */
-    .animated-skills-grid .text-sm { font-size: 0.8rem !important; }
-    .animated-skills-grid .text-xs { font-size: 0.7rem !important; }
-    .animated-skills-grid .p-5 { padding: 1rem !important; }
-
-
-    /* --- RESUME SECTION --- */
-    #resume .resume-title {
-        font-size: 1.3rem;
-    }
-    .card.uiverse-style {
-        flex-direction: column; /* Stack icon and text */
-        align-items: flex-start;
-        gap: 0.8rem;
-        padding: 0.8rem;
-    }
-    .uiverse-style .img-section {
-        margin-bottom: 0.5rem; /* Space below icon */
-    }
-    .uiverse-style .img-section img {
-        width: 30px;
-    }
-    .uiverse-style .card-time {
-        font-size: 0.95rem;
-    }
-    .uiverse-style .recent {
-        font-size: 0.85rem;
-        line-height: 1.5;
-    }
-
-    /* --- PROJECTS SECTION --- */
-    .projects-grid {
-        grid-template-columns: 1fr; /* Ensure single column */
-        gap: 1.5rem;
-    }
-    .project-image img {
-        height: 200px; /* Adjust height */
-    }
-    .project-info {
-        padding: 1rem;
-    }
-    .project-title {
-        font-size: 1.15rem;
-    }
-    .project-description {
-        font-size: 0.85rem;
-    }
-    /* Project buttons: Stack them for better UI on small screens */
-    .project-links {
+        position: absolute;
+        right: 0;
+        top: 100%; /* Position below the nav bar */
+        background-color: var(--white);
+        display: flex;
         flex-direction: column;
-        align-items: stretch; /* Make buttons take full width of their container */
-        gap: 0.5rem; /* Space between stacked buttons */
+        align-items: center;
+        width: 70%; /* Adjusted width */
+        max-width: 300px;
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out; /* Smoother transition */
+        box-shadow: -5px 5px 10px rgba(0,0,0,0.1);
+        border-top: 1px solid var(--border-color);
     }
-    .project-links .btn {
+
+    nav .nav-links.nav-active {
+        transform: translateX(0%);
+    }
+
+    nav .nav-links li {
         width: 100%;
-        box-sizing: border-box; /* Include padding and border in the element's total width and height */
         text-align: center;
     }
 
+    nav .nav-links li a {
+        margin: 0;
+        padding: 1.2rem 0; /* Increased tap area */
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid var(--bg-alt);
+        font-size: 0.95rem;
+    }
+    nav .nav-links li:last-child a {
+        border-bottom: none;
+    }
 
-    /* --- CONTACT SECTION --- */
-    .contact-grid {
-        grid-template-columns: 1fr; /* Ensure single column */
-        gap: 1rem;
+    nav .nav-links li a::after {
+        display: none;
     }
-    .contact-item {
-        padding: 1.2rem;
+    nav .nav-links li a.active {
+        background-color: var(--accent-color);
+        color: var(--text-primary);
     }
-    .contact-icon {
-        font-size: 1.8rem;
-    }
-    .contact-title {
-        font-size: 1.05rem;
-    }
-    .contact-info a {
-        font-size: 0.9rem;
-    }
-    .question-title {
-        font-size: 1.2rem;
-    }
-    .question-section .btn-primary {
-        padding: 0.7rem 1.5rem;
-        font-size: 0.9rem;
-        width: 100%; /* Make button full width */
-        max-width: 300px; /* Optional: max width for the button */
-        margin-left: auto;
-        margin-right: auto;
+
+    .burger {
         display: block;
     }
-    .social-links .social-link {
-        width: 38px;
-        height: 38px;
-        font-size: 1.05rem;
-        margin: 0 0.25rem;
+    .burger.toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+    .burger.toggle .line2 { opacity: 0; }
+    .burger.toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+    #home {
+        min-height: 90vh;
+        padding-top: 60px; /* Adjust if nav height changes */
+    }
+    .home-content {
+        gap: 1.5rem;
+        padding: 0 10px; /* Padding for home text on mobile */
+    }
+    .home-text .name { font-size: 2rem; }
+    .home-text .profession { font-size: 1.2rem; min-height: 3.6rem; } /* Allow for 2 lines */
+    .home-buttons .btn { padding: 0.7rem 1.4rem; font-size: 0.85rem; margin: 0.4rem; }
+    .home-image img { width: 180px; height: 180px; border-width: 4px; }
+
+    #about .about-content { gap: 2rem; }
+    .about-image img { width: 140px; height: 140px; }
+    .about-details p, .about-info p { font-size: 0.9rem; word-break: break-word; }
+    .about-right p:first-of-type { font-size: 1rem; }
+
+    .skills-section-container { margin-top: 2.5rem; padding: 1.5rem 0.5rem; }
+    .skills-title { font-size: 1.5rem; margin-bottom: 1.5rem; }
+    .animated-skills-grid { grid-template-columns: 1fr; gap: 1rem; padding: 0 0.5rem; }
+    .animated-skills-grid .p-5 { padding: 1rem !important; }
+    .animated-skills-grid .text-sm { font-size: 0.8rem !important; }
+    .animated-skills-grid .text-xs { font-size: 0.75rem !important; }
+    /* Ensure skill card content is not too small */
+    .animated-skills-grid .inline-block.text-xs {
+        padding: 0.25rem 0.5rem; /* Adjust padding */
+        line-height: 1.4; /* Improve readability */
     }
 
-    /* --- FOOTER --- */
-    footer {
-        padding: 15px 10px; /* Adjust padding */
-        font-size: 0.8rem;
-    }
-    footer p {
-        word-break: break-word;
-    }
+
+    #resume .resume-title { font-size: 1.4rem; }
+    .card.uiverse-style { flex-direction: column; align-items: flex-start; gap: 0.8rem; padding: 1rem; }
+    .uiverse-style .img-section { margin-bottom: 0.5rem; padding: 0.5rem; }
+    .uiverse-style .img-section img { width: 35px; }
+    .uiverse-style .card-time { font-size: 1rem; }
+    .uiverse-style .recent { font-size: 0.9rem; }
+
+    .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .project-image img { height: 200px; }
+    .project-info { padding: 1rem; }
+    .project-title { font-size: 1.25rem; }
+    .project-description { font-size: 0.9rem; }
+    .project-links { flex-direction: column; align-items: stretch; gap: 0.5rem; }
+    .project-links .btn { width: 100%; text-align: center; }
+
+    .contact-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .contact-item { padding: 1.5rem; }
+    .contact-icon { font-size: 2rem; }
+    .contact-title { font-size: 1.1rem; }
+    .contact-info a { font-size: 0.95rem; }
+    .question-title { font-size: 1.3rem; }
+    .question-section .btn-primary { padding: 0.8rem 1.8rem; font-size: 0.95rem; width: 100%; max-width: 320px; display: block; margin: 0 auto; }
+    .social-links .social-link { width: 40px; height: 40px; font-size: 1.1rem; margin: 0 0.3rem; }
+
+    footer { padding: 15px 10px; font-size: 0.85rem; }
+    footer p { word-break: break-word; }
 }
 
-/* Optional: Further adjustments for very small screens */
 @media screen and (max-width: 360px) {
-    .container {
-        width: 95%;
-    }
+    .container { width: 95%; }
     h1 { font-size: 1.9rem; }
     .home-text .name { font-size: 1.7rem; }
-    .home-text .profession { font-size: 1rem; }
-    .home-image img { width: 140px; height: 140px; }
+    .home-text .profession { font-size: 1rem; min-height: 3rem; }
+    .home-image img { width: 150px; height: 150px; }
 
-    .btn, .btn-primary, .btn-secondary {
-        padding: 0.5rem 1rem;
-        font-size: 0.75rem;
-    }
+    .btn, .btn-primary, .btn-secondary { padding: 0.6rem 1.2rem; font-size: 0.8rem; }
     nav .logo { font-size: 1.1rem; }
-    .animated-skills-grid .text-sm { font-size: 0.75rem !important; }
-    .animated-skills-grid .text-xs { font-size: 0.65rem !important; }
+}
+
+/* Tailwind helper classes (if not using purge or if they get removed) */
+.bg-white\/80 { background-color: rgba(255,255,255,0.8); }
+.backdrop-blur-sm { backdrop-filter: blur(4px); }
+.shadow-lg { box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+.border-gray-200\/70 { border-color: rgba(229,231,235,0.7); }
+.text-gray-800 { color: #2d3748; }
+.text-orange-600 { color: #dd6b20; }
+.text-orange-700 { color: #c05621; }
+.bg-gray-200 { background-color: #e2e8f0; }
+.from-orange-500\/20 { --tw-gradient-from: rgba(249,153,59,0.2); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(249,153,59, 0)); }
+.to-teal-500\/20 { --tw-gradient-to: rgba(56, 178, 172, 0.2); }
+.from-orange-500 { --tw-gradient-from: #f9993b; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(249,153,59, 0)); }
+.to-teal-500 { --tw-gradient-to: #38b2ac; }
+.animate-\[shine_2s_linear_infinite\] { animation: shine 2s linear infinite; }
+@keyframes shine {
+  0% { transform: translateX(-100%) skewX(-20deg); }
+  100% { transform: translateX(100%) skewX(-20deg); }
 }

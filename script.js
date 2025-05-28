@@ -1,23 +1,20 @@
 // script.js
-console.log("script.js started");
+console.log("Script.js: Initializing");
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOMContentLoaded event fired");
+    console.log("Script.js: DOMContentLoaded event fired");
+    document.body.classList.add('loading'); // Add class to body for initial overflow control
 
     const nav = document.querySelector('nav');
     const navLinksContainer = document.querySelector('.nav-links');
     const navLinks = document.querySelectorAll('.nav-links li a');
     const burger = document.querySelector('.burger');
     const sections = document.querySelectorAll('main section');
-    const loadingOverlay = document.getElementById('loading-overlay'); // Defined here
+    const loadingOverlay = document.getElementById('loading-overlay');
     const customCursor = document.querySelector('.custom-cursor');
 
     if (!loadingOverlay) {
         console.error("CRITICAL: Loading overlay element not found on DOMContentLoaded!");
-        // Attempt to hide body's potential overflow if loader was meant to cover it
-        // document.body.style.overflow = 'auto'; // Or 'visible'
-    } else {
-        console.log("Loading overlay found in DOMContentLoaded:", loadingOverlay);
     }
 
     // --- NAVIGATION ---
@@ -29,10 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
             burger.setAttribute('aria-expanded', isExpanded);
         });
     } else {
-        console.warn("Burger or navLinksContainer not found for navigation.");
+        console.warn("Burger or navLinksContainer not found.");
     }
 
-    if (navLinks && navLinksContainer) { // Check navLinksContainer again for safety
+    if (navLinks && navLinksContainer) {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 if (navLinksContainer.classList.contains('nav-active')) {
@@ -44,16 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
     // --- SCROLL HANDLING (NAV & ACTIVE LINKS) ---
     function handleScroll() {
-        if (!nav || !sections || sections.length === 0) return;
-
+        if (!nav || !sections || sections.length === 0) {
+            // console.warn("handleScroll: Nav or sections not found.");
+            return;
+        }
         let currentSectionId = 'home';
         const navHeight = nav.offsetHeight;
 
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - navHeight - 50;
+            const sectionTop = section.offsetTop - navHeight - 70; // Increased offset slightly
             if (window.scrollY >= sectionTop) {
                 currentSectionId = section.getAttribute('id');
             }
@@ -72,9 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
             nav.classList.remove('scrolled');
         }
     }
-
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial call
+    handleScroll();
 
     // --- TYPING EFFECT ---
     const typingTextElement = document.getElementById('typing-text');
@@ -83,11 +80,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const professions = ["A Maths Teacher", "A Web Developer", "A Tech Enthusiast"];
             let professionIndex = 0;
             let charIndex = 0;
-            let currentText = '';
+            let currentText = "";
             let isDeleting = false;
+            let typeTimeout; // To clear previous timeout
 
             function type() {
+                clearTimeout(typeTimeout); // Clear any existing timeout
+
                 const currentProfession = professions[professionIndex];
+                
                 if (isDeleting) {
                     currentText = currentProfession.substring(0, charIndex - 1);
                     charIndex--;
@@ -97,21 +98,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 typingTextElement.textContent = currentText;
-                let typeSpeed = isDeleting ? 75 : 150;
+                let typeSpeed = isDeleting ? 60 : 120;
 
                 if (!isDeleting && charIndex === currentProfession.length) {
-                    typeSpeed = 2000;
+                    typeSpeed = 1800; // Pause at end
                     isDeleting = true;
                 } else if (isDeleting && charIndex === 0) {
                     isDeleting = false;
                     professionIndex = (professionIndex + 1) % professions.length;
-                    typeSpeed = 500;
+                    currentText = ""; // Ensure text is cleared for next profession
+                    typeSpeed = 300; // Pause before typing new
                 }
-                setTimeout(type, typeSpeed);
+                // console.log(`Typing: '${currentText}', Prof: ${professionIndex}, Char: ${charIndex}, Del: ${isDeleting}`);
+                typeTimeout = setTimeout(type, typeSpeed);
             }
-            setTimeout(type, 1000);
+            typeTimeout = setTimeout(type, 800); // Initial delay
         } catch (e) {
             console.error("Error in Typing Effect:", e);
+            if(typingTextElement) typingTextElement.textContent = "A Maths Teacher"; // Fallback text
         }
     } else {
         console.warn("Typing text element not found.");
@@ -122,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (tiltElements.length > 0) {
         if (typeof VanillaTilt !== 'undefined') {
             try {
-                VanillaTilt.init(tiltElements, { max: 15, speed: 400, glare: true, "max-glare": 0.2 });
+                VanillaTilt.init(tiltElements, { max: 10, speed: 300, glare: true, "max-glare": 0.15 });
                 console.log("VanillaTilt initialized for", tiltElements.length, "elements.");
             } catch (e) {
                 console.error("Error initializing VanillaTilt:", e);
@@ -136,29 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const particlesContainer = document.getElementById('tsparticles-background');
     if (particlesContainer) {
         if (typeof tsParticles !== 'undefined' && typeof tsParticles.load === 'function') {
-            tsParticles.load("tsparticles-background", {
-                fpsLimit: 60,
-                interactivity: {
-                    events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" }, resize: true },
-                    modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
-                },
-                particles: {
-                    number: { value: 80, density: { enable: true, value_area: 800 } },
-                    color: { value: "#ffffff" },
-                    shape: { type: "circle" },
-                    opacity: { value: 0.5 },
-                    size: { value: 3, random: true },
-                    links: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
-                    move: { enable: true, speed: 2, direction: "none", random: false, straight: false, out_mode: "out" }
-                },
-                detectRetina: true,
-            }).then(() => {
-                console.log("tsParticles loaded successfully.");
-            }).catch(error => {
-                console.error("tsParticles loading FAILED:", error);
-            });
+            tsParticles.load("tsparticles-background", { /* ... your existing config ... */
+                fpsLimit: 60, interactivity: {events: {onHover: {enable: true, mode: "repulse"}, onClick: {enable: true, mode: "push"}, resize: true}, modes: {repulse: {distance: 100, duration: 0.4}, push: {particles_nb: 4}}}, particles: {number: {value: 60, density: {enable: true, value_area: 700}}, color: {value: "#ffffff"}, shape: {type: "circle"}, opacity: {value: 0.4}, size: {value: 2.5, random: true}, links: {enable: true, distance: 120, color: "#ffffff", opacity: 0.3, width: 1}, move: {enable: true, speed: 1.5, direction: "none", random: false, straight: false, out_mode: "out"}}, detectRetina: true
+            }).then(() => console.log("tsParticles loaded successfully."))
+              .catch(error => console.error("tsParticles loading FAILED:", error));
         } else {
-            console.warn("tsParticles library or load function not found, but 'tsparticles-background' element exists.");
+            console.warn("tsParticles library or load function not found.");
         }
     }
 
@@ -169,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 customCursor.style.left = e.clientX + 'px';
                 customCursor.style.top = e.clientY + 'px';
             });
-            document.querySelectorAll('a, button, .burger, [data-tilt], .contact-item, .social-link')
+            document.querySelectorAll('a, button, .burger, [data-tilt], .contact-item, .social-link, input, textarea, select')
                 .forEach(el => {
                     el.addEventListener('mouseenter', () => customCursor.classList.add('pointer'));
                     el.addEventListener('mouseleave', () => customCursor.classList.remove('pointer'));
@@ -177,78 +164,71 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (e) {
             console.error("Error in Custom Cursor Logic:", e);
         }
-    } else {
-        console.warn("Custom cursor element not found.");
     }
 
     // --- ON-SCROLL ANIMATION LOGIC ---
     const animatedElements = document.querySelectorAll('.animate-on-scroll');
     if (animatedElements.length > 0) {
         try {
-            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+            const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 }; // Adjusted threshold
             const observerCallback = (entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // console.log("Element is intersecting:", entry.target);
                         entry.target.classList.add('is-visible');
                         observer.unobserve(entry.target);
                     }
                 });
             };
             const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
-            animatedElements.forEach(el => scrollObserver.observe(el));
+            animatedElements.forEach(el => {
+                // console.log("Observing element:", el);
+                scrollObserver.observe(el);
+            });
             console.log("On-scroll animations initialized for", animatedElements.length, "elements.");
         } catch (e) {
             console.error("Error in On-Scroll Animation Logic:", e);
+             // If observer fails, make all animatable elements visible to prevent them from staying hidden
+            animatedElements.forEach(el => el.classList.add('is-visible'));
         }
     }
-    console.log("DOMContentLoaded event listener finished executing all initializations.");
+    console.log("Script.js: DOMContentLoaded initializations finished.");
 }); // End DOMContentLoaded
 
 
 // --- LOADING OVERLAY HIDE ---
-// This needs to be robust.
 function hideLoadingOverlay() {
     const overlay = document.getElementById('loading-overlay');
-    if (overlay) {
-        console.log("Attempting to hide loading overlay.");
-        // Check if it's already hidden to prevent issues if called multiple times
-        if (overlay.style.opacity === '0') {
-            console.log("Loading overlay already seems hidden.");
-            return;
-        }
-        setTimeout(() => {
-            overlay.style.opacity = '0';
-            overlay.style.visibility = 'hidden';
-            overlay.style.display = 'none'; // Crucial for removing it from layout
-            document.body.style.overflow = 'auto'; // Ensure body is scrollable
-            console.log("Loading overlay hidden and body scroll enabled.");
-        }, 500); // Minimum display time, adjust as needed
+    if (overlay && !overlay.classList.contains('hidden')) {
+        console.log("Script.js: Attempting to hide loading overlay.");
+        setTimeout(() => { // Ensure a minimum display time
+            overlay.classList.add('hidden');
+            document.body.classList.remove('loading'); // Enable body scroll
+            console.log("Script.js: Loading overlay hidden and body scroll enabled.");
+        }, 300); // Minimum display time, adjust as needed
+    } else if (overlay && overlay.classList.contains('hidden')) {
+        // console.log("Script.js: Loading overlay already hidden.");
+         document.body.classList.remove('loading'); // Still ensure scroll is enabled
     } else {
-        console.error("CRITICAL: Loading overlay element NOT FOUND when trying to hide it via hideLoadingOverlay function.");
-        // If overlay isn't found, still try to enable body scroll
-        document.body.style.overflow = 'auto';
+        console.error("CRITICAL: Loading overlay element NOT FOUND when trying to hide.");
+        document.body.classList.remove('loading'); // Enable scroll anyway
     }
 }
 
-// Call hideLoadingOverlay on window.load
 window.addEventListener('load', () => {
-    console.log("Window 'load' event fired. All resources should be loaded.");
+    console.log("Script.js: Window 'load' event fired.");
     hideLoadingOverlay();
 });
 
-// Fallback: If 'load' event is unusually delayed or fails for some reason,
-// try to hide the loader after a longer timeout from DOMContentLoaded.
-// This is a safety net.
+// Fallback: If 'load' event is unusually delayed or fails.
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
-        console.log("Fallback timeout: attempting to hide loader if still visible after 3 seconds.");
         const overlay = document.getElementById('loading-overlay');
-        // Check if it's still visible (opacity not 0 or display not none)
-        if (overlay && (overlay.style.opacity !== '0' || overlay.style.display !== 'none')) {
-            console.warn("Fallback: Loader was still visible. Forcing hide.");
+        if (overlay && !overlay.classList.contains('hidden')) {
+            console.warn("Script.js Fallback: Loader was still visible. Forcing hide.");
             hideLoadingOverlay();
         }
-    }, 3000); // 3 seconds fallback
+    }, 3500); // 3.5 seconds fallback
 });
 
 
@@ -260,4 +240,4 @@ function submitViaEmailClient() {
     window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-console.log("script.js finished parsing all code.");
+console.log("Script.js: Script fully parsed.");
