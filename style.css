@@ -435,14 +435,11 @@ img {
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2);
 }
-/* Remove these if using .btn-outline-section for buttons in About, Resume etc. */
-/* #about .btn-secondary, ... */
 
 .btn-sm {
     padding: 10px 22px; /* Adjusted */
     font-size: 0.8rem;  /* Adjusted */
 }
-/* Kept .btn-outline-primary for general use if needed, otherwise use .btn-outline-section */
 
 
 /* About Section */
@@ -467,7 +464,6 @@ img {
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
     background-color: var(--card-bg);
-    /* Removed backdrop-filter for cleaner look, can be re-added if blur is desired */
 }
 .about-details h3 {
     font-size: 1.25rem; /* Adjusted */
@@ -545,11 +541,13 @@ img {
     overflow: hidden;
     margin-bottom: 10px;
 }
+/* PROGRESS BAR ANIMATION UPDATE */
 .progress-bar {
     height: 100%;
-    background: var(--primary-color); /* Solid color for cleaner look */
-    border-radius: 4px;
-    transition: width 1s ease-in-out;
+    background: linear-gradient(to right, var(--primary-color), var(--accent-color)); /* Restored gradient */
+    border-radius: 5px; /* Matching original radius */
+    width: 0;           /* Initial width for animation */
+    transition: width 1s ease-in-out 0.5s; /* Added 0.5s delay for staggered animation */
 }
 .skill-description {
     font-size: 0.9rem; /* Adjusted */
