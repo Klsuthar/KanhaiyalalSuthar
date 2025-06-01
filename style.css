@@ -327,6 +327,7 @@ img {
     color: var(--bg-white);
     text-align: center;
     padding-top: var(--navbar-height);
+    overflow: hidden; /* Important for parallax on home-content if it moves outside bounds */
 }
 #tsparticles-background {
     position: absolute;
@@ -345,6 +346,9 @@ img {
     gap: 2rem; /* Original gap */
     position: relative;
     z-index: 1;
+    /* Parallax will be applied via JS transform */
+    /* Ensure smooth transform for parallax */
+    will-change: transform; 
 }
 .home-text {
     max-width: 600px;
@@ -424,12 +428,12 @@ img {
 }
 
 /* This rule needs to be more specific or use a different class for outline buttons in sections */
-.btn-outline-section { /* New class for outline buttons in sections */
+.btn-outline-primary { /* Changed class name for clarity */
     color: var(--primary-color);
     border-color: var(--primary-color);
     background-color: transparent;
 }
-.btn-outline-section:hover {
+.btn-outline-primary:hover {
     background-color: var(--primary-color);
     color: var(--bg-white);
     transform: translateY(-3px);
@@ -515,7 +519,7 @@ img {
     transition: var(--card-transition);
 }
 .skill-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02); /* Added subtle scale */
     box-shadow: var(--card-box-shadow-hover);
 }
 .skill-info {
@@ -585,7 +589,7 @@ img {
     transition: var(--card-transition), border-left-color 0.3s ease;
 }
 .card.uiverse-style:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.01); /* Added subtle scale */
     box-shadow: var(--card-box-shadow-hover);
     border-left-color: var(--accent-color); /* Change border color on hover */
 }
@@ -632,7 +636,7 @@ img {
     transition: var(--card-transition);
 }
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.02); /* More lift and scale */
     box-shadow: var(--card-box-shadow-hover);
 }
 .project-image {
@@ -647,7 +651,7 @@ img {
     transition: transform 0.4s ease-out; /* For zoom effect */
 }
 .project-card:hover .project-image img {
-    transform: scale(1.05); /* Zoom image on card hover */
+    transform: scale(1.08); /* Zoom image on card hover more */
 }
 .project-info {
     padding: var(--card-padding); /* Consistent padding */
@@ -674,7 +678,7 @@ img {
     transition: transform 0.3s ease;
 }
 .project-info .btn:hover i {
-    transform: translateX(4px); /* Increased */
+    transform: translateX(5px); /* Increased movement */
 }
 
 /* Contact Section */
@@ -693,7 +697,7 @@ img {
     transition: var(--card-transition);
 }
 .contact-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02); /* Added subtle scale */
     box-shadow: var(--card-box-shadow-hover);
 }
 
@@ -702,6 +706,10 @@ img {
     margin: 0 auto 18px auto; /* Adjusted */
     color: var(--primary-color);
     font-size: 2.2rem; /* Adjusted icon size */
+    transition: transform 0.3s ease;
+}
+.contact-item:hover .contact-icon-fa {
+    transform: scale(1.1) rotate(5deg); /* Icon animation on card hover */
 }
 
 .contact-item h3 {
@@ -791,49 +799,52 @@ footer .fas.fa-heart {
 }
 
 @keyframes blinkCursor {
-    0%, 100% { border-right-color: var(--accent-color); }
+    0%, 100% { border-right-color: var(--accent-color); } /* Ensure this matches your design */
     50% { border-right-color: transparent; }
 }
 
-/* Scroll Animations - Retaining original logic as it's good */
+/* Scroll Animations - UPDATED */
 .animate-on-scroll {
     opacity: 0;
+    will-change: transform, opacity; /* Optimize for animations */
+    /* Base transition for opacity and any transform */
     transition: opacity 0.6s ease-out, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* transition-delay will be set by JS or specific CSS rules */
 }
+
+/* Initial states for different animation types BEFORE .is-visible */
+.animate-on-scroll.slide-from-left { transform: translateX(-80px) scale(0.95); }
+.animate-on-scroll.slide-from-right { transform: translateX(80px) scale(0.95); }
+.animate-on-scroll.slide-from-bottom { transform: translateY(70px) scale(0.95); }
+.animate-on-scroll.slide-from-top { transform: translateY(-70px) scale(0.95); }
+.animate-on-scroll.scale-in { transform: scale(0.8); }
+.animate-on-scroll.fade-only { transform: translateY(0); /* Ensure no movement if only fading */ }
+
+/* When visible, reset transforms and opacity to final state */
 .animate-on-scroll.is-visible {
     opacity: 1;
-    transform: translateX(0) translateY(0) scale(1) rotate(0);
+    transform: translateX(0) translateY(0) scale(1) rotate(0); /* Generic reset for all types */
 }
-.section-title.animate-on-scroll,
-.section-subtitle.animate-on-scroll {
-    transform: translateY(-30px); /* Slightly less aggressive */
-}
-.home-text.animate-on-scroll {
-    transform: translateX(-50px) scale(0.98);
-}
-.home-image.animate-on-scroll {
-    transform: translateX(50px) scale(0.98);
-}
-.about-left.animate-on-scroll {
-    transform: translateX(-60px);
-}
-.about-right.animate-on-scroll {
-    transform: translateX(60px);
-}
-.skill-item.animate-on-scroll,
-.resume-grid .animate-on-scroll,
-.projects-grid .animate-on-scroll,
-.contact-grid .animate-on-scroll,
-.question-section.animate-on-scroll,
-.social-links.animate-on-scroll {
-    transform: translateY(50px) scale(0.95); /* Adjusted */
-}
+
+/* Staggering for specific lists (can be extended or replaced by JS data-stagger-children if preferred) */
+/* Skills Grid - kept original simple staggering via CSS */
 .animated-skills-grid .skill-item.animate-on-scroll:nth-child(1) { transition-delay: 0.0s; }
 .animated-skills-grid .skill-item.animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
 .animated-skills-grid .skill-item.animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
 .animated-skills-grid .skill-item.animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
 .animated-skills-grid .skill-item.animate-on-scroll:nth-child(5) { transition-delay: 0.4s; }
 .animated-skills-grid .skill-item.animate-on-scroll:nth-child(6) { transition-delay: 0.5s; }
+
+/* Example for project cards if you want CSS staggering */
+.projects-grid .project-card.animate-on-scroll:nth-child(odd) { transition-delay: 0.1s; }
+.projects-grid .project-card.animate-on-scroll:nth-child(even) { transition-delay: 0.2s; }
+
+/* Example for resume cards */
+.resume-grid .card.uiverse-style.animate-on-scroll:nth-child(1) { transition-delay: 0.05s; }
+.resume-grid .card.uiverse-style.animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+.resume-grid .card.uiverse-style.animate-on-scroll:nth-child(3) { transition-delay: 0.15s; }
+.resume-grid .card.uiverse-style.animate-on-scroll:nth-child(4) { transition-delay: 0.2s; }
+/* ... and so on if there are more direct children cards to stagger this way */
 
 
 /* Responsive Design */
@@ -1001,14 +1012,15 @@ footer .fas.fa-heart {
         padding: var(--card-padding);
         box-shadow: var(--card-box-shadow);
     }
-    .about-left.animate-on-scroll,
-    .about-right.animate-on-scroll {
-        transform: translateY(40px) scale(0.98); /* Fine-tuned */
+    /* Updated initial transforms for mobile */
+    .animate-on-scroll.slide-from-left,
+    .animate-on-scroll.slide-from-right {
+        transform: translateX(0) translateY(50px) scale(0.95); /* Slide from bottom on mobile */
     }
-     .home-text.animate-on-scroll,
-     .home-image.animate-on-scroll {
-        transform: translateY(30px) scale(0.98); /* Fine-tuned */
-    }
+     .animate-on-scroll.slide-from-top {
+        transform: translateY(-50px) scale(0.95);
+     }
+
 
     /* Ensure all card grids stack to 1 column */
     .animated-skills-grid,
