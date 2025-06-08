@@ -489,9 +489,10 @@ img {
 }
 
 .home-image img {
-    border-radius: var(--card-border-radius); /* Changed from 50% to use your card radius */
+    border-radius: var(--card-border-radius);
+    /* Changed from 50% to use your card radius */
     border: 5px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 5px 25px rgba(var(--primary-color-rgb, 0,123,255), 0.25);
+    box-shadow: 0 5px 25px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
     /* Fallback: box-shadow: 0 5px 25px rgba(0, 123, 255, 0.2); */
 }
 
@@ -705,7 +706,8 @@ img {
     height: 100%;
     background: linear-gradient(to right, var(--primary-color), var(--accent-color));
     border-radius: 5px;
-    width: 0; /* Initial width - JS will animate this */
+    width: 0;
+    /* Initial width - JS will animate this */
     /* REMOVED CSS TRANSITION ON WIDTH to allow JS to control animation smoothly */
 }
 
@@ -1397,8 +1399,10 @@ footer .fas.fa-heart {
         margin-top: 0.5rem;
     }
 
-    .home-image img { /* This was '.home-image' before, should be '.home-image img' for mobile consistency if image size is an issue here */
-        max-width: 200px; /* Significantly smaller image */
+    .home-image img {
+        /* This was '.home-image' before, should be '.home-image img' for mobile consistency if image size is an issue here */
+        max-width: 200px;
+        /* Significantly smaller image */
         margin-top: 0.5rem;
         /* Ensure border-radius for mobile if it was missed */
         border-radius: var(--card-border-radius);
@@ -1479,8 +1483,10 @@ footer .fas.fa-heart {
         margin: 0.3rem;
     }
 
-    .home-image img { /* Ensure targeting the img tag */
-        max-width: 170px; /* Even smaller image */
+    .home-image img {
+        /* Ensure targeting the img tag */
+        max-width: 170px;
+        /* Even smaller image */
         margin-top: 0.3rem;
     }
 
@@ -1507,4 +1513,64 @@ footer .fas.fa-heart {
         opacity: 1;
         transform: translateX(0px);
     }
+}
+
+/* About Section - My Interests Styling */
+.interests-section {
+    margin-top: 30px;
+    /* Adds space above the interests area */
+}
+
+.interests-title {
+    /* Styling for "My Interests" heading */
+    font-size: 1.25rem;
+    /* Or adjust as preferred, e.g., 1.3rem */
+    color: var(--text-color);
+    /* Or var(--primary-color) if you want it to stand out more */
+    margin-bottom: 18px;
+    /* Space below the heading */
+    font-weight: 600;
+    /* Make it a bit bold */
+}
+
+.interests-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows tags to wrap to the next line on smaller screens */
+    gap: 10px;
+    /* Provides space between the tags (both horizontally and vertically) */
+}
+
+.interest-tag {
+    display: inline-block;
+    /* Makes each tag behave like a block but flow inline */
+    padding: 8px 15px;
+    /* Inner spacing for the tags */
+    border: 1px solid var(--primary-color);
+    /* Border using your primary color */
+    color: var(--primary-color);
+    /* Text color matching the border */
+    background-color: transparent;
+    /* Or a very light background: rgba(0, 123, 255, 0.03); */
+    border-radius: 20px;
+    /* This creates the rounded "pill" shape */
+    font-size: 0.9rem;
+    /* Text size for the interests */
+    font-weight: 500;
+    /* Slightly bolder than normal text */
+    transition: all 0.3s ease;
+    /* Smooth transition for hover effects */
+    cursor: default;
+    /* Indicates it's not a link, but can be changed if they become links */
+}
+
+.interest-tag:hover {
+    background-color: var(--primary-color);
+    /* Fill with primary color on hover */
+    color: var(--bg-white);
+    /* Change text to white on hover */
+    transform: translateY(-2px);
+    /* Slight lift effect on hover */
+    box-shadow: 0 3px 8px rgba(var(--primary-color-rgb, 0, 123, 255), 0.2);
+    /* Optional shadow (define --primary-color-rgb in :root or use a fallback like rgba(0,0,0,0.1)) */
 }
