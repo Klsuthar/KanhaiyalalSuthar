@@ -1398,14 +1398,11 @@ footer .fas.fa-heart {
     }
 
     .home-image img {
-        /* This was '.home-image' before, should be '.home-image img' for mobile consistency if image size is an issue here */
-        max-width: 200px;
-        /* Significantly smaller image */
-        margin-top: 0.5rem;
-        /* Ensure border-radius for mobile if it was missed */
         border-radius: var(--card-border-radius);
+        /* Changed from 50% to use your card radius */
         border: 5px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 5px 25px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
+        /* Fallback: box-shadow: 0 5px 25px rgba(0, 123, 255, 0.2); */
     }
 
 
