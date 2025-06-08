@@ -489,12 +489,10 @@ img {
 }
 
 .home-image img {
-    border-radius: var(--card-border-radius);
-    /* Changed from 50% to use your card radius */
-    border: 5px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 5px 25px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
-    /* Fallback: box-shadow: 0 5px 25px rgba(0, 123, 255, 0.2); */
-}
+        border-radius: var(--card-border-radius);
+        border: 5px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 5px 25px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
+    }
 
 
 /* Buttons */
@@ -1484,9 +1482,7 @@ footer .fas.fa-heart {
     }
 
     .home-image img {
-        /* Ensure targeting the img tag */
         max-width: 170px;
-        /* Even smaller image */
         margin-top: 0.3rem;
     }
 
