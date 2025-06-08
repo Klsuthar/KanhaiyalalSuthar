@@ -996,10 +996,12 @@ footer .fas.fa-heart {
      .home-buttons {
         margin-top: 0.5rem;
     }
-    .home-image {
-        max-width: 200px; /* Significantly smaller image */
-        margin-top: 0.5rem;
-    }
+    .home-image img {
+    border-radius: 0; /* Changed from 50% */
+    border: 5px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 5px 25px rgba(var(--primary-color-rgb, 0,123,255), 0.25);
+    /* Fallback: box-shadow: 0 5px 25px rgba(0, 123, 255, 0.2); */
+}
     /* END HOME SECTION MOBILE FIXES */
 
     .about-left {
