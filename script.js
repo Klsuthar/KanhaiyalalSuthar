@@ -1,17 +1,29 @@
 console.log("KLS Portfolio Script Initializing...");
 
-// --- Function to Animate Value Counter (for skill percentages) ---
-function animateValueCounter(element, start, end, duration) {
+// --- Function to Animate Value Counter (for skill percentages) AND PROGRESS BAR ---
+function animateValueCounter(percentageElement, progressBarElement, start, end, duration) {
     let startTimestamp = null;
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
         const progress = Math.min((timestamp - startTimestamp) / duration, 1);
         const currentValue = Math.floor(progress * (end - start) + start);
-        element.textContent = currentValue + "%"; // Update text with percentage sign
+
+        // Update text content for the percentage
+        percentageElement.textContent = currentValue + "%";
+
+        // Update the width of the progress bar
+        if (progressBarElement) {
+            progressBarElement.style.width = currentValue + "%";
+        }
+
         if (progress < 1) {
             window.requestAnimationFrame(step);
         } else {
-            element.textContent = end + "%"; // Ensure it ends exactly on the target
+            // Ensure final values are set accurately
+            percentageElement.textContent = end + "%";
+            if (progressBarElement) {
+                progressBarElement.style.width = end + "%";
+            }
         }
     };
     window.requestAnimationFrame(step);
@@ -56,7 +68,6 @@ function optimizedScrollUpdates() {
         if(homeLink && !homeLink.classList.contains('active')) homeLink.classList.add('active');
     }
 
-
     // Parallax effect for home content
     const homeContent = document.querySelector('#home .home-content');
     if (homeContent) {
@@ -83,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const burger = document.querySelector('.burger');
     const navLinks = document.querySelector('.nav-links');
     const navLinkItems = document.querySelectorAll('.nav-links li a');
-    // Navbar and sections already selected in optimizedScrollUpdates
 
     burger.addEventListener('click', () => {
         console.log("Burger clicked.");
@@ -198,19 +208,19 @@ document.addEventListener('DOMContentLoaded', () => {
                         onClick: { enable: true, mode: "push" },
                     },
                     modes: {
-                        grab: { distance: 120, links: { opacity: 0.6 } }, // slightly reduced distance
+                        grab: { distance: 120, links: { opacity: 0.6 } },
                         push: { quantity: 2 },
                     },
                 },
                 particles: {
                     color: { value: "#ffffff" },
-                    links: { color: "#ffffff", distance: 130, enable: true, opacity: 0.15, width: 1 }, // more subtle links
+                    links: { color: "#ffffff", distance: 130, enable: true, opacity: 0.15, width: 1 },
                     collisions: { enable: false },
-                    move: { direction: "none", enable: true, outModes: { default: "bounce" }, random: true, speed: 1, straight: false }, // slower speed
-                    number: { density: { enable: true, area: 900 }, value: 40 }, // fewer particles
+                    move: { direction: "none", enable: true, outModes: { default: "bounce" }, random: true, speed: 1, straight: false },
+                    number: { density: { enable: true, area: 900 }, value: 40 },
                     opacity: { value: 0.2 },
                     shape: { type: "circle" },
-                    size: { value: { min: 0.5, max: 2 } }, // smaller particles
+                    size: { value: { min: 0.5, max: 2 } },
                 },
                 detectRetina: true,
             });
@@ -229,7 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.1 // Adjust threshold: 0.1 means 10% visible, 0.2 means 20%
+            threshold: 0.1 // Adjust threshold as needed (e.g., 0.1 means 10% visible)
         };
 
         const observerCallback = (entries, observer) => {
@@ -241,33 +251,42 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     entry.target.classList.add('is-visible');
 
+                    // Check if it's a skill item and hasn't been animated yet
                     if (entry.target.classList.contains('skill-item') && !entry.target.dataset.counterAnimated) {
                         const percentageSpan = entry.target.querySelector('.skill-percentage');
                         const progressBar = entry.target.querySelector('.progress-bar'); // Get progress bar
-                        if (percentageSpan) {
-                            const targetText = percentageSpan.textContent.trim();
+
+                        if (percentageSpan && progressBar) { // Ensure both elements exist
+                            const targetText = percentageSpan.textContent.trim(); // Or get target from a data attribute
                             const targetValue = parseInt(targetText, 10);
+
                             if (!isNaN(targetValue)) {
-                                animateValueCounter(percentageSpan, 0, targetValue, 800 + (targetValue * 8));
-                                if (progressBar) { // Animate progress bar width
-                                    progressBar.style.width = targetValue + '%';
-                                }
-                                entry.target.dataset.counterAnimated = 'true';
+                                // Reset initial state for animation
+                                progressBar.style.width = '0%';
+                                percentageSpan.textContent = '0%';
+
+                                // Call the updated animator function
+                                // Adjust duration: base_duration + (value_factor * actual_value) for varied speed
+                                animateValueCounter(percentageSpan, progressBar, 0, targetValue, 1000 + (targetValue * 15));
+                                entry.target.dataset.counterAnimated = 'true'; // Mark as animated
                             }
                         }
                     }
-                    // Optional: Unobserve after first animation to prevent re-animation
-                    // observer.unobserve(entry.target); 
+                    // Optional: Unobserve after first animation to prevent re-animation on subsequent scrolls
+                    // observer.unobserve(entry.target);
                 } else {
-                    // Optional: To make animations replay if they scroll out and back in
-                    // entry.target.classList.remove('is-visible');
-                    // entry.target.style.transitionDelay = ''; // Reset delay
+                    // Optional: To make animations replay if they scroll out and back in.
+                    // If you enable this, ensure you reset the 'is-visible' class and 'data-counterAnimated' attribute.
                     // if (entry.target.classList.contains('skill-item') && entry.target.dataset.counterAnimated) {
+                    //     // entry.target.classList.remove('is-visible'); // Optional: if you want to hide it again
                     //     delete entry.target.dataset.counterAnimated;
                     //     const percentageSpan = entry.target.querySelector('.skill-percentage');
                     //     const progressBar = entry.target.querySelector('.progress-bar');
-                    //     if (percentageSpan) percentageSpan.textContent = "0%";
-                    //     if (progressBar) progressBar.style.width = '0%';
+                    //     if (percentageSpan) percentageSpan.textContent = "0%"; // Reset text
+                    //     if (progressBar) progressBar.style.width = '0%';      // Reset bar
+                    //     // Note: If you remove 'is-visible', the element might immediately re-trigger
+                    //     // the animation if it's still partially in view or scrolls back quickly.
+                    //     // Careful handling is needed if you want replayable animations.
                     // }
                 }
             });
@@ -277,6 +296,25 @@ document.addEventListener('DOMContentLoaded', () => {
         animatedElements.forEach(el => scrollObserver.observe(el));
     } else {
         console.warn("No elements for scroll animation or IntersectionObserver not supported.");
+        // Fallback for browsers without IntersectionObserver or if no elements are found:
+        // Manually trigger animations for any .skill-item that might be visible initially.
+        // This is a simplified fallback and won't be as performant or accurate as IntersectionObserver.
+        document.querySelectorAll('.skill-item').forEach(skillItem => {
+            if (!skillItem.dataset.counterAnimated) {
+                 const percentageSpan = skillItem.querySelector('.skill-percentage');
+                 const progressBar = skillItem.querySelector('.progress-bar');
+                 if (percentageSpan && progressBar) {
+                    const targetText = percentageSpan.textContent.trim();
+                    const targetValue = parseInt(targetText, 10);
+                    if (!isNaN(targetValue)) {
+                        progressBar.style.width = '0%';
+                        percentageSpan.textContent = '0%';
+                        animateValueCounter(percentageSpan, progressBar, 0, targetValue, 1000 + (targetValue * 15));
+                        skillItem.dataset.counterAnimated = 'true';
+                    }
+                }
+            }
+        });
     }
 }); // End of DOMContentLoaded
 
@@ -293,20 +331,37 @@ window.addEventListener('load', () => {
             console.log("Loading overlay hidden.");
         } else {
             console.warn("Loading overlay element not found at window.load.");
-            body.classList.remove('loading');
+            body.classList.remove('loading'); // Still remove body loading class
         }
     }
 
-    const maxLoadTime = 3000; // Reduced max load time
+    const maxLoadTime = 2500; // Max time before forcing hide (in ms)
+    const minDisplayTime = 300; // Min time the loader is visible (in ms)
+
+    const loadStartTime = Date.now();
+
     const fallbackTimeout = setTimeout(() => {
-        console.warn("Max load time reached, forcing hide of loading overlay.");
-        hideLoadingOverlay();
+        const elapsedTime = Date.now() - loadStartTime;
+        if (elapsedTime < minDisplayTime) {
+            setTimeout(hideLoadingOverlay, minDisplayTime - elapsedTime);
+        } else {
+            hideLoadingOverlay();
+        }
+        console.warn("Max load time reached or window.load was very fast, ensuring loading overlay is hidden.");
     }, maxLoadTime);
 
-    setTimeout(() => {
-        clearTimeout(fallbackTimeout);
+    // This event listener for 'load' will also attempt to hide the overlay.
+    // The timeout above is a fallback.
+    const elapsedTimeOnLoad = Date.now() - loadStartTime;
+    if (elapsedTimeOnLoad < minDisplayTime) {
+        setTimeout(() => {
+            clearTimeout(fallbackTimeout); // Clear the fallback if load completes quickly
+            hideLoadingOverlay();
+        }, minDisplayTime - elapsedTimeOnLoad);
+    } else {
+        clearTimeout(fallbackTimeout); // Clear the fallback if load completes
         hideLoadingOverlay();
-    }, 200); // Reduced delay
+    }
 });
 
 
