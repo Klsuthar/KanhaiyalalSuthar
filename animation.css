@@ -1,0 +1,171 @@
+/* animation.css - Modern and Cool Animations */
+
+/* --- Keyframes Definitions --- */
+
+/* 1. Enhanced Entrance: Fade in + Slight Blur + Scale */
+@keyframes fadeInBlurScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+/* 2. Text Character Focus-In (apply to spans wrapping characters) */
+@keyframes textFocusIn {
+  0% {
+    filter: blur(12px);
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* For staggered effect, JS would add animation-delay to each span */
+
+/* 3. Subtle Floating/Bobbing */
+@keyframes floatSubtle {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* 4. Background Pan (for buttons/links on hover) */
+@keyframes backgroundPan {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* 5. Icon Wiggle/Jiggle */
+@keyframes iconWiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(8deg) scale(1.1); }
+  75% { transform: rotate(-8deg) scale(1.1); }
+}
+
+/* 6. Clip-path reveal (for scroll animations) - From Bottom */
+@keyframes maskRevealBottomToTop {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* 7. Clip-path reveal - From Left */
+@keyframes maskRevealLeftToRight {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+/* 8. Pulse Border (for focused elements or calls to action) */
+@keyframes pulseBorder {
+  0% { box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb, 0, 123, 255), 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(var(--primary-color-rgb, 0, 123, 255), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb, 0, 123, 255), 0); }
+}
+/* You'll need to define --primary-color-rgb in your :root in core.css if you haven't, e.g. --primary-color-rgb: 0, 123, 255; */
+
+
+/* --- Utility Classes for Applying Animations --- */
+
+/* For general entrance (can be added to .animate-on-scroll elements) */
+.anim-fade-in-blur-scale.is-visible {
+  animation: fadeInBlurScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* For text character reveal (requires JS to wrap characters in spans) */
+/* Example: <h1 class="text-reveal-staggered"><span>H</span><span>e</span>...</h1> */
+.text-reveal-staggered span {
+  display: inline-block; /* Important for transform */
+  opacity: 0; /* Start hidden */
+}
+.text-reveal-staggered.is-visible span {
+  animation: textFocusIn 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) forwards;
+  /* Staggering needs to be applied via JS or by hand with :nth-child if content is static */
+}
+
+/* Subtle continuous floating */
+.anim-float-subtle {
+  animation: floatSubtle 3s ease-in-out infinite;
+}
+
+/* Background Pan on Hover - Apply to elements with a gradient background */
+.hover-bg-pan {
+  background-size: 200% auto; /* Ensure gradient is large enough to pan */
+  transition: background-position 0.5s ease-out;
+}
+.hover-bg-pan:hover {
+  background-position: 100% 50%; /* Or -100% 50% for opposite direction */
+  /* If using keyframes for continuous pan: animation: backgroundPan 10s linear infinite alternate; */
+}
+
+/* Icon Wiggle on Hover */
+.hover-icon-wiggle:hover i, /* If icon is an <i> tag */
+.hover-icon-wiggle:hover svg { /* If icon is an svg */
+  animation: iconWiggle 0.5s ease-in-out;
+}
+
+/* Mask Reveal for Scroll Animations (add to .animate-on-scroll elements) */
+.anim-mask-reveal-bottom.is-visible {
+  animation: maskRevealBottomToTop 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.anim-mask-reveal-left.is-visible {
+  animation: maskRevealLeftToRight 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+/* To make mask reveals work initially, element needs to have its final state geometry but be invisible.
+   The .animate-on-scroll (opacity: 0) from core.css helps.
+   You might need to ensure the element isn't display:none before is-visible.
+*/
+.anim-mask-reveal-bottom, .anim-mask-reveal-left { /* Initial state for clip-path if not using keyframes directly for scroll */
+    /* This might conflict with opacity:0 from .animate-on-scroll if not handled carefully.
+       Usually, .is-visible triggers opacity AND the animation.
+       If using keyframes for the reveal as above, the initial clip-path is in the 'from' state.
+    */
+}
+
+
+/* Pulse Border - can be applied to buttons or cards */
+.anim-pulse-border {
+  animation: pulseBorder 2s infinite cubic-bezier(0.66, 0, 0, 1);
+  border-radius: inherit; /* Inherit border-radius from the element */
+}
+/* If you want it on hover/focus only: */
+.interactive-pulse-border:hover,
+.interactive-pulse-border:focus {
+  animation: pulseBorder 1.5s cubic-bezier(0.66, 0, 0, 1);
+}
+
+/* General Transition Utilities (can be combined) */
+.transition-all-ease {
+  transition: all 0.3s ease-in-out;
+}
+.transition-transform-ease {
+  transition: transform 0.3s ease-in-out;
+}
+.transition-opacity-ease {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Hover lift/scale/shadow (refined utility) */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: var(--card-box-shadow-hover); /* Assumes --card-box-shadow-hover is defined */
+}
+
+/* --- Adding --primary-color-rgb to :root (example) --- */
+/* This should ideally go into your core.css :root definition */
+/*
+:root {
+  // ... other variables
+  --primary-color-rgb: 0, 123, 255; // Assuming --primary-color is #007bff
+}
+*/

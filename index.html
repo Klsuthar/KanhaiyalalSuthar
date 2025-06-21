@@ -101,6 +101,7 @@
     <link rel="stylesheet" href="core.css"> 
     <link rel="stylesheet" href="components.css">
     <link rel="stylesheet" href="nav_bar.css">
+    <link rel="stylesheet" href="animation.css">
 </head>
 
 <body>
@@ -134,7 +135,7 @@
         <section id="home">
             <div id="tsparticles-background"></div>
             <div class="container home-content">
-                <div class="home-text animate-on-scroll">
+                <div class="home-text animate-on-scroll"> <!-- Example: You could add 'anim-fade-in-blur-scale' here -->
                     <p class="hello-text">Hello, I'm</p>
                     <h1>KANHAIYA LAL SUTHAR</h1>
                     <div class="profession-text">I'm a <span id="typing-text"></span></div>
@@ -143,7 +144,7 @@
                         <a href="#contact" class="btn btn-secondary">Contact Me</a>
                     </div>
                 </div>
-                <div class="home-image animate-on-scroll">
+                <div class="home-image animate-on-scroll"> <!-- Example: You could add 'anim-float-subtle' here -->
                     <img id="profileImage" src="images/profile.png"
                         alt="Kanhaiya Lal Suthar - Maths Teacher from Churu, Rajasthan"
                         onerror="this.src='https://placehold.co/400x450/007bff/white?text=Kanhaiya'; this.onerror=null;">
@@ -329,7 +330,7 @@
                 <h2 class="section-title animate-on-scroll">My Projects</h2>
                 <p class="section-subtitle animate-on-scroll">A selection of projects by Kanhaiya Lal Suthar.</p>
                 <div class="projects-grid">
-                    <div class="project-card animate-on-scroll">
+                    <div class="project-card animate-on-scroll"> <!-- Example: You could add 'hover-lift' or 'anim-mask-reveal-bottom' -->
                         <div class="project-image">
                             <a href="https://springfield-academy-ffb28.web.app/" target="_blank">
                                 <img src="images/pr1.jpg"
@@ -402,13 +403,13 @@
                 <div class="social-links animate-on-scroll">
                     <h3>Connect with Kanhaiya Lal Suthar:</h3>
                     <a href="https://www.linkedin.com/in/kanhaiya-lal-suthar/" target="_blank"
-                        aria-label="Kanhaiya Lal Suthar on LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" target="_blank" aria-label="Kanhaiya Lal Suthar on Twitter"><i
+                        aria-label="Kanhaiya Lal Suthar on LinkedIn" class="hover-icon-wiggle"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="Kanhaiya Lal Suthar on Twitter" class="hover-icon-wiggle"><i
                             class="fab fa-twitter"></i></a>
-                    <a href="https://wa.me/919001375139" target="_blank" aria-label="Kanhaiya Lal Suthar on WhatsApp"><i
+                    <a href="https://wa.me/919001375139" target="_blank" aria-label="Kanhaiya Lal Suthar on WhatsApp" class="hover-icon-wiggle"><i
                             class="fab fa-whatsapp"></i></a>
                     <a href="https://t.me/kanhaiyalalsuthar" target="_blank"
-                        aria-label="Kanhaiya Lal Suthar on Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        aria-label="Kanhaiya Lal Suthar on Telegram" class="hover-icon-wiggle"><i class="fab fa-telegram-plane"></i></a>
                 </div>
             </div>
         </section>
@@ -420,7 +421,8 @@
             <!-- <p>Designed with <i class="fas fa-heart" style="color: red;"></i> and Coded by Kanhaiya Lal Suthar.</p> -->
         </div>
     </footer>
-    <!-- BOTTOM NAVIGATION BAR (MOBILE ONLY) -->
+
+    <!-- BOTTOM MOBILE NAVIGATION BAR -->
     <nav id="bottom-navbar-container">
         <ul class="bottom-navbar">
             <li class="bottom-nav-item active" data-section="home">
@@ -453,9 +455,10 @@
                     <span class="bottom-nav-text">Contact</span>
                 </a>
             </li>
-            <div class="bottom-nav-line-indicator"></div> <!-- ADD THIS LINE -->
+            <div class="bottom-nav-line-indicator"></div>
         </ul>
     </nav>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js" defer></script>
