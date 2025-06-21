@@ -59,7 +59,19 @@
 .home-content { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; position: relative; z-index: 1; will-change: transform; }
 .home-text { max-width: 600px; }
 .home-text .hello-text { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--accent-color); }
-.home-text h1 { font-family: var(--font-display); font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--bg-white); }
+.home-text h1 { font-family: var(--font-display); font-size: 3.5rem; margin-bottom: 0.5rem; color: var(--bg-white); } /* Default H1 color */
+
+/* Gradient Text for Hero Title */
+.hero-title-gradient {
+  background: linear-gradient(120deg, var(--accent-color), var(--bg-white), var(--primary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* Fallback */
+  display: inline-block;
+  padding-bottom: 0.1em;
+}
+
 .profession-text { font-size: 1.8rem; font-weight: 500; color: var(--secondary-color); margin-bottom: 1.5rem; min-height: 2.2rem; }
 #typing-text { border-right: 2px solid var(--secondary-color); animation: blinkCursor 0.7s infinite; }
 .home-buttons .btn { margin: 0.5rem; }
@@ -74,11 +86,11 @@
     transition: all 0.3s ease; border: 2px solid transparent; cursor: pointer;
 }
 .btn-primary { background-color: var(--primary-color); color: var(--bg-white); border-color: var(--primary-color); }
-.btn-primary:hover { background-color: var(--primary-hover-color); border-color: var(--primary-hover-color); color: var(--bg-white); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0, 123, 255, 0.25); }
+.btn-primary:hover { background-color: var(--primary-hover-color); border-color: var(--primary-hover-color); color: var(--bg-white); transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 12px rgba(0, 123, 255, 0.25); } /* Added subtle scale */
 .btn-secondary { background-color: transparent; color: var(--bg-white); border-color: var(--bg-white); }
-.btn-secondary:hover { background-color: var(--bg-white); color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2); }
+.btn-secondary:hover { background-color: var(--bg-white); color: var(--primary-color); transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2); } /* Added subtle scale */
 .btn-outline-primary { color: var(--primary-color); border-color: var(--primary-color); background-color: transparent; }
-.btn-outline-primary:hover { background-color: var(--primary-color); color: var(--bg-white); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2); }
+.btn-outline-primary:hover { background-color: var(--primary-color); color: var(--bg-white); transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2); } /* Added subtle scale */
 .btn-sm { padding: 10px 22px; font-size: 0.8rem; }
 
 /* About Section */
@@ -96,13 +108,13 @@
 .interests-title { font-size: 1.25rem; color: var(--text-color); margin-bottom: 18px; font-weight: 600; }
 .interests-container { display: flex; flex-wrap: wrap; gap: 10px; }
 .interest-tag { display: inline-block; padding: 8px 15px; border: 1px solid var(--primary-color); color: var(--primary-color); background-color: transparent; border-radius: 20px; font-size: 0.9rem; font-weight: 500; transition: all 0.3s ease; cursor: default; }
-.interest-tag:hover { background-color: var(--primary-color); color: var(--bg-white); transform: translateY(-2px); box-shadow: 0 3px 8px rgba(var(--primary-color-rgb, 0, 123, 255), 0.2); }
+.interest-tag:hover { background-color: var(--primary-color); color: var(--bg-white); transform: translateY(-2px) scale(1.01); box-shadow: 0 3px 8px rgba(var(--primary-color-rgb, 0, 123, 255), 0.2); } /* Added subtle scale */
 
 .skills-section-container { margin-top: 35px; }
 .skills-title { font-size: 1.5rem; margin-bottom: 25px; color: var(--text-color); border-bottom: 2px solid var(--border-color); padding-bottom: 12px; }
 .animated-skills-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
 .skill-item { background-color: var(--card-bg); padding: var(--card-padding); border-radius: var(--card-border-radius); box-shadow: var(--card-box-shadow); transition: var(--card-transition); }
-.skill-item:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--card-box-shadow-hover); }
+/* .skill-item:hover is handled by .hover-lift from animation.css if applied */
 .skill-info { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 600; }
 .skill-name { font-size: 1rem; color: var(--text-color); }
 .skill-percentage { font-size: 0.9rem; color: var(--primary-color); font-weight: 500; }
@@ -125,10 +137,10 @@
 /* Projects Section */
 .projects-grid { display: grid; grid-template-columns: 1fr; gap: 30px; }
 .project-card { background-color: var(--card-bg); border-radius: var(--card-border-radius); box-shadow: var(--card-box-shadow); overflow: hidden; display: flex; flex-direction: column; transition: var(--card-transition); }
-.project-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: var(--card-box-shadow-hover); }
+/* .project-card:hover is handled by .hover-lift from animation.css if applied */
 .project-image { position: relative; overflow: hidden; }
 .project-image img { width: 100%; height: auto; aspect-ratio: 16 / 9.5; object-fit: cover; transition: transform 0.4s ease-out; }
-.project-card:hover .project-image img { transform: scale(1.08); }
+.project-card:hover .project-image img { transform: scale(1.08); } /* Specific image zoom for project card */
 .project-info { padding: var(--card-padding); flex-grow: 1; display: flex; flex-direction: column; }
 .project-info h3 { font-size: 1.35rem; margin-bottom: 12px; }
 .project-info p { font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; line-height: 1.6; }
@@ -139,9 +151,9 @@
 /* Contact Section */
 .contact-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-bottom: 45px; }
 .contact-item { background-color: var(--card-bg); padding: 30px; border-radius: var(--card-border-radius); box-shadow: var(--card-box-shadow); text-align: center; transition: var(--card-transition); }
-.contact-item:hover { transform: translateY(-5px) scale(1.02); box-shadow: var(--card-box-shadow-hover); }
+/* .contact-item:hover is handled by .hover-lift from animation.css if applied */
 .contact-icon-fa { display: block; margin: 0 auto 18px auto; color: var(--primary-color); font-size: 2.2rem; transition: transform 0.3s ease; }
-.contact-item:hover .contact-icon-fa { transform: scale(1.1) rotate(5deg); }
+.contact-item:hover .contact-icon-fa { transform: scale(1.1) rotate(5deg); } /* Specific icon animation for contact item */
 .contact-item h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .contact-item p { font-size: 1rem; margin-bottom: 0; }
 .contact-item p a { color: var(--text-light); word-break: break-word; }
@@ -152,7 +164,7 @@
 .social-links { text-align: center; }
 .social-links h3 { font-size: 1.25rem; margin-bottom: 18px; color: var(--text-light); font-weight: 500; }
 .social-links a { font-size: 1.7rem; color: var(--text-light); margin: 0 14px; display: inline-block; transition: color 0.3s ease, transform 0.3s ease; }
-.social-links a:hover { color: var(--primary-color); transform: scale(1.15) translateY(-3px); }
+.social-links a:hover { color: var(--primary-color); transform: scale(1.15) translateY(-3px); } /* Specific animation for social links */
 
 /* Scroll Animation Staggering for Components */
 .animated-skills-grid .skill-item.animate-on-scroll:nth-child(1) { transition-delay: 0.0s; }
@@ -175,7 +187,7 @@
 @media (min-width: 769px) { /* Desktop Styles for Components */
     .home-content { flex-direction: row; text-align: left; gap: 3.5rem; }
     .home-image { max-width: 380px; }
-    .home-text h1 { font-size: 3.8rem; }
+    .home-text h1 { font-size: 3.8rem; } /* Desktop H1 size */
     .about-content { flex-direction: row; align-items: flex-start; gap: 40px; }
     .about-left { max-width: none; }
     .about-details { margin-top: 0; }
@@ -191,31 +203,25 @@
     /* Top Navbar styles for Mobile */
     #navbar {
         height: var(--navbar-height-mobile);
-        background-color: var(--bg-white) !important; /* Ensure white background, override transparent from desktop initial */
+        background-color: var(--bg-white) !important;
         box-shadow: var(--card-box-shadow);
-        /* If there's a transition on background-color for desktop, remove or override it for mobile if it causes issues */
-        /* transition: height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); Only transition height if needed */
     }
-
     #navbar .logo {
-        color: var(--primary-color) !important; /* Ensure logo is primary color, overriding desktop scroll/initial states */
-        /* font-size: 1.7rem; /* Optional: Adjust logo size for smaller navbar */
+        color: var(--primary-color) !important;
     }
-
-    /* Hide desktop nav links and burger menu on mobile, as bottom nav is primary */
     #navbar .nav-links,
     #navbar .burger {
-        display: none !important; /* Ensure these are truly hidden */
+        display: none !important;
     }
 
     /* Home Section Mobile Adjustments */
     #home {
-        padding-top: 20px; /* Reduced internal padding, body handles top offset */
+        padding-top: 20px;
         min-height: calc(100vh - var(--navbar-height-mobile));
         height: calc(100vh - var(--navbar-height-mobile));
     }
     .home-content { gap: 1rem; padding-bottom: 15px; }
-    .home-text h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
+    .home-text h1 { font-size: 2.2rem; margin-bottom: 0.3rem; } /* Mobile H1 size */
     .home-text .hello-text { font-size: 1.3rem; margin-bottom: 0.2rem; }
     .profession-text { font-size: 1.2rem; margin-bottom: 0.8rem; min-height: auto; }
     .home-buttons .btn { margin: 0.4rem; padding: 10px 18px; font-size: 0.8rem; }
@@ -245,7 +251,7 @@
          padding-top: 10px;
     }
     .home-text .hello-text { font-size: 1.1rem; }
-    .home-text h1 { font-size: 1.9rem; }
+    .home-text h1 { font-size: 1.9rem; } /* Very small screen H1 size */
     .profession-text { font-size: 1rem; margin-bottom: 0.6rem; }
     .home-buttons .btn { padding: 8px 15px; font-size: 0.75rem; margin: 0.3rem; }
     .home-content { gap: 0.5rem; padding-bottom: 10px; }

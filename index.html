@@ -133,18 +133,18 @@
 
     <main>
         <section id="home">
-            <div id="tsparticles-background"></div>
+            <div id="tsparticles-background"></div> <!-- Handled by JS -->
             <div class="container home-content">
-                <div class="home-text animate-on-scroll"> <!-- Example: You could add 'anim-fade-in-blur-scale' here -->
+                <div class="home-text animate-on-scroll anim-fade-in-blur-scale">
                     <p class="hello-text">Hello, I'm</p>
-                    <h1>KANHAIYA LAL SUTHAR</h1>
-                    <div class="profession-text">I'm a <span id="typing-text"></span></div>
+                    <h1 class="hero-title-gradient">KANHAIYA LAL SUTHAR</h1> <!-- Added hero-title-gradient -->
+                    <div class="profession-text">I'm a <span id="typing-text"></span></div> <!-- Typing text by JS -->
                     <div class="home-buttons">
-                        <a href="pdf/KanhaiyalalResume.pdf" target="_blank" class="btn btn-primary">View Resume</a>
+                        <a href="pdf/KanhaiyalalResume.pdf" target="_blank" class="btn btn-primary interactive-pulse-border">View Resume</a>
                         <a href="#contact" class="btn btn-secondary">Contact Me</a>
                     </div>
                 </div>
-                <div class="home-image animate-on-scroll"> <!-- Example: You could add 'anim-float-subtle' here -->
+                <div class="home-image animate-on-scroll anim-float-subtle">
                     <img id="profileImage" src="images/profile.png"
                         alt="Kanhaiya Lal Suthar - Maths Teacher from Churu, Rajasthan"
                         onerror="this.src='https://placehold.co/400x450/007bff/white?text=Kanhaiya'; this.onerror=null;">
@@ -154,11 +154,11 @@
 
         <section id="about" class="section-padding">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">About Me</h2>
-                <p class="section-subtitle animate-on-scroll">Discover more about Kanhaiya lal Suthar, Maths Teacher and
+                <h2 class="section-title animate-on-scroll anim-mask-reveal-bottom">About Me</h2>
+                <p class="section-subtitle animate-on-scroll anim-fade-in-blur-scale">Discover more about Kanhaiya lal Suthar, Maths Teacher and
                     Tech enthusiast.</p>
                 <div class="about-content">
-                    <div class="about-left animate-on-scroll">
+                    <div class="about-left animate-on-scroll anim-mask-reveal-left">
                         <img src="images/about.png" alt="Kanhaiya Lal Suthar - About Me Section Image"
                             onerror="this.src='https://placehold.co/450x500/007bff/white?text=About+KLS'; this.onerror=null;">
                         <div class="about-details bg-white/80 backdrop-blur-sm">
@@ -169,7 +169,7 @@
                             <p><i class="fas fa-map-marker-alt"></i> DHADHERU, CHURU, RAJASTHAN, INDIA</p>
                         </div>
                     </div>
-                    <div class="about-right animate-on-scroll">
+                    <div class="about-right animate-on-scroll anim-mask-reveal-bottom"> <!-- Or anim-mask-reveal-left based on preference -->
                         <h3>Maths Teacher & Web Developer</h3>
                         <p>I'm Kanhaiya Lal Suthar, a passionate Mathematics teacher from Churu, Rajasthan, holding a
                             B.Sc.-B.Ed. integrated degree. With a strong academic foundation, I am dedicated to
@@ -178,7 +178,7 @@
                             engaging and effective learning environment. My goal is to enhance the education sector by
                             seamlessly integrating technology, ensuring learning is impactful, accessible, and inspiring
                             for all students.</p>
-                        <div class="interests-section animate-on-scroll" data-delay="0.2s">
+                        <div class="interests-section animate-on-scroll slide-from-bottom" data-delay="0.2s"> <!-- Existing scroll animation -->
                             <h4 class="interests-title">My Interests</h4>
                             <div class="interests-container">
                                 <span class="interest-tag">Teaching Mathematics</span>
@@ -190,9 +190,9 @@
                         </div>
 
                         <div class="skills-section-container">
-                            <h3 class="skills-title">My Expertise</h3>
+                            <h3 class="skills-title animate-on-scroll anim-mask-reveal-bottom">My Expertise</h3>
                             <div class="animated-skills-grid">
-                                <div class="skill-item animate-on-scroll">
+                                <div class="skill-item animate-on-scroll slide-from-bottom hover-lift">
                                     <div class="skill-info">
                                         <span class="skill-name">TEACHING (Maths)</span>
                                         <span class="skill-percentage">90%</span>
@@ -203,7 +203,7 @@
                                     <p class="skill-description">Expert Maths Teacher, simplifying complex mathematical
                                         concepts.</p>
                                 </div>
-                                <div class="skill-item animate-on-scroll">
+                                <div class="skill-item animate-on-scroll slide-from-bottom hover-lift">
                                     <div class="skill-info">
                                         <span class="skill-name">COMPUTER SKILLS</span>
                                         <span class="skill-percentage">95%</span>
@@ -214,7 +214,7 @@
                                     <p class="skill-description">MS Office (Advanced Excel), Web Design, Tech Tools,
                                         Microsoft Word.</p>
                                 </div>
-                                <div class="skill-item animate-on-scroll">
+                                <div class="skill-item animate-on-scroll slide-from-bottom hover-lift">
                                     <div class="skill-info">
                                         <span class="skill-name">WEB DEVELOPMENT</span>
                                         <span class="skill-percentage">75%</span>
@@ -225,7 +225,7 @@
                                     <p class="skill-description">HTML, CSS, Basic JS, Responsive Design by Kanhaiya Lal
                                         Suthar.</p>
                                 </div>
-                                <div class="skill-item animate-on-scroll">
+                                <div class="skill-item animate-on-scroll slide-from-bottom hover-lift">
                                     <div class="skill-info">
                                         <span class="skill-name">COMMUNICATION</span>
                                         <span class="skill-percentage">70%</span>
@@ -235,7 +235,7 @@
                                     </div>
                                     <p class="skill-description">Clear & Engaging Delivery for Students.</p>
                                 </div>
-                                <div class="skill-item animate-on-scroll">
+                                <div class="skill-item animate-on-scroll slide-from-bottom hover-lift">
                                     <div class="skill-info">
                                         <span class="skill-name">QUICK LEARNING</span>
                                         <span class="skill-percentage">95%</span>
@@ -245,7 +245,7 @@
                                     </div>
                                     <p class="skill-description">Eager to master new skills & technologies.</p>
                                 </div>
-                                <div class="skill-item animate-on-scroll">
+                                <div class="skill-item animate-on-scroll slide-from-bottom hover-lift">
                                     <div class="skill-info">
                                         <span class="skill-name">AI Prompt Engineering</span>
                                         <span class="skill-percentage">85%</span>
@@ -264,21 +264,23 @@
 
         <section id="resume" class="section-padding">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">My Resume</h2>
-                <p class="section-subtitle animate-on-scroll">Summary of Kanhaiya Lal Suthar's (Maths Teacher) journey
+                <h2 class="section-title animate-on-scroll anim-mask-reveal-bottom">My Resume</h2>
+                <p class="section-subtitle animate-on-scroll anim-fade-in-blur-scale">Summary of Kanhaiya Lal Suthar's (Maths Teacher) journey
                     and qualifications. (4+ MONTHS INTERN Teaching)</p>
 
                 <div class="resume-grid">
-                    <div class="experience-section animate-on-scroll">
-                        <h3 class="resume-title"><i class="fas fa-briefcase"></i> Experience</h3>
-                        <div class="card uiverse-style animate-on-scroll">
+                    <div class="experience-section animate-on-scroll slide-from-left">
+                        <h3 class="resume-title anim-mask-reveal-bottom"> <!-- Also animating the sub-titles -->
+                           <i class="fas fa-briefcase"></i> Experience
+                        </h3>
+                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
                             <img src="icon/Rocket.svg" alt="Experience Icon" class="card-icon">
                             <h4>MATHS TEACHER INTERN - SENIOR LEVEL</h4>
                             <h5>Gov. Sen. Sec. School, Dhadheru | 2024</h5>
                             <p>Duration: 3+ Months. Focused on senior-level mathematics instruction and curriculum
                                 support.</p>
                         </div>
-                        <div class="card uiverse-style animate-on-scroll">
+                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
                             <img src="icon/maths.svg" alt="Experience Icon" class="card-icon">
                             <h4>Science TEACHER INTERN - SENIOR LEVEL</h4>
                             <h5>Gov. Sen. Sec. School, Dhadheru | 2023</h5>
@@ -287,39 +289,39 @@
                         </div>
                     </div>
 
-                    <div class="education-section animate-on-scroll">
-                        <h3 class="resume-title"><i class="fas fa-graduation-cap"></i> Education</h3>
-                        <div class="card uiverse-style animate-on-scroll">
+                    <div class="education-section animate-on-scroll slide-from-right">
+                        <h3 class="resume-title anim-mask-reveal-bottom">
+                           <i class="fas fa-graduation-cap"></i> Education
+                        </h3>
+                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
                             <img src="icon/bed.svg" alt="Education Icon" class="card-icon">
                             <h4>B.Sc.-B.Ed. INTEGRATED COURSE</h4>
                             <h5>Sadguru Institute of Education, Sanganer, Jaipur | 2020 - 2024</h5>
                             <p>Grade: First Distinction (65.70%) - Qualification for Maths Teacher role.</p>
                         </div>
-                        <div class="card uiverse-style animate-on-scroll">
+                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
                             <img src="icon/bed.svg" alt="Education Icon" class="card-icon">
                             <h4>BACHELOR OF SCIENCE (B.Sc.)</h4>
                             <h5>Sadguru Institute of Education, Sanganer, Jaipur | 2020 - 2023</h5>
                             <p>Grade: First Distinction (64.15%)</p>
                         </div>
-                        <div class="card uiverse-style animate-on-scroll">
+                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
                             <img src="icon/school.png" alt="Education Icon" class="card-icon">
                             <h4>HIGHER SECONDARY SCHOOL (PCM)</h4>
                             <h5>Abhilasha Shikshan Sansthan, Sandwa, Churu | 2019 - 2020</h5>
                             <p>Grade: First Distinction (PCM 94%)</p>
                         </div>
-                        <div class="card uiverse-style animate-on-scroll">
+                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
                             <img src="icon/school.png" alt="Education Icon" class="card-icon">
                             <h4>SECONDARY SCHOOL</h4>
                             <h5>Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu | 2017 - 2018</h5>
                             <p>Grade: First Distinction (84.33%)</p>
                         </div>
-                        <div style="height: 30px;">
-
-                        </div>
+                        <div style="height: 30px;"></div>
                     </div>
                 </div>
-                <div class="text-center animate-on-scroll" style="margin-top: 30px;">
-                    <a href="pdf/KanhaiyalalResume.pdf" target="_blank" class="btn btn-primary"><i
+                <div class="text-center animate-on-scroll slide-from-bottom" style="margin-top: 30px;">
+                    <a href="pdf/KanhaiyalalResume.pdf" target="_blank" class="btn btn-primary interactive-pulse-border"><i
                             class="fas fa-download"></i> Download Kanhaiya lal Suthar Maths Teacher Resume</a>
                 </div>
             </div>
@@ -327,10 +329,10 @@
 
         <section id="projects" class="section-padding">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">My Projects</h2>
-                <p class="section-subtitle animate-on-scroll">A selection of projects by Kanhaiya Lal Suthar.</p>
+                <h2 class="section-title animate-on-scroll anim-mask-reveal-bottom">My Projects</h2>
+                <p class="section-subtitle animate-on-scroll anim-fade-in-blur-scale">A selection of projects by Kanhaiya Lal Suthar.</p>
                 <div class="projects-grid">
-                    <div class="project-card animate-on-scroll"> <!-- Example: You could add 'hover-lift' or 'anim-mask-reveal-bottom' -->
+                    <div class="project-card animate-on-scroll anim-mask-reveal-bottom">
                         <div class="project-image">
                             <a href="https://springfield-academy-ffb28.web.app/" target="_blank">
                                 <img src="images/pr1.jpg"
@@ -347,7 +349,7 @@
                                     class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <div class="project-card animate-on-scroll">
+                    <div class="project-card animate-on-scroll anim-mask-reveal-bottom">
                         <div class="project-image">
                             <a href="https://khatirajwoodwork.web.app/" target="_blank">
                                 <img src="images/pr2.jpg" alt="WoodWorks Furniture Project by Kanhaiya Lal Suthar"
@@ -369,22 +371,22 @@
 
         <section id="contact" class="section-padding">
             <div class="container">
-                <h2 class="section-title animate-on-scroll">Get In Touch</h2>
-                <p class="section-subtitle animate-on-scroll">Contact Kanhaiya lal Suthar, Maths Teacher, for
+                <h2 class="section-title animate-on-scroll anim-mask-reveal-bottom">Get In Touch</h2>
+                <p class="section-subtitle animate-on-scroll anim-fade-in-blur-scale">Contact Kanhaiya lal Suthar, Maths Teacher, for
                     collaborations or inquiries.</p>
 
                 <div class="contact-grid">
-                    <div class="contact-item animate-on-scroll">
+                    <div class="contact-item animate-on-scroll slide-from-bottom anim-fade-in-blur-scale">
                         <i class="fas fa-envelope fa-3x contact-icon-fa" aria-hidden="true"></i>
                         <h3>Email Me</h3>
                         <p><a href="mailto:klsuthar0987@gmail.com">klsuthar0987@gmail.com</a></p>
                     </div>
-                    <div class="contact-item animate-on-scroll">
+                    <div class="contact-item animate-on-scroll slide-from-bottom anim-fade-in-blur-scale">
                         <i class="fas fa-phone-alt fa-3x contact-icon-fa" aria-hidden="true"></i>
                         <h3>Call Me</h3>
                         <p><a href="tel:+919001375139">+91 90013 75139</a></p>
                     </div>
-                    <div class="contact-item animate-on-scroll">
+                    <div class="contact-item animate-on-scroll slide-from-bottom anim-fade-in-blur-scale">
                         <i class="fas fa-map-marker-alt fa-3x contact-icon-fa" aria-hidden="true"></i>
                         <h3>Location</h3>
                         <p><a href="https://maps.app.goo.gl/FoWhp6aNYvZx836EA" target="_blank">DHADHERU, CHURU,
@@ -392,15 +394,15 @@
                     </div>
                 </div>
 
-                <div class="question-section animate-on-scroll">
+                <div class="question-section animate-on-scroll slide-from-bottom">
                     <h3>Have a Question or Project in Mind?</h3>
-                    <button class="btn btn-primary"
+                    <button class="btn btn-primary interactive-pulse-border"
                         onclick="submitViaEmailClient('Inquiry for Kanhaiya lal Suthar Maths Teacher')">
                         <i class="fas fa-paper-plane"></i> Send me an Email
                     </button>
                 </div>
 
-                <div class="social-links animate-on-scroll">
+                <div class="social-links animate-on-scroll slide-from-bottom">
                     <h3>Connect with Kanhaiya Lal Suthar:</h3>
                     <a href="https://www.linkedin.com/in/kanhaiya-lal-suthar/" target="_blank"
                         aria-label="Kanhaiya Lal Suthar on LinkedIn" class="hover-icon-wiggle"><i class="fab fa-linkedin-in"></i></a>
@@ -418,7 +420,6 @@
     <footer>
         <div class="container">
             <p>© <span id="currentYear"></span> Kanhaiya Lal Suthar. Maths Teacher from Churu. All Rights Reserved.</p>
-            <!-- <p>Designed with <i class="fas fa-heart" style="color: red;"></i> and Coded by Kanhaiya Lal Suthar.</p> -->
         </div>
     </footer>
 
