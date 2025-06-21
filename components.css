@@ -7,7 +7,7 @@
     width: 100%;
     height: var(--navbar-height); /* Desktop height */
     background-color: transparent; /* Desktop initial state */
-    z-index: 1000; /* Ensure it's above general content, but below overlays if any */
+    z-index: 1000;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     padding: 0;
 }
@@ -17,9 +17,12 @@
     height: calc(var(--navbar-height) - 10px);
 }
 .nav-container { display: flex; justify-content: space-between; align-items: center; height: 100%; }
-.logo { font-family: var(--font-display); font-size: 1.9rem; font-weight: bold; color: var(--primary-color); }
-#navbar.scrolled .logo { color: var(--primary-color); } /* Desktop scrolled */
-#navbar:not(.scrolled) .logo { color: var(--bg-white); } /* Desktop initial */
+.logo { font-family: var(--font-display); font-size: 1.9rem; font-weight: bold; /* Default color set by scroll state */ }
+
+/* Desktop logo colors based on scroll */
+#navbar:not(.scrolled) .logo { color: var(--bg-white); } /* Logo color when navbar is transparent */
+#navbar.scrolled .logo { color: var(--primary-color); } /* Logo color when navbar is opaque */
+
 
 /* Desktop nav links (ul) */
 .nav-links { display: flex; list-style: none; }
@@ -29,8 +32,8 @@
     padding: 5px 0; position: relative; font-size: 0.9rem;
     text-transform: uppercase; letter-spacing: 0.7px;
 }
-#navbar.scrolled .nav-links a { color: var(--text-color); } /* Desktop scrolled */
-#navbar:not(.scrolled) .nav-links a { color: var(--bg-white); } /* Desktop initial */
+#navbar.scrolled .nav-links a { color: var(--text-color); }
+#navbar:not(.scrolled) .nav-links a { color: var(--bg-white); }
 .nav-links a::after {
     content: ''; position: absolute; bottom: -2px; left: 0;
     width: 0; height: 2px; background-color: var(--accent-color);
@@ -40,7 +43,7 @@
 .nav-links a.active { color: var(--accent-color) !important; }
 
 /* Burger menu (for original top nav's mobile overlay, now hidden on mobile) */
-.burger { display: none; cursor: pointer; } /* Hidden by default for desktop */
+.burger { display: none; cursor: pointer; }
 .burger div { width: 25px; height: 3px; background-color: var(--text-color); margin: 5px; transition: all 0.3s ease; border-radius: 1px;}
 
 
@@ -72,7 +75,7 @@
 }
 .btn-primary { background-color: var(--primary-color); color: var(--bg-white); border-color: var(--primary-color); }
 .btn-primary:hover { background-color: var(--primary-hover-color); border-color: var(--primary-hover-color); color: var(--bg-white); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0, 123, 255, 0.25); }
-.btn-secondary { background-color: transparent; color: var(--bg-white); border-color: var(--bg-white); } /* For home section */
+.btn-secondary { background-color: transparent; color: var(--bg-white); border-color: var(--bg-white); }
 .btn-secondary:hover { background-color: var(--bg-white); color: var(--primary-color); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2); }
 .btn-outline-primary { color: var(--primary-color); border-color: var(--primary-color); background-color: transparent; }
 .btn-outline-primary:hover { background-color: var(--primary-color); color: var(--bg-white); transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0, 123, 255, 0.2); }
@@ -182,30 +185,27 @@
     .contact-grid { grid-template-columns: repeat(3, 1fr); gap: 25px; }
 }
 
-/* @media (min-width: 992px) {
-    .projects-grid { } /* Kept at 2 columns, can change to 3 if many projects */
-/* } */
 
 /* Mobile Component Adjustments */
 @media (max-width: 768px) {
     /* Top Navbar styles for Mobile */
-    #navbar { /* Override desktop styles for mobile top bar */
+    #navbar {
         height: var(--navbar-height-mobile);
-        background-color: var(--bg-white); /* Always show background */
-        box-shadow: var(--card-box-shadow); /* Consistent shadow */
+        background-color: var(--bg-white) !important; /* Ensure white background, override transparent from desktop initial */
+        box-shadow: var(--card-box-shadow);
+        /* If there's a transition on background-color for desktop, remove or override it for mobile if it causes issues */
+        /* transition: height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); Only transition height if needed */
     }
-    #navbar .nav-container {
-        /* Default justify-content: space-between is fine */
-    }
+
     #navbar .logo {
-        color: var(--primary-color); /* Ensure logo is visible against white background */
+        color: var(--primary-color) !important; /* Ensure logo is primary color, overriding desktop scroll/initial states */
         /* font-size: 1.7rem; /* Optional: Adjust logo size for smaller navbar */
     }
-    #navbar .nav-links { /* The ul list in the top bar */
-        display: none; /* Hide these links as bottom nav is primary */
-    }
-    #navbar .burger { /* The 3-line menu icon */
-        display: none; /* Hide burger as bottom nav is primary */
+
+    /* Hide desktop nav links and burger menu on mobile, as bottom nav is primary */
+    #navbar .nav-links,
+    #navbar .burger {
+        display: none !important; /* Ensure these are truly hidden */
     }
 
     /* Home Section Mobile Adjustments */
@@ -236,13 +236,13 @@
     .skill-item,
     .card.uiverse-style,
     .project-info,
-    .contact-item { padding: 20px; } /* Slightly less padding in cards on mobile */
+    .contact-item { padding: 20px; }
 }
 
 /* Very Small Screens - Component Adjustments */
 @media (max-width: 370px) {
     #home {
-         padding-top: 10px; /* Small internal padding on very small screens */
+         padding-top: 10px;
     }
     .home-text .hello-text { font-size: 1.1rem; }
     .home-text h1 { font-size: 1.9rem; }
