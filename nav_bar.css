@@ -1,4 +1,4 @@
-/* nav_bar.css - Styles for the bottom mobile navigation bar (LinkedIn Style with Line Indicator) */
+/* nav_bar.css - Styles for the bottom mobile navigation bar (LinkedIn Style with TOP Line Indicator) */
 
 :root {
     --primary-color: #007bff;
@@ -40,7 +40,7 @@
 .bottom-nav-item {
     flex: 1;
     text-align: center;
-    position: relative; /* Each item is a positioning context for the indicator if needed, but the line is relative to the ul */
+    position: relative;
     display: flex;
 }
 
@@ -75,16 +75,16 @@
     color: var(--active-nav-color);
 }
 
-/* Line Indicator Styling */
+/* Line Indicator Styling - POSITION CHANGED */
 .bottom-nav-line-indicator {
     position: absolute;
-    bottom: 0; /* Position at the very bottom of the .bottom-navbar */
+    /* CHANGED from bottom: 0; */
+    top: 0; /* Position at the very top of the .bottom-navbar parent */
     height: var(--line-indicator-height);
     background-color: var(--active-nav-color);
-    border-radius: calc(var(--line-indicator-height) / 2); /* Optional: rounded ends */
-    transition: left 0.3s cubic-bezier(0.35, 0, 0.25, 1), width 0.3s cubic-bezier(0.35, 0, 0.25, 1); /* Smooth animation */
-    /* Initial width and left will be set by JS */
-    width: 0;
+    /* border-radius: 0; /* Sharp rectangle, or you can add specific rounding if desired */
+    transition: left 0.3s cubic-bezier(0.35, 0, 0.25, 1), width 0.3s cubic-bezier(0.35, 0, 0.25, 1);
+    width: 0; /* Initial width and left will be set by JS */
     left: 0;
 }
 
