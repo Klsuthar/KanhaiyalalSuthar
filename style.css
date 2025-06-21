@@ -27,7 +27,10 @@
     --font-display: 'Playfair Display', serif;
     --font-accent: 'Montserrat', sans-serif;
     /* Good choice for headings */
-    --navbar-height: 70px;
+    --navbar-height: 70px; /* Original top navbar height */
+
+    /* For bottom nav bar if needed globally, though primarily in nav_bar.css */
+    /* --bottom-nav-height: 60px; */
 }
 
 /* Reset and Base Styles */
@@ -417,7 +420,7 @@ img {
     position: relative;
     color: var(--bg-white);
     text-align: center;
-    padding-top: var(--navbar-height);
+    padding-top: var(--navbar-height); /* This is for the original top navbar */
     overflow: hidden;
     /* Important for parallax on home-content if it moves outside bounds */
 }
@@ -1267,30 +1270,47 @@ footer .fas.fa-heart {
         /* Reduced section padding for mobile */
     }
 
-    /* Mobile Nav - Keeping original enhanced version */
-    .nav-links {
+    /* --- START: Modifications for Bottom Mobile Navigation --- */
+    /* Hide original top navbar and its components on mobile */
+    #navbar {
+        display: none !important; /* This hides the original top nav on mobile */
+    }
+
+    /* Adjust #home padding since top navbar is hidden */
+    #home {
+        /* Original was padding-top: var(--navbar-height); */
+        /* If no top bar, reduce or remove this top padding based on new design */
+        padding-top: 30px; /* Adjust as needed, or remove if bottom nav is enough */
+        /* min-height: 100vh; /* Ensure it still takes viewport height if desired */
+        /* padding-top: calc(var(--navbar-height) + 15px); IS NOW REDUNDANT due to navbar hidden */
+    }
+
+    /* Add padding to the bottom of the body to prevent content overlap with fixed bottom-navbar */
+    body {
+        /* Assuming --bottom-nav-height is 60px (from nav_bar.css) + 20px buffer */
+        padding-bottom: 80px;
+    }
+    /* --- END: Modifications for Bottom Mobile Navigation --- */
+
+
+    /* Mobile Nav - Keeping original enhanced version (THIS IS FOR THE TOP BURGER MENU, WHICH IS NOW HIDDEN) */
+    /* You might choose to remove these .nav-links and .burger styles if the top nav is completely replaced by the bottom nav */
+    .nav-links { /* This whole block for .nav-links (overlay menu) might be unused if top burger is hidden */
         position: fixed;
-        /* Fixed for overlay effect */
         right: 0;
         top: 0;
-        /* From top for full height */
         background-color: var(--bg-white);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        /* Vertically center links */
         width: 80%;
-        /* Wider menu */
         height: 100vh;
         transform: translateX(100%);
         transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-        /* Smoother easing */
         box-shadow: -8px 0 25px rgba(0, 0, 0, 0.1);
-        padding-top: var(--navbar-height);
-        /* Space for navbar visibility */
+        padding-top: var(--navbar-height); /* This var might be irrelevant if #navbar is hidden */
         z-index: 999;
-        /* Below burger, above content */
     }
 
     .nav-links.nav-active {
@@ -1306,11 +1326,9 @@ footer .fas.fa-heart {
     .nav-links li a {
         color: var(--text-color) !important;
         padding: 18px 0;
-        /* Tappable area */
         display: block;
         width: 100%;
         font-size: 1.1rem;
-        /* Larger font */
         font-weight: 500;
     }
 
@@ -1324,12 +1342,10 @@ footer .fas.fa-heart {
         color: var(--bg-white) !important;
     }
 
-    .burger {
-        display: block;
+    .burger { /* This burger button also might be unused */
+        display: block; /* Original was display: none for desktop */
         position: relative;
-        /* Ensure it's clickable */
         z-index: 1001;
-        /* Above nav links */
     }
 
     .burger.toggle .line1 {
@@ -1343,32 +1359,22 @@ footer .fas.fa-heart {
     .burger.toggle .line3 {
         transform: rotate(45deg) translate(-5px, -6px);
     }
+    /* END OF ORIGINAL MOBILE NAV STYLES THAT MIGHT BE REDUNDANT */
 
-    /* Burger X color already handled by #navbar .burger.toggle div */
 
-
-    /* HOME SECTION MOBILE - Overlap Fixes for original CSS structure */
-    #home {
-        padding-top: calc(var(--navbar-height) + 15px);
-        /* Reduced top padding */
-        min-height: 0;
-        /* Allow 100vh to dictate height primarily */
-        display: flex;
-        /* Already set, ensure it centers home-content */
-        align-items: center;
-        justify-content: center;
-    }
+    /* HOME SECTION MOBILE - Some of these might need re-adjustment if #home padding changed significantly */
+    /* #home padding-top was: calc(var(--navbar-height) + 15px); -- var(--navbar-height) part is now gone */
+    /* #home {
+        padding-top: 15px; // EXAMPLE: If navbar-height was 70px, and you only want 15px extra
+    } */
 
     .home-content {
         gap: 1rem;
-        /* Reduced gap for mobile */
         padding-bottom: 15px;
-        /* Buffer at the bottom */
     }
 
     .home-text h1 {
         font-size: 2.2rem;
-        /* Reduced for mobile */
         margin-bottom: 0.3rem;
     }
 
@@ -1379,17 +1385,13 @@ footer .fas.fa-heart {
 
     .profession-text {
         font-size: 1.2rem;
-        /* Reduced */
         margin-bottom: 0.8rem;
-        /* Reduced */
         min-height: auto;
-        /* Let text define height */
     }
 
     .home-buttons .btn {
         margin: 0.4rem;
         padding: 10px 18px;
-        /* Smaller buttons */
         font-size: 0.8rem;
     }
 
@@ -1399,26 +1401,19 @@ footer .fas.fa-heart {
 
     .home-image img {
         border-radius: var(--card-border-radius);
-        /* Changed from 50% to use your card radius */
         border: 5px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 5px 25px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
-        /* Fallback: box-shadow: 0 5px 25px rgba(0, 123, 255, 0.2); */
     }
-
-
     /* END HOME SECTION MOBILE FIXES */
 
     .about-left {
         max-width: 320px;
-        /* Control image size */
     }
 
     .about-details {
-        /* For mobile, ensure it stacks nicely */
         position: static;
         margin-top: 20px;
         background-color: var(--card-bg);
-        /* Ensure card styling */
         padding: var(--card-padding);
         box-shadow: var(--card-box-shadow);
     }
@@ -1442,7 +1437,6 @@ footer .fas.fa-heart {
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 25px;
-        /* Consistent gap for stacked cards */
     }
 
     /* Adjust padding inside cards for mobile if needed */
@@ -1451,7 +1445,6 @@ footer .fas.fa-heart {
     .project-info,
     .contact-item {
         padding: 20px;
-        /* Slightly less padding on mobile */
     }
 }
 
@@ -1463,12 +1456,10 @@ footer .fas.fa-heart {
 
     .home-text h1 {
         font-size: 1.9rem;
-        /* Even smaller H1 */
     }
 
     .profession-text {
         font-size: 1rem;
-        /* Even smaller profession text */
         margin-bottom: 0.6rem;
     }
 
@@ -1480,25 +1471,24 @@ footer .fas.fa-heart {
 
     .home-image img {
         border-radius: var(--card-border-radius);
-        /* Changed from 50% to use your card radius */
         border: 5px solid rgba(255, 255, 255, 0.15);
         box-shadow: 0 5px 25px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
-        /* Fallback: box-shadow: 0 5px 25px rgba(0, 123, 255, 0.2); */
     }
 
     .home-content {
         gap: 0.5rem;
-        /* Tighter gap */
         padding-bottom: 10px;
     }
 
     #home {
-        padding-top: calc(var(--navbar-height) + 10px);
+        /* Original padding-top: calc(var(--navbar-height) + 10px); */
+        /* If navbar-height is effectively 0 on mobile due to display:none */
+        padding-top: 10px; /* Adjust as needed */
     }
 }
 
 
-/* Animation for mobile nav links */
+/* Animation for mobile nav links (This was for the original top burger menu) */
 @keyframes navLinkFade {
     from {
         opacity: 0;
@@ -1514,59 +1504,37 @@ footer .fas.fa-heart {
 /* About Section - My Interests Styling */
 .interests-section {
     margin-top: 30px;
-    /* Adds space above the interests area */
 }
 
 .interests-title {
-    /* Styling for "My Interests" heading */
     font-size: 1.25rem;
-    /* Or adjust as preferred, e.g., 1.3rem */
     color: var(--text-color);
-    /* Or var(--primary-color) if you want it to stand out more */
     margin-bottom: 18px;
-    /* Space below the heading */
     font-weight: 600;
-    /* Make it a bit bold */
 }
 
 .interests-container {
     display: flex;
     flex-wrap: wrap;
-    /* Allows tags to wrap to the next line on smaller screens */
     gap: 10px;
-    /* Provides space between the tags (both horizontally and vertically) */
 }
 
 .interest-tag {
     display: inline-block;
-    /* Makes each tag behave like a block but flow inline */
     padding: 8px 15px;
-    /* Inner spacing for the tags */
     border: 1px solid var(--primary-color);
-    /* Border using your primary color */
     color: var(--primary-color);
-    /* Text color matching the border */
     background-color: transparent;
-    /* Or a very light background: rgba(0, 123, 255, 0.03); */
     border-radius: 20px;
-    /* This creates the rounded "pill" shape */
     font-size: 0.9rem;
-    /* Text size for the interests */
     font-weight: 500;
-    /* Slightly bolder than normal text */
     transition: all 0.3s ease;
-    /* Smooth transition for hover effects */
     cursor: default;
-    /* Indicates it's not a link, but can be changed if they become links */
 }
 
 .interest-tag:hover {
     background-color: var(--primary-color);
-    /* Fill with primary color on hover */
     color: var(--bg-white);
-    /* Change text to white on hover */
     transform: translateY(-2px);
-    /* Slight lift effect on hover */
     box-shadow: 0 3px 8px rgba(var(--primary-color-rgb, 0, 123, 255), 0.2);
-    /* Optional shadow (define --primary-color-rgb in :root or use a fallback like rgba(0,0,0,0.1)) */
 }

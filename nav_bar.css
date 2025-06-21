@@ -1,0 +1,139 @@
+/* nav_bar.css - Styles for the bottom mobile navigation bar */
+
+:root {
+    /* Re-declare or ensure these are available if not inheriting from style.css properly in a separate context */
+    --primary-color: #007bff;
+    --secondary-color: #6c757d; /* Color for inactive icons */
+    --bg-white: #ffffff;
+    --bg-light: #f8f9fa; /* Page background color, crucial for the "dip" effect */
+    --text-color: #212529;
+    --card-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --bottom-nav-height: 60px; /* Height of the navigation bar */
+    --indicator-size: 40px;  /* Diameter of the circular indicator */
+    --indicator-icon-color: var(--bg-white); /* Color for the icon inside the active indicator */
+}
+
+#bottom-navbar-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--bottom-nav-height);
+    background-color: var(--bg-white);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none; /* Hidden by default, shown via media query */
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.bottom-navbar {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+
+.bottom-nav-item {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.bottom-nav-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 5px 0;
+    height: 100%;
+    position: relative;
+    color: var(--secondary-color); /* Fallback for text if shown */
+}
+
+.bottom-nav-icon { /* This is the STATIC icon in each LI */
+    font-size: 1.2rem;
+    line-height: 1;
+    height: var(--indicator-size); /* Ensure it occupies space for alignment */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    color: var(--secondary-color); /* Default color for INACTIVE icons */
+    transition: opacity 0.2s ease-out, color 0.3s ease; /* Smoothly hide static icon */
+}
+
+.bottom-nav-text {
+    font-size: 0.7rem;
+    display: none; /* Hidden by default */
+}
+
+/* Active state styling for the STATIC icon placeholder */
+.bottom-nav-item.active .bottom-nav-icon {
+    opacity: 0; /* Hide the static icon when item is active */
+    /* color: transparent; /* Alternative to opacity */
+}
+
+/* Indicator Styling */
+.bottom-nav-indicator {
+    position: absolute;
+    top: calc(-1 * (var(--indicator-size) / 2) + 5px); /* Position circle half outside */
+    left: 0; /* Will be set by JavaScript */
+    width: var(--indicator-size);
+    height: var(--indicator-size);
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), left 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    z-index: 0; /* Behind nav items' content, but its pseudo-elements create the dip */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem; /* Icon size inside indicator */
+    color: var(--indicator-icon-color); /* Icon color inside indicator */
+    overflow: hidden; /* Just in case */
+}
+
+/* Styles for the icon that is dynamically placed INSIDE the indicator */
+.bottom-nav-indicator > i { /* Targets Font Awesome <i> tags directly inside */
+    color: var(--indicator-icon-color); /* Ensure correct color */
+    opacity: 1; /* Make sure it's visible */
+    transition: opacity 0.15s ease-in; /* Smooth fade-in if icon changes */
+}
+
+
+/* Dip effect pseudo-elements for the indicator */
+.bottom-nav-indicator::before,
+.bottom-nav-indicator::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    width: calc(var(--indicator-size) / 2 + 5px);
+    height: calc(var(--indicator-size) / 2 - 5px);
+    background-color: transparent;
+}
+
+.bottom-nav-indicator::before {
+    left: calc(-1 * (var(--indicator-size) / 2) + 1px);
+    border-bottom-right-radius: 12px;
+    box-shadow: 0px 10px 0 0 var(--bg-white);
+}
+
+.bottom-nav-indicator::after {
+    right: calc(-1 * (var(--indicator-size) / 2) + 1px);
+    border-bottom-left-radius: 12px;
+    box-shadow: 0px 10px 0 0 var(--bg-white);
+}
+
+
+/* Show bottom navbar only on mobile */
+@media (max-width: 768px) {
+    #bottom-navbar-container {
+        display: block;
+    }
+}
