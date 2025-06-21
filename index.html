@@ -18,7 +18,7 @@
     <meta name="google-site-verification" content="4AGTHWsSVsaL_0RGhAzrOICretUMtgsOswGpQxvsqrY">
 
     <!-- Favicon -->
-    <link rel="icon" href="images/fav/fav32.ico"> <!-- Default icon -->
+    <link rel="icon" href="images/fav/fav32.ico">
     <link rel="icon" type="image/vnd.microsoft.icon" sizes="16x16" href="images/fav/fav16.ico">
     <link rel="icon" type="image/vnd.microsoft.icon" sizes="24x24" href="images/fav/fav24.ico">
     <link rel="icon" type="image/vnd.microsoft.icon" sizes="32x32" href="images/fav/fav32.ico">
@@ -50,15 +50,10 @@
     <meta name="twitter:image" content="images/profile-twitter.png">
     <meta name="twitter:site" content="@Kanhaiy13218049">
     <meta name="twitter:creator" content="@Kanhaiy13218049">
+
+    <!-- Lottie Player Script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-    <lottie-player id="lottie-home" src="https://assets1.lottiefiles.com/YOUR_CHOSEN_HOME_ANIMATION.json" <!-- !!! YOUR
-        VALID URL !!! -->
-        background="transparent"
-        speed="1"
-        style="width: 100%; height: 100%;"
-        loop
-        autoplay>
-    </lottie-player>
+    <!-- REMOVED STRAY <lottie-player> TAG FROM HERE -->
 
     <!-- Schema.org Person Markup (JSON-LD) -->
     <script type="application/ld+json">
@@ -77,7 +72,7 @@
         "streetAddress": "DHADHERU",
         "addressLocality": "Churu",
         "addressRegion": "RAJASTHAN",
-        "postalCode": "RAJASTHAN", 
+        "postalCode": "RAJASTHAN",
         "addressCountry": "IN"
       },
       "nationality": "India",
@@ -92,7 +87,7 @@
         "https://instagram.com/",
         "https://wa.me/919001375139",
         "https://t.me/kanhaiyalalsuthar",
-        "https://github.com/klsuthar" 
+        "https://github.com/klsuthar"
       ],
       "knowsAbout": ["Mathematics", "Teaching", "Maths Pedagogy", "Web Development", "MS Office", "Advanced Excel", "Web Design", "Technology", "AI Prompt Engineering", "Curriculum Development", "Photography", "Business Strategy"],
       "description": "Kanhaiya Lal Suthar is a dedicated Maths Teacher from Dhadheru, Churu, Rajasthan, holding a B.Sc.-B.Ed. integrated degree. With over 6 years of computer experience, he excels at making complex mathematical concepts engaging. Kanhaiya is also a tech enthusiast and web developer preparing for the RPSC 2nd Grade Teacher exam."
@@ -104,13 +99,13 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@700&family=Montserrat:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- <link href="https://cdn.tailwindcss.com" rel="stylesheet"> -->
 
-    <!-- Main Stylesheet -->
+    <!-- Main Stylesheets -->
     <link rel="stylesheet" href="core.css">
     <link rel="stylesheet" href="components.css">
-    <link rel="stylesheet" href="nav_bar.css">
     <link rel="stylesheet" href="animation.css">
+    <!-- Bottom Mobile Navbar Stylesheet -->
+    <link rel="stylesheet" href="nav_bar.css">
 </head>
 
 <body>
@@ -142,12 +137,12 @@
 
     <main>
         <section id="home">
-            <div id="tsparticles-background"></div> <!-- Handled by JS -->
+            <div id="tsparticles-background"></div>
             <div class="container home-content">
                 <div class="home-text animate-on-scroll anim-fade-in-blur-scale">
                     <p class="hello-text">Hello, I'm</p>
-                    <h1 class="hero-title-gradient">KANHAIYA LAL SUTHAR</h1> <!-- Added hero-title-gradient -->
-                    <div class="profession-text">I'm a <span id="typing-text"></span></div> <!-- Typing text by JS -->
+                    <h1 class="hero-title-gradient">KANHAIYA LAL SUTHAR</h1>
+                    <div class="profession-text">I'm a <span id="typing-text"></span></div>
                     <div class="home-buttons">
                         <a href="pdf/KanhaiyalalResume.pdf" target="_blank"
                             class="btn btn-primary interactive-pulse-border">View Resume</a>
@@ -181,7 +176,6 @@
                         </div>
                     </div>
                     <div class="about-right animate-on-scroll anim-mask-reveal-bottom">
-                        <!-- Or anim-mask-reveal-left based on preference -->
                         <h3>Maths Teacher & Web Developer</h3>
                         <p>I'm Kanhaiya Lal Suthar, a passionate Mathematics teacher from Churu, Rajasthan, holding a
                             B.Sc.-B.Ed. integrated degree. With a strong academic foundation, I am dedicated to
@@ -191,7 +185,6 @@
                             seamlessly integrating technology, ensuring learning is impactful, accessible, and inspiring
                             for all students.</p>
                         <div class="interests-section animate-on-scroll slide-from-bottom" data-delay="0.2s">
-                            <!-- Existing scroll animation -->
                             <h4 class="interests-title">My Interests</h4>
                             <div class="interests-container">
                                 <span class="interest-tag">Teaching Mathematics</span>
@@ -284,7 +277,7 @@
 
                 <div class="resume-grid">
                     <div class="experience-section animate-on-scroll slide-from-left">
-                        <h3 class="resume-title anim-mask-reveal-bottom"> <!-- Also animating the sub-titles -->
+                        <h3 class="resume-title anim-mask-reveal-bottom">
                             <i class="fas fa-briefcase"></i> Experience
                         </h3>
                         <div class="card uiverse-style animate-on-scroll slide-from-bottom">
@@ -448,7 +441,7 @@
             <li class="bottom-nav-item active" data-section="home">
                 <a href="#home" aria-label="Home">
                     <span class="bottom-nav-icon">
-                        <lottie-player id="lottie-home" src="lottie_animations/home_icon.json" <!-- LOCAL PATH -->
+                        <lottie-player id="lottie-home" src="lottie_animations/home_icon.json"
                             background="transparent"
                             speed="1"
                             style="width: 100%; height: 100%;"
@@ -462,7 +455,7 @@
             <li class="bottom-nav-item" data-section="about">
                 <a href="#about" aria-label="About Me">
                     <span class="bottom-nav-icon">
-                        <lottie-player id="lottie-about" src="lottie_animations/user_icon.json" <!-- LOCAL PATH -->
+                        <lottie-player id="lottie-about" src="lottie_animations/user_icon.json"
                             background="transparent"
                             speed="1"
                             style="width: 100%; height: 100%;"
@@ -473,11 +466,10 @@
                     <span class="bottom-nav-text">About</span>
                 </a>
             </li>
-            <!-- ... and so on for resume, projects, contact ... -->
             <li class="bottom-nav-item" data-section="resume">
                 <a href="#resume" aria-label="My Resume">
                     <span class="bottom-nav-icon">
-                        <lottie-player id="lottie-resume" src="lottie_animations/document_icon.json" <!-- LOCAL PATH -->
+                        <lottie-player id="lottie-resume" src="lottie_animations/document_icon.json"
                             background="transparent"
                             speed="1"
                             style="width: 100%; height: 100%;"
@@ -491,7 +483,7 @@
             <li class="bottom-nav-item" data-section="projects">
                 <a href="#projects" aria-label="My Projects">
                     <span class="bottom-nav-icon">
-                        <lottie-player id="lottie-projects" src="lottie_animations/layers_icon.json" <!-- LOCAL PATH -->
+                        <lottie-player id="lottie-projects" src="lottie_animations/layers_icon.json"
                             background="transparent"
                             speed="1"
                             style="width: 100%; height: 100%;"
@@ -505,7 +497,7 @@
             <li class="bottom-nav-item" data-section="contact">
                 <a href="#contact" aria-label="Contact Me">
                     <span class="bottom-nav-icon">
-                        <lottie-player id="lottie-contact" src="lottie_animations/mail_icon.json" <!-- LOCAL PATH -->
+                        <lottie-player id="lottie-contact" src="lottie_animations/mail_icon.json"
                             background="transparent"
                             speed="1"
                             style="width: 100%; height: 100%;"
