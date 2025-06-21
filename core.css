@@ -22,7 +22,9 @@
     --font-secondary: 'Roboto', sans-serif;
     --font-display: 'Playfair Display', serif;
     --font-accent: 'Montserrat', sans-serif;
-    --navbar-height: 70px; /* Original top navbar height */
+
+    --navbar-height: 70px; /* Original top navbar height for desktop */
+    --navbar-height-mobile: 60px; /* Define a height for the top navbar on mobile */
 }
 
 /* Reset and Base Styles */
@@ -120,7 +122,7 @@ img {
     pointer-events: none;
 }
 
-.animate-shine-card .project-image::after { /* This is tied to project card, maybe move to components? For now, keep with shine effects */
+.animate-shine-card .project-image::after {
     content: "";
     position: absolute;
     top: -50%; left: -50%;
@@ -135,7 +137,7 @@ img {
     transition: opacity 0.4s ease;
     pointer-events: none;
 }
-.project-card:hover .project-image.animate-shine-card::after { /* Selector tied to project card */
+.project-card:hover .project-image.animate-shine-card::after {
     opacity: 1;
 }
 
@@ -252,12 +254,11 @@ footer .fas.fa-heart { color: #e74c3c; }
     h3 { font-size: 1.5rem; }
     .section-padding { padding: 60px 0; }
 
-    /* Hide original top navbar and adjust body for bottom mobile nav */
-    #navbar { /* This refers to the original top navbar ID */
-        display: none !important;
-    }
-    body { /* Add padding for the fixed bottom mobile nav */
-        padding-bottom: 80px; /* Adjust if your bottom nav height changes */
+    /* Top navbar is visible on mobile. Body padding accounts for it. */
+    body {
+        padding-top: var(--navbar-height-mobile); /* For fixed top navbar */
+        /* Assuming bottom nav height of 55px (from nav_bar.css) + 20px buffer */
+        padding-bottom: 75px;
     }
 
     /* Initial transforms for scroll animations on mobile (override desktop versions) */
@@ -273,10 +274,10 @@ footer .fas.fa-heart { color: #e74c3c; }
 /* Very Small Screens - General adjustments */
 @media (max-width: 370px) {
     /* Home section text adjustments are component-specific, move to components.css if preferred */
-    /* #home { padding-top: 10px; } /* This is specific to home section, considering moving */
 }
 
 /* Animation for original mobile nav links (if kept, though #navbar is hidden) */
+/* This is likely unused now as the top nav burger is hidden on mobile */
 @keyframes navLinkFade {
     from { opacity: 0; transform: translateX(50px); }
     to { opacity: 1; transform: translateX(0px); }

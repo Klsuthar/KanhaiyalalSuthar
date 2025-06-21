@@ -1,36 +1,36 @@
 /* components.css - Styles for specific UI components and sections */
 
-/* Original Top Navigation (Desktop and Fallback Mobile Overlay) */
-/* Note: #navbar is hidden on mobile by core.css when bottom nav is active */
+/* Original Top Navigation (Desktop and Modified Mobile View) */
 #navbar {
     position: fixed;
     top: 0; left: 0;
     width: 100%;
-    height: var(--navbar-height);
-    background-color: transparent;
-    z-index: 1000;
+    height: var(--navbar-height); /* Desktop height */
+    background-color: transparent; /* Desktop initial state */
+    z-index: 1000; /* Ensure it's above general content, but below overlays if any */
     transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     padding: 0;
 }
-#navbar.scrolled {
+#navbar.scrolled { /* Desktop scrolled state */
     background-color: var(--bg-white);
     box-shadow: var(--card-box-shadow);
     height: calc(var(--navbar-height) - 10px);
 }
 .nav-container { display: flex; justify-content: space-between; align-items: center; height: 100%; }
 .logo { font-family: var(--font-display); font-size: 1.9rem; font-weight: bold; color: var(--primary-color); }
-#navbar.scrolled .logo { color: var(--primary-color); }
-#navbar:not(.scrolled) .logo { color: var(--bg-white); }
+#navbar.scrolled .logo { color: var(--primary-color); } /* Desktop scrolled */
+#navbar:not(.scrolled) .logo { color: var(--bg-white); } /* Desktop initial */
 
-.nav-links { display: flex; list-style: none; } /* Desktop nav links */
+/* Desktop nav links (ul) */
+.nav-links { display: flex; list-style: none; }
 .nav-links li { margin-left: 28px; }
 .nav-links a {
     font-family: var(--font-accent); font-weight: 500;
     padding: 5px 0; position: relative; font-size: 0.9rem;
     text-transform: uppercase; letter-spacing: 0.7px;
 }
-#navbar.scrolled .nav-links a { color: var(--text-color); }
-#navbar:not(.scrolled) .nav-links a { color: var(--bg-white); }
+#navbar.scrolled .nav-links a { color: var(--text-color); } /* Desktop scrolled */
+#navbar:not(.scrolled) .nav-links a { color: var(--bg-white); } /* Desktop initial */
 .nav-links a::after {
     content: ''; position: absolute; bottom: -2px; left: 0;
     width: 0; height: 2px; background-color: var(--accent-color);
@@ -39,23 +39,19 @@
 .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
 .nav-links a.active { color: var(--accent-color) !important; }
 
-.burger { display: none; cursor: pointer; } /* Hidden by default, shown in mobile query */
+/* Burger menu (for original top nav's mobile overlay, now hidden on mobile) */
+.burger { display: none; cursor: pointer; } /* Hidden by default for desktop */
 .burger div { width: 25px; height: 3px; background-color: var(--text-color); margin: 5px; transition: all 0.3s ease; border-radius: 1px;}
-#navbar.scrolled .burger div { background-color: var(--text-color); }
-#navbar:not(.scrolled) .burger div { background-color: var(--bg-white); }
-#navbar .burger.toggle .line1,
-#navbar .burger.toggle .line3 { background-color: var(--primary-color); }
 
 
 /* Home Section */
-#home { /* padding-top in core.css for mobile, var(--navbar-height) for desktop */
+#home {
+    padding-top: var(--navbar-height); /* Desktop padding */
     height: 100vh; min-height: 600px;
     display: flex; align-items: center; justify-content: center;
     position: relative; color: var(--bg-white); text-align: center;
     overflow: hidden;
 }
-#home { padding-top: var(--navbar-height); } /* Default desktop padding */
-
 #tsparticles-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #232741; z-index: -1; }
 .home-content { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; position: relative; z-index: 1; will-change: transform; }
 .home-text { max-width: 600px; }
@@ -192,41 +188,38 @@
 
 /* Mobile Component Adjustments */
 @media (max-width: 768px) {
-    /* Styles for the original top nav's mobile overlay menu */
-    /* This section is for the .nav-links when #navbar .burger is used */
-    /* If #navbar is completely display:none, these might not be needed unless you have another trigger */
-    .nav-links {
-        position: fixed; right: 0; top: 0;
-        background-color: var(--bg-white);
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        width: 80%; height: 100vh;
-        transform: translateX(100%);
-        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-        box-shadow: -8px 0 25px rgba(0, 0, 0, 0.1);
-        padding-top: 0; /* Adjusted since original var(--navbar-height) context might change */
-        z-index: 999;
+    /* Top Navbar styles for Mobile */
+    #navbar { /* Override desktop styles for mobile top bar */
+        height: var(--navbar-height-mobile);
+        background-color: var(--bg-white); /* Always show background */
+        box-shadow: var(--card-box-shadow); /* Consistent shadow */
     }
-    .nav-links.nav-active { transform: translateX(0%); }
-    .nav-links li { margin-left: 0; width: 100%; text-align: center; }
-    .nav-links li a { color: var(--text-color) !important; padding: 18px 0; display: block; width: 100%; font-size: 1.1rem; font-weight: 500; }
-    .nav-links li a::after { display: none; }
-    .nav-links li a:hover, .nav-links li a.active { background-color: var(--primary-color); color: var(--bg-white) !important; }
-    .burger { display: block; position: relative; z-index: 1001; } /* This makes the burger visible if #navbar is visible */
-    .burger.toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
-    .burger.toggle .line2 { opacity: 0; }
-    .burger.toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
-
+    #navbar .nav-container {
+        /* Default justify-content: space-between is fine */
+    }
+    #navbar .logo {
+        color: var(--primary-color); /* Ensure logo is visible against white background */
+        /* font-size: 1.7rem; /* Optional: Adjust logo size for smaller navbar */
+    }
+    #navbar .nav-links { /* The ul list in the top bar */
+        display: none; /* Hide these links as bottom nav is primary */
+    }
+    #navbar .burger { /* The 3-line menu icon */
+        display: none; /* Hide burger as bottom nav is primary */
+    }
 
     /* Home Section Mobile Adjustments */
-    #home { padding-top: 30px; min-height: 0; } /* Adjusted in core.css as well, ensure consistency */
+    #home {
+        padding-top: 20px; /* Reduced internal padding, body handles top offset */
+        min-height: calc(100vh - var(--navbar-height-mobile));
+        height: calc(100vh - var(--navbar-height-mobile));
+    }
     .home-content { gap: 1rem; padding-bottom: 15px; }
     .home-text h1 { font-size: 2.2rem; margin-bottom: 0.3rem; }
     .home-text .hello-text { font-size: 1.3rem; margin-bottom: 0.2rem; }
     .profession-text { font-size: 1.2rem; margin-bottom: 0.8rem; min-height: auto; }
     .home-buttons .btn { margin: 0.4rem; padding: 10px 18px; font-size: 0.8rem; }
     .home-buttons { margin-top: 0.5rem; }
-    /* .home-image img already styled globally */
 
     /* About Section Mobile */
     .about-left { max-width: 320px; }
@@ -248,7 +241,9 @@
 
 /* Very Small Screens - Component Adjustments */
 @media (max-width: 370px) {
-    #home { padding-top: 10px; } /* Specific for home on very small screens */
+    #home {
+         padding-top: 10px; /* Small internal padding on very small screens */
+    }
     .home-text .hello-text { font-size: 1.1rem; }
     .home-text h1 { font-size: 1.9rem; }
     .profession-text { font-size: 1rem; margin-bottom: 0.6rem; }
