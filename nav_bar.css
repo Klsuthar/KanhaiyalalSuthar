@@ -1,15 +1,14 @@
-/* nav_bar.css - Styles for the bottom mobile navigation bar (LinkedIn Style) */
+/* nav_bar.css - Styles for the bottom mobile navigation bar (LinkedIn Style with Line Indicator) */
 
 :root {
-    --primary-color: #007bff; /* Your site's primary color for active state */
-    /* Or use a more neutral active color like LinkedIn (e.g., #000000 or a dark gray) */
-    /* --active-nav-color: #0A66C2; /* LinkedIn Blue */
-    --active-nav-color: var(--primary-color); /* Using site's primary color */
-    --inactive-nav-color: #6c757d; /* Gray for inactive items */
+    --primary-color: #007bff;
+    --active-nav-color: var(--primary-color);
+    --inactive-nav-color: #6c757d;
     --bg-white: #ffffff;
-    --bottom-nav-height: 55px; /* Adjusted height, typical for this style */
-    --bottom-nav-icon-size: 1.3rem; /* Icon size */
-    --bottom-nav-text-size: 0.65rem; /* Text label size */
+    --bottom-nav-height: 55px;
+    --bottom-nav-icon-size: 1.3rem;
+    --bottom-nav-text-size: 0.65rem;
+    --line-indicator-height: 2px; /* Height of the underline indicator */
 }
 
 #bottom-navbar-container {
@@ -19,12 +18,12 @@
     width: 100%;
     height: var(--bottom-nav-height);
     background-color: var(--bg-white);
-    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.08); /* Softer shadow for a flatter look */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.08);
     z-index: 1000;
-    display: none; /* Hidden by default, shown via media query */
-    padding: 0 5px; /* Minimal horizontal padding */
+    display: none;
+    padding: 0 5px;
     box-sizing: border-box;
-    border-top: 1px solid #e0e0e0; /* Subtle top border like LinkedIn */
+    border-top: 1px solid #e0e0e0;
 }
 
 .bottom-navbar {
@@ -33,49 +32,61 @@
     padding: 0;
     display: flex;
     justify-content: space-around;
-    align-items: stretch; /* Stretch items to fill height */
+    align-items: stretch;
     height: 100%;
+    position: relative; /* Needed for absolute positioning of the line indicator */
 }
 
 .bottom-nav-item {
     flex: 1;
     text-align: center;
-    position: relative;
-    display: flex; /* To allow <a> to take full height */
+    position: relative; /* Each item is a positioning context for the indicator if needed, but the line is relative to the ul */
+    display: flex;
 }
 
 .bottom-nav-item a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Center icon and text vertically */
+    justify-content: center;
     text-decoration: none;
-    padding: 4px 0; /* Vertical padding inside the link */
+    padding: 4px 0;
     height: 100%;
-    width: 100%; /* Make link take full item width */
-    color: var(--inactive-nav-color); /* Default color for entire link content */
+    width: 100%;
+    color: var(--inactive-nav-color);
     transition: color 0.2s ease-in-out;
 }
 
 .bottom-nav-icon {
     font-size: var(--bottom-nav-icon-size);
-    margin-bottom: 2px; /* Space between icon and text */
-    line-height: 1; /* Ensure icon is compact */
+    margin-bottom: 2px;
+    line-height: 1;
 }
 
 .bottom-nav-text {
     font-size: var(--bottom-nav-text-size);
-    font-weight: 500; /* Slightly bolder text */
-    display: block; /* Ensure text is always visible */
+    font-weight: 500;
+    display: block;
     line-height: 1.1;
 }
 
-/* Active state styling */
+/* Active state styling for icon and text */
 .bottom-nav-item.active a {
-    color: var(--active-nav-color); /* Change color of icon and text on active */
+    color: var(--active-nav-color);
 }
 
-/* No more indicator styles needed */
+/* Line Indicator Styling */
+.bottom-nav-line-indicator {
+    position: absolute;
+    bottom: 0; /* Position at the very bottom of the .bottom-navbar */
+    height: var(--line-indicator-height);
+    background-color: var(--active-nav-color);
+    border-radius: calc(var(--line-indicator-height) / 2); /* Optional: rounded ends */
+    transition: left 0.3s cubic-bezier(0.35, 0, 0.25, 1), width 0.3s cubic-bezier(0.35, 0, 0.25, 1); /* Smooth animation */
+    /* Initial width and left will be set by JS */
+    width: 0;
+    left: 0;
+}
 
 /* Show bottom navbar only on mobile */
 @media (max-width: 768px) {
