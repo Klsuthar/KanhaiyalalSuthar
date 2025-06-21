@@ -1,4 +1,4 @@
-// nav_bar.js - Logic for the bottom mobile navigation bar (Lottie Icons with active play)
+// nav_bar.js - Logic for the bottom mobile navigation bar (Lottie Icons)
 
 document.addEventListener('DOMContentLoaded', () => {
     const bottomNavContainer = document.getElementById('bottom-navbar-container');
@@ -9,75 +9,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const navItems = document.querySelectorAll('.bottom-nav-item');
     const sections = document.querySelectorAll('main section[id]');
     const lineIndicator = document.querySelector('.bottom-nav-line-indicator');
-    // We'll get individual Lottie players inside the loop
+    const lottiePlayers = document.querySelectorAll('.bottom-nav-icon lottie-player'); // Get all Lottie players
 
-    if (!navItems.length || !sections.length || !lineIndicator) {
-        console.warn('Bottom navbar elements (items, sections, or line indicator) not found. Initialization skipped.');
+    if (!navItems.length || !sections.length || !lineIndicator || !lottiePlayers.length) {
+        console.warn('Bottom navbar elements (items, sections, line indicator, or Lottie players) not found. Initialization skipped.');
         return;
     }
 
-    // Function to set Lottie players to their final frame (or a specific static frame)
-    function setLottieToStaticFrame(player) {
-        if (player && player.getLottie && typeof player.goToAndStop === 'function') {
-            const lottieInstance = player.getLottie(); // Get the underlying Lottie instance
-            if (lottieInstance) {
-                // Go to the last frame and stop.
-                // lottieInstance.totalFrames gives the count of frames (e.g., 60 for a 2-sec anim at 30fps)
-                // Frames are 0-indexed, so last frame is totalFrames - 1.
-                player.goToAndStop(lottieInstance.totalFrames - 1, true);
-            } else {
-                // Fallback if getLottie() isn't ready or doesn't return instance
-                player.seek('100%'); // Seek to the end percentage
-                player.stop();
-            }
-        }
-    }
-
-    // Initialize all Lottie players to their static (final) frame
-    // Wait for Lottie player to be ready
-    navItems.forEach(item => {
-        const player = item.querySelector('lottie-player');
-        if (player) {
-            player.addEventListener('ready', () => { // Or 'load' or 'instanceReady'
-                setLottieToStaticFrame(player);
-            });
-            // If 'ready' event doesn't fire reliably, try a small timeout
-            // setTimeout(() => setLottieToStaticFrame(player), 200);
-        }
-    });
-
-
     function updateActiveState(activeIndex) {
         if (!isMobileView()) {
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                const player = item.querySelector('lottie-player');
-                setLottieToStaticFrame(player); // Reset to static frame on desktop
-            });
+            navItems.forEach(item => item.classList.remove('active'));
             if (lineIndicator) {
                 lineIndicator.style.width = '0px';
             }
+            // Stop all Lottie players if not in mobile view
+            lottiePlayers.forEach(player => {
+                if (player && typeof player.stop === 'function') {
+                    player.stop();
+                }
+            });
             return;
         }
 
         navItems.forEach((item, index) => {
-            const player = item.querySelector('lottie-player');
+            const player = item.querySelector('lottie-player'); // Get player for this item
             if (index === activeIndex) {
                 item.classList.add('active');
-                if (player && typeof player.goToAndPlay === 'function') {
-                    player.setLoop(false); // Play once when activated
-                    player.goToAndPlay(0, true); // Play from the beginning
+                if (player && typeof player.play === 'function') {
+                    // To ensure it plays from the beginning if it was stopped
+                    if (typeof player.goToAndPlay === 'function') {
+                        player.goToAndPlay(0, true); // Go to frame 0 and play
+                    } else {
+                        player.stop(); // Stop first then play, can help some players
+                        player.play();
+                    }
                 }
             } else {
                 item.classList.remove('active');
-                setLottieToStaticFrame(player); // Set inactive to static final frame
+                if (player && typeof player.stop === 'function') {
+                    // player.stop(); // Or reset to first frame
+                    if (typeof player.goToAndStop === 'function') {
+                        player.goToAndStop(0, true); // Go to frame 0 and stop
+                    } else {
+                        player.stop();
+                    }
+                }
             }
         });
 
+        // Update line indicator position and width
         const activeNavItem = navItems[activeIndex];
         if (activeNavItem && lineIndicator) {
+            const navItemText = activeNavItem.querySelector('.bottom-nav-text');
             let indicatorWidth = activeNavItem.offsetWidth * 0.5;
             let indicatorLeft = activeNavItem.offsetLeft + (activeNavItem.offsetWidth - indicatorWidth) / 2;
+
             lineIndicator.style.width = `${indicatorWidth}px`;
             lineIndicator.style.left = `${indicatorLeft}px`;
         }
@@ -94,9 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let scrollTimeout;
     function onScroll() {
         if (!isMobileView()) return;
+
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-            // ... (scroll detection logic remains the same as before) ...
             let currentSectionId = '';
             const scrollY = window.scrollY;
             const viewportHeight = window.innerHeight;
@@ -134,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function initializeOrUpdateNav() {
         if (isMobileView()) {
-            // ... (initial active index detection logic remains the same as before) ...
             let initialActiveIndex = 0;
             const currentHash = window.location.hash;
             if (currentHash) {
@@ -168,22 +153,20 @@ document.addEventListener('DOMContentLoaded', () => {
                      }
                  });
             }
-            updateActiveState(initialActiveIndex); // This will also set initial Lottie states
+            updateActiveState(initialActiveIndex);
         } else {
-            navItems.forEach(item => {
-                item.classList.remove('active');
-                const player = item.querySelector('lottie-player');
-                setLottieToStaticFrame(player);
-            });
+            navItems.forEach(item => item.classList.remove('active'));
             if (lineIndicator) {
                 lineIndicator.style.width = '0px';
             }
+            lottiePlayers.forEach(player => {
+                if (player && typeof player.stop === 'function') {
+                    player.stop();
+                }
+            });
         }
     }
 
-    // Delay initialization slightly to ensure Lottie players might be ready
-    // and have their totalFrames property available.
-    setTimeout(initializeOrUpdateNav, 250); // Increased delay slightly
-
+    setTimeout(initializeOrUpdateNav, 150);
     window.addEventListener('resize', initializeOrUpdateNav);
 });
