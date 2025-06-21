@@ -1,14 +1,15 @@
-/* nav_bar.css - Styles for the bottom mobile navigation bar (LinkedIn Style with TOP Line Indicator) */
+/* nav_bar.css - Styles for the bottom mobile navigation bar (Lottie Icons) */
 
 :root {
     --primary-color: #007bff;
-    --active-nav-color: var(--primary-color);
-    --inactive-nav-color: #6c757d;
+    --active-nav-color: var(--primary-color); /* Used for line indicator and text */
+    --inactive-nav-color: #6c757d; /* Used for text */
     --bg-white: #ffffff;
     --bottom-nav-height: 55px;
-    --bottom-nav-icon-size: 1.3rem;
+    /* Define a specific size for the Lottie icon container */
+    --bottom-lottie-icon-container-size: 24px; /* Adjust as needed */
     --bottom-nav-text-size: 0.65rem;
-    --line-indicator-height: 2px; /* Height of the underline indicator */
+    --line-indicator-height: 2px;
 }
 
 #bottom-navbar-container {
@@ -34,7 +35,7 @@
     justify-content: space-around;
     align-items: stretch;
     height: 100%;
-    position: relative; /* Needed for absolute positioning of the line indicator */
+    position: relative;
 }
 
 .bottom-nav-item {
@@ -53,14 +54,27 @@
     padding: 4px 0;
     height: 100%;
     width: 100%;
-    color: var(--inactive-nav-color);
+    color: var(--inactive-nav-color); /* For the text */
     transition: color 0.2s ease-in-out;
 }
 
 .bottom-nav-icon {
-    font-size: var(--bottom-nav-icon-size);
-    margin-bottom: 2px;
-    line-height: 1;
+    /* This is now a container for the lottie-player */
+    width: var(--bottom-lottie-icon-container-size);
+    height: var(--bottom-lottie-icon-container-size);
+    margin-bottom: 3px; /* Space between lottie icon and text */
+    display: flex; /* Helps center lottie player if its own style is not 100% */
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease; /* For active/inactive visual cue */
+}
+
+/* Style the lottie-player itself if needed, though inline style often suffices */
+.bottom-nav-icon lottie-player {
+    /* The inline style="width: 100%; height: 100%;" on lottie-player
+       will make it fill the .bottom-nav-icon container. */
+    /* You could add more specific styling here if necessary */
+    opacity: 0.7; /* Default opacity for inactive icons */
 }
 
 .bottom-nav-text {
@@ -70,21 +84,25 @@
     line-height: 1.1;
 }
 
-/* Active state styling for icon and text */
+/* Active state styling */
 .bottom-nav-item.active a {
-    color: var(--active-nav-color);
+    color: var(--active-nav-color); /* For the text */
 }
 
-/* Line Indicator Styling - POSITION CHANGED */
+.bottom-nav-item.active .bottom-nav-icon lottie-player {
+    opacity: 1; /* Full opacity for active icon */
+    /* JS will handle playing the animation */
+}
+
+
+/* Line Indicator Styling */
 .bottom-nav-line-indicator {
     position: absolute;
-    /* CHANGED from bottom: 0; */
-    top: 0; /* Position at the very top of the .bottom-navbar parent */
+    top: 0;
     height: var(--line-indicator-height);
     background-color: var(--active-nav-color);
-    /* border-radius: 0; /* Sharp rectangle, or you can add specific rounding if desired */
     transition: left 0.3s cubic-bezier(0.35, 0, 0.25, 1), width 0.3s cubic-bezier(0.35, 0, 0.25, 1);
-    width: 0; /* Initial width and left will be set by JS */
+    width: 0;
     left: 0;
 }
 

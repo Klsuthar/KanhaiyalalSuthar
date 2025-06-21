@@ -1,4 +1,4 @@
-// nav_bar.js - Logic for the bottom mobile navigation bar (LinkedIn Style with Line Indicator)
+// nav_bar.js - Logic for the bottom mobile navigation bar (Lottie Icons)
 
 document.addEventListener('DOMContentLoaded', () => {
     const bottomNavContainer = document.getElementById('bottom-navbar-container');
@@ -8,54 +8,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navItems = document.querySelectorAll('.bottom-nav-item');
     const sections = document.querySelectorAll('main section[id]');
-    const lineIndicator = document.querySelector('.bottom-nav-line-indicator'); // Get the line indicator
+    const lineIndicator = document.querySelector('.bottom-nav-line-indicator');
+    const lottiePlayers = document.querySelectorAll('.bottom-nav-icon lottie-player'); // Get all Lottie players
 
-    if (!navItems.length || !sections.length || !lineIndicator) { // Check for lineIndicator too
-        console.warn('Bottom navbar elements (items, sections, or line indicator) not found. Initialization skipped.');
+    if (!navItems.length || !sections.length || !lineIndicator || !lottiePlayers.length) {
+        console.warn('Bottom navbar elements (items, sections, line indicator, or Lottie players) not found. Initialization skipped.');
         return;
     }
 
     function updateActiveState(activeIndex) {
         if (!isMobileView()) {
             navItems.forEach(item => item.classList.remove('active'));
-            if (lineIndicator) { // Hide line indicator on desktop
+            if (lineIndicator) {
                 lineIndicator.style.width = '0px';
             }
+            // Stop all Lottie players if not in mobile view
+            lottiePlayers.forEach(player => {
+                if (player && typeof player.stop === 'function') {
+                    player.stop();
+                }
+            });
             return;
         }
 
         navItems.forEach((item, index) => {
+            const player = item.querySelector('lottie-player'); // Get player for this item
             if (index === activeIndex) {
                 item.classList.add('active');
+                if (player && typeof player.play === 'function') {
+                    // To ensure it plays from the beginning if it was stopped
+                    if (typeof player.goToAndPlay === 'function') {
+                        player.goToAndPlay(0, true); // Go to frame 0 and play
+                    } else {
+                        player.stop(); // Stop first then play, can help some players
+                        player.play();
+                    }
+                }
             } else {
                 item.classList.remove('active');
+                if (player && typeof player.stop === 'function') {
+                    // player.stop(); // Or reset to first frame
+                    if (typeof player.goToAndStop === 'function') {
+                        player.goToAndStop(0, true); // Go to frame 0 and stop
+                    } else {
+                        player.stop();
+                    }
+                }
             }
         });
 
         // Update line indicator position and width
         const activeNavItem = navItems[activeIndex];
         if (activeNavItem && lineIndicator) {
-            // The line should be as wide as the text label or a fixed reasonable width.
-            // For simplicity, let's make it a percentage of the nav item's width, or match the text.
             const navItemText = activeNavItem.querySelector('.bottom-nav-text');
-            let indicatorWidth = 0;
-            let indicatorLeft = 0;
-
-            if (navItemText) {
-                // Option 1: Match the text width
-                // indicatorWidth = navItemText.offsetWidth;
-                // indicatorLeft = activeNavItem.offsetLeft + (activeNavItem.offsetWidth / 2) - (navItemText.offsetWidth / 2);
-
-                // Option 2: A fixed percentage of the item width, centered
-                // This is often more visually consistent if text lengths vary a lot.
-                indicatorWidth = activeNavItem.offsetWidth * 0.5; // e.g., 50% of the item's width
-                indicatorLeft = activeNavItem.offsetLeft + (activeNavItem.offsetWidth - indicatorWidth) / 2;
-            } else {
-                // Fallback if no text, use a portion of the item width
-                indicatorWidth = activeNavItem.offsetWidth * 0.4; // 40%
-                indicatorLeft = activeNavItem.offsetLeft + (activeNavItem.offsetWidth - indicatorWidth) / 2;
-            }
-
+            let indicatorWidth = activeNavItem.offsetWidth * 0.5;
+            let indicatorLeft = activeNavItem.offsetLeft + (activeNavItem.offsetWidth - indicatorWidth) / 2;
 
             lineIndicator.style.width = `${indicatorWidth}px`;
             lineIndicator.style.left = `${indicatorLeft}px`;
@@ -91,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            if (!currentSectionId && scrollY < sections[0].offsetTop) {
+            if (!currentSectionId && scrollY < sections[0].offsetTop && sections.length > 0) {
                 currentSectionId = sections[0].getAttribute('id');
             }
             if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 30 && sections.length > 0) {
@@ -121,8 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         initialActiveIndex = index;
                     }
                 });
-            } else if (sections.length > 0) { // If no hash, determine from scroll only if sections exist
-                // Determine initial active index from scroll position
+            } else if (sections.length > 0) {
                  let currentSectionIdOnLoad = '';
                  const scrollY = window.scrollY;
                  const viewportHeight = window.innerHeight;
@@ -153,11 +159,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (lineIndicator) {
                 lineIndicator.style.width = '0px';
             }
+            lottiePlayers.forEach(player => {
+                if (player && typeof player.stop === 'function') {
+                    player.stop();
+                }
+            });
         }
     }
 
-    // Delay initialization slightly to ensure all elements are rendered and sized
-    setTimeout(initializeOrUpdateNav, 150); 
-
+    setTimeout(initializeOrUpdateNav, 150);
     window.addEventListener('resize', initializeOrUpdateNav);
 });
