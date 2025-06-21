@@ -9,12 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const navItems = document.querySelectorAll('.bottom-nav-item');
     const sections = document.querySelectorAll('main section[id]');
     const lineIndicator = document.querySelector('.bottom-nav-line-indicator');
-    // It's good practice to wait for Lottie players to be ready, especially for initial interaction
-    const lottiePlayers = Array.from(document.querySelectorAll('.bottom-nav-icon lottie-player'));
-    let playersReady = 0;
-    const totalPlayers = lottiePlayers.length;
+    const lottiePlayers = document.querySelectorAll('.bottom-nav-icon lottie-player'); // Get all Lottie players
 
-    if (!navItems.length || !sections.length || !lineIndicator || !totalPlayers) {
+    if (!navItems.length || !sections.length || !lineIndicator || !lottiePlayers.length) {
         console.warn('Bottom navbar elements (items, sections, line indicator, or Lottie players) not found. Initialization skipped.');
         return;
     }
@@ -25,34 +22,48 @@ document.addEventListener('DOMContentLoaded', () => {
             if (lineIndicator) {
                 lineIndicator.style.width = '0px';
             }
+            // Stop all Lottie players if not in mobile view
             lottiePlayers.forEach(player => {
                 if (player && typeof player.stop === 'function') {
-                    player.loop = false;
-                    player.goToAndStop(0, true); // Go to frame 0 and stop
+                    player.stop();
                 }
             });
             return;
         }
 
         navItems.forEach((item, index) => {
-            const player = item.querySelector('lottie-player');
-            if (!player || typeof player.play !== 'function') return; // Ensure player and methods exist
-
+            const player = item.querySelector('lottie-player'); // Get player for this item
             if (index === activeIndex) {
                 item.classList.add('active');
-                player.loop = true; // Enable looping for active icon
-                player.goToAndPlay(0, true); // Play from the beginning
+                if (player && typeof player.play === 'function') {
+                    // To ensure it plays from the beginning if it was stopped
+                    if (typeof player.goToAndPlay === 'function') {
+                        player.goToAndPlay(0, true); // Go to frame 0 and play
+                    } else {
+                        player.stop(); // Stop first then play, can help some players
+                        player.play();
+                    }
+                }
             } else {
                 item.classList.remove('active');
-                player.loop = false; // Disable looping for inactive icons
-                player.goToAndStop(0, true); // Go to frame 0 and stop (shows static logo)
+                if (player && typeof player.stop === 'function') {
+                    // player.stop(); // Or reset to first frame
+                    if (typeof player.goToAndStop === 'function') {
+                        player.goToAndStop(0, true); // Go to frame 0 and stop
+                    } else {
+                        player.stop();
+                    }
+                }
             }
         });
 
+        // Update line indicator position and width
         const activeNavItem = navItems[activeIndex];
         if (activeNavItem && lineIndicator) {
-            const indicatorWidth = activeNavItem.offsetWidth * 0.5;
-            const indicatorLeft = activeNavItem.offsetLeft + (activeNavItem.offsetWidth - indicatorWidth) / 2;
+            const navItemText = activeNavItem.querySelector('.bottom-nav-text');
+            let indicatorWidth = activeNavItem.offsetWidth * 0.5;
+            let indicatorLeft = activeNavItem.offsetLeft + (activeNavItem.offsetWidth - indicatorWidth) / 2;
+
             lineIndicator.style.width = `${indicatorWidth}px`;
             lineIndicator.style.left = `${indicatorLeft}px`;
         }
@@ -69,9 +80,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let scrollTimeout;
     function onScroll() {
         if (!isMobileView()) return;
+
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
-            // ... (scroll logic to determine activeNavIndex remains the same) ...
             let currentSectionId = '';
             const scrollY = window.scrollY;
             const viewportHeight = window.innerHeight;
@@ -87,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
             
-            if (!currentSectionId && sections.length > 0 && scrollY < sections[0].offsetTop) {
+            if (!currentSectionId && scrollY < sections[0].offsetTop && sections.length > 0) {
                 currentSectionId = sections[0].getAttribute('id');
             }
             if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 30 && sections.length > 0) {
@@ -107,18 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', onScroll, { passive: true });
 
-    function initializeNavOnReady() {
-        playersReady++;
-        if (playersReady === totalPlayers) { // All players are ready
-            initializeOrUpdateNav();
-        }
-    }
-
     function initializeOrUpdateNav() {
         if (isMobileView()) {
             let initialActiveIndex = 0;
             const currentHash = window.location.hash;
-            // Determine initial active index (same logic as before)
             if (currentHash) {
                 navItems.forEach((item, index) => {
                     if (item.querySelector('a')?.getAttribute('href') === currentHash) {
@@ -130,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  const scrollY = window.scrollY;
                  const viewportHeight = window.innerHeight;
                  const offset = viewportHeight * 0.4;
+
                  for (let i = sections.length - 1; i >= 0; i--) {
                      const section = sections[i];
                      const sectionTop = section.offsetTop;
@@ -149,53 +153,20 @@ document.addEventListener('DOMContentLoaded', () => {
                      }
                  });
             }
-            // Set all to static frame initially THEN activate the correct one
-            lottiePlayers.forEach(player => {
-                if (player && typeof player.goToAndStop === 'function') {
-                    player.loop = false;
-                    player.goToAndStop(0, true); // Ensure all start at frame 0 and stopped
-                }
-            });
-            updateActiveState(initialActiveIndex); // Then activate the correct one
+            updateActiveState(initialActiveIndex);
         } else {
-            // Desktop view or navbar hidden
             navItems.forEach(item => item.classList.remove('active'));
             if (lineIndicator) {
                 lineIndicator.style.width = '0px';
             }
             lottiePlayers.forEach(player => {
-                if (player && typeof player.goToAndStop === 'function') {
-                    player.loop = false;
-                    player.goToAndStop(0, true);
+                if (player && typeof player.stop === 'function') {
+                    player.stop();
                 }
             });
         }
     }
 
-    // Wait for all Lottie players to be ready before initializing
-    if (totalPlayers > 0) {
-        lottiePlayers.forEach(player => {
-            if (player.getLottie) { // Check if getLottie method exists (player might already be "ready" in some cases)
-                 // If the player is already loaded (e.g. from cache), 'load' event might not fire
-                if (player.animationLoaded) {
-                     initializeNavOnReady();
-                } else {
-                    player.addEventListener('load', initializeNavOnReady); // 'load' event for lottie-player
-                }
-            } else { // Fallback for very quick loads or if API is different
-                console.warn("Lottie player API might not be fully available yet for direct 'load' event listener. Trying to initialize.");
-                playersReady++; // Assume ready for this simple case, might need more robust handling
-                 if (playersReady === totalPlayers) {
-                    setTimeout(initializeOrUpdateNav, 50); // Short delay as a fallback
-                }
-            }
-        });
-    } else {
-        // If no lottie players, proceed with normal init if other elements are present
-        if (navItems.length && sections.length && lineIndicator) {
-            setTimeout(initializeOrUpdateNav, 150);
-        }
-    }
-
+    setTimeout(initializeOrUpdateNav, 150);
     window.addEventListener('resize', initializeOrUpdateNav);
 });
