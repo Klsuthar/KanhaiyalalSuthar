@@ -1,4 +1,10 @@
-/* home.css - Styles specific to the Home section (Grid Fix) */
+/* home.css - Styles specific to the Home section (PrepInsta Inspired Headline) */
+
+/* :root variables used here are expected to be defined in core.css:
+    --home-bg-color, --home-text-color-dark, --home-text-color-medium,
+    --home-accent-text-color, --home-grid-line-color, --primary-color-rgb,
+    --accent-color-rgb, --font-display, --secondary-color, --bg-white, etc.
+*/
 
 #home {
     min-height: 100vh;
@@ -6,13 +12,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative; /* Crucial for positioning pseudo-elements or child grid containers */
+    position: relative;
     color: var(--home-text-color-dark);
-    background-color: var(--home-bg-color); /* Solid light background for the whole section */
+    background-color: var(--home-bg-color);
     overflow: hidden;
-    padding-top: var(--navbar-height-mobile);
+    padding-top: var(--navbar-height-mobile); /* From core.css for mobile */
     padding-bottom: 40px;
-    /* z-index: 0; /* Base z-index for the section itself */
 }
 
 /* Grid for the right side using a pseudo-element on #home */
@@ -21,26 +26,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: 55%; /* Cover roughly the right half or a bit more */
-    height: 100%;
-    background-image:
-        linear-gradient(to right, var(--home-grid-line-color) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--home-grid-line-color) 1px, transparent 1px);
-    background-size: 30px 30px;
-    background-position: 0 0; /* Align grid relative to this pseudo-element */
-    z-index: 0; /* Behind .home-content but above #home's solid background-color */
-    opacity: 0.5; /* Adjust grid subtlety */
-    pointer-events: none;
-}
-
-
-/* Remove or comment out .home-grid-background-container if using pseudo-element */
-/*
-.home-grid-background-container {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 60%;
+    width: 55%; /* Cover roughly the right half */
     height: 100%;
     background-image:
         linear-gradient(to right, var(--home-grid-line-color) 1px, transparent 1px),
@@ -48,11 +34,9 @@
     background-size: 30px 30px;
     background-position: 0 0;
     z-index: 0;
-    opacity: 0.6;
+    opacity: 0.5;
     pointer-events: none;
-    overflow: hidden;
 }
-*/
 
 .home-content {
     display: flex;
@@ -62,8 +46,8 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    position: relative; /* Ensure this is relative */
-    z-index: 1; /* Content must be above the #home::after grid */
+    position: relative;
+    z-index: 1;
     padding: 40px 0;
 }
 
@@ -72,7 +56,7 @@
     flex: 1 1 50%;
     max-width: 580px;
     text-align: left;
-    z-index: 2; /* Explicitly above the image blob if they could overlap */
+    z-index: 2;
 }
 
 .home-text-content .hello-text {
@@ -83,20 +67,49 @@
     letter-spacing: 0.5px;
 }
 
-.home-text-content h1 {
-    font-family: var(--font-display);
-    font-size: clamp(2.8rem, 6vw, 4.5rem);
-    line-height: 1.15;
+/* Styling for the main headline (KANHAIYA LAL SUTHAR) */
+.home-text-content h1.hero-main-title {
+    font-family: var(--font-display); /* Or your preferred bold heading font */
+    /* Overall font size for the h1 block is now controlled by spans for flexibility */
+    line-height: 1.1; /* Adjust line height for multi-line h1 */
     margin-bottom: 1rem;
+    font-weight: 700; /* Base weight, can be overridden by spans */
+}
+
+.hero-main-title span { /* Common style for both parts of the name */
+    display: block; /* Each part on a new line */
+    font-family: inherit; /* Inherit font from h1 */
+}
+
+.hero-main-title .name-part-accent { /* "KANHAIYA LAL" */
+    color: var(--home-accent-text-color);
+    font-size: clamp(2.5rem, 5.5vw, 4rem); /* Slightly smaller or same size as second part */
+    font-weight: 600; /* Can be slightly less bold if desired */
+    margin-bottom: 0.05em; /* Tiny space between lines */
+}
+
+.hero-main-title .name-part-dark { /* "SUTHAR" */
     color: var(--home-text-color-dark);
-    font-weight: 700;
+    font-size: clamp(2.8rem, 6vw, 4.5rem); /* This part can be slightly larger */
+    font-weight: 700; /* Or even bolder e.g., 800 */
+}
+
+/* Fallback or alternative gradient style (if you re-add .hero-title-gradient class to H1) */
+.hero-title-gradient {
+  background: linear-gradient(120deg, var(--accent-color), var(--bg-white), var(--primary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline-block; /* Or block if the whole H1 is gradient */
+  padding-bottom: 0.1em;
 }
 
 .home-text-content .profession-text {
     font-size: clamp(1.2rem, 3vw, 1.6rem);
     font-weight: 400;
     color: var(--home-text-color-medium);
-    margin-bottom: 2.5rem;
+    margin-bottom: 2.5rem; /* Adjusted margin */
     min-height: 1.5em;
 }
 #typing-text {
@@ -132,7 +145,7 @@
     align-items: center;
     justify-content: center;
     min-height: 450px;
-    z-index: 1; /* Sits on the same level as text, above grid */
+    z-index: 1;
 }
 
 .home-image-blob-background {
@@ -144,7 +157,7 @@
     transform: translate(-50%, -50%) rotate(-15deg);
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.08), rgba(var(--accent-color-rgb, 23, 162, 184), 0.12));
-    z-index: 1; /* Relative to .home-image-container, behind .home-image */
+    z-index: 1;
     opacity: 0.9;
     transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1),
                 border-radius 1.2s cubic-bezier(0.075, 0.82, 0.165, 1),
@@ -158,7 +171,7 @@
 
 .home-image {
     position: relative;
-    z-index: 2; /* Above the blob within the .home-image-container */
+    z-index: 2;
     width: clamp(320px, 90%, 450px);
     max-width: 480px;
 }
@@ -180,8 +193,8 @@
         min-height: auto;
     }
     #home::after { /* Grid pseudo-element */
-        width: 100%; /* Full width grid on smaller screens, or adjust */
-        opacity: 0.3; /* More subtle if full width */
+        width: 100%; /* Full width grid on smaller screens */
+        opacity: 0.3;
     }
     .home-content {
         flex-direction: column-reverse;
@@ -194,9 +207,16 @@
         align-items: center;
         max-width: 90%;
     }
-    .home-text-content h1 {
-        font-size: clamp(2.2rem, 7vw, 3rem);
+    .home-text-content h1.hero-main-title {
+        /* Font sizes for spans are already responsive with clamp */
     }
+    .hero-main-title .name-part-accent {
+        font-size: clamp(2rem, 4.5vw, 3rem); /* Adjust for tablet */
+    }
+    .hero-main-title .name-part-dark {
+        font-size: clamp(2.2rem, 5vw, 3.2rem); /* Adjust for tablet */
+    }
+
     .home-text-content .profession-text {
         font-size: clamp(1.1rem, 4vw, 1.4rem);
         margin-bottom: 2rem;
@@ -228,16 +248,19 @@
         padding-top: calc(var(--navbar-height-mobile) + 10px);
     }
     #home::after { /* Grid pseudo-element */
-        width: 100%;
         opacity: 0.25;
     }
     .home-content {
         gap: 1.5rem;
         padding: 20px 15px;
     }
-    .home-text-content h1 {
-        font-size: clamp(2rem, 8vw, 2.6rem);
+    .hero-main-title .name-part-accent {
+        font-size: clamp(1.8rem, 6vw, 2.4rem); /* Adjust for mobile */
     }
+    .hero-main-title .name-part-dark {
+        font-size: clamp(2rem, 7vw, 2.6rem); /* Adjust for mobile */
+    }
+
     .home-text-content .profession-text {
         font-size: clamp(1rem, 5vw, 1.2rem);
     }
@@ -264,7 +287,10 @@
 }
 
 @media (max-width: 370px) { /* Very Small Screens */
-    .home-text-content h1 {
+    .hero-main-title .name-part-accent {
+        font-size: clamp(1.6rem, 7vw, 1.8rem);
+    }
+    .hero-main-title .name-part-dark {
         font-size: clamp(1.8rem, 7.5vw, 2rem);
     }
     .home-text-content .profession-text {

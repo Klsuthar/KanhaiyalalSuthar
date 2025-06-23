@@ -1,0 +1,62 @@
+KanhaiyalalSuthar/
+├── icon/                  # Folder for general icons (like those used in resume cards)
+│   ├── Rocket.svg
+│   ├── maths.svg
+│   ├── bed.svg
+│   └── school.png
+├── images/                # Folder for general site images
+│   ├── profile.png        # Main profile image for home section
+│   ├── Kanhaiyalal.png    # Image for about section (or profile-og.png/profile-twitter.png)
+│   ├── about.png          # Specific image for about section (if different from Kanhaiyalal.png)
+│   ├── pr1.jpg            # Project 1 screenshot
+│   ├── pr2.jpg            # Project 2 screenshot
+│   ├── profile-og.png     # Image for Open Graph
+│   ├── profile-twitter.png # Image for Twitter Cards
+│   └── fav/               # Subfolder for all favicons
+│       ├── fav16.ico
+│       ├── fav24.ico
+│       ├── fav32.ico
+│       ├── fav48.ico
+│       ├── fav64.ico
+│       ├── fav96.ico
+│       ├── fav128.ico
+│       ├── fav256.ico
+│       ├── fav512.ico
+│       ├── apple-touch-icon.png
+│       └── site.webmanifest
+├── lottie_animations/     # Folder for Lottie JSON animation files
+│   ├── home_icon.json
+│   ├── user_icon.json
+│   ├── document_icon.json
+│   ├── layers_icon.json
+│   └── mail_icon.json
+├── pdf/                   # Folder for PDF documents
+│   └── KanhaiyalalResume.pdf
+│
+├── CSS/                   # Optional: Group all CSS into a subfolder
+│   ├── core.css           # Global variables, resets, base styles, typography, layout utilities
+│   ├── style.css          # Main sitewide styles (can be minimal or import others)
+│   ├── components.css     # Styles for global/reusable UI components (top nav, buttons, footer, etc.)
+│   ├── animation.css      # Keyframes and animation utility classes
+│   ├── nav_bar.css        # Styles for the bottom mobile navigation bar
+│   ├── home.css           # Styles specific to the Home section
+│   ├── about.css          # Styles specific to the About section
+│   ├── resume.css         # Styles specific to the Resume section
+│   ├── project.css        # Styles specific to the Projects section (or projects.css)
+│   └── contact.css        # Styles specific to the Contact section
+│
+├── JS/                    # Optional: Group all JS into a subfolder
+│   ├── script.js          # Global JavaScript logic (IntersectionObserver, loading overlay, etc.)
+│   ├── nav_bar.js         # JavaScript for the bottom mobile navigation bar
+│   ├── home.js            # JavaScript specific to the Home section (e.g., typing effect)
+│   ├── about.js           # JavaScript specific to the About section
+│   ├── resume.js          # JavaScript specific to the Resume section
+│   ├── project.js         # JavaScript specific to the Projects section (or projects.js)
+│   └── contact.js         # JavaScript specific to the Contact section
+│
+├── index.html             # Main HTML file for the portfolio
+├── projects.html          # (Currently empty, potential for separate project pages)
+├── google6c0055e07f6cc6e8.html # Google site verification file
+├── README.md              # Project Readme file
+├── robots.txt             # Instructions for web crawlers
+└── sitemap.xml            # Sitemap for search engines

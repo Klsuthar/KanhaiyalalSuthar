@@ -144,49 +144,30 @@
 
     <main>
         <section id="home">
-            <!-- The #home::after pseudo-element in home.css will create the grid background -->
-            <!-- If you were using tsParticles and removed its div, that's correct. -->
-            <!-- No explicit div for #tsparticles-background if it's not being used. -->
-            <!-- If you still want particles AND the partial grid, you'd have the #tsparticles-background div here,
-             and the #home::after pseudo-element would be styled for the grid on top of the particles.
-             Assuming particles are removed for now based on previous request. -->
-
-            <div class="container"> <!-- Ensures content respects overall page max-width and padding -->
-                <div class="home-content"> <!-- Main flex container for two columns -->
-
-                    <!-- Text Content Column -->
+            <div class="container">
+                <div class="home-content">
                     <div class="home-text-content animate-on-scroll anim-fade-in-left">
                         <p class="hello-text">Hello, I'm</p>
-                        <h1 class="hero-title-gradient">KANHAIYA LAL SUTHAR</h1>
+                        <h1 class="hero-main-title">
+                            <span class="name-part-accent">KANHAIYA LAL</span>
+                            <span class="name-part-dark">SUTHAR</span>
+                        </h1>
                         <div class="profession-text">I'm a <span id="typing-text"></span></div>
-                        <!-- Key points list has been removed as per your request -->
                         <div class="home-buttons">
                             <a href="pdf/KanhaiyalalResume.pdf" target="_blank"
                                 class="btn btn-primary interactive-pulse-border">View Resume</a>
                             <a href="#contact" class="btn btn-secondary">Contact Me</a>
                         </div>
                     </div>
-
-                    <!-- Image Column -->
                     <div class="home-image-container animate-on-scroll anim-scale-up">
-                        <div class="home-image-blob-background"></div> <!-- For the organic shape background -->
-                        <div class="home-image anim-float-subtle"> <!-- Your profile image container -->
+                        <div class="home-image-blob-background"></div>
+                        <div class="home-image anim-float-subtle">
                             <img id="profileImage" src="images/profile.png"
                                 alt="Kanhaiya Lal Suthar - Maths Teacher from Churu, Rajasthan"
                                 onerror="this.src='https://placehold.co/400x450/007bff/white?text=Kanhaiya'; this.onerror=null;">
                         </div>
-                        <!-- Optional: Small floating elements like PrepInsta's "Google Reviews" can be added here if desired -->
-                        <!--
-                    <div class="home-image-float-badge" style="bottom: 10%; left: -5%;">
-                        <i class="fas fa-star"></i> Educator
-                    </div>
-                    <div class="home-image-float-badge" style="top: 15%; right: -10%;">
-                        <i class="fas fa-code"></i> Developer
-                    </div>
-                    -->
                     </div>
                 </div>
-            </div>
         </section>
 
         <section id="about" class="section-padding">
