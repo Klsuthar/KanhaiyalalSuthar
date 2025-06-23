@@ -2,7 +2,73 @@
 
 /* --- Keyframes Definitions --- */
 
-/* 1. Enhanced Entrance: Fade in + Slight Blur + Scale */
+/* 1. Standard Fade In (Simple and effective) */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 2. Fade In Up (Subtle slide up + fade) */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 3. Fade In Down */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 4. Fade In Left */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 5. Fade In Right */
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 6. Scale Up Entrance */
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 7. Enhanced Entrance: Fade in + Slight Blur + Scale */
 @keyframes fadeInBlurScale {
   from {
     opacity: 0;
@@ -16,7 +82,7 @@
   }
 }
 
-/* 2. Text Character Focus-In (apply to spans wrapping characters) */
+/* 8. Text Character Focus-In (apply to spans wrapping characters) */
 @keyframes textFocusIn {
   0% {
     filter: blur(12px);
@@ -29,143 +95,163 @@
     transform: scale(1);
   }
 }
-/* For staggered effect, JS would add animation-delay to each span */
 
-/* 3. Subtle Floating/Bobbing */
+/* 9. Subtle Floating/Bobbing */
 @keyframes floatSubtle {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-8px); }
   100% { transform: translateY(0px); }
 }
 
-/* 4. Background Pan (for buttons/links on hover) */
+/* 10. Background Pan (for buttons/links on hover) */
 @keyframes backgroundPan {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
 
-/* 5. Icon Wiggle/Jiggle */
+/* 11. Icon Wiggle/Jiggle */
 @keyframes iconWiggle {
   0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(8deg) scale(1.1); }
-  75% { transform: rotate(-8deg) scale(1.1); }
+  25% { transform: rotate(10deg) scale(1.1); }
+  75% { transform: rotate(-10deg) scale(1.1); }
 }
 
-/* 6. Clip-path reveal (for scroll animations) - From Bottom */
+/* 12. Clip-path reveal - From Bottom (MODIFIED for subtle scale) */
 @keyframes maskRevealBottomToTop {
-  from { clip-path: inset(0 0 100% 0); }
-  to { clip-path: inset(0 0 0 0); }
+  from {
+    clip-path: inset(100% 0 0 0); /* Start fully masked from bottom */
+    transform: scale(0.98) translateY(10px); /* Slight scale down and offset */
+    opacity: 0; /* Start transparent */
+  }
+  to {
+    clip-path: inset(0 0 0 0);    /* Reveal to full visibility */
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
 }
 
-/* 7. Clip-path reveal - From Left */
+/* 13. Clip-path reveal - From Left */
 @keyframes maskRevealLeftToRight {
-  from { clip-path: inset(0 100% 0 0); }
-  to { clip-path: inset(0 0 0 0); }
+  from {
+    clip-path: inset(0 0 0 100%); /* Start fully masked from right (reveals left to right) */
+    transform: scale(0.98) translateX(10px); /* Added similar subtle transform as bottom reveal */
+    opacity: 0;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1) translateX(0);
+    opacity: 1;
+  }
 }
 
-/* 8. Pulse Border (for focused elements or calls to action) */
+/* 14. Pulse Border */
+/* Ensure --primary-color-rgb is defined in core.css :root */
 @keyframes pulseBorder {
-  0% { box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb, 0, 123, 255), 0.5); }
-  70% { box-shadow: 0 0 0 10px rgba(var(--primary-color-rgb, 0, 123, 255), 0); }
+  0% { box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb, 0, 123, 255), 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(var(--primary-color-rgb, 0, 123, 255), 0); }
   100% { box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb, 0, 123, 255), 0); }
 }
-/* You'll need to define --primary-color-rgb in your :root in core.css if you haven't, e.g. --primary-color-rgb: 0, 123, 255; */
+
+/* 15. Shine Effect */
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(20deg); }
+    100% { transform: translateX(100%) rotate(20deg); }
+}
+
+/* 16. Blinking Cursor */
+@keyframes blinkCursor {
+    0%, 100% { border-right-color: var(--accent-color); } /* Ensure --accent-color is defined */
+    50% { border-right-color: transparent; }
+}
+
+/* 17. Bounce (loading animation) */
+@keyframes bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+}
 
 
 /* --- Utility Classes for Applying Animations --- */
 
-/* For general entrance (can be added to .animate-on-scroll elements) */
+/* General Entrance Animations (to be used with .animate-on-scroll and triggered by .is-visible) */
+.anim-fade-in.is-visible { animation: fadeIn 0.7s ease-out forwards; }
+.anim-fade-in-up.is-visible { animation: fadeInUp 0.7s ease-out forwards; }
+.anim-fade-in-down.is-visible { animation: fadeInDown 0.7s ease-out forwards; }
+.anim-fade-in-left.is-visible { animation: fadeInLeft 0.7s ease-out forwards; }
+.anim-fade-in-right.is-visible { animation: fadeInRight 0.7s ease-out forwards; }
+.anim-scale-up.is-visible { animation: scaleUp 0.7s ease-out forwards; }
+
 .anim-fade-in-blur-scale.is-visible {
   animation: fadeInBlurScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-/* For text character reveal (requires JS to wrap characters in spans) */
-/* Example: <h1 class="text-reveal-staggered"><span>H</span><span>e</span>...</h1> */
+/* Text Character Reveal (requires JS to wrap characters in spans and add delays) */
 .text-reveal-staggered span {
-  display: inline-block; /* Important for transform */
-  opacity: 0; /* Start hidden */
+  display: inline-block;
+  opacity: 0;
+  will-change: filter, opacity, transform;
 }
 .text-reveal-staggered.is-visible span {
   animation: textFocusIn 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) forwards;
-  /* Staggering needs to be applied via JS or by hand with :nth-child if content is static */
+  /* JS should apply: style.animationDelay = `calc(var(--char-index, ${index}) * 50ms)`; */
 }
 
 /* Subtle continuous floating */
 .anim-float-subtle {
-  animation: floatSubtle 3s ease-in-out infinite;
+  animation: floatSubtle 3.5s ease-in-out infinite;
+  will-change: transform;
 }
 
-/* Background Pan on Hover - Apply to elements with a gradient background */
+/* Background Pan on Hover */
 .hover-bg-pan {
-  background-size: 200% auto; /* Ensure gradient is large enough to pan */
-  transition: background-position 0.5s ease-out;
+  background-size: 250% auto;
+  transition: background-position 0.6s ease-out;
 }
 .hover-bg-pan:hover {
-  background-position: 100% 50%; /* Or -100% 50% for opposite direction */
-  /* If using keyframes for continuous pan: animation: backgroundPan 10s linear infinite alternate; */
+  background-position: 100% 50%;
 }
 
 /* Icon Wiggle on Hover */
-.hover-icon-wiggle:hover i, /* If icon is an <i> tag */
-.hover-icon-wiggle:hover svg { /* If icon is an svg */
-  animation: iconWiggle 0.5s ease-in-out;
+.hover-icon-wiggle:hover > i,
+.hover-icon-wiggle:hover > svg,
+.hover-icon-wiggle:hover .fab,
+.hover-icon-wiggle:hover .fas,
+.hover-icon-wiggle:hover .far {
+  animation: iconWiggle 0.45s ease-in-out;
+  display: inline-block; /* Important for transform-origin */
 }
 
-/* Mask Reveal for Scroll Animations (add to .animate-on-scroll elements) */
+/* Mask Reveal for Scroll Animations */
 .anim-mask-reveal-bottom.is-visible {
   animation: maskRevealBottomToTop 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 .anim-mask-reveal-left.is-visible {
   animation: maskRevealLeftToRight 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
-/* To make mask reveals work initially, element needs to have its final state geometry but be invisible.
-   The .animate-on-scroll (opacity: 0) from core.css helps.
-   You might need to ensure the element isn't display:none before is-visible.
-*/
-.anim-mask-reveal-bottom, .anim-mask-reveal-left { /* Initial state for clip-path if not using keyframes directly for scroll */
-    /* This might conflict with opacity:0 from .animate-on-scroll if not handled carefully.
-       Usually, .is-visible triggers opacity AND the animation.
-       If using keyframes for the reveal as above, the initial clip-path is in the 'from' state.
-    */
-}
 
-
-/* Pulse Border - can be applied to buttons or cards */
-.anim-pulse-border {
+/* Pulse Border */
+.anim-pulse-border { /* Continuous pulse */
   animation: pulseBorder 2s infinite cubic-bezier(0.66, 0, 0, 1);
-  border-radius: inherit; /* Inherit border-radius from the element */
+  border-radius: inherit;
 }
-/* If you want it on hover/focus only: */
 .interactive-pulse-border:hover,
-.interactive-pulse-border:focus {
+.interactive-pulse-border:focus-visible { /* Pulse on interaction */
   animation: pulseBorder 1.5s cubic-bezier(0.66, 0, 0, 1);
+  border-radius: inherit;
 }
 
-/* General Transition Utilities (can be combined) */
-.transition-all-ease {
-  transition: all 0.3s ease-in-out;
-}
-.transition-transform-ease {
-  transition: transform 0.3s ease-in-out;
-}
-.transition-opacity-ease {
-  transition: opacity 0.3s ease-in-out;
-}
+/* General Transition Utilities */
+.transition-all-ease { transition: all 0.3s ease-in-out; }
+.transition-transform-ease { transition: transform 0.3s ease-in-out; }
+.transition-opacity-ease { transition: opacity 0.3s ease-in-out; }
+.transition-colors-ease { transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out; }
 
-/* Hover lift/scale/shadow (refined utility) */
+/* Hover Lift/Scale/Shadow */
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: transform, box-shadow;
 }
 .hover-lift:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: var(--card-box-shadow-hover); /* Assumes --card-box-shadow-hover is defined */
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: var(--card-box-shadow-hover, 0 8px 25px rgba(0,0,0,0.15)); /* Fallback shadow */
 }
-
-/* --- Adding --primary-color-rgb to :root (example) --- */
-/* This should ideally go into your core.css :root definition */
-/*
-:root {
-  // ... other variables
-  --primary-color-rgb: 0, 123, 255; // Assuming --primary-color is #007bff
-}
-*/

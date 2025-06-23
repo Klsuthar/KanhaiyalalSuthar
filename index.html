@@ -100,11 +100,18 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- Main Stylesheets -->
+    <!-- Main Stylesheets - ORDER MATTERS -->
     <link rel="stylesheet" href="core.css">
+    <link rel="stylesheet" href="style.css"> <!-- New main style.css -->
     <link rel="stylesheet" href="components.css">
     <link rel="stylesheet" href="animation.css">
-    <!-- Bottom Mobile Navbar Stylesheet -->
+    <!-- Section Specific CSS -->
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="resume.css">
+    <link rel="stylesheet" href="projects.css"> <!-- or projects.css if you named it that -->
+    <link rel="stylesheet" href="contact.css">
+    <!-- Bottom Mobile Navbar Stylesheet (often loaded last or with components) -->
     <link rel="stylesheet" href="nav_bar.css">
 </head>
 
@@ -137,22 +144,47 @@
 
     <main>
         <section id="home">
-            <div id="tsparticles-background"></div>
-            <div class="container home-content">
-                <div class="home-text animate-on-scroll anim-fade-in-blur-scale">
-                    <p class="hello-text">Hello, I'm</p>
-                    <h1 class="hero-title-gradient">KANHAIYA LAL SUTHAR</h1>
-                    <div class="profession-text">I'm a <span id="typing-text"></span></div>
-                    <div class="home-buttons">
-                        <a href="pdf/KanhaiyalalResume.pdf" target="_blank"
-                            class="btn btn-primary interactive-pulse-border">View Resume</a>
-                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            <!-- The #home::after pseudo-element in home.css will create the grid background -->
+            <!-- If you were using tsParticles and removed its div, that's correct. -->
+            <!-- No explicit div for #tsparticles-background if it's not being used. -->
+            <!-- If you still want particles AND the partial grid, you'd have the #tsparticles-background div here,
+             and the #home::after pseudo-element would be styled for the grid on top of the particles.
+             Assuming particles are removed for now based on previous request. -->
+
+            <div class="container"> <!-- Ensures content respects overall page max-width and padding -->
+                <div class="home-content"> <!-- Main flex container for two columns -->
+
+                    <!-- Text Content Column -->
+                    <div class="home-text-content animate-on-scroll anim-fade-in-left">
+                        <p class="hello-text">Hello, I'm</p>
+                        <h1 class="hero-title-gradient">KANHAIYA LAL SUTHAR</h1>
+                        <div class="profession-text">I'm a <span id="typing-text"></span></div>
+                        <!-- Key points list has been removed as per your request -->
+                        <div class="home-buttons">
+                            <a href="pdf/KanhaiyalalResume.pdf" target="_blank"
+                                class="btn btn-primary interactive-pulse-border">View Resume</a>
+                            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                        </div>
                     </div>
-                </div>
-                <div class="home-image animate-on-scroll anim-float-subtle">
-                    <img id="profileImage" src="images/profile.png"
-                        alt="Kanhaiya Lal Suthar - Maths Teacher from Churu, Rajasthan"
-                        onerror="this.src='https://placehold.co/400x450/007bff/white?text=Kanhaiya'; this.onerror=null;">
+
+                    <!-- Image Column -->
+                    <div class="home-image-container animate-on-scroll anim-scale-up">
+                        <div class="home-image-blob-background"></div> <!-- For the organic shape background -->
+                        <div class="home-image anim-float-subtle"> <!-- Your profile image container -->
+                            <img id="profileImage" src="images/profile.png"
+                                alt="Kanhaiya Lal Suthar - Maths Teacher from Churu, Rajasthan"
+                                onerror="this.src='https://placehold.co/400x450/007bff/white?text=Kanhaiya'; this.onerror=null;">
+                        </div>
+                        <!-- Optional: Small floating elements like PrepInsta's "Google Reviews" can be added here if desired -->
+                        <!--
+                    <div class="home-image-float-badge" style="bottom: 10%; left: -5%;">
+                        <i class="fas fa-star"></i> Educator
+                    </div>
+                    <div class="home-image-float-badge" style="top: 15%; right: -10%;">
+                        <i class="fas fa-code"></i> Developer
+                    </div>
+                    -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -411,7 +443,7 @@
                         <i class="fas fa-paper-plane"></i> Send me an Email
                     </button>
                 </div>
-            
+
                 <div class="social-links animate-on-scroll slide-from-bottom">
                     <h3>Connect with Kanhaiya Lal Suthar:</h3>
                     <a href="https://www.linkedin.com/in/kanhaiya-lal-suthar/" target="_blank"
@@ -492,11 +524,21 @@
         </ul>
     </nav>
 
-
+    <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.6/tsparticles.bundle.min.js" defer></script>
-    <script src="script.js" defer></script>
-    <script src="nav_bar.js" defer></script>
+
+    <!-- Global and Component Scripts -->
+    <script src="script.js" defer></script> <!-- Main global script -->
+    <script src="nav_bar.js" defer></script> <!-- Bottom mobile nav script -->
+
+    <!-- Section Specific Scripts -->
+    <script src="home.js" defer></script>
+    <script src="about.js" defer></script>
+    <script src="resume.js" defer></script>
+    <script src="project.js" defer></script> <!-- or projects.js -->
+    <script src="contact.js" defer></script>
+
     <script>
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>

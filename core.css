@@ -1,31 +1,38 @@
-/* core.css - Global variables, resets, base styles, layout, utilities, global animations */
-
+/* core.css - :root variables */
 :root {
     --primary-color: #007bff;
-      --primary-color-rgb: 0, 123, 255;
+    --primary-color-rgb: 0, 123, 255;
     --primary-hover-color: #0056b3;
     --secondary-color: #6c757d;
+    /* This might be too dark for text on a new lighter home bg */
     --accent-color: #17a2b8;
     --text-color: #212529;
+    /* Main text color for light backgrounds */
+    --text-color-rgb: 33, 37, 41;
     --text-light: #495057;
     --bg-light: #f8f9fa;
+    /* Current general light background */
     --bg-white: #ffffff;
-    --border-color: #dee2e6;
 
-    --card-bg: var(--bg-white);
-    --card-padding: 25px;
+    /* NEW/ADJUSTED FOR HOME SECTION (inspired by PrepInsta) */
+    --home-bg-color: #E9F5FF;
+    /* A very light blue, or use var(--bg-light) or var(--bg-white) */
+    --home-text-color-dark: #1A2B3C;
+    /* Darker text for better readability on light home bg */
+    --home-text-color-medium: #4A5C6D;
+    /* Medium text for subheadings */
+    --home-accent-text-color: var(--primary-color);
+    /* Using your primary color for accents */
+    --home-grid-line-color: rgba(var(--text-color-rgb), 0.08);
+    /* Slightly more visible grid */
+    --home-blob-background-color: rgba(var(--primary-color-rgb), 0.12);
+    /* Blob color */
+
     --card-border-radius: 10px;
-    --card-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --card-box-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
-    --card-transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    --font-primary: 'Poppins', sans-serif;
-    --font-secondary: 'Roboto', sans-serif;
-    --font-display: 'Playfair Display', serif;
-    --font-accent: 'Montserrat', sans-serif;
-
-    --navbar-height: 70px; /* Original top navbar height for desktop */
-    --navbar-height-mobile: 60px; /* Define a height for the top navbar on mobile */
+    --card-bg: var(--bg-white);
+    /* ... rest of your variables ... */
+    --navbar-height: 70px;
+    --navbar-height-mobile: 60px;
 }
 
 /* Reset and Base Styles */
@@ -74,10 +81,25 @@ h6 {
     line-height: 1.3;
 }
 
-h1 { font-size: 2.8rem; font-weight: 700; }
-h2 { font-size: 2.2rem; font-weight: 600; }
-h3 { font-size: 1.6rem; font-weight: 600; }
-h4 { font-size: 1.3rem; font-weight: 500; }
+h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 1.3rem;
+    font-weight: 500;
+}
 
 p {
     margin-bottom: 1rem;
@@ -101,80 +123,27 @@ img {
 }
 
 /* Utility Classes */
-.bg-white\/80 { background-color: rgba(255, 255, 255, 0.8); }
-.backdrop-blur-sm { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
-
-.animate-shine {
-    position: relative;
-    overflow: hidden;
+.bg-white\/80 {
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
-.animate-shine::after {
-    content: "";
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background-image: linear-gradient(100deg,
-            rgba(255, 255, 255, 0) 20%,
-            rgba(255, 255, 255, 0.3) 50%,
-            rgba(255, 255, 255, 0) 80%);
-    transform: rotate(20deg);
-    animation: shine 2.5s linear infinite;
-    pointer-events: none;
+.backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-.animate-shine-card .project-image::after {
-    content: "";
-    position: absolute;
-    top: -50%; left: -50%;
-    width: 200%; height: 200%;
-    background-image: linear-gradient(100deg,
-            rgba(255, 255, 255, 0) 15%,
-            rgba(255, 255, 255, 0.15) 50%,
-            rgba(255, 255, 255, 0) 85%);
-    transform: rotate(20deg);
-    animation: shine 3s linear infinite;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    pointer-events: none;
-}
-.project-card:hover .project-image.animate-shine-card::after {
-    opacity: 1;
+.text-center {
+    text-align: center;
 }
 
-/* Loading Overlay */
-#loading-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: var(--bg-white);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-#loading-overlay.hidden { opacity: 0; visibility: hidden; }
 
-.maths-loader {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--primary-color);
+/* Sections General Styling (Used by multiple sections) */
+.section-padding {
+    padding: 90px 0;
 }
-.maths-loader span { display: inline-block; animation: bounce 1.4s infinite ease-in-out both; }
-.maths-loader span:nth-child(1) { animation-delay: -0.32s; }
-.maths-loader span:nth-child(2) { animation-delay: -0.28s; }
-.maths-loader span:nth-child(3) { animation-delay: -0.24s; }
-.maths-loader span:nth-child(4) { animation-delay: -0.20s; }
-.maths-loader span:nth-child(5) { animation-delay: -0.16s; }
-.maths-loader span:nth-child(6) { animation-delay: -0.12s; }
-.maths-loader span:nth-child(7) { animation-delay: -0.08s; }
-.maths-loader span:nth-child(8) { animation-delay: -0.04s; }
 
-/* Sections General Styling */
-.section-padding { padding: 90px 0; }
 .section-title {
+    /* This is a global component, used by about, resume, projects, contact */
     text-align: center;
     margin-bottom: 1.25rem;
     font-family: var(--font-display);
@@ -182,16 +151,21 @@ img {
     position: relative;
     padding-bottom: 12px;
 }
+
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: 0; left: 50%;
+    bottom: 0;
+    left: 50%;
     transform: translateX(-50%);
-    width: 55px; height: 3px;
+    width: 55px;
+    height: 3px;
     background-color: var(--accent-color);
     border-radius: 1.5px;
 }
+
 .section-subtitle {
+    /* Also a global component */
     text-align: center;
     margin-bottom: 45px;
     font-size: 1.1rem;
@@ -201,42 +175,39 @@ img {
     margin-right: auto;
 }
 
-/* Footer */
-footer {
-    background-color: var(--text-color);
-    color: rgba(255, 255, 255, 0.75);
-    padding: 35px 0;
-    text-align: center;
-    font-size: 0.9rem;
-}
-footer p {
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 8px;
-    line-height: 1.6;
-}
-footer .container {
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
-    padding-top: 25px;
-}
-footer .fas.fa-heart { color: #e74c3c; }
 
-/* General Animations */
-@keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
-@keyframes shine { 0% { transform: translateX(-100%) rotate(20deg); } 100% { transform: translateX(100%) rotate(20deg); } }
-@keyframes blinkCursor { 0%, 100% { border-right-color: var(--accent-color); } 50% { border-right-color: transparent; } }
-
+/* General Animations - Keyframes should be in animation.css */
 /* Scroll Animations - General Setup */
 .animate-on-scroll {
     opacity: 0;
     will-change: transform, opacity;
     transition: opacity 0.6s ease-out, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.animate-on-scroll.slide-from-left { transform: translateX(-80px) scale(0.95); }
-.animate-on-scroll.slide-from-right { transform: translateX(80px) scale(0.95); }
-.animate-on-scroll.slide-from-bottom { transform: translateY(70px) scale(0.95); }
-.animate-on-scroll.slide-from-top { transform: translateY(-70px) scale(0.95); }
-.animate-on-scroll.scale-in { transform: scale(0.8); }
-.animate-on-scroll.fade-only { transform: translateY(0); }
+
+.animate-on-scroll.slide-from-left {
+    transform: translateX(-80px) scale(0.95);
+}
+
+.animate-on-scroll.slide-from-right {
+    transform: translateX(80px) scale(0.95);
+}
+
+.animate-on-scroll.slide-from-bottom {
+    transform: translateY(70px) scale(0.95);
+}
+
+.animate-on-scroll.slide-from-top {
+    transform: translateY(-70px) scale(0.95);
+}
+
+.animate-on-scroll.scale-in {
+    transform: scale(0.8);
+}
+
+.animate-on-scroll.fade-only {
+    transform: translateY(0);
+}
+
 .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateX(0) translateY(0) scale(1) rotate(0);
@@ -244,29 +215,45 @@ footer .fas.fa-heart { color: #e74c3c; }
 
 /* Basic Responsive Adjustments (Desktop First Approach) */
 @media (min-width: 992px) {
-    .section-padding { padding: 100px 0; }
+    .section-padding {
+        padding: 100px 0;
+    }
 }
 
 /* Mobile Layout Base - General adjustments */
 @media (max-width: 768px) {
-    html { font-size: 15px; }
-    h1 { font-size: 2.3rem; }
-    h2 { font-size: 1.9rem; }
-    h3 { font-size: 1.5rem; }
-    .section-padding { padding: 60px 0; }
+    html {
+        font-size: 15px;
+    }
 
-    /* Top navbar is visible on mobile. Body padding accounts for it. */
+    h1 {
+        font-size: 2.3rem;
+    }
+
+    h2 {
+        font-size: 1.9rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    .section-padding {
+        padding: 60px 0;
+    }
+
     body {
-        padding-top: var(--navbar-height-mobile); /* For fixed top navbar */
-        /* Assuming bottom nav height of 55px (from nav_bar.css) + 20px buffer */
+        padding-top: var(--navbar-height-mobile);
         padding-bottom: 75px;
+        /* For bottom mobile nav, e.g., 55px nav + 20px buffer */
     }
 
     /* Initial transforms for scroll animations on mobile (override desktop versions) */
     .animate-on-scroll.slide-from-left,
     .animate-on-scroll.slide-from-right {
-        transform: translateX(0) translateY(50px) scale(0.95); /* Slide from bottom on mobile */
+        transform: translateX(0) translateY(50px) scale(0.95);
     }
+
     .animate-on-scroll.slide-from-top {
         transform: translateY(-50px) scale(0.95);
     }
@@ -274,12 +261,5 @@ footer .fas.fa-heart { color: #e74c3c; }
 
 /* Very Small Screens - General adjustments */
 @media (max-width: 370px) {
-    /* Home section text adjustments are component-specific, move to components.css if preferred */
-}
-
-/* Animation for original mobile nav links (if kept, though #navbar is hidden) */
-/* This is likely unused now as the top nav burger is hidden on mobile */
-@keyframes navLinkFade {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0px); }
+    /* Typography or other global adjustments for very small screens */
 }

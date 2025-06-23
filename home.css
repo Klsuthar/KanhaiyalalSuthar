@@ -1,0 +1,280 @@
+/* home.css - Styles specific to the Home section (Grid Fix) */
+
+#home {
+    min-height: 100vh;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Crucial for positioning pseudo-elements or child grid containers */
+    color: var(--home-text-color-dark);
+    background-color: var(--home-bg-color); /* Solid light background for the whole section */
+    overflow: hidden;
+    padding-top: var(--navbar-height-mobile);
+    padding-bottom: 40px;
+    /* z-index: 0; /* Base z-index for the section itself */
+}
+
+/* Grid for the right side using a pseudo-element on #home */
+#home::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 55%; /* Cover roughly the right half or a bit more */
+    height: 100%;
+    background-image:
+        linear-gradient(to right, var(--home-grid-line-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--home-grid-line-color) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: 0 0; /* Align grid relative to this pseudo-element */
+    z-index: 0; /* Behind .home-content but above #home's solid background-color */
+    opacity: 0.5; /* Adjust grid subtlety */
+    pointer-events: none;
+}
+
+
+/* Remove or comment out .home-grid-background-container if using pseudo-element */
+/*
+.home-grid-background-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background-image:
+        linear-gradient(to right, var(--home-grid-line-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--home-grid-line-color) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: 0 0;
+    z-index: 0;
+    opacity: 0.6;
+    pointer-events: none;
+    overflow: hidden;
+}
+*/
+
+.home-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative; /* Ensure this is relative */
+    z-index: 1; /* Content must be above the #home::after grid */
+    padding: 40px 0;
+}
+
+/* --- Text Content Column --- */
+.home-text-content {
+    flex: 1 1 50%;
+    max-width: 580px;
+    text-align: left;
+    z-index: 2; /* Explicitly above the image blob if they could overlap */
+}
+
+.home-text-content .hello-text {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--home-accent-text-color);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.home-text-content h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+    color: var(--home-text-color-dark);
+    font-weight: 700;
+}
+
+.home-text-content .profession-text {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    font-weight: 400;
+    color: var(--home-text-color-medium);
+    margin-bottom: 2.5rem;
+    min-height: 1.5em;
+}
+#typing-text {
+    border-right: 3px solid var(--home-accent-text-color);
+}
+
+.home-buttons {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+.home-buttons .btn-primary {
+    padding: 14px 32px;
+    font-size: 1rem;
+}
+.home-buttons .btn-secondary {
+    padding: 14px 32px;
+    font-size: 1rem;
+    color: var(--home-accent-text-color);
+    border-color: var(--home-accent-text-color);
+}
+.home-buttons .btn-secondary:hover {
+    background-color: var(--home-accent-text-color);
+    color: var(--bg-white);
+}
+
+
+/* --- Image Column --- */
+.home-image-container {
+    flex: 1 1 45%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 450px;
+    z-index: 1; /* Sits on the same level as text, above grid */
+}
+
+.home-image-blob-background {
+    position: absolute;
+    width: 115%;
+    height: 115%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.08), rgba(var(--accent-color-rgb, 23, 162, 184), 0.12));
+    z-index: 1; /* Relative to .home-image-container, behind .home-image */
+    opacity: 0.9;
+    transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1),
+                border-radius 1.2s cubic-bezier(0.075, 0.82, 0.165, 1),
+                opacity 0.5s ease-in-out;
+}
+.home-image-container:hover .home-image-blob-background {
+    transform: translate(-50%, -50%) rotate(10deg) scale(1.1);
+    border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
+    opacity: 1;
+}
+
+.home-image {
+    position: relative;
+    z-index: 2; /* Above the blob within the .home-image-container */
+    width: clamp(320px, 90%, 450px);
+    max-width: 480px;
+}
+
+.home-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: none;
+    box-shadow: none;
+    filter: drop-shadow(0px 8px 15px rgba(var(--home-text-color-rgb, 33, 37, 41), 0.1));
+}
+
+
+/* --- Home Section Responsive Adjustments --- */
+@media (max-width: 991px) { /* Tablets and below */
+    #home {
+        padding-top: calc(var(--navbar-height-mobile) + 20px);
+        min-height: auto;
+    }
+    #home::after { /* Grid pseudo-element */
+        width: 100%; /* Full width grid on smaller screens, or adjust */
+        opacity: 0.3; /* More subtle if full width */
+    }
+    .home-content {
+        flex-direction: column-reverse;
+        text-align: center;
+        gap: 2rem;
+        padding: 30px 15px;
+    }
+    .home-text-content {
+        text-align: center;
+        align-items: center;
+        max-width: 90%;
+    }
+    .home-text-content h1 {
+        font-size: clamp(2.2rem, 7vw, 3rem);
+    }
+    .home-text-content .profession-text {
+        font-size: clamp(1.1rem, 4vw, 1.4rem);
+        margin-bottom: 2rem;
+    }
+    .home-buttons {
+        justify-content: center;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .home-image-container {
+        width: 70%;
+        max-width: 380px;
+        min-height: auto;
+        margin-bottom: 2rem;
+    }
+    .home-image {
+        width: clamp(260px, 100%, 350px);
+    }
+    .home-image-blob-background {
+        width: 100%;
+        height: 100%;
+        max-width: 380px;
+        max-height: 430px;
+    }
+}
+
+@media (max-width: 768px) { /* Mobile specific */
+     #home {
+        padding-top: calc(var(--navbar-height-mobile) + 10px);
+    }
+    #home::after { /* Grid pseudo-element */
+        width: 100%;
+        opacity: 0.25;
+    }
+    .home-content {
+        gap: 1.5rem;
+        padding: 20px 15px;
+    }
+    .home-text-content h1 {
+        font-size: clamp(2rem, 8vw, 2.6rem);
+    }
+    .home-text-content .profession-text {
+        font-size: clamp(1rem, 5vw, 1.2rem);
+    }
+    .home-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    .home-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    .home-image-container {
+        width: 85%;
+        max-width: 320px;
+    }
+    .home-image {
+        width: clamp(220px, 100%, 280px);
+    }
+    .home-image-blob-background {
+         max-width: 300px;
+         max-height: 350px;
+    }
+}
+
+@media (max-width: 370px) { /* Very Small Screens */
+    .home-text-content h1 {
+        font-size: clamp(1.8rem, 7.5vw, 2rem);
+    }
+    .home-text-content .profession-text {
+        font-size: clamp(0.9rem, 4.5vw, 1.1rem);
+    }
+    .home-image {
+        width: clamp(180px, 100%, 220px);
+    }
+    .home-image-blob-background {
+         max-width: 240px;
+         max-height: 280px;
+    }
+}

@@ -1,0 +1,185 @@
+/* project.css - Styles specific to the Projects section */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default single column for mobile */
+    gap: 30px;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-box-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: var(--card-transition), border-left-color 0.3s ease; /* Added border-left-color transition */
+    position: relative; /* For ::before pseudo-element if needed for full card border */
+    border-left: 3px solid transparent; /* Initial transparent border for smooth hover */
+}
+
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--card-box-shadow-hover);
+    border-left-color: var(--primary-color); /* Accent border on hover */
+}
+
+.project-image {
+    position: relative; /* For positioning overlay and icon */
+    overflow: hidden; /* Keep zoom effect contained */
+}
+
+.project-image img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9.5;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother ease for zoom */
+}
+
+/* Image Overlay and Icon on Hover */
+.project-image::before { /* Overlay */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(var(--primary-color-rgb, 0, 123, 255), 0.5); /* Use primary color with opacity */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1;
+}
+
+.project-image::after { /* "View" Icon */
+    content: '\f06e'; /* Font Awesome eye icon (fa-eye) */
+    font-family: 'Font Awesome 6 Free'; /* Or 'Font Awesome 6 Brands' / 'Font Awesome 6 Solid' depending on icon */
+    font-weight: 900; /* For solid icons */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    color: var(--bg-white);
+    font-size: 2.5rem; /* Adjust icon size */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    z-index: 2;
+    pointer-events: none; /* So it doesn't interfere with the link on the image */
+}
+
+.project-card:hover .project-image::before {
+    opacity: 1;
+}
+.project-card:hover .project-image::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+.project-card:hover .project-image img {
+    transform: scale(1.1); /* Slightly increased zoom on hover */
+}
+
+
+/* Shine effect (if used - ensure .animate-shine-card class is on .project-image) */
+.animate-shine-card.project-image::after { /* This was the original shine, now it's for the icon */
+    /* If you want to keep the shine OVER the image but UNDER the icon, adjust z-index or use another pseudo */
+    /* For simplicity, I'm assuming the icon is primary. If shine is still desired on image: */
+    /* Create a new pseudo for shine, or adjust existing. For now, the icon takes precedence. */
+}
+/* If you want to re-enable shine ON THE IMAGE (under the new overlay): */
+/*
+.project-image .image-shine-effect { // You'd add a <span class="image-shine-effect"></span> inside project-image if needed
+    content: "";
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background-image: linear-gradient(100deg,
+            rgba(255, 255, 255, 0) 15%,
+            rgba(255, 255, 255, 0.1) 50%, // More subtle shine
+            rgba(255, 255, 255, 0) 85%);
+    transform: rotate(20deg);
+    animation: shine 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0; // Below the main overlay
+}
+.project-card:hover .project-image .image-shine-effect {
+    opacity: 1;
+}
+*/
+
+
+.project-info {
+    padding: var(--card-padding);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg); /* Ensure it has a background */
+    position: relative; /* If you add z-index to keep it above any card-wide effects */
+    z-index: 5; /* Above potential card-wide pseudo elements if any */
+}
+
+.project-info h3 {
+    font-size: 1.45rem; /* Slightly larger title */
+    margin-bottom: 0.75rem; /* Adjusted spacing */
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.project-info p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem; /* More space before button */
+    flex-grow: 1;
+    line-height: 1.65; /* Improved readability */
+    color: var(--text-light);
+}
+
+.project-info .btn {
+    align-self: flex-start;
+    margin-top: auto;
+    /* Ensure it's using a prominent style like btn-primary or btn-outline-primary */
+    /* e.g. in HTML: class="btn btn-sm btn-primary" */
+}
+
+.project-info .btn i {
+    margin-left: 8px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.project-info .btn:hover i {
+    transform: translateX(6px) scale(1.1); /* More noticeable arrow movement */
+}
+
+/* Staggering for project cards */
+.projects-grid .project-card.animate-on-scroll:nth-child(odd) { transition-delay: 0.15s; } /* Slightly increased delay */
+.projects-grid .project-card.animate-on-scroll:nth-child(even) { transition-delay: 0.3s; }
+
+
+/* Projects Section Responsive Adjustments */
+@media (min-width: 769px) { /* Desktop */
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px; /* Increased gap slightly */
+    }
+}
+
+@media (min-width: 1200px) { /* Larger Desktops */
+    .projects-grid {
+        /* Consider 3 columns if you have many projects and want a denser layout */
+        /* grid-template-columns: repeat(3, 1fr); */
+        /* gap: 30px; */
+    }
+}
+
+@media (max-width: 768px) { /* Tablet and Mobile */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .project-card .project-info {
+        padding: 20px;
+    }
+    .project-info h3 {
+        font-size: 1.3rem;
+    }
+}
