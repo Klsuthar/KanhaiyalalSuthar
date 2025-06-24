@@ -1,4 +1,4 @@
-/* resume.css - Styles specific to the Resume section (REDESIGNED CARDS) */
+/* resume.css - Styles specific to the Resume section (FIXED Timeline Alignment & Mobile) */
 
 .resume-grid {
     display: grid;
@@ -30,11 +30,11 @@
     font-size: 1.3em;
 }
 
-/* --- Timeline Styles (Unchanged) --- */
 .resume-items-container {
     position: relative;
     padding-left: 30px;
 }
+
 .resume-items-container::before {
     content: '';
     position: absolute;
@@ -46,24 +46,21 @@
     border-radius: 2px;
 }
 
-/* --- RESUME CARD REDESIGN START --- */
-
-/* Base card is now a flex container */
 .card.uiverse-style {
     display: flex;
-    align-items: flex-start; /* Align items to the top */
+    align-items: flex-start;
     gap: 20px;
     background-color: var(--card-bg);
-    padding: 20px; /* Uniform padding */
+    padding: 20px;
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
     margin-bottom: 25px;
     position: relative;
-    border-left: none; /* REMOVED original left border */
+    border-left: none;
     transition: var(--card-transition);
 }
 
-/* The dot on the timeline for each card (position adjusted for new layout) */
+/* --- DOT ALIGNMENT FIX START --- */
 .card.uiverse-style::before {
     content: '';
     position: absolute;
@@ -73,14 +70,20 @@
     background-color: var(--bg-white);
     border: 3px solid var(--primary-color);
     z-index: 1;
-    top: 28px; /* Adjusted vertical alignment */
-    left: -38px; /* Position to sit on the timeline bar */
+    
+    /* Corrected TOP position to align with the center of the icon */
+    top: 37.5px; /* (Icon height 50px / 2) + card padding 20px - (dot height 15px / 2) = 25 + 20 - 7.5 = 37.5 */
+    
+    /* Corrected LEFT position to center the dot on the line */
+    left: -28.5px; /* (Padding 30px - line center 9px) = 21px from card edge. -21px - (dot width 15px / 2) = -28.5px */
+    
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
+/* --- DOT ALIGNMENT FIX END --- */
 
-/* New Icon Container */
+
 .resume-card-icon {
-    flex-shrink: 0; /* Prevent icon from shrinking */
+    flex-shrink: 0;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -93,12 +96,10 @@
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-/* Container for all text content */
 .resume-card-content {
-    flex-grow: 1; /* Allow content to take remaining space */
+    flex-grow: 1;
 }
 
-/* Card Hover Effects */
 .card.uiverse-style:hover {
     transform: translateY(-5px) scale(1.01);
     box-shadow: var(--card-box-shadow-hover);
@@ -115,12 +116,10 @@
     transform: rotate(15deg) scale(1.05);
 }
 
-/* Remove the old faint background icon style */
 .card-icon {
     display: none;
 }
 
-/* Typography styles within the card (Unchanged) */
 .resume-card-content h4 {
     font-size: 1.2rem;
     color: var(--text-color);
@@ -141,10 +140,7 @@
     color: var(--text-light);
 }
 
-/* --- RESUME CARD REDESIGN END --- */
-
-
-/* Responsive Adjustments */
+/* --- RESPONSIVE IMPROVEMENTS START --- */
 @media (min-width: 769px) {
     .resume-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -164,15 +160,19 @@
         margin-bottom: 20px;
     }
     .resume-items-container { padding-left: 25px; }
+    
     .card.uiverse-style {
         padding: 15px;
-        gap: 15px;
+        gap: 15px; /* Slightly reduced gap for mobile */
         margin-bottom: 20px;
     }
+    
     .card.uiverse-style::before {
-        left: -33px;
-        top: 24px;
+        /* Recalculated position for mobile */
+        top: 27.5px; /* Icon height 40px/2 + padding 15px - dot height 15px/2 = 20 + 15 - 7.5 = 27.5 */
+        left: -23.5px; /* Padding 25px - line center 9px = 16px. -16px - (dot width 15px / 2) = -23.5px */
     }
+
     .resume-card-icon {
         width: 40px;
         height: 40px;
