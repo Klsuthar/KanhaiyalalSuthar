@@ -66,6 +66,7 @@ body.loading {
     max-width: 1140px;
     margin: 0 auto;
     padding: 0 15px;
+    position: relative; /* ADD THIS LINE */
 }
 
 /* Headings - Use Montserrat from --font-accent for consistency */
