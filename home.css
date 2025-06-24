@@ -1,4 +1,4 @@
-/* home.css - Styles specific to the Home section (CORRECTED FILE PATH) */
+/* home.css - Styles specific to the Home section (Added Responsive Background Image) */
 
 #home {
     min-height: 100vh;
@@ -14,7 +14,7 @@
     padding-bottom: 40px;
 }
 
-/* Background image layer */
+/* Default DESKTOP background image layer */
 #home::before {
     content: '';
     position: absolute;
@@ -22,14 +22,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    
-    /* --- THIS IS THE CORRECTED LINE --- */
-    background-image: url('images/backgrounds/home-bg.jpg'); /* REMOVED ../ from the path */
-    
+    background-image: url('images/backgrounds/home-bg.jpg'); /* Desktop image */
     background-size: cover;
     background-position: center;
-    opacity: 0.4; 
+    opacity: 0.4; /* Desktop opacity */
     z-index: 1;
+    transition: opacity 0.3s ease; /* Add transition for smooth changes */
 }
 
 /* Grid pattern layer */
@@ -64,13 +62,12 @@
     padding: 40px 0;
 }
 
-/* --- Text Content Column --- */
+/* ... (The rest of your text and image content styles remain the same) ... */
 .home-text-content {
     flex: 1 1 50%;
     max-width: 580px;
     text-align: left;
 }
-
 .home-text-content .hello-text {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
@@ -78,25 +75,18 @@
     font-weight: 600;
     letter-spacing: 0.5px;
 }
-
 .home-text-content h1.hero-main-title {
     font-family: var(--font-display);
     line-height: 1.1;
     margin-bottom: 1rem;
     font-weight: 700;
 }
-
-.hero-main-title span {
-    display: block;
-    font-family: inherit;
-}
-
+.hero-main-title span { display: block; font-family: inherit; }
 .hero-main-title .name-part-dark {
     color: var(--home-text-color-dark);
     font-size: clamp(2.8rem, 6vw, 4.5rem);
     font-weight: 700;
 }
-
 .home-text-content .profession-text {
     font-size: clamp(1.2rem, 3vw, 1.6rem);
     font-weight: 400;
@@ -104,35 +94,19 @@
     margin-bottom: 2.5rem;
     min-height: 1.5em;
 }
-
-#typing-text {
-    border-right: 3px solid var(--home-accent-text-color);
-}
-
-.home-buttons {
-    display: flex;
-    gap: 1.2rem;
-    margin-top: 1.5rem;
-}
-
-.home-buttons .btn-primary {
-    padding: 14px 32px;
-    font-size: 1rem;
-}
-
+#typing-text { border-right: 3px solid var(--home-accent-text-color); }
+.home-buttons { display: flex; gap: 1.2rem; margin-top: 1.5rem; }
+.home-buttons .btn-primary { padding: 14px 32px; font-size: 1rem; }
 .home-buttons .btn-secondary {
     padding: 14px 32px;
     font-size: 1rem;
     color: var(--home-accent-text-color);
     border-color: var(--home-accent-text-color);
 }
-
 .home-buttons .btn-secondary:hover {
     background-color: var(--home-accent-text-color);
     color: var(--bg-white);
 }
-
-/* --- Image Column --- */
 .home-image-container {
     flex: 1 1 45%;
     position: relative;
@@ -141,7 +115,6 @@
     justify-content: center;
     min-height: 450px;
 }
-
 .home-image-blob-background {
     position: absolute;
     width: 115%;
@@ -153,24 +126,19 @@
     background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.08), rgba(var(--accent-color-rgb, 23, 162, 184), 0.12));
     z-index: 1;
     opacity: 0.9;
-    transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1),
-                border-radius 1.2s cubic-bezier(0.075, 0.82, 0.165, 1),
-                opacity 0.5s ease-in-out;
+    transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1), border-radius 1.2s cubic-bezier(0.075, 0.82, 0.165, 1), opacity 0.5s ease-in-out;
 }
-
 .home-image-container:hover .home-image-blob-background {
     transform: translate(-50%, -50%) rotate(10deg) scale(1.1);
     border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
     opacity: 1;
 }
-
 .home-image {
     position: relative;
     z-index: 2;
     width: clamp(320px, 90%, 450px);
     max-width: 480px;
 }
-
 .home-image img {
     width: 100%;
     height: auto;
@@ -181,14 +149,15 @@
 }
 
 
-/* --- Home Section Responsive Adjustments --- */
+/* --- Responsive Adjustments --- */
+
 @media (max-width: 991px) { /* Tablets and below */
     #home {
         padding-top: calc(var(--navbar-height-mobile) + 20px);
         min-height: auto;
     }
-    #home::after { /* Grid pseudo-element */
-        width: 100%; /* Full width grid on smaller screens */
+    #home::after {
+        width: 100%;
         opacity: 0.3;
     }
     .home-content {
@@ -202,11 +171,9 @@
         align-items: center;
         max-width: 90%;
     }
-
     .hero-main-title .name-part-dark {
         font-size: clamp(2.2rem, 5vw, 3.2rem);
     }
-
     .home-text-content .profession-text {
         font-size: clamp(1.1rem, 4vw, 1.4rem);
         margin-bottom: 2rem;
@@ -237,18 +204,24 @@
      #home {
         padding-top: calc(var(--navbar-height-mobile) + 10px);
     }
-    #home::after { /* Grid pseudo-element */
+
+    /* --- MOBILE BACKGROUND CHANGE START --- */
+    #home::before {
+        background-image: url('images/backgrounds/home-bg-mobile.jpg'); /* New Mobile Image */
+        opacity: 0.4; /* New Mobile Opacity */
+    }
+    /* --- MOBILE BACKGROUND CHANGE END --- */
+    
+    #home::after {
         opacity: 0.25;
     }
     .home-content {
         gap: 1.5rem;
         padding: 20px 15px;
     }
-    
     .hero-main-title .name-part-dark {
         font-size: clamp(2rem, 7vw, 2.6rem);
     }
-
     .home-text-content .profession-text {
         font-size: clamp(1rem, 5vw, 1.2rem);
     }
