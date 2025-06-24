@@ -42,6 +42,14 @@
     <meta property="og:locale" content="en_IN">
     <meta property="og:site_name" content="Kanhaiya Lal Suthar Portfolio">
 
+    <!-- Twitter Card Tags
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kanhaiya lal Suthar - Maths Teacher | Churu, Rajasthan">
+    <meta name="twitter:description"
+        content="Explore the profile, skills, and projects of Kanhaiya lal Suthar, Maths Teacher and tech enthusiast.">
+    <meta name="twitter:image" content="https://klsuthar.github.io/KanhaiyalalSuthar/images/kanhaiyalal.png">
+    <meta name="twitter:site" content="@Kanhaiya">
+    <meta name="twitter:creator" content="@Kanhaiya"> -->
 
     <!-- Lottie Player Script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -165,14 +173,15 @@
         <section id="about" class="section-padding">
             <div class="container">
                 <h2 class="section-title animate-on-scroll anim-mask-reveal-bottom">About Me</h2>
-                <p class="section-subtitle animate-on-scroll anim-fade-in-blur-scale">Discover more about Kanhaiya lal
-                    Suthar, Maths Teacher and
-                    Tech enthusiast.</p>
-                <div class="about-content">
+                <p class="section-subtitle animate-on-scroll anim-fade-in-blur-scale">
+                    Discover more about Kanhaiya lal Suthar, Maths Teacher and Tech enthusiast.
+                </p>
+                <div class="about-content"> <!-- Main flex container for columns -->
                     <div class="about-left animate-on-scroll anim-mask-reveal-left">
                         <img src="images/Kanhaiyalal.png" alt="Kanhaiya Lal Suthar - About Me Section Image"
                             onerror="this.src='https://placehold.co/450x500/007bff/white?text=About+KLS'; this.onerror=null;">
-                        <div class="about-details bg-white/80 backdrop-blur-sm">
+                        <div class="about-details animate-on-scroll slide-from-bottom" data-delay="0.1s">
+                            <!-- Added animation -->
                             <h3>Kanhaiya Lal Suthar</h3>
                             <p><i class="fas fa-envelope"></i> <a
                                     href="mailto:klsuthar0987@gmail.com">klsuthar0987@gmail.com</a></p>
@@ -180,28 +189,24 @@
                             <p><i class="fas fa-map-marker-alt"></i> DHADHERU, CHURU, RAJASTHAN, INDIA</p>
                         </div>
                     </div>
-                    <div class="about-right animate-on-scroll anim-mask-reveal-bottom">
-                        <h3>Maths Teacher & Web Developer</h3>
-                        <p>I'm Kanhaiya Lal Suthar, a passionate Mathematics teacher from Churu, Rajasthan, holding a
-                            B.Sc.-B.Ed. integrated degree. With a strong academic foundation, I am dedicated to
-                            delivering result-oriented, skill-based education that empowers students. I simplify complex
-                            mathematical concepts using AI-driven tools and interactive teaching methods, creating an
-                            engaging and effective learning environment. My goal is to enhance the education sector by
-                            seamlessly integrating technology, ensuring learning is impactful, accessible, and inspiring
-                            for all students.</p>
-                        <div class="interests-section animate-on-scroll slide-from-bottom" data-delay="0.2s">
+                    <div class="about-right animate-on-scroll anim-mask-reveal-bottom" data-delay="0.2s">
+                        <!-- Or slide-from-right -->
+                        <h3>Maths Teacher & Web Developer</h3> <!-- This is the main subheading in right column -->
+                        <p>I'm Kanhaiya Lal Suthar, a passionate Mathematics teacher...</p>
+
+                        <div class="interests-section animate-on-scroll slide-from-bottom" data-delay="0.3s">
                             <h4 class="interests-title">My Interests</h4>
                             <div class="interests-container">
-                                <span class="interest-tag">Teaching Mathematics</span>
-                                <span class="interest-tag">Studying Businesses & Startups</span>
-                                <span class="interest-tag">Photography</span>
-                                <span class="interest-tag">Learning New Technologies</span>
-                                <span class="interest-tag">Web Development</span>
+                                <span class="interest-tag hover-lift">Teaching Mathematics</span>
+                                <span class="interest-tag hover-lift">Studying Businesses & Startups</span>
+                                <span class="interest-tag hover-lift">Photography</span>
+                                <span class="interest-tag hover-lift">Learning New Technologies</span>
+                                <span class="interest-tag hover-lift">Web Development</span>
                             </div>
                         </div>
 
-                        <div class="skills-section-container">
-                            <h3 class="skills-title animate-on-scroll anim-mask-reveal-bottom">My Expertise</h3>
+                        <div class="skills-section-container animate-on-scroll slide-from-bottom" data-delay="0.4s">
+                            <h3 class="skills-title">My Expertise</h3> <!-- Reverted to H3 for semantic consistency -->
                             <div class="animated-skills-grid">
                                 <div class="skill-item animate-on-scroll slide-from-bottom hover-lift">
                                     <div class="skill-info">
@@ -276,66 +281,76 @@
         <section id="resume" class="section-padding">
             <div class="container">
                 <h2 class="section-title animate-on-scroll anim-mask-reveal-bottom">My Resume</h2>
-                <p class="section-subtitle animate-on-scroll anim-fade-in-blur-scale">Summary of Kanhaiya Lal Suthar's
-                    (Maths Teacher) journey
-                    and qualifications. (4+ MONTHS INTERN Teaching)</p>
+                <p class="section-subtitle animate-on-scroll anim-fade-in-blur-scale">
+                    Summary of Kanhaiya Lal Suthar's (Maths Teacher) journey and qualifications. (4+ MONTHS INTERN
+                    Teaching)
+                </p>
 
                 <div class="resume-grid">
-                    <div class="experience-section animate-on-scroll slide-from-left">
-                        <h3 class="resume-title anim-mask-reveal-bottom">
+                    <!-- Experience Column -->
+                    <div class="resume-column experience-section animate-on-scroll slide-from-left">
+                        <h3 class="resume-column-title">
                             <i class="fas fa-briefcase"></i> Experience
                         </h3>
-                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
-                            <img src="icon/Rocket.svg" alt="Experience Icon" class="card-icon">
-                            <h4>MATHS TEACHER INTERN - SENIOR LEVEL</h4>
-                            <h5>Gov. Sen. Sec. School, Dhadheru | 2024</h5>
-                            <p>Duration: 3+ Months. Focused on senior-level mathematics instruction and curriculum
-                                support.</p>
-                        </div>
-                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
-                            <img src="icon/maths.svg" alt="Experience Icon" class="card-icon">
-                            <h4>Science TEACHER INTERN - SENIOR LEVEL</h4>
-                            <h5>Gov. Sen. Sec. School, Dhadheru | 2023</h5>
-                            <p>Duration: 1+ Month. Delivered science lessons and assisted in lab activities for senior
-                                students.</p>
+                        <div class="resume-items-container"> <!-- Wrapper for items in this column -->
+                            <div class="card uiverse-style animate-on-scroll slide-from-bottom">
+                                <img src="icon/Rocket.svg" alt="Experience Icon" class="card-icon">
+                                <h4>MATHS TEACHER INTERN - SENIOR LEVEL</h4>
+                                <h5>Gov. Sen. Sec. School, Dhadheru | 2024</h5>
+                                <p>Duration: 3+ Months. Focused on senior-level mathematics instruction and curriculum
+                                    support.</p>
+                            </div>
+                            <div class="card uiverse-style animate-on-scroll slide-from-bottom">
+                                <img src="icon/maths.svg" alt="Experience Icon" class="card-icon">
+                                <h4>Science TEACHER INTERN - SENIOR LEVEL</h4>
+                                <h5>Gov. Sen. Sec. School, Dhadheru | 2023</h5>
+                                <p>Duration: 1+ Month. Delivered science lessons and assisted in lab activities for
+                                    senior students.</p>
+                            </div>
+                            <!-- Add more experience cards here if any -->
                         </div>
                     </div>
 
-                    <div class="education-section animate-on-scroll slide-from-right">
-                        <h3 class="resume-title anim-mask-reveal-bottom">
+                    <!-- Education Column -->
+                    <div class="resume-column education-section animate-on-scroll slide-from-right">
+                        <h3 class="resume-column-title">
                             <i class="fas fa-graduation-cap"></i> Education
                         </h3>
-                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
-                            <img src="icon/bed.svg" alt="Education Icon" class="card-icon">
-                            <h4>B.Sc.-B.Ed. INTEGRATED COURSE</h4>
-                            <h5>Sadguru Institute of Education, Sanganer, Jaipur | 2020 - 2024</h5>
-                            <p>Grade: First Division (65.70%) - Qualification for Maths Teacher role.</p>
+                        <div class="resume-items-container"> <!-- Wrapper for items in this column -->
+                            <div class="card uiverse-style animate-on-scroll slide-from-bottom">
+                                <img src="icon/bed.svg" alt="Education Icon" class="card-icon">
+                                <h4>B.Sc.-B.Ed. INTEGRATED COURSE</h4>
+                                <h5>Sadguru Institute of Education, Sanganer, Jaipur | 2020 - 2024</h5>
+                                <p>Grade: First Distinction (65.70%) - Qualification for Maths Teacher role.</p>
+                            </div>
+                            <div class="card uiverse-style animate-on-scroll slide-from-bottom">
+                                <img src="icon/bed.svg" alt="Education Icon" class="card-icon">
+                                <h4>BACHELOR OF SCIENCE (B.Sc.)</h4>
+                                <h5>Sadguru Institute of Education, Sanganer, Jaipur | 2020 - 2023</h5>
+                                <p>Grade: First Distinction (64.15%)</p>
+                            </div>
+                            <div class="card uiverse-style animate-on-scroll slide-from-bottom">
+                                <img src="icon/school.png" alt="Education Icon" class="card-icon">
+                                <h4>HIGHER SECONDARY SCHOOL (PCM)</h4>
+                                <h5>Abhilasha Shikshan Sansthan, Sandwa, Churu | 2019 - 2020</h5>
+                                <p>Grade: First Distinction (PCM 94%)</p>
+                            </div>
+                            <div class="card uiverse-style animate-on-scroll slide-from-bottom">
+                                <img src="icon/school.png" alt="Education Icon" class="card-icon">
+                                <h4>SECONDARY SCHOOL</h4>
+                                <h5>Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu | 2017 - 2018</h5>
+                                <p>Grade: First Distinction (84.33%)</p>
+                            </div>
                         </div>
-                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
-                            <img src="icon/bed.svg" alt="Education Icon" class="card-icon">
-                            <h4>BACHELOR OF SCIENCE (B.Sc.)</h4>
-                            <h5>Sadguru Institute of Education, Sanganer, Jaipur | 2020 - 2023</h5>
-                            <p>Grade: First Division (64.15%)</p>
-                        </div>
-                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
-                            <img src="icon/school.png" alt="Education Icon" class="card-icon">
-                            <h4>HIGHER SECONDARY SCHOOL (PCM)</h4>
-                            <h5>Abhilasha Shikshan Sansthan, Sandwa, Churu | 2019 - 2020</h5>
-                            <p>Grade: First Division (PCM 94%)</p>
-                        </div>
-                        <div class="card uiverse-style animate-on-scroll slide-from-bottom">
-                            <img src="icon/school.png" alt="Education Icon" class="card-icon">
-                            <h4>SECONDARY SCHOOL</h4>
-                            <h5>Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu | 2017 - 2018</h5>
-                            <p>Grade: First Division (84.33%)</p>
-                        </div>
-                        <div style="height: 30px;"></div>
                     </div>
-                </div>
-                <div class="text-center animate-on-scroll slide-from-bottom" style="margin-top: 30px;">
+                </div> <!-- End .resume-grid -->
+
+                <div class="text-center animate-on-scroll slide-from-bottom" style="margin-top: 50px;">
+                    <!-- Increased margin -->
                     <a href="pdf/KanhaiyalalResume.pdf" target="_blank"
-                        class="btn btn-primary interactive-pulse-border"><i class="fas fa-download"></i> Download
-                        Kanhaiya lal Suthar Maths Teacher Resume</a>
+                        class="btn btn-primary interactive-pulse-border">
+                        <i class="fas fa-download"></i> Download Full Resume
+                    </a>
                 </div>
             </div>
         </section>
@@ -346,39 +361,39 @@
                 <p class="section-subtitle animate-on-scroll anim-fade-in-blur-scale">A selection of projects by
                     Kanhaiya Lal Suthar.</p>
                 <div class="projects-grid">
-                    <!-- Project 1 Card - Now a single clickable link -->
-                    <a href="https://springfield-academy-ffb28.web.app/" target="_blank" rel="noopener noreferrer"
-                        class="project-card animate-on-scroll anim-mask-reveal-bottom">
+                    <div class="project-card animate-on-scroll anim-mask-reveal-bottom">
                         <div class="project-image">
-                            <img src="images/pr1.jpg" alt="Springfield Academy Website Project by Kanhaiya Lal Suthar"
-                                onerror="this.src='https://placehold.co/600x400/007bff/white?text=Springfield+Academy'; this.onerror=null;">
+                            <a href="https://springfield-academy-ffb28.web.app/" target="_blank">
+                                <img src="images/pr1.jpg"
+                                    alt="Springfield Academy Website Project by Kanhaiya Lal Suthar"
+                                    onerror="this.src='https://placehold.co/600x400/007bff/white?text=Springfield+Academy'; this.onerror=null;">
+                            </a>
                         </div>
                         <div class="project-info">
                             <h3>Springfield Academy Website</h3>
-                            <p>A responsive and informative website for an educational institution, designed to be
-                                user-friendly for students, parents, and staff.</p>
-                            <!-- This is now a span styled like a button, as the parent 'a' is the link -->
-                            <span class="btn btn-sm btn-outline-primary">View Project <i
-                                    class="fas fa-arrow-right"></i></span>
+                            <p>A responsive and informative website by Kanhaiya Lal for an educational institution,
+                                designed to be user-friendly for students, parents, and staff.</p>
+                            <a href="https://springfield-academy-ffb28.web.app/" target="_blank"
+                                class="btn btn-sm btn-outline-primary">View Project <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
-                    </a>
-
-                    <!-- Project 2 Card - Now a single clickable link -->
-                    <a href="https://khatirajwoodwork.web.app/" target="_blank" rel="noopener noreferrer"
-                        class="project-card animate-on-scroll anim-mask-reveal-bottom">
+                    </div>
+                    <div class="project-card animate-on-scroll anim-mask-reveal-bottom">
                         <div class="project-image">
-                            <img src="images/pr2.jpg" alt="WoodWorks Furniture Project by Kanhaiya Lal Suthar"
-                                onerror="this.src='https://placehold.co/600x400/007bff/white?text=WoodWorks'; this.onerror=null;">
+                            <a href="https://khatirajwoodwork.web.app/" target="_blank">
+                                <img src="images/pr2.jpg" alt="WoodWorks Furniture Project by Kanhaiya Lal Suthar"
+                                    onerror="this.src='https://placehold.co/600x400/007bff/white?text=WoodWorks'; this.onerror=null;">
+                            </a>
                         </div>
                         <div class="project-info">
                             <h3>KhatiRaj Woodworks</h3>
-                            <p>An elegant e-commerce style showcase for custom furniture pieces, focusing on visual
-                                appeal and product presentation.</p>
-                            <!-- This is also a span, inheriting the link from the parent 'a' tag -->
-                            <span class="btn btn-sm btn-outline-primary">View Project <i
-                                    class="fas fa-arrow-right"></i></span>
+                            <p>An elegant e-commerce style showcase for custom furniture pieces by Kanhaiya Lal,
+                                focusing on visual appeal and product presentation.</p>
+                            <a href="https://khatirajwoodwork.web.app/" target="_blank"
+                                class="btn btn-sm btn-outline-primary">View Project <i
+                                    class="fas fa-arrow-right"></i></a>
                         </div>
-                    </a>
+                    </div>
                 </div>
             </div>
         </section>

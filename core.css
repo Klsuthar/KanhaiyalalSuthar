@@ -1,38 +1,69 @@
-/* core.css - :root variables */
+/* core.css - Global variables, resets, base styles, layout, utilities, global animations */
+
 :root {
     --primary-color: #007bff;
     --primary-color-rgb: 0, 123, 255;
     --primary-hover-color: #0056b3;
+
     --secondary-color: #6c757d;
-    /* This might be too dark for text on a new lighter home bg */
+    /* Often used for subtext or secondary elements */
+    --secondary-color-rgb: 108, 117, 125;
+
     --accent-color: #17a2b8;
+    /* A distinct color for highlights, underlines */
+    --accent-color-rgb: 23, 162, 184;
+
     --text-color: #212529;
-    /* Main text color for light backgrounds */
+    /* Main dark text color for light backgrounds */
     --text-color-rgb: 33, 37, 41;
     --text-light: #495057;
+    /* Lighter shade of dark text */
+
     --bg-light: #f8f9fa;
-    /* Current general light background */
+    /* Default light page background */
     --bg-white: #ffffff;
+    /* Pure white background */
 
-    /* NEW/ADJUSTED FOR HOME SECTION (inspired by PrepInsta) */
-    --home-bg-color: #E9F5FF;
-    /* A very light blue, or use var(--bg-light) or var(--bg-white) */
-    --home-text-color-dark: #1A2B3C;
-    /* Darker text for better readability on light home bg */
-    --home-text-color-medium: #4A5C6D;
-    /* Medium text for subheadings */
+    /* Home Section Specific Colors (as defined previously) */
+    --home-bg-color: #f0f7ff;
+    /* Very light blue for home section background */
+    --home-text-color-dark: #122A3F;
+    /* Dark text for home section */
+    --home-text-color-medium: #526A7F;
+    /* Medium text for home section subheadings */
     --home-accent-text-color: var(--primary-color);
-    /* Using your primary color for accents */
-    --home-grid-line-color: rgba(var(--text-color-rgb), 0.08);
-    /* Slightly more visible grid */
+    /* Use primary for accents in home */
+    --home-grid-line-color: rgba(var(--text-color-rgb), 0.06);
+    /* Grid lines on home */
     --home-blob-background-color: rgba(var(--primary-color-rgb), 0.12);
-    /* Blob color */
+    /* Blob behind image */
 
-    --card-border-radius: 10px;
+    --border-color: #dee2e6;
+    /* Default border color */
+
+    /* Card Variables */
     --card-bg: var(--bg-white);
-    /* ... rest of your variables ... */
+    --card-padding: 25px;
+    --card-border-radius: 10px;
+    --card-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --card-box-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
+    --card-transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Font Stacks */
+    --font-primary: 'Poppins', sans-serif;
+    /* Main body text */
+    --font-secondary: 'Roboto', sans-serif;
+    /* Can be used for UI elements or less prominent text */
+    --font-display: 'Playfair Display', serif;
+    /* For large headings, logo */
+    --font-accent: 'Montserrat', sans-serif;
+    /* For other headings, buttons, nav links */
+
+    /* Navigation Heights */
     --navbar-height: 70px;
+    /* Desktop top navbar initial height */
     --navbar-height-mobile: 60px;
+    /* Mobile top navbar (title bar) height */
 }
 
 /* Reset and Base Styles */
@@ -45,31 +76,44 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    /* Base font size */
+    -webkit-font-smoothing: antialiased;
+    /* Smoother fonts on WebKit */
+    -moz-osx-font-smoothing: grayscale;
+    /* Smoother fonts on Firefox */
 }
 
 body {
     font-family: var(--font-primary);
     background-color: var(--bg-light);
+    /* Default page background */
     color: var(--text-color);
+    /* Default text color */
     line-height: 1.7;
+    /* Default line height for readability */
     overflow-x: hidden;
+    /* Prevent horizontal scroll */
     transition: background-color 0.3s ease;
 }
 
 body.loading {
+    /* Applied when loading overlay is active */
     overflow: hidden;
+    /* Prevent scrolling during load */
 }
 
-/* Container */
+/* Container for centering content */
 .container {
     width: 90%;
     max-width: 1140px;
+    /* Common max-width for desktop */
     margin: 0 auto;
+    /* Center the container */
     padding: 0 15px;
-    position: relative; /* ADD THIS LINE */
+    /* Horizontal padding */
 }
 
-/* Headings - Use Montserrat from --font-accent for consistency */
+/* Headings */
 h1,
 h2,
 h3,
@@ -77,9 +121,16 @@ h4,
 h5,
 h6 {
     font-family: var(--font-accent);
+    /* Default heading font */
     color: var(--text-color);
+    margin-top: 0;
+    /* Remove default top margin */
     margin-bottom: 0.75rem;
+    /* Default bottom margin */
     line-height: 1.3;
+    /* Default heading line height */
+    font-weight: 600;
+    /* Default boldnes for h2-h6 */
 }
 
 h1 {
@@ -87,14 +138,14 @@ h1 {
     font-weight: 700;
 }
 
+/* Specifics for H1 */
 h2 {
     font-size: 2.2rem;
-    font-weight: 600;
 }
 
+/* Specifics for H2 (used by .section-title) */
 h3 {
     font-size: 1.6rem;
-    font-weight: 600;
 }
 
 h4 {
@@ -102,9 +153,21 @@ h4 {
     font-weight: 500;
 }
 
+h5 {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+
 p {
     margin-bottom: 1rem;
     color: var(--text-light);
+    /* Slightly lighter color for paragraphs */
 }
 
 a {
@@ -115,12 +178,18 @@ a {
 
 a:hover {
     color: var(--primary-hover-color);
+    text-decoration: none;
+    /* Ensure no underline on hover unless specified */
 }
 
 img {
     max-width: 100%;
     height: auto;
+    /* Maintain aspect ratio */
     display: block;
+    /* Remove bottom space under images */
+    vertical-align: middle;
+    /* Better alignment if used inline */
 }
 
 /* Utility Classes */
@@ -128,6 +197,7 @@ img {
     background-color: rgba(255, 255, 255, 0.8);
 }
 
+/* Tailwind-like opacity */
 .backdrop-blur-sm {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -137,34 +207,44 @@ img {
     text-align: center;
 }
 
+.d-block {
+    display: block;
+}
+
+.d-inline-block {
+    display: inline-block;
+}
+
+.w-100 {
+    width: 100%;
+}
+
 
 /* Sections General Styling (Used by multiple sections) */
 .section-padding {
-    padding: 90px 0;
+    padding-top: 90px;
+    padding-bottom: 90px;
 }
 
 .section-title {
-    /* MODIFICATION START */
-    display: block;
-    /* Make the title a full-width block element */
     text-align: center;
-    /* Center the text content within it */
-    /* MODIFICATION END */
-
     margin-bottom: 1.5rem;
     font-family: var(--font-display);
     font-size: 2.5rem;
+    /* Using h2 size as base */
     color: var(--text-color);
     position: relative;
-    /* Keep for the underline's positioning */
     padding-bottom: 20px;
     font-weight: 700;
     text-shadow: 1px 1px 3px rgba(var(--text-color-rgb, 33, 37, 41), 0.1);
-    /* The 'left' and 'transform' properties for centering the element are no longer needed */
+    display: inline-block;
+    /* Required for centering with transform */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-/* No changes needed for the underline, it will center correctly now */
 .section-title::after {
+    /* Gradient underline */
     content: '';
     position: absolute;
     bottom: 0;
@@ -177,25 +257,30 @@ img {
 }
 
 .section-subtitle {
-    /* Also a global component */
     text-align: center;
+    margin-top: -1rem;
+    /* Pull subtitle slightly closer to title */
     margin-bottom: 45px;
     font-size: 1.1rem;
     color: var(--text-light);
     max-width: 620px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
 }
 
 
-/* General Animations - Keyframes should be in animation.css */
-/* Scroll Animations - General Setup */
+/* Scroll Animations - General Setup (Keyframes are in animation.css) */
 .animate-on-scroll {
     opacity: 0;
+    /* Start hidden */
     will-change: transform, opacity;
+    /* Performance hint */
+    /* Base transition, can be overridden by more specific animation classes */
     transition: opacity 0.6s ease-out, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Initial states for different slide directions (before .is-visible) */
 .animate-on-scroll.slide-from-left {
     transform: translateX(-80px) scale(0.95);
 }
@@ -220,15 +305,22 @@ img {
     transform: translateY(0);
 }
 
+/* No movement, just fade */
+
+/* When element becomes visible (JS adds .is-visible) */
 .animate-on-scroll.is-visible {
     opacity: 1;
     transform: translateX(0) translateY(0) scale(1) rotate(0);
+    /* Generic reset for all types */
 }
 
 /* Basic Responsive Adjustments (Desktop First Approach) */
 @media (min-width: 992px) {
+
+    /* Larger screens */
     .section-padding {
-        padding: 100px 0;
+        padding-top: 100px;
+        padding-bottom: 100px;
     }
 }
 
@@ -236,42 +328,72 @@ img {
 @media (max-width: 768px) {
     html {
         font-size: 15px;
+        /* Slightly smaller base font on mobile */
     }
 
     h1 {
         font-size: 2.3rem;
     }
 
-    h2 {
-        font-size: 1.9rem;
+    /* Mobile H1 */
+    h2,
+    .section-title {
+        font-size: 2rem;
     }
 
+    /* Mobile H2 and section titles */
     h3 {
         font-size: 1.5rem;
     }
 
+    /* Mobile H3 */
     .section-padding {
-        padding: 60px 0;
+        padding-top: 90px;
+        padding-bottom: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     body {
+        /* Body padding to account for fixed nav bars */
         padding-top: var(--navbar-height-mobile);
+        /* For fixed top navbar */
         padding-bottom: 75px;
-        /* For bottom mobile nav, e.g., 55px nav + 20px buffer */
+        /* For bottom mobile nav (e.g., 55px nav + 20px buffer) */
     }
 
-    /* Initial transforms for scroll animations on mobile (override desktop versions) */
+    /* Adjust scroll animation transforms for mobile if needed */
     .animate-on-scroll.slide-from-left,
     .animate-on-scroll.slide-from-right {
         transform: translateX(0) translateY(50px) scale(0.95);
+        /* Slide from bottom on mobile */
     }
 
     .animate-on-scroll.slide-from-top {
         transform: translateY(-50px) scale(0.95);
     }
+
+    .section-title::after {
+        width: 60px;
+        height: 3px;
+    }
+
+    .section-subtitle {
+        margin-bottom: 35px;
+    }
 }
 
 /* Very Small Screens - General adjustments */
 @media (max-width: 370px) {
-    /* Typography or other global adjustments for very small screens */
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    h2,
+    .section-title {
+        font-size: 1.7rem;
+    }
+
+    /* Further adjustments to typography or spacing if needed */
 }
