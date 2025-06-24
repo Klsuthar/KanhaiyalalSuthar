@@ -208,7 +208,7 @@
     /* --- MOBILE BACKGROUND CHANGE START --- */
     #home::before {
         background-image: url('images/backgrounds/home-bg-mobile.jpg'); /* New Mobile Image */
-        opacity: 0.4; /* New Mobile Opacity */
+        opacity: 0.7; /* New Mobile Opacity */
     }
     /* --- MOBILE BACKGROUND CHANGE END --- */
     
