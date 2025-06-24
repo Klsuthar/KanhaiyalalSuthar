@@ -1,6 +1,4 @@
-/* resume.css - Styles specific to the Resume section (UPDATED with Timeline) */
-
-/* .section-title and .section-subtitle are styled in core.css */
+/* resume.css - Styles specific to the Resume section (REDESIGNED CARDS) */
 
 .resume-grid {
     display: grid;
@@ -32,118 +30,127 @@
     font-size: 1.3em;
 }
 
-
-/* --- TIMELINE IMPLEMENTATION START --- */
-
+/* --- Timeline Styles (Unchanged) --- */
 .resume-items-container {
     position: relative;
-    padding-left: 30px; /* Creates space for the timeline */
+    padding-left: 30px;
 }
-
-/* The main vertical timeline bar */
 .resume-items-container::before {
     content: '';
     position: absolute;
-    left: 8px; /* Position of the line from the container's left edge */
+    left: 8px;
     top: 10px;
     bottom: 10px;
     width: 2px;
-    background-color: #e0e7ff; /* A light, soft color for the timeline track */
+    background-color: #e0e7ff;
     border-radius: 2px;
 }
 
-/* The dot on the timeline for each card */
+/* --- RESUME CARD REDESIGN START --- */
+
+/* Base card is now a flex container */
+.card.uiverse-style {
+    display: flex;
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px;
+    background-color: var(--card-bg);
+    padding: 20px; /* Uniform padding */
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--card-box-shadow);
+    margin-bottom: 25px;
+    position: relative;
+    border-left: none; /* REMOVED original left border */
+    transition: var(--card-transition);
+}
+
+/* The dot on the timeline for each card (position adjusted for new layout) */
 .card.uiverse-style::before {
     content: '';
     position: absolute;
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    background-color: var(--bg-white); /* White center to sit on top of the line */
+    background-color: var(--bg-white);
     border: 3px solid var(--primary-color);
     z-index: 1;
-    top: 25px; /* Adjust to vertically align with the card title */
-    left: -38px; /* Calculated position to place the dot on the line */
+    top: 28px; /* Adjusted vertical alignment */
+    left: -38px; /* Position to sit on the timeline bar */
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.card.uiverse-style:hover::before {
-    background-color: var(--accent-color); /* Fill the dot on hover for emphasis */
-    transform: scale(1.1); /* Slightly enlarge the dot on hover */
+/* New Icon Container */
+.resume-card-icon {
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
-/* --- TIMELINE IMPLEMENTATION END --- */
-
-
-.card.uiverse-style {
-    background-color: var(--card-bg);
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--card-box-shadow);
-    margin-bottom: 25px;
-    position: relative; /* Crucial for the ::before pseudo-element */
-    border-left: 4px solid var(--primary-color);
-    transition: var(--card-transition), border-left-color 0.3s ease, transform 0.3s ease;
-    z-index: 1;
+/* Container for all text content */
+.resume-card-content {
+    flex-grow: 1; /* Allow content to take remaining space */
 }
 
-.card.uiverse-style:last-child {
-    margin-bottom: 0;
-}
-
+/* Card Hover Effects */
 .card.uiverse-style:hover {
-    transform: translateY(-5px) scale(1.015);
+    transform: translateY(-5px) scale(1.01);
     box-shadow: var(--card-box-shadow-hover);
-    border-left-color: var(--accent-color);
 }
 
+.card.uiverse-style:hover::before {
+    background-color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.card.uiverse-style:hover .resume-card-icon {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    transform: rotate(15deg) scale(1.05);
+}
+
+/* Remove the old faint background icon style */
 .card-icon {
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    opacity: 0.15;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    display: none;
 }
 
-.card.uiverse-style:hover .card-icon {
-    opacity: 0.3;
-    transform: scale(1.1) rotate(5deg);
-}
-
-.card.uiverse-style h4 {
+/* Typography styles within the card (Unchanged) */
+.resume-card-content h4 {
     font-size: 1.2rem;
     color: var(--text-color);
     font-weight: 600;
     margin-bottom: 0.35rem;
 }
-
-.card.uiverse-style h5 {
+.resume-card-content h5 {
     font-size: 0.9rem;
     color: var(--secondary-color);
     margin-bottom: 1rem;
     font-weight: 500;
     font-family: var(--font-secondary);
 }
-
-.card.uiverse-style p {
+.resume-card-content p {
     font-size: 0.95rem;
     margin-bottom: 0;
     line-height: 1.65;
     color: var(--text-light);
 }
 
-/* Resume Section Responsive Adjustments */
+/* --- RESUME CARD REDESIGN END --- */
+
+
+/* Responsive Adjustments */
 @media (min-width: 769px) {
     .resume-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
     }
-
-    .resume-column {
-        padding: 25px;
-    }
+    .resume-column { padding: 25px; }
 }
 
 @media (max-width: 768px) {
@@ -151,33 +158,25 @@
         grid-template-columns: 1fr;
         gap: 30px;
     }
-
-    .resume-column {
-        padding: 15px;
-    }
-
+    .resume-column { padding: 15px; }
     .resume-column-title {
         font-size: 1.6rem;
         margin-bottom: 20px;
     }
-    
-    /* --- TIMELINE RESPONSIVE ADJUSTMENT --- */
-    .resume-items-container {
-        padding-left: 25px; /* Reduce timeline space on mobile */
-    }
-
+    .resume-items-container { padding-left: 25px; }
     .card.uiverse-style {
-        padding: 20px;
+        padding: 15px;
+        gap: 15px;
         margin-bottom: 20px;
     }
-    
     .card.uiverse-style::before {
-        left: -33px; /* Adjust dot position for new padding */
-        top: 22px;
+        left: -33px;
+        top: 24px;
     }
-    /* --- TIMELINE RESPONSIVE ADJUSTMENT END --- */
-
-    .card.uiverse-style h4 {
-        font-size: 1.1rem;
+    .resume-card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
     }
+    .resume-card-content h4 { font-size: 1.1rem; }
 }
