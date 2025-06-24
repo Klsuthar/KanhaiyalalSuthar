@@ -106,11 +106,10 @@ body.loading {
 .container {
     width: 90%;
     max-width: 1140px;
-    /* Common max-width for desktop */
     margin: 0 auto;
-    /* Center the container */
     padding: 0 15px;
-    /* Horizontal padding */
+    position: relative;
+    /* This is fine to keep */
 }
 
 /* Headings */
@@ -224,27 +223,35 @@ img {
 .section-padding {
     padding-top: 90px;
     padding-bottom: 90px;
+
+    /* --- ADD THESE LINES --- */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* ---------------------- */
 }
 
 .section-title {
     text-align: center;
+    /* Ensures text inside is centered */
     margin-bottom: 1.5rem;
     font-family: var(--font-display);
     font-size: 2.5rem;
-    /* Using h2 size as base */
     color: var(--text-color);
     position: relative;
+    /* Keep this for the underline */
     padding-bottom: 20px;
     font-weight: 700;
     text-shadow: 1px 1px 3px rgba(var(--text-color-rgb, 33, 37, 41), 0.1);
-    display: inline-block;
-    /* Required for centering with transform */
-    left: 50%;
-    transform: translateX(-50%);
+
+    /* --- REMOVE THESE OLD LINES --- */
+    /* display: inline-block;  <-- REMOVE */
+    /* left: 50%;              <-- REMOVE */
+    /* transform: translateX(-50%); <-- REMOVE */
 }
 
+/* The ::after rule for the underline does NOT need to be changed. */
 .section-title::after {
-    /* Gradient underline */
     content: '';
     position: absolute;
     bottom: 0;
