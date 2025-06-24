@@ -1,106 +1,109 @@
-/* resume.css - Styles specific to the Resume section (Redesigned) */
+/* resume.css - Styles specific to the Resume section (UPDATED with Timeline) */
 
 /* .section-title and .section-subtitle are styled in core.css */
 
 .resume-grid {
     display: grid;
     grid-template-columns: 1fr;
-    /* Default single column for mobile */
     gap: 40px;
-    /* Gap between columns on desktop, or between sections on mobile */
     margin-top: 30px;
-    /* Space below main section title/subtitle */
 }
 
 .resume-column {
     padding: 20px;
-    /* Padding within each column */
     background-color: rgba(var(--primary-color-rgb), 0.03);
-    /* Very subtle background tint for columns */
     border-radius: var(--card-border-radius);
-    /* box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Optional subtle shadow for the whole column */
     position: relative;
-    /* For timeline connectors if added */
 }
 
 .resume-column-title {
     font-size: 1.8rem;
-    /* Prominent column title */
     color: var(--primary-color);
     margin-bottom: 30px;
-    /* Space below title */
     padding-bottom: 10px;
     border-bottom: 2px solid var(--primary-color);
     display: flex;
-    /* Align icon and text nicely */
     align-items: center;
     font-weight: 600;
 }
 
 .resume-column-title i {
     margin-right: 15px;
-    /* Space between icon and text */
     font-size: 1.3em;
-    /* Make icon slightly larger relative to text */
 }
+
+
+/* --- TIMELINE IMPLEMENTATION START --- */
 
 .resume-items-container {
     position: relative;
-    /* For timeline pseudo-elements */
+    padding-left: 30px; /* Creates space for the timeline */
 }
 
-/* Optional: Timeline connector line (subtle) */
-/*
+/* The main vertical timeline bar */
 .resume-items-container::before {
     content: '';
     position: absolute;
-    left: 18px; // Adjust based on icon size/padding of cards
+    left: 8px; /* Position of the line from the container's left edge */
     top: 10px;
     bottom: 10px;
     width: 2px;
-    background-color: var(--border-color); // Or var(--primary-color) with low opacity
-    z-index: 0;
+    background-color: #e0e7ff; /* A light, soft color for the timeline track */
+    border-radius: 2px;
 }
-*/
+
+/* The dot on the timeline for each card */
+.card.uiverse-style::before {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--bg-white); /* White center to sit on top of the line */
+    border: 3px solid var(--primary-color);
+    z-index: 1;
+    top: 25px; /* Adjust to vertically align with the card title */
+    left: -38px; /* Calculated position to place the dot on the line */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.card.uiverse-style:hover::before {
+    background-color: var(--accent-color); /* Fill the dot on hover for emphasis */
+    transform: scale(1.1); /* Slightly enlarge the dot on hover */
+}
+
+/* --- TIMELINE IMPLEMENTATION END --- */
+
 
 .card.uiverse-style {
-    /* Individual resume item cards */
     background-color: var(--card-bg);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
     margin-bottom: 25px;
-    position: relative;
-    /* For card icon and potential timeline markers */
+    position: relative; /* Crucial for the ::before pseudo-element */
     border-left: 4px solid var(--primary-color);
-    /* Keep the accent border */
     transition: var(--card-transition), border-left-color 0.3s ease, transform 0.3s ease;
     z-index: 1;
-    /* Above column's timeline connector if used */
 }
 
 .card.uiverse-style:last-child {
     margin-bottom: 0;
-    /* No bottom margin for the last card in a column */
 }
 
 .card.uiverse-style:hover {
     transform: translateY(-5px) scale(1.015);
-    /* Slightly more pronounced hover */
     box-shadow: var(--card-box-shadow-hover);
     border-left-color: var(--accent-color);
 }
 
 .card-icon {
-    /* Decorative icon inside the resume card */
     width: 36px;
-    /* Slightly smaller */
     height: 36px;
     position: absolute;
     top: 20px;
     right: 20px;
     opacity: 0.15;
-    /* Slightly more subtle */
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
@@ -109,85 +112,70 @@
     transform: scale(1.1) rotate(5deg);
 }
 
-
 .card.uiverse-style h4 {
-    /* e.g., "MATHS TEACHER INTERN - SENIOR LEVEL" */
     font-size: 1.2rem;
-    /* Slightly adjusted */
     color: var(--text-color);
     font-weight: 600;
     margin-bottom: 0.35rem;
-    /* Less space to h5 */
 }
 
 .card.uiverse-style h5 {
-    /* e.g., "Gov. Sen. Sec. School, Dhadheru | 2024" */
     font-size: 0.9rem;
-    /* Slightly smaller */
     color: var(--secondary-color);
     margin-bottom: 1rem;
-    /* More space to p */
     font-weight: 500;
     font-family: var(--font-secondary);
-    /* Using secondary font for this info */
 }
 
 .card.uiverse-style p {
-    /* Description */
     font-size: 0.95rem;
     margin-bottom: 0;
     line-height: 1.65;
-    /* Improved readability */
     color: var(--text-light);
 }
 
-/* Scroll Animation Staggering (already defined in components.css or animation.css) */
-/* No need to redefine here unless you want different delays for resume cards */
-
-
 /* Resume Section Responsive Adjustments */
 @media (min-width: 769px) {
-
-    /* Desktop and larger tablets */
     .resume-grid {
         grid-template-columns: repeat(2, 1fr);
-        /* Two columns */
         gap: 30px;
-        /* Adjust gap between columns */
     }
 
     .resume-column {
         padding: 25px;
-        /* Slightly more padding in columns on desktop */
     }
 }
 
 @media (max-width: 768px) {
-
-    /* Smaller tablets and mobile */
     .resume-grid {
         grid-template-columns: 1fr;
-        /* Stack columns */
         gap: 30px;
-        /* Space between stacked Experience and Education sections */
     }
 
     .resume-column {
         padding: 15px;
-        /* Less padding in columns on mobile */
     }
 
     .resume-column-title {
         font-size: 1.6rem;
-        /* Adjust title size for mobile */
         margin-bottom: 20px;
+    }
+    
+    /* --- TIMELINE RESPONSIVE ADJUSTMENT --- */
+    .resume-items-container {
+        padding-left: 25px; /* Reduce timeline space on mobile */
     }
 
     .card.uiverse-style {
         padding: 20px;
-        /* Consistent with other card paddings on mobile */
         margin-bottom: 20px;
     }
+    
+    .card.uiverse-style::before {
+        left: -33px; /* Adjust dot position for new padding */
+        top: 22px;
+    }
+    /* --- TIMELINE RESPONSIVE ADJUSTMENT END --- */
 
     .card.uiverse-style h4 {
         font-size: 1.1rem;
