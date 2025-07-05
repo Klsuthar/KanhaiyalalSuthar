@@ -1,35 +1,72 @@
-// contact.js - Logic specific to the Contact section
+// contact.js - Logic for asynchronous form submission and "Thank You" modal
 
 document.addEventListener('DOMContentLoaded', () => {
-    const contactSection = document.getElementById('contact');
-    if (!contactSection) {
-        // console.log("Contact section not found on this page, contact.js will not run.");
+    const contactForm = document.getElementById('contact-form');
+    const modal = document.getElementById('thanks-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+
+    // Ensure all required elements exist
+    if (!contactForm || !modal || !modalCloseBtn) {
+        console.warn("Contact form or modal elements not found. Pop-up will not function.");
         return;
     }
 
-    console.log("Contact section specific JS initializing...");
-
-    // The "Send me an Email" button's onclick attribute in HTML directly calls
-    // the submitViaEmailClient() function, which is globally defined in script.js.
-    // If you wanted to attach that event listener here instead:
-    /*
-    const emailButton = contactSection.querySelector('.question-section .btn-primary');
-    if (emailButton) {
-        emailButton.addEventListener('click', () => {
-            // Ensure submitViaEmailClient is accessible, e.g., by not wrapping it in DOMContentLoaded in script.js
-            // or by re-defining it here if it's truly only for this section.
-            if (typeof submitViaEmailClient === 'function') {
-                submitViaEmailClient('Inquiry from Portfolio Contact Section');
-            } else {
-                console.error('submitViaEmailClient function not found.');
-            }
-        });
+    // Function to show the modal
+    function showModal() {
+        modal.classList.add('is-visible');
     }
-    */
 
-    // Add any other contact-section specific JS interactions here.
-    // For example:
-    // - Form validation if you were to add an actual contact form.
-    // - Interactive map features if you embedded a more complex map.
-    // - Specific animations for social links on interaction.
+    // Function to hide the modal
+    function hideModal() {
+        modal.classList.remove('is-visible');
+    }
+
+    // Event listener for form submission
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form redirect
+
+        const formData = new FormData(contactForm);
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Sending...';
+
+        fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json' // Important for AJAX submission
+            }
+        }).then(response => {
+            if (response.ok) {
+                contactForm.reset(); // Clear the form fields
+                showModal(); // Show the "Thank You" pop-up
+            } else {
+                response.json().then(data => {
+                    if (Object.hasOwn(data, 'errors')) {
+                        alert(data["errors"].map(error => error["message"]).join(", "));
+                    } else {
+                        alert('Oops! There was a problem submitting your form.');
+                    }
+                })
+            }
+        }).catch(error => {
+            alert('Oops! There was a problem submitting your form.');
+            console.error('Form submission error:', error);
+        }).finally(() => {
+            // Re-enable the button
+            submitButton.disabled = false;
+            submitButton.innerHTML = originalButtonText;
+        });
+    });
+
+    // Close modal when the 'X' button is clicked
+    modalCloseBtn.addEventListener('click', hideModal);
+
+    // Close modal when clicking on the overlay background
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            hideModal();
+        }
+    });
 });

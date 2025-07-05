@@ -480,20 +480,16 @@
                         </div>
                     </div>
 
-                    <!-- Right Column: Contact Form -->
+                    <!-- Right Column: Contact Form (UPDATED FIELDS) -->
                     <div class="contact-form">
-                        <form action="https://formspree.io/f/xdkzveky" method="POST">
+                        <form id="contact-form" action="https://formspree.io/f/xdkzveky" method="POST">
                             <div class="form-group">
                                 <input type="text" id="name" name="name" required placeholder=" ">
                                 <label for="name">Your Name</label>
                             </div>
                             <div class="form-group">
-                                <input type="email" id="email" name="email" required placeholder=" ">
-                                <label for="email">Your Email</label>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" id="subject" name="subject" required placeholder=" ">
-                                <label for="subject">Subject</label>
+                                <input type="tel" id="phone" name="phone" required placeholder=" ">
+                                <label for="phone">Your Phone</label>
                             </div>
                             <div class="form-group">
                                 <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
@@ -506,6 +502,16 @@
                 </div>
             </div>
         </section>
+
+        <!-- Thank You Modal (Pop-up) -->
+        <div id="thanks-modal" class="modal-overlay">
+            <div class="modal-content">
+                <button id="modal-close-btn" class="modal-close">×</button>
+                <div class="modal-icon"><i class="fas fa-check-circle"></i></div>
+                <h3>Thank You!</h3>
+                <p>Your message has been sent successfully. I will get back to you shortly.</p>
+            </div>
+        </div>
     </main>
 
     <footer>
