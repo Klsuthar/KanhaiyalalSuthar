@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Top Navigation Burger Logic (for original overlay menu) ---
     const burger = document.querySelector('#navbar .burger');
     const topNavLinksUl = document.querySelector('#navbar .nav-links');
-    
+
     if (burger && topNavLinksUl) {
         const topNavLinkItems = topNavLinksUl.querySelectorAll('li a');
 
@@ -198,9 +198,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof IntersectionObserver === 'undefined') {
             document.querySelectorAll('.skill-item').forEach(skillItem => {
                 if (!skillItem.dataset.counterAnimated) {
-                     const percentageSpan = skillItem.querySelector('.skill-percentage');
-                     const progressBar = skillItem.querySelector('.progress-bar');
-                     if (percentageSpan && progressBar) {
+                    const percentageSpan = skillItem.querySelector('.skill-percentage');
+                    const progressBar = skillItem.querySelector('.progress-bar');
+                    if (percentageSpan && progressBar) {
                         let targetValue = parseInt(percentageSpan.textContent.trim(), 10);
                         if (isNaN(targetValue) || targetValue === 0) {
                             targetValue = parseInt(progressBar.style.width, 10);
@@ -259,22 +259,28 @@ window.addEventListener('load', () => {
     }
 });
 
-
 // --- Helper Function: Animate Value Counter ---
 function animateValueCounter(percentageElement, progressBarElement, start, end, duration) {
     let startTimestamp = null;
+
+    const easeOutQuad = t => t * (2 - t);
+
     const step = (timestamp) => {
         if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const currentValue = Math.floor(progress * (end - start) + start);
+        const rawProgress = Math.min((timestamp - startTimestamp) / duration, 1);
 
-        if(percentageElement) percentageElement.textContent = currentValue + "%";
+        const easedProgress = easeOutQuad(rawProgress);
+
+        const currentValue = Math.floor(easedProgress * (end - start) + start);
+
+        if (percentageElement) percentageElement.textContent = currentValue + "%";
         if (progressBarElement) progressBarElement.style.width = currentValue + "%";
 
-        if (progress < 1) {
+        if (rawProgress < 1) {
             window.requestAnimationFrame(step);
         } else {
-            if(percentageElement) percentageElement.textContent = end + "%";
+            // Ensure final values are exact
+            if (percentageElement) percentageElement.textContent = end + "%";
             if (progressBarElement) progressBarElement.style.width = end + "%";
         }
     };
