@@ -1,27 +1,21 @@
-/* about.css - Styles specific to the About section (Redesigned) */
+/* about.css - Styles specific to the About section (Redesigned for single screen) */
 
 /* .section-title and .section-subtitle are styled in core.css */
 
 .about-content {
     display: flex;
     flex-direction: column;
-    /* Mobile first: stacked */
-    gap: 30px;
-    /* Gap between stacked elements on mobile */
-    margin-top: 30px;
-    /* Space below section subtitle */
+    gap: 20px; /* Reduced gap */
+    margin-top: 20px; /* Reduced margin */
 }
 
 /* --- Left Column (Image & Details) --- */
 .about-left {
-    flex-basis: 38%;
-    /* Slightly less for image column */
+    flex-basis: 35%;
     position: relative;
-    max-width: 400px;
-    /* Max width for this column on larger screens */
+    max-width: 350px; /* Slightly reduced max-width */
     width: 100%;
     margin: 0 auto;
-    /* Center on mobile when stacked */
 }
 
 .about-left img {
@@ -29,44 +23,37 @@
     height: auto;
     display: block;
     border-radius: var(--card-border-radius);
-    box-shadow: 0 10px 25px rgba(var(--text-color-rgb), 0.1);
-    /* Softer, larger shadow */
+    box-shadow: 0 8px 20px rgba(var(--text-color-rgb), 0.1);
     object-fit: cover;
-    margin-bottom: 20px;
-    /* Space between image and details box when stacked */
+    margin-bottom: 15px; /* Reduced margin */
 }
 
 .about-details {
-    padding: var(--card-padding);
+    padding: 15px; /* Reduced padding */
     border-radius: var(--card-border-radius);
     background-color: var(--bg-white);
-    /* Solid white, or use utility for transparent */
     box-shadow: var(--card-box-shadow);
-    border-left: 4px solid var(--primary-color);
-    /* Accent border */
+    border-left: 3px solid var(--primary-color); /* Slightly thinner border */
     transition: var(--card-transition), border-left-color 0.3s ease;
 }
 
 .about-details:hover {
     border-left-color: var(--accent-color);
-    transform: translateY(-4px);
-    /* Slight lift on hover */
+    transform: translateY(-3px); /* Slightly less lift */
 }
 
 .about-details h3 {
-    /* "Kanhaiya Lal Suthar" in the box */
-    font-size: 1.3rem;
-    margin-bottom: 12px;
+    font-size: 1.2rem; /* Slightly smaller */
+    margin-bottom: 10px; /* Reduced margin */
     color: var(--primary-color);
     font-weight: 600;
 }
 
 .about-details p {
-    font-size: 0.95rem;
-    margin-bottom: 10px;
+    font-size: 0.9rem; /* Slightly smaller */
+    margin-bottom: 8px; /* Reduced margin */
     color: var(--text-light);
     display: flex;
-    /* Align icon and text */
     align-items: center;
 }
 
@@ -75,284 +62,212 @@
 }
 
 .about-details p i {
-    margin-right: 12px;
+    margin-right: 10px; /* Reduced margin */
     color: var(--primary-color);
-    width: 20px;
+    width: 18px; /* Slightly smaller icon */
     text-align: center;
-    font-size: 1.1em;
-    /* Slightly larger icons */
+    font-size: 1em;
 }
 
 /* --- Right Column (Text Content, Interests, Skills) --- */
 .about-right {
-    flex-basis: 58%;
-    /* More space for text content */
+    flex-basis: 65%;
     width: 100%;
 }
 
-.about-right>h3:first-of-type {
-    /* "Maths Teacher & Web Developer" */
+.about-right > h3:first-of-type {
     font-family: var(--font-accent);
-    font-size: clamp(1.6rem, 4vw, 2rem);
-    /* Responsive font size */
+    font-size: clamp(1.4rem, 3.5vw, 1.8rem); /* Adjusted clamp values */
     color: var(--primary-color);
-    margin-bottom: 0.75rem;
-    /* Closer to paragraph */
+    margin-bottom: 0.6rem; /* Reduced margin */
     font-weight: 600;
-    line-height: 1.3;
+    line-height: 1.2;
 }
 
-.about-right>p:first-of-type {
-    /* The main introductory paragraph */
-    font-size: 1.05rem;
-    /* Slightly larger for readability */
-    line-height: 1.75;
-    margin-bottom: 30px;
-    /* More space after intro para */
+.about-right > p:first-of-type {
+    font-size: 1rem; /* Slightly smaller */
+    line-height: 1.6;
+    margin-bottom: 15px; /* Reduced margin */
 }
-
 
 /* Interests Sub-section */
 .interests-section {
-    margin-top: 35px;
-    padding: 25px;
-    background-color: rgba(var(--primary-color-rgb), 0.03);
-    /* Subtle tinted background */
+    margin-top: 20px; /* Reduced margin */
+    padding: 15px; /* Reduced padding */
+    background-color: rgba(var(--primary-color-rgb), 0.02);
     border-radius: var(--card-border-radius);
 }
 
 .interests-title {
-    /* "My Interests" */
-    font-size: 1.5rem;
+    font-size: 1.3rem; /* Slightly smaller */
     color: var(--text-color);
-    margin-bottom: 20px;
+    margin-bottom: 12px; /* Reduced margin */
     font-weight: 600;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 6px; /* Reduced padding */
+    border-bottom: 1px solid var(--border-color); /* Thinner border */
     display: inline-block;
-    /* Border only under text */
 }
 
 .interests-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px 15px;
-    /* row-gap column-gap */
+    gap: 6px 10px; /* Reduced gap */
 }
 
 .interest-tag {
-    /* Class already applied in HTML */
-    display: inline-flex;
-    /* For better alignment if icon added */
-    align-items: center;
-    padding: 9px 20px;
+    padding: 6px 12px; /* Reduced padding */
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
     background-color: var(--bg-white);
-    /* White background for tags */
-    border-radius: 25px;
-    font-size: 0.9rem;
+    border-radius: 18px; /* Slightly smaller border-radius */
+    font-size: 0.8rem; /* Slightly smaller font size */
     font-weight: 500;
-    /* transition from .hover-lift in animation.css */
 }
-
-/* .interest-tag:hover is handled by .hover-lift from animation.css */
-
 
 /* Skills Sub-section */
 .skills-section-container {
-    margin-top: 40px;
+    margin-top: 25px; /* Reduced margin */
 }
 
 .skills-title {
-    /* "My Expertise" */
-    font-size: 1.75rem;
-    /* More prominent */
-    margin-bottom: 30px;
+    font-size: 1.5rem; /* Slightly smaller */
+    margin-bottom: 20px; /* Reduced margin */
     color: var(--text-color);
     font-weight: 600;
-    /* Optional: different underline style or no underline if section is distinct enough */
-    /* border-bottom: 2px solid var(--border-color); */
-    /* padding-bottom: 10px; */
     position: relative;
     display: inline-block;
 }
 
-/* Decorative element for skills title */
 .skills-title::before {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -8px;
-    width: 50px;
-    height: 3px;
+    bottom: -5px; /* Adjusted position */
+    width: 35px; /* Slightly smaller width */
+    height: 2px; /* Thinner */
     background-color: var(--accent-color);
-    border-radius: 2px;
+    border-radius: 1px;
 }
-
 
 .animated-skills-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 25px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted minmax for more compactness */
+    gap: 12px; /* Reduced gap */
 }
 
 .skill-item {
-    /* Base styles are fine if using .hover-lift */
     background-color: var(--bg-white);
-    /* Ensure white background */
-    padding: 20px 25px;
-    /* Adjust padding */
+    padding: 12px 18px; /* Reduced padding */
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
     border: 1px solid var(--border-color);
-    /* Subtle border for definition */
-    /* transition is handled by .hover-lift */
 }
 
 .skill-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Align items vertically */
-    margin-bottom: 12px;
+    margin-bottom: 8px; /* Reduced margin */
     font-weight: 600;
 }
 
 .skill-name {
-    font-size: 1.05rem;
+    font-size: 0.95rem; /* Slightly smaller */
     color: var(--text-color);
 }
 
 .skill-percentage {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Slightly smaller */
     color: var(--primary-color);
     font-weight: 600;
 }
 
 .progress-bar-container {
     width: 100%;
-    height: 10px;
-    /* Slightly thicker bar */
+    height: 6px; /* Thinner bar */
     background-color: #e0e7ff;
-    /* Lighter track color, related to primary */
-    border-radius: 5px;
+    border-radius: 3px; /* Smaller border-radius */
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 6px; /* Reduced margin */
 }
 
 .progress-bar {
     height: 100%;
     background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
-    border-radius: 5px;
-    width: 0%;
+    border-radius: 3px;
+    width: 0%; /* Initial state for animation */
 }
 
 .skill-description {
-    font-size: 0.9rem;
+    font-size: 0.75rem; /* Smaller font size */
     color: var(--text-light);
     margin-bottom: 0;
-    line-height: 1.55;
+    line-height: 1.3;
 }
-
-/* Scroll Animation Staggering for skills grid (from components.css/animation.css) */
-
 
 /* --- About Section Responsive Adjustments --- */
 @media (min-width: 992px) {
-
-    /* Larger Desktops for About section */
     .about-content {
-        gap: 50px;
-        /* More space between columns */
-    }
-
-    .about-left {
-        flex-basis: 35%;
-        /* Image column slightly smaller */
-        max-width: 420px;
-        /* Max width for image column */
-    }
-
-    .about-right {
-        flex-basis: 60%;
-        /* Text column slightly larger */
-    }
-
-    .animated-skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        flex-direction: row;
+        gap: 40px; /* Reduced gap */
     }
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
-
-    /* Tablets */
     .about-content {
         flex-direction: row;
         align-items: flex-start;
-        gap: 30px;
+        gap: 25px; /* Reduced gap */
     }
 
     .about-left {
         flex-basis: 40%;
-        max-width: 350px;
-        /* Adjust for tablet */
+        max-width: 300px; /* Adjusted max-width */
     }
 
     .about-right {
-        flex-basis: 55%;
-    }
-
-    .about-details {
-        margin-top: 0;
+        flex-basis: 60%;
     }
 
     .animated-skills-grid {
-        grid-template-columns: 1fr;
-        /* Stack skills on tablet or keep 2 if preferred */
-        /* grid-template-columns: repeat(2, 1fr); */
-        /* gap: 25px; */
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-
-    /* Mobile */
     .about-content {
         flex-direction: column;
-        /* Ensure stacking */
-        gap: 40px;
-        /* Space between stacked sections */
+        gap: 25px; /* Reduced gap */
     }
 
     .about-left {
-        max-width: 350px;
-        /* Max image width on mobile */
-        margin: 0 auto 20px auto;
-        /* Center image block, add bottom margin */
+        max-width: 280px; /* Adjusted max-width */
+        margin: 0 auto 10px auto;
     }
 
     .about-left img {
-        margin-bottom: 20px;
-        /* Space from image to details box */
+        margin-bottom: 10px;
     }
 
     .about-details {
-        position: static;
-        margin-top: 0;
-        /* Details box directly after image */
-        border-left-width: 3px;
+        padding: 12px;
     }
 
-    .about-right>h3:first-of-type,
+    .about-details h3 {
+        font-size: 1.1rem;
+    }
+
+    .about-details p {
+        font-size: 0.85rem;
+    }
+
+    .about-right > h3:first-of-type,
     .interests-title,
     .skills-title {
         text-align: center;
     }
 
     .skills-title::before {
-        /* Center underline for skills title */
         left: 50%;
         transform: translateX(-50%);
     }
@@ -363,17 +278,14 @@
 
     .animated-skills-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 10px; /* Reduced gap */
     }
 
-    .skill-item,
-    .about-details {
-        padding: 20px;
-        box-shadow: var(--card-box-shadow);
-        /* Ensure shadow visible on mobile */
+    .skill-item {
+        padding: 12px;
     }
 
     .interests-section {
-        padding: 20px;
+        padding: 12px;
     }
 }
