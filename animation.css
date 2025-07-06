@@ -170,6 +170,12 @@
     40% { transform: scale(1.0); }
 }
 
+/* 18. Progress Bar Fill Animation */
+@keyframes progressBarFill {
+    from { width: 0%; }
+    to { width: var(--target-width); } /* Use CSS variable for target width */
+}
+
 
 /* --- Utility Classes for Applying Animations --- */
 

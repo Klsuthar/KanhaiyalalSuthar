@@ -196,6 +196,12 @@
     background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
     border-radius: 3px;
     width: 0%; /* Initial state for animation */
+    transition: width 0.8s ease-out; /* Smooth transition for non-JS fallback */
+}
+
+/* Animate progress bars when skill-item is visible */
+.skill-item.is-visible .progress-bar {
+    animation: progressBarFill 1.2s ease-out forwards;
 }
 
 .skill-description {
