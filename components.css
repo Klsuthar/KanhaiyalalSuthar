@@ -5,15 +5,18 @@
     position: fixed;
     top: 0; left: 0;
     width: 100%;
-    height: var(--navbar-height); /* Desktop height */
-    background-color: transparent; /* Desktop initial state */
-    z-index: 1000; /* Ensures it's above most content */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: var(--navbar-height);
+    background-color: transparent;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     padding: 0;
 }
-#navbar.scrolled { /* Desktop scrolled state */
-    background-color: var(--bg-white);
-    box-shadow: var(--card-box-shadow);
+#navbar.scrolled {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     height: calc(var(--navbar-height) - 10px);
 }
 .nav-container {
@@ -104,30 +107,44 @@
 /* Buttons (Global Styling) */
 .btn {
     display: inline-block;
-    padding: 12px 28px;
-    border-radius: 8px;
+    padding: 14px 32px;
+    border-radius: 12px;
     font-family: var(--font-accent);
     font-weight: 600;
     font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: 2px solid transparent;
     cursor: pointer;
     text-align: center;
-    text-decoration: none; /* Ensure no underline for button links */
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
 }
 .btn-primary {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover-color));
     color: var(--bg-white);
     border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.2);
 }
 .btn-primary:hover {
-    background-color: var(--primary-hover-color);
-    border-color: var(--primary-hover-color);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(var(--primary-color-rgb), 0.3);
     color: var(--bg-white);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 12px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
+}
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+.btn-primary:hover::before {
+    left: 100%;
 }
 .btn-secondary { /* Styled for light backgrounds, e.g., home section button */
     background-color: transparent;
@@ -162,13 +179,25 @@
 /* Generic Card Base Style (Used by skill-item, project-card, etc. in their respective CSS) */
 /* Section-specific CSS files can extend or use this as a base */
 .card-base {
-    background-color: var(--card-bg);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
     transition: var(--card-transition);
-    /* Specific hover effects like lift are better applied with utility classes
-       from animation.css (e.g., .hover-lift) in the HTML. */
+    position: relative;
+    overflow: hidden;
+}
+.card-base::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
 
 
@@ -176,9 +205,9 @@
 #loading-overlay {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: var(--bg-white);
+    background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
     display: flex; justify-content: center; align-items: center;
-    z-index: 9999; /* Highest z-index */
+    z-index: 9999;
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 #loading-overlay.hidden { opacity: 0; visibility: hidden; }
@@ -201,11 +230,21 @@
 
 /* Footer Styles */
 footer {
-    background-color: var(--text-color); /* Dark background for footer */
-    color: rgba(255, 255, 255, 0.75); /* Light text on dark background */
-    padding: 35px 0;
+    background: linear-gradient(135deg, var(--text-color) 0%, #1e293b 100%);
+    color: rgba(255, 255, 255, 0.8);
+    padding: 40px 0;
     text-align: center;
     font-size: 0.9rem;
+    position: relative;
+}
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 footer p {
     color: rgba(255, 255, 255, 0.7);

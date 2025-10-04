@@ -6,16 +6,34 @@
     gap: 40px;
     width: 100%;
     max-width: 1100px;
-    background-color: var(--card-bg);
-    padding: 30px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    padding: 35px;
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
+    position: relative;
+    overflow: hidden;
+}
+.contact-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
 
 .contact-info h3 {
-    font-size: 1.75rem;
-    color: var(--primary-color);
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 .contact-info p {
@@ -77,31 +95,38 @@
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 14px 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    background-color: var(--bg-light);
+    padding: 16px 14px;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
+    border-radius: 12px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     font-family: var(--font-primary);
     font-size: 1rem;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.15);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.15), 0 4px 12px rgba(var(--primary-color-rgb), 0.1);
+    transform: translateY(-2px);
 }
 
 .form-group label {
     position: absolute;
-    top: 15px;
-    left: 13px;
+    top: 17px;
+    left: 15px;
     color: var(--text-light);
     pointer-events: none;
-    transition: all 0.2s ease-out;
-    background-color: var(--bg-light);
-    padding: 0 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0 6px;
+    border-radius: 4px;
 }
 
 .form-group input:focus+label,
@@ -148,20 +173,33 @@
 }
 
 .modal-content {
-    background-color: var(--bg-white);
-    padding: 40px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    padding: 45px;
     border-radius: var(--card-border-radius);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
     text-align: center;
     max-width: 450px;
     width: 90%;
     position: relative;
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
+    transform: scale(0.8) rotate(-2deg);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
 }
 
 .modal-overlay.is-visible .modal-content {
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
 }
 
 .modal-close {
@@ -177,10 +215,17 @@
 }
 
 .modal-icon {
-    font-size: 3.5rem;
-    color: #28a745;
-    /* Green for success */
-    margin-bottom: 1rem;
+    font-size: 4rem;
+    background: linear-gradient(135deg, #28a745, #20c997);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 .modal-content h3 {

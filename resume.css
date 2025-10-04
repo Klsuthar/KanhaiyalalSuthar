@@ -8,21 +8,39 @@
 }
 
 .resume-column {
-    padding: 20px;
-    background-color: rgba(var(--primary-color-rgb), 0.03);
+    padding: 25px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
     border-radius: var(--card-border-radius);
     position: relative;
+    overflow: hidden;
+}
+.resume-column::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--primary-color-rgb), 0.4), transparent);
 }
 
 .resume-column-title {
-    font-size: 1.8rem;
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--primary-color);
+    font-size: 1.9rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 35px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--primary-color), var(--accent-color)) 1;
     display: flex;
     align-items: center;
-    font-weight: 600;
+    font-weight: 700;
+    position: relative;
 }
 
 .resume-column-title i {
@@ -41,59 +59,82 @@
     left: 8px;
     top: 10px;
     bottom: 10px;
-    width: 2px;
-    background-color: #e0e7ff;
-    border-radius: 2px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--primary-color), var(--accent-color));
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .card.uiverse-style {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    background-color: var(--card-bg);
-    padding: 20px;
+    gap: 22px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    padding: 22px;
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
-    margin-bottom: 25px;
+    margin-bottom: 28px;
     position: relative;
     border-left: none;
     transition: var(--card-transition);
+    overflow: hidden;
+}
+.card.uiverse-style::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
 
 /* --- DOT ALIGNMENT FIX START --- */
 .card.uiverse-style::before {
     content: '';
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
-    background-color: var(--bg-white);
+    background: var(--bg-white);
     border: 3px solid var(--primary-color);
-    z-index: 1;
-    
-    /* Corrected TOP position to align with the center of the icon */
-    top: 37.5px; /* (Icon height 50px / 2) + card padding 20px - (dot height 15px / 2) = 25 + 20 - 7.5 = 37.5 */
-    
-    /* Corrected LEFT position to center the dot on the line */
-    left: -28.5px; /* (Padding 30px - line center 9px) = 21px from card edge. -21px - (dot width 15px / 2) = -28.5px */
-    
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 0 15px rgba(var(--primary-color-rgb), 0.4);
+    z-index: 2;
+    top: 39px;
+    left: -29px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 /* --- DOT ALIGNMENT FIX END --- */
 
 
 .resume-card-icon {
     flex-shrink: 0;
-    width: 50px;
-    height: 50px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
-    background-color: rgba(var(--primary-color-rgb), 0.1);
+    background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.15), rgba(var(--accent-color-rgb), 0.1));
     color: var(--primary-color);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    font-size: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid rgba(var(--primary-color-rgb), 0.2);
+    position: relative;
+    overflow: hidden;
+}
+.resume-card-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
 }
 
 .resume-card-content {
@@ -101,19 +142,26 @@
 }
 
 .card.uiverse-style:hover {
-    transform: translateY(-5px) scale(1.01);
-    box-shadow: var(--card-box-shadow-hover);
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    border-color: rgba(var(--primary-color-rgb), 0.3);
 }
 
 .card.uiverse-style:hover::before {
-    background-color: var(--accent-color);
-    transform: scale(1.1);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.6);
 }
 
 .card.uiverse-style:hover .resume-card-icon {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: var(--bg-white);
-    transform: rotate(15deg) scale(1.05);
+    transform: rotate(10deg) scale(1.1);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.3);
+}
+.card.uiverse-style:hover .resume-card-icon::before {
+    left: 100%;
 }
 
 .card-icon {

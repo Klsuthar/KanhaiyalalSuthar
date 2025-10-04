@@ -1,28 +1,23 @@
 /* core.css - Global variables, resets, base styles, layout, utilities, global animations */
 
 :root {
-    --primary-color: #007bff;
-    --primary-color-rgb: 0, 123, 255;
-    --primary-hover-color: #0056b3;
+    --primary-color: #4f46e5;
+    --primary-color-rgb: 79, 70, 229;
+    --primary-hover-color: #3730a3;
 
-    --secondary-color: #6c757d;
-    /* Often used for subtext or secondary elements */
-    --secondary-color-rgb: 108, 117, 125;
+    --secondary-color: #64748b;
+    --secondary-color-rgb: 100, 116, 139;
 
-    --accent-color: #17a2b8;
-    /* A distinct color for highlights, underlines */
-    --accent-color-rgb: 23, 162, 184;
+    --accent-color: #06b6d4;
+    --accent-color-rgb: 6, 182, 212;
 
-    --text-color: #212529;
-    /* Main dark text color for light backgrounds */
-    --text-color-rgb: 33, 37, 41;
-    --text-light: #495057;
-    /* Lighter shade of dark text */
+    --text-color: #0f172a;
+    --text-color-rgb: 15, 23, 42;
+    --text-light: #475569;
 
-    --bg-light: #f8f9fa;
-    /* Default light page background */
+    --bg-light: #f8fafc;
     --bg-white: #ffffff;
-    /* Pure white background */
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
     /* Home Section Specific Colors (as defined previously) */
     --home-bg-color: #f0f7ff;
@@ -43,11 +38,16 @@
 
     /* Card Variables */
     --card-bg: var(--bg-white);
-    --card-padding: 25px;
-    --card-border-radius: 10px;
-    --card-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --card-box-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
-    --card-transition: transform 0.3s ease, box-shadow 0.3s ease;
+    --card-padding: 30px;
+    --card-border-radius: 16px;
+    --card-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --card-box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
+    --card-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Glass morphism */
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --glass-backdrop: blur(16px);
 
     /* Font Stacks */
     --font-primary: 'Poppins', sans-serif;
@@ -85,15 +85,26 @@ html {
 
 body {
     font-family: var(--font-primary);
-    background-color: var(--bg-light);
-    /* Default page background */
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
     color: var(--text-color);
-    /* Default text color */
     line-height: 1.7;
-    /* Default line height for readability */
     overflow-x: hidden;
-    /* Prevent horizontal scroll */
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 body.loading {
@@ -221,33 +232,37 @@ img {
 
 /* Sections General Styling (Used by multiple sections) */
 .section-padding {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    position: relative;
+}
 
-    /* --- ADD THESE LINES --- */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* ---------------------- */
+.section-padding::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .section-title {
     text-align: center;
-    /* Ensures text inside is centered */
     margin-bottom: 1.5rem;
     font-family: var(--font-display);
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--text-color);
     position: relative;
-    /* Keep this for the underline */
     padding-bottom: 20px;
     font-weight: 700;
-    text-shadow: 1px 1px 3px rgba(var(--text-color-rgb, 33, 37, 41), 0.1);
-
-    /* --- REMOVE THESE OLD LINES --- */
-    /* display: inline-block;  <-- REMOVE */
-    /* left: 50%;              <-- REMOVE */
-    /* transform: translateX(-50%); <-- REMOVE */
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
 }
 
 /* The ::after rule for the underline does NOT need to be changed. */
@@ -257,23 +272,25 @@ img {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
+    width: 80px;
     height: 4px;
-    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-    border-radius: 2px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(var(--primary-color-rgb), 0.3);
 }
 
 .section-subtitle {
     text-align: center;
     margin-top: -1rem;
-    /* Pull subtitle slightly closer to title */
-    margin-bottom: 45px;
-    font-size: 1.1rem;
+    margin-bottom: 50px;
+    font-size: 1.2rem;
     color: var(--text-light);
-    max-width: 620px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.6;
+    line-height: 1.7;
+    font-weight: 400;
+    opacity: 0.9;
 }
 
 

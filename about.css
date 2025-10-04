@@ -29,12 +29,17 @@
 }
 
 .about-details {
-    padding: 15px; /* Reduced padding */
+    padding: 20px;
     border-radius: var(--card-border-radius);
-    background-color: var(--bg-white);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    border-left: 4px solid var(--primary-color);
     box-shadow: var(--card-box-shadow);
-    border-left: 3px solid var(--primary-color); /* Slightly thinner border */
     transition: var(--card-transition), border-left-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .about-details:hover {
@@ -92,10 +97,24 @@
 
 /* Interests Sub-section */
 .interests-section {
-    margin-top: 20px; /* Reduced margin */
-    padding: 15px; /* Reduced padding */
-    background-color: rgba(var(--primary-color-rgb), 0.02);
+    margin-top: 25px;
+    padding: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
     border-radius: var(--card-border-radius);
+    position: relative;
+    overflow: hidden;
+}
+.interests-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--primary-color-rgb), 0.3), transparent);
 }
 
 .interests-title {
@@ -115,13 +134,23 @@
 }
 
 .interest-tag {
-    padding: 6px 12px; /* Reduced padding */
-    border: 1px solid var(--primary-color);
+    padding: 8px 16px;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.3);
     color: var(--primary-color);
-    background-color: var(--bg-white);
-    border-radius: 18px; /* Slightly smaller border-radius */
-    font-size: 0.8rem; /* Slightly smaller font size */
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 20px;
+    font-size: 0.85rem;
     font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.interest-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--primary-color-rgb), 0.2);
+    border-color: var(--primary-color);
 }
 
 /* Skills Sub-section */
@@ -156,11 +185,29 @@
 }
 
 .skill-item {
-    background-color: var(--bg-white);
-    padding: 12px 18px; /* Reduced padding */
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+    padding: 18px 22px;
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
-    border: 1px solid var(--border-color);
+    transition: var(--card-transition);
+    position: relative;
+    overflow: hidden;
+}
+.skill-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+.skill-item:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-box-shadow-hover);
 }
 
 .skill-info {
@@ -184,19 +231,46 @@
 
 .progress-bar-container {
     width: 100%;
-    height: 6px; /* Thinner bar */
-    background-color: #e0e7ff;
-    border-radius: 3px; /* Smaller border-radius */
+    height: 8px;
+    background: rgba(var(--primary-color-rgb), 0.1);
+    border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 6px; /* Reduced margin */
+    margin-bottom: 8px;
+    position: relative;
+}
+.progress-bar-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    border-radius: 10px;
 }
 
 .progress-bar {
     height: 100%;
     background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
-    border-radius: 3px;
-    width: 0%; /* Initial state for animation */
-    transition: width 0.8s ease-out; /* Smooth transition for non-JS fallback */
+    border-radius: 10px;
+    width: 0%;
+    transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+.progress-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
 }
 
 /* Animate progress bars when skill-item is visible */

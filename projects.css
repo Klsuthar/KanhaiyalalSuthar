@@ -7,21 +7,35 @@
 }
 
 .project-card {
-    background-color: var(--card-bg);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    -webkit-backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: var(--card-transition), border-left-color 0.3s ease; /* Added border-left-color transition */
-    position: relative; /* For ::before pseudo-element if needed for full card border */
-    border-left: 3px solid transparent; /* Initial transparent border for smooth hover */
+    transition: var(--card-transition);
+    position: relative;
+    border-left: 4px solid transparent;
+}
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    z-index: 1;
 }
 
 .project-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--card-box-shadow-hover);
-    border-left-color: var(--primary-color); /* Accent border on hover */
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-left-color: var(--primary-color);
+    border-color: rgba(var(--primary-color-rgb), 0.3);
 }
 
 .project-image {
@@ -38,33 +52,34 @@
 }
 
 /* Image Overlay and Icon on Hover */
-.project-image::before { /* Overlay */
+.project-image::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(var(--primary-color-rgb, 0, 123, 255), 0.5); /* Use primary color with opacity */
+    background: linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.8), rgba(var(--accent-color-rgb), 0.6));
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
 }
 
-.project-image::after { /* "View" Icon */
-    content: '\f06e'; /* Font Awesome eye icon (fa-eye) */
-    font-family: 'Font Awesome 6 Free'; /* Or 'Font Awesome 6 Brands' / 'Font Awesome 6 Solid' depending on icon */
-    font-weight: 900; /* For solid icons */
+.project-image::after {
+    content: '\f35d';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
     color: var(--bg-white);
-    font-size: 2.5rem; /* Adjust icon size */
+    font-size: 3rem;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    z-index: 2;
-    pointer-events: none; /* So it doesn't interfere with the link on the image */
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
+    pointer-events: none;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .project-card:hover .project-image::before {
@@ -72,7 +87,7 @@
 }
 .project-card:hover .project-image::after {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
 }
 .project-card:hover .project-image img {
     transform: scale(1.1); /* Slightly increased zoom on hover */
@@ -114,16 +129,22 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-    background-color: var(--card-bg); /* Ensure it has a background */
-    position: relative; /* If you add z-index to keep it above any card-wide effects */
-    z-index: 5; /* Above potential card-wide pseudo elements if any */
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+    z-index: 5;
 }
 
 .project-info h3 {
-    font-size: 1.45rem; /* Slightly larger title */
-    margin-bottom: 0.75rem; /* Adjusted spacing */
-    color: var(--text-color);
-    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, var(--text-color), var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    line-height: 1.3;
 }
 
 .project-info p {
@@ -147,7 +168,7 @@
 }
 
 .project-info .btn:hover i {
-    transform: translateX(6px) scale(1.1); /* More noticeable arrow movement */
+    transform: translateX(8px) scale(1.2) rotate(5deg);
 }
 
 /* Staggering for project cards */
