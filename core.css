@@ -348,76 +348,122 @@ img {
     }
 }
 
-/* Mobile Layout Base - General adjustments */
+/* Mobile Layout Base - Enhanced for better mobile experience */
 @media (max-width: 768px) {
     html {
-        font-size: 15px;
-        /* Slightly smaller base font on mobile */
-    }
-
-    h1 {
-        font-size: 2.3rem;
-    }
-
-    /* Mobile H1 */
-    h2,
-    .section-title {
-        font-size: 2rem;
-    }
-
-    /* Mobile H2 and section titles */
-    h3 {
-        font-size: 1.5rem;
-    }
-
-    /* Mobile H3 */
-    .section-padding {
-        padding-top: 90px;
-        padding-bottom: 90px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
     }
 
     body {
-        /* Body padding to account for fixed nav bars */
         padding-top: var(--navbar-height-mobile);
-        /* For fixed top navbar */
-        padding-bottom: 75px;
-        /* For bottom mobile nav (e.g., 55px nav + 20px buffer) */
+        padding-bottom: 85px;
+        touch-action: manipulation;
     }
 
-    /* Adjust scroll animation transforms for mobile if needed */
-    .animate-on-scroll.slide-from-left,
-    .animate-on-scroll.slide-from-right {
-        transform: translateX(0) translateY(50px) scale(0.95);
-        /* Slide from bottom on mobile */
+    .container {
+        width: 95%;
+        padding: 0 10px;
     }
 
-    .animate-on-scroll.slide-from-top {
-        transform: translateY(-50px) scale(0.95);
-    }
-
-    .section-title::after {
-        width: 60px;
-        height: 3px;
-    }
-
-    .section-subtitle {
-        margin-bottom: 35px;
-    }
-}
-
-/* Very Small Screens - General adjustments */
-@media (max-width: 370px) {
     h1 {
-        font-size: 1.9rem;
+        font-size: 2.2rem;
+        line-height: 1.2;
     }
 
     h2,
     .section-title {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
     }
 
-    /* Further adjustments to typography or spacing if needed */
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    .section-padding {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    .section-title::after {
+        width: 50px;
+        height: 3px;
+    }
+
+    /* Better mobile animations */
+    .animate-on-scroll.slide-from-left,
+    .animate-on-scroll.slide-from-right {
+        transform: translateY(30px) scale(0.98);
+    }
+
+    .animate-on-scroll.slide-from-top {
+        transform: translateY(-30px) scale(0.98);
+    }
+
+    .animate-on-scroll.slide-from-bottom {
+        transform: translateY(30px) scale(0.98);
+    }
+
+    /* Mobile-specific glass effects */
+    .card-base,
+    .project-card,
+    .skill-item {
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+}
+
+/* Small Mobile Screens */
+@media (max-width: 480px) {
+    .container {
+        width: 98%;
+        padding: 0 8px;
+    }
+
+    .section-padding {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2,
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.95rem;
+    }
+}
+
+/* Very Small Screens */
+@media (max-width: 370px) {
+    .container {
+        padding: 0 5px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2,
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-padding {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
 }

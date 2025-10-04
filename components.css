@@ -260,32 +260,68 @@ footer .fas.fa-heart { /* Heart icon color */
 }
 
 
-/* Responsive Styles for Global Components */
+/* Enhanced Mobile Responsive Styles */
 @media (max-width: 768px) {
-    /* Top Navbar adjustments for Mobile (now just a title bar) */
     #navbar {
         height: var(--navbar-height-mobile);
-        background-color: var(--bg-white) !important; /* Solid white background */
-        box-shadow: var(--card-box-shadow); /* Standard shadow */
+        background: var(--glass-bg) !important;
+        backdrop-filter: var(--glass-backdrop) !important;
+        -webkit-backdrop-filter: var(--glass-backdrop) !important;
+        border-bottom: 1px solid var(--glass-border);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
     }
+    
     #navbar .logo {
-        color: var(--primary-color) !important; /* Logo is primary color */
+        color: var(--primary-color) !important;
+        font-size: 1.6rem;
     }
-    /* Hide desktop nav links and burger menu, as bottom_nav_bar.css handles mobile nav */
+    
     #navbar .nav-links,
     #navbar .burger {
         display: none !important;
     }
 
-    /* Adjust general card padding on mobile if using .card-base */
     .card-base {
-        padding: 20px;
+        padding: 18px;
+        margin-bottom: 15px;
     }
 
-    /* Adjust button sizing for mobile if needed universally */
+    .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+        min-height: 44px;
+        border-radius: 10px;
+        touch-action: manipulation;
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Small Mobile Optimizations */
+@media (max-width: 480px) {
+    .card-base {
+        padding: 15px;
+        margin-bottom: 12px;
+    }
+    
     .btn {
         padding: 10px 20px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+        width: 100%;
+        max-width: 280px;
     }
-    /* Specific button styles like .home-buttons .btn are in their respective section CSS (e.g., home.css) */
+}
+
+/* Very Small Mobile */
+@media (max-width: 370px) {
+    .card-base {
+        padding: 12px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
 }

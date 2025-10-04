@@ -317,34 +317,70 @@
 @media (max-width: 768px) {
     .about-content {
         flex-direction: column;
-        gap: 25px; /* Reduced gap */
+        gap: 20px;
     }
 
     .about-left {
-        max-width: 280px; /* Adjusted max-width */
-        margin: 0 auto 10px auto;
+        max-width: 260px;
+        margin: 0 auto;
     }
 
     .about-left img {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        border-radius: 12px;
     }
 
     .about-details {
-        padding: 12px;
+        padding: 16px;
+        text-align: center;
     }
 
     .about-details h3 {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
+        margin-bottom: 12px;
     }
 
     .about-details p {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        margin-bottom: 10px;
+        justify-content: center;
     }
 
-    .about-right > h3:first-of-type,
-    .interests-title,
+    .about-right > h3:first-of-type {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    .about-right > p:first-of-type {
+        text-align: center;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    .interests-section {
+        padding: 16px;
+        text-align: center;
+    }
+
+    .interests-title {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .interests-container {
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .interest-tag {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
     .skills-title {
         text-align: center;
+        font-size: 1.3rem;
     }
 
     .skills-title::before {
@@ -352,20 +388,67 @@
         transform: translateX(-50%);
     }
 
-    .interests-container {
-        justify-content: center;
-    }
-
     .animated-skills-grid {
         grid-template-columns: 1fr;
-        gap: 10px; /* Reduced gap */
+        gap: 12px;
+    }
+
+    .skill-item {
+        padding: 14px;
+        text-align: left;
+    }
+
+    .skill-name {
+        font-size: 0.9rem;
+    }
+
+    .skill-percentage {
+        font-size: 0.85rem;
+    }
+
+    .skill-description {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .about-left {
+        max-width: 240px;
+    }
+
+    .about-details {
+        padding: 14px;
+    }
+
+    .interests-section {
+        padding: 14px;
     }
 
     .skill-item {
         padding: 12px;
     }
 
-    .interests-section {
+    .animated-skills-grid {
+        gap: 10px;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 370px) {
+    .about-left {
+        max-width: 220px;
+    }
+
+    .about-details,
+    .interests-section,
+    .skill-item {
         padding: 12px;
+    }
+
+    .interest-tag {
+        font-size: 0.75rem;
+        padding: 5px 10px;
     }
 }
