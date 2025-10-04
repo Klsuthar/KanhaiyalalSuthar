@@ -31,15 +31,10 @@
 .about-details {
     padding: 20px;
     border-radius: var(--card-border-radius);
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-backdrop);
-    -webkit-backdrop-filter: var(--glass-backdrop);
-    border: 1px solid var(--glass-border);
-    border-left: 4px solid var(--primary-color);
+    background-color: var(--bg-white);
     box-shadow: var(--card-box-shadow);
+    border-left: 4px solid var(--primary-color);
     transition: var(--card-transition), border-left-color 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 
 .about-details:hover {
@@ -99,22 +94,8 @@
 .interests-section {
     margin-top: 25px;
     padding: 20px;
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-backdrop);
-    -webkit-backdrop-filter: var(--glass-backdrop);
-    border: 1px solid var(--glass-border);
+    background-color: rgba(var(--primary-color-rgb), 0.02);
     border-radius: var(--card-border-radius);
-    position: relative;
-    overflow: hidden;
-}
-.interests-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(var(--primary-color-rgb), 0.3), transparent);
 }
 
 .interests-title {
@@ -135,17 +116,13 @@
 
 .interest-tag {
     padding: 8px 16px;
-    border: 1px solid rgba(var(--primary-color-rgb), 0.3);
+    border: 1px solid var(--primary-color);
     color: var(--primary-color);
-    background: var(--glass-bg);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background-color: var(--bg-white);
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 500;
     transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
 }
 .interest-tag:hover {
     transform: translateY(-2px);
@@ -185,25 +162,12 @@
 }
 
 .skill-item {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-backdrop);
-    -webkit-backdrop-filter: var(--glass-backdrop);
-    border: 1px solid var(--glass-border);
+    background-color: var(--bg-white);
     padding: 18px 22px;
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
+    border: 1px solid var(--border-color);
     transition: var(--card-transition);
-    position: relative;
-    overflow: hidden;
-}
-.skill-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
 }
 .skill-item:hover {
     transform: translateY(-3px);

@@ -1,23 +1,22 @@
 /* core.css - Global variables, resets, base styles, layout, utilities, global animations */
 
 :root {
-    --primary-color: #4f46e5;
-    --primary-color-rgb: 79, 70, 229;
-    --primary-hover-color: #3730a3;
+    --primary-color: #007bff;
+    --primary-color-rgb: 0, 123, 255;
+    --primary-hover-color: #0056b3;
 
-    --secondary-color: #64748b;
-    --secondary-color-rgb: 100, 116, 139;
+    --secondary-color: #6c757d;
+    --secondary-color-rgb: 108, 117, 125;
 
-    --accent-color: #06b6d4;
-    --accent-color-rgb: 6, 182, 212;
+    --accent-color: #17a2b8;
+    --accent-color-rgb: 23, 162, 184;
 
-    --text-color: #0f172a;
-    --text-color-rgb: 15, 23, 42;
-    --text-light: #475569;
+    --text-color: #212529;
+    --text-color-rgb: 33, 37, 41;
+    --text-light: #495057;
 
-    --bg-light: #f8fafc;
+    --bg-light: #f8f9fa;
     --bg-white: #ffffff;
-    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
     /* Home Section Specific Colors (as defined previously) */
     --home-bg-color: #f0f7ff;
@@ -253,16 +252,12 @@ img {
     text-align: center;
     margin-bottom: 1.5rem;
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: var(--text-color);
     position: relative;
     padding-bottom: 20px;
     font-weight: 700;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: none;
+    text-shadow: 1px 1px 3px rgba(var(--text-color-rgb), 0.1);
 }
 
 /* The ::after rule for the underline does NOT need to be changed. */
