@@ -222,16 +222,45 @@
     .about-details {
         padding: 20px;
         text-align: center;
+        border-left: 4px solid #e2e8f0;
+    }
+    
+    .about-details p i {
+        color: #a0aec0;
     }
     
     .about-right > h3:first-of-type {
         text-align: center;
         font-size: 1.6rem;
+        color: #2d3748;
     }
     
     .about-right > p:first-of-type {
         text-align: center;
         font-size: 0.95rem;
+    }
+    
+    .interest-tag {
+        background: rgba(255, 255, 255, 0.9);
+        color: #4a5568;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .interest-tag:hover {
+        background: #f7fafc;
+        color: #2d3748;
+    }
+    
+    .skill-percentage {
+        color: #718096;
+    }
+    
+    .progress-bar-container {
+        background: rgba(0, 0, 0, 0.05);
+    }
+    
+    .progress-bar {
+        background: linear-gradient(90deg, #e2e8f0, #cbd5e0);
     }
     
     .interests-section {

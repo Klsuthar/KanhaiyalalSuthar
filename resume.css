@@ -132,15 +132,26 @@
 @media (max-width: 768px) {
     .resume-column {
         padding: 25px;
+        border-top: 4px solid #e2e8f0;
     }
     
     .resume-column-title {
         font-size: 1.6rem;
         margin-bottom: 25px;
+        color: #2d3748;
+    }
+    
+    .resume-column-title i {
+        background: #f7fafc;
+        color: #a0aec0;
     }
     
     .resume-items-container {
         padding-left: 25px;
+    }
+    
+    .resume-items-container::before {
+        background: #f1f5f9;
     }
     
     .card.uiverse-style {
@@ -154,12 +165,17 @@
         left: -23px;
         width: 12px;
         height: 12px;
+        background: #e2e8f0;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
     }
     
     .resume-card-icon {
         width: 45px;
         height: 45px;
         font-size: 1.2rem;
+        background: #f7fafc;
+        color: #4a5568;
+        border: 1px solid rgba(0, 0, 0, 0.1);
     }
     
     .resume-card-content h4 {
@@ -168,6 +184,7 @@
     
     .resume-card-content h5 {
         font-size: 0.85rem;
+        color: #a0aec0;
     }
     
     .resume-card-content p {

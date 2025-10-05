@@ -257,6 +257,7 @@
     .contact-wrapper {
         padding: 30px;
         gap: 30px;
+        border-top: 4px solid #e2e8f0;
     }
 
     .contact-info {
@@ -266,6 +267,7 @@
     .contact-info h3 {
         font-size: 1.6rem;
         margin-bottom: 12px;
+        color: #2d3748;
     }
 
     .contact-info p {
@@ -279,6 +281,10 @@
         padding: 10px;
     }
 
+    .contact-detail-item i {
+        color: #a0aec0;
+    }
+
     .contact-social-links {
         justify-content: center;
         gap: 10px;
@@ -288,6 +294,14 @@
         width: 45px;
         height: 45px;
         font-size: 1.3rem;
+        background: rgba(255, 255, 255, 0.8);
+        color: #a0aec0;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-social-links a:hover {
+        background: #f7fafc;
+        color: #2d3748;
     }
 
     .form-group input,
@@ -296,10 +310,43 @@
         font-size: 0.95rem;
     }
 
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #cbd5e0;
+        box-shadow: 0 0 0 3px rgba(203, 213, 224, 0.1);
+    }
+
+    .form-group label {
+        color: #a0aec0;
+    }
+
+    .form-group input:focus+label,
+    .form-group input:not(:placeholder-shown)+label,
+    .form-group textarea:focus+label,
+    .form-group textarea:not(:placeholder-shown)+label {
+        color: #4a5568;
+    }
+
     .contact-form .btn {
         width: 100%;
         padding: 16px 20px;
         justify-content: center;
+        background: #f7fafc;
+        color: #2d3748;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-form .btn:hover {
+        background: #edf2f7;
+        color: #1a202c;
+    }
+
+    .modal-close {
+        color: #a0aec0;
+    }
+
+    .modal-close:hover {
+        color: #2d3748;
     }
 }
 
