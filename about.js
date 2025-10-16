@@ -1,32 +1,23 @@
+// about.js - Logic specific to the About section
+
 document.addEventListener('DOMContentLoaded', () => {
-    const skillItems = document.querySelectorAll('.skill-item');
+    const aboutSection = document.getElementById('about');
+    if (!aboutSection) {
+        // console.log("About section not found on this page, about.js will not run.");
+        return;
+    }
 
-    const observerOptions = {
-        root: null, // Use the viewport as the root
-        rootMargin: '0px',
-        threshold: 0.5 // Trigger when 50% of the item is visible
-    };
+    console.log("About section specific JS initializing...");
 
-    const skillObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const skillItem = entry.target;
-                const progressBar = skillItem.querySelector('.progress-bar');
-                const targetProgress = progressBar.dataset.progress; // Get data-progress value
+    // Add any about-section specific JS interactions here.
+    // For example:
+    // - If you had filters for skills.
+    // - If "My Interests" tags had complex click behaviors.
+    // - If the about image had a special gallery or zoom feature.
 
-                if (progressBar && targetProgress) {
-                    // Set the CSS custom property for the animation
-                    progressBar.style.setProperty('--target-width', `${targetProgress}%`);
-                    // Add a class to trigger the CSS animation
-                    skillItem.classList.add('is-visible');
-                }
-                // Stop observing once animated
-                observer.unobserve(skillItem);
-            }
-        });
-    }, observerOptions);
-
-    skillItems.forEach(item => {
-        skillObserver.observe(item);
-    });
+    // The skill bar percentage animation is currently handled globally in script.js
+    // by the IntersectionObserver targeting '.skill-item'. If you wanted that logic
+    // to be *only* for skill items within the #about section, you'd move that part
+    // of the IntersectionObserver callback here and re-scope the observer.
+    // For now, it remains global.
 });

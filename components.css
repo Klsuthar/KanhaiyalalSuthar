@@ -5,18 +5,15 @@
     position: fixed;
     top: 0; left: 0;
     width: 100%;
-    height: var(--navbar-height);
-    background-color: transparent;
-    z-index: 1000;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: var(--navbar-height); /* Desktop height */
+    background-color: transparent; /* Desktop initial state */
+    z-index: 1000; /* Ensures it's above most content */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     padding: 0;
 }
-#navbar.scrolled {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-backdrop);
-    -webkit-backdrop-filter: var(--glass-backdrop);
-    border-bottom: 1px solid var(--glass-border);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+#navbar.scrolled { /* Desktop scrolled state */
+    background-color: var(--bg-white);
+    box-shadow: var(--card-box-shadow);
     height: calc(var(--navbar-height) - 10px);
 }
 .nav-container {
@@ -107,20 +104,18 @@
 /* Buttons (Global Styling) */
 .btn {
     display: inline-block;
-    padding: 14px 32px;
-    border-radius: 12px;
+    padding: 12px 28px;
+    border-radius: 8px;
     font-family: var(--font-accent);
     font-weight: 600;
     font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 0.8px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     border: 2px solid transparent;
     cursor: pointer;
     text-align: center;
-    text-decoration: none;
-    position: relative;
-    overflow: hidden;
+    text-decoration: none; /* Ensure no underline for button links */
 }
 .btn-primary {
     background-color: var(--primary-color);
@@ -132,7 +127,7 @@
     border-color: var(--primary-hover-color);
     color: var(--bg-white);
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 12px rgba(var(--primary-color-rgb), 0.25);
+    box-shadow: 0 6px 12px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
 }
 .btn-secondary { /* Styled for light backgrounds, e.g., home section button */
     background-color: transparent;
@@ -172,6 +167,8 @@
     border-radius: var(--card-border-radius);
     box-shadow: var(--card-box-shadow);
     transition: var(--card-transition);
+    /* Specific hover effects like lift are better applied with utility classes
+       from animation.css (e.g., .hover-lift) in the HTML. */
 }
 
 
@@ -179,9 +176,9 @@
 #loading-overlay {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
-    background: linear-gradient(135deg, var(--bg-white) 0%, var(--bg-light) 100%);
+    background-color: var(--bg-white);
     display: flex; justify-content: center; align-items: center;
-    z-index: 9999;
+    z-index: 9999; /* Highest z-index */
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 #loading-overlay.hidden { opacity: 0; visibility: hidden; }
@@ -204,21 +201,11 @@
 
 /* Footer Styles */
 footer {
-    background: linear-gradient(135deg, var(--text-color) 0%, #1e293b 100%);
-    color: rgba(255, 255, 255, 0.8);
-    padding: 40px 0;
+    background-color: var(--text-color); /* Dark background for footer */
+    color: rgba(255, 255, 255, 0.75); /* Light text on dark background */
+    padding: 35px 0;
     text-align: center;
     font-size: 0.9rem;
-    position: relative;
-}
-footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
 }
 footer p {
     color: rgba(255, 255, 255, 0.7);
@@ -234,68 +221,32 @@ footer .fas.fa-heart { /* Heart icon color */
 }
 
 
-/* Enhanced Mobile Responsive Styles */
+/* Responsive Styles for Global Components */
 @media (max-width: 768px) {
+    /* Top Navbar adjustments for Mobile (now just a title bar) */
     #navbar {
         height: var(--navbar-height-mobile);
-        background: var(--glass-bg) !important;
-        backdrop-filter: var(--glass-backdrop) !important;
-        -webkit-backdrop-filter: var(--glass-backdrop) !important;
-        border-bottom: 1px solid var(--glass-border);
-        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        background-color: var(--bg-white) !important; /* Solid white background */
+        box-shadow: var(--card-box-shadow); /* Standard shadow */
     }
-    
     #navbar .logo {
-        color: var(--primary-color) !important;
-        font-size: 1.6rem;
+        color: var(--primary-color) !important; /* Logo is primary color */
     }
-    
+    /* Hide desktop nav links and burger menu, as bottom_nav_bar.css handles mobile nav */
     #navbar .nav-links,
     #navbar .burger {
         display: none !important;
     }
 
+    /* Adjust general card padding on mobile if using .card-base */
     .card-base {
-        padding: 18px;
-        margin-bottom: 15px;
+        padding: 20px;
     }
 
-    .btn {
-        padding: 12px 24px;
-        font-size: 0.9rem;
-        min-height: 44px;
-        border-radius: 10px;
-        touch-action: manipulation;
-    }
-    
-    .btn:active {
-        transform: scale(0.98);
-    }
-}
-
-/* Small Mobile Optimizations */
-@media (max-width: 480px) {
-    .card-base {
-        padding: 15px;
-        margin-bottom: 12px;
-    }
-    
+    /* Adjust button sizing for mobile if needed universally */
     .btn {
         padding: 10px 20px;
-        font-size: 0.85rem;
-        width: 100%;
-        max-width: 280px;
+        font-size: 0.9rem;
     }
-}
-
-/* Very Small Mobile */
-@media (max-width: 370px) {
-    .card-base {
-        padding: 12px;
-    }
-    
-    .btn {
-        padding: 8px 16px;
-        font-size: 0.8rem;
-    }
+    /* Specific button styles like .home-buttons .btn are in their respective section CSS (e.g., home.css) */
 }

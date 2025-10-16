@@ -1,22 +1,30 @@
 /* core.css - Global variables, resets, base styles, layout, utilities, global animations */
 
 :root {
-    --primary-color: #007bff;
-    --primary-color-rgb: 0, 123, 255;
-    --primary-hover-color: #0056b3;
+    --primary-color: #6366f1;
+    --primary-color-rgb: 99, 102, 241;
+    --primary-hover-color: #4f46e5;
 
-    --secondary-color: #6c757d;
-    --secondary-color-rgb: 108, 117, 125;
+    --secondary-color: #8b5cf6;
+    /* Often used for subtext or secondary elements */
+    --secondary-color-rgb: 139, 92, 246;
 
-    --accent-color: #17a2b8;
-    --accent-color-rgb: 23, 162, 184;
+    --accent-color: #ec4899;
+    /* A distinct color for highlights, underlines */
+    --accent-color-rgb: 236, 72, 153;
 
-    --text-color: #212529;
-    --text-color-rgb: 33, 37, 41;
-    --text-light: #495057;
+    --text-color: #1e293b;
+    /* Main dark text color for light backgrounds */
+    --text-color-rgb: 30, 41, 59;
+    --text-light: #64748b;
+    /* Lighter shade of dark text */
 
-    --bg-light: #f8f9fa;
+    --bg-light: #f8fafc;
+    /* Default light page background */
     --bg-white: #ffffff;
+    /* Pure white background */
+    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --bg-section-alt: #faf5ff;
 
     /* Home Section Specific Colors (as defined previously) */
     --home-bg-color: #f0f7ff;
@@ -39,14 +47,9 @@
     --card-bg: var(--bg-white);
     --card-padding: 30px;
     --card-border-radius: 16px;
-    --card-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --card-box-shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.15);
-    --card-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* Glass morphism */
-    --glass-bg: rgba(255, 255, 255, 0.25);
-    --glass-border: rgba(255, 255, 255, 0.18);
-    --glass-backdrop: blur(16px);
+    --card-box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
+    --card-box-shadow-hover: 0 20px 40px rgba(99, 102, 241, 0.2);
+    --card-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
     /* Font Stacks */
     --font-primary: 'Poppins', sans-serif;
@@ -84,26 +87,15 @@ html {
 
 body {
     font-family: var(--font-primary);
-    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    background-color: var(--bg-light);
+    /* Default page background */
     color: var(--text-color);
+    /* Default text color */
     line-height: 1.7;
+    /* Default line height for readability */
     overflow-x: hidden;
-    transition: all 0.3s ease;
-    position: relative;
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: -1;
+    /* Prevent horizontal scroll */
+    transition: background-color 0.3s ease;
 }
 
 body.loading {
@@ -116,10 +108,11 @@ body.loading {
 .container {
     width: 90%;
     max-width: 1140px;
+    /* Common max-width for desktop */
     margin: 0 auto;
+    /* Center the container */
     padding: 0 15px;
-    position: relative;
-    /* This is fine to keep */
+    /* Horizontal padding */
 }
 
 /* Headings */
@@ -231,21 +224,8 @@ img {
 
 /* Sections General Styling (Used by multiple sections) */
 .section-padding {
-    padding-top: 100px;
-    padding-bottom: 100px;
-    position: relative;
-}
-
-.section-padding::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-    pointer-events: none;
-    z-index: -1;
+    padding-top: 90px;
+    padding-bottom: 90px;
 }
 
 .section-title {
@@ -257,35 +237,34 @@ img {
     position: relative;
     padding-bottom: 20px;
     font-weight: 700;
-    text-shadow: 1px 1px 3px rgba(var(--text-color-rgb), 0.1);
+    text-shadow: 1px 1px 3px rgba(var(--text-color-rgb, 33, 37, 41), 0.1);
+    display: block;
+    width: 100%;
 }
 
-/* The ::after rule for the underline does NOT need to be changed. */
 .section-title::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80px;
+    width: 70px;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    border-radius: 20px;
-    box-shadow: 0 2px 10px rgba(var(--primary-color-rgb), 0.3);
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+    border-radius: 2px;
 }
 
 .section-subtitle {
     text-align: center;
     margin-top: -1rem;
-    margin-bottom: 50px;
-    font-size: 1.2rem;
+    /* Pull subtitle slightly closer to title */
+    margin-bottom: 45px;
+    font-size: 1.1rem;
     color: var(--text-light);
-    max-width: 700px;
+    max-width: 620px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.7;
-    font-weight: 400;
-    opacity: 0.9;
+    line-height: 1.6;
 }
 
 
@@ -343,122 +322,73 @@ img {
     }
 }
 
-/* Mobile Layout Base - Enhanced for better mobile experience */
+/* Mobile Layout Base - General adjustments */
 @media (max-width: 768px) {
     html {
-        font-size: 16px;
-        -webkit-text-size-adjust: 100%;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-        padding-top: var(--navbar-height-mobile);
-        padding-bottom: 85px;
-        touch-action: manipulation;
-    }
-
-    .container {
-        width: 95%;
-        padding: 0 10px;
+        font-size: 15px;
+        /* Slightly smaller base font on mobile */
     }
 
     h1 {
-        font-size: 2.2rem;
-        line-height: 1.2;
+        font-size: 2.3rem;
     }
 
+    /* Mobile H1 */
     h2,
     .section-title {
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-    }
-
-    h3 {
-        font-size: 1.4rem;
-    }
-
-    .section-padding {
-        padding-top: 60px;
-        padding-bottom: 60px;
-    }
-
-    .section-subtitle {
-        font-size: 1rem;
-        margin-bottom: 30px;
-        line-height: 1.6;
-    }
-
-    .section-title::after {
-        width: 50px;
-        height: 3px;
-    }
-
-    /* Better mobile animations */
-    .animate-on-scroll.slide-from-left,
-    .animate-on-scroll.slide-from-right {
-        transform: translateY(30px) scale(0.98);
-    }
-
-    .animate-on-scroll.slide-from-top {
-        transform: translateY(-30px) scale(0.98);
-    }
-
-    .animate-on-scroll.slide-from-bottom {
-        transform: translateY(30px) scale(0.98);
-    }
-
-    /* Mobile-specific glass effects */
-    .card-base,
-    .project-card,
-    .skill-item {
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-}
-
-/* Small Mobile Screens */
-@media (max-width: 480px) {
-    .container {
-        width: 98%;
-        padding: 0 8px;
-    }
-
-    .section-padding {
-        padding-top: 50px;
-        padding-bottom: 50px;
-    }
-
-    h1 {
         font-size: 2rem;
     }
 
-    h2,
-    .section-title {
-        font-size: 1.6rem;
-    }
-
-    .section-subtitle {
-        font-size: 0.95rem;
-    }
-}
-
-/* Very Small Screens */
-@media (max-width: 370px) {
-    .container {
-        padding: 0 5px;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    h2,
-    .section-title {
+    /* Mobile H2 and section titles */
+    h3 {
         font-size: 1.5rem;
     }
 
+    /* Mobile H3 */
     .section-padding {
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 90px;
+        padding-bottom: 90px;
     }
+
+    body {
+        /* Body padding to account for fixed nav bars */
+        padding-top: var(--navbar-height-mobile);
+        /* For fixed top navbar */
+        padding-bottom: 75px;
+        /* For bottom mobile nav (e.g., 55px nav + 20px buffer) */
+    }
+
+    /* Adjust scroll animation transforms for mobile if needed */
+    .animate-on-scroll.slide-from-left,
+    .animate-on-scroll.slide-from-right {
+        transform: translateX(0) translateY(50px) scale(0.95);
+        /* Slide from bottom on mobile */
+    }
+
+    .animate-on-scroll.slide-from-top {
+        transform: translateY(-50px) scale(0.95);
+    }
+
+    .section-title::after {
+        width: 60px;
+        height: 3px;
+    }
+
+    .section-subtitle {
+        margin-bottom: 35px;
+    }
+}
+
+/* Very Small Screens - General adjustments */
+@media (max-width: 370px) {
+    h1 {
+        font-size: 1.9rem;
+    }
+
+    h2,
+    .section-title {
+        font-size: 1.7rem;
+    }
+
+    /* Further adjustments to typography or spacing if needed */
 }

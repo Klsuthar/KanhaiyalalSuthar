@@ -1,215 +1,298 @@
-/* resume.css - Soft White Theme */
+/* resume.css - Styles specific to the Resume section (Redesigned) */
+
+#resume {
+    background: linear-gradient(180deg, #faf5ff 0%, #ffffff 50%, #f0f9ff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#resume::before {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
 
 .resume-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 30px;
-    margin-top: 30px;
+    gap: 50px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 1;
 }
 
 .resume-column {
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-top: 4px solid var(--primary-color);
+    padding: 40px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.03) 0%, rgba(236, 72, 153, 0.03) 100%);
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.1);
+    position: relative;
+    border: 2px solid rgba(99, 102, 241, 0.1);
+    transition: all 0.4s ease;
+}
+
+.resume-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 50px rgba(99, 102, 241, 0.18);
+    border-color: rgba(99, 102, 241, 0.2);
 }
 
 .resume-column-title {
-    font-size: 1.8rem;
-    color: var(--primary-color);
-    margin-bottom: 30px;
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 35px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    border-image-slice: 1;
     display: flex;
     align-items: center;
     font-weight: 700;
+    position: relative;
+}
+
+.resume-column-title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-color) 0%, var(--secondary-color) 100%);
+    transition: width 0.5s ease;
+}
+
+.resume-column:hover .resume-column-title::after {
+    width: 100%;
 }
 
 .resume-column-title i {
-    margin-right: 15px;
-    font-size: 1.2em;
-    padding: 12px;
-    background: var(--primary-color);
-    color: white;
-    border-radius: 50%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-right: 18px;
+    font-size: 1.4em;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .resume-items-container {
     position: relative;
-    padding-left: 30px;
 }
 
 .resume-items-container::before {
     content: '';
     position: absolute;
-    left: 8px;
-    top: 10px;
-    bottom: 10px;
+    left: 20px;
+    top: 20px;
+    bottom: 20px;
     width: 3px;
-    background: var(--primary-color);
-    border-radius: 3px;
+    background: linear-gradient(180deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    border-radius: 2px;
+    opacity: 0.2;
+    z-index: 0;
 }
 
 .card.uiverse-style {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
-    margin-bottom: 25px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 100%);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.15);
+    margin-bottom: 30px;
+    margin-left: 40px;
     position: relative;
-    transition: all 0.3s ease;
+    border: 2px solid rgba(99, 102, 241, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    overflow: hidden;
 }
 
 .card.uiverse-style::before {
     content: '';
     position: absolute;
-    width: 14px;
-    height: 14px;
+    left: -42px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
     border-radius: 50%;
-    background: var(--primary-color);
     border: 3px solid white;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
-    top: 35px;
-    left: -28px;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+    z-index: 2;
 }
 
-.card.uiverse-style:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+.card.uiverse-style::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
-.resume-card-icon {
-    flex-shrink: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: rgba(0, 123, 255, 0.1);
-    color: var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    border: 2px solid rgba(0, 123, 255, 0.2);
-}
-
-.resume-card-content h4 {
-    font-size: 1.2rem;
-    color: #2d3748;
-    font-weight: 600;
-    margin-bottom: 5px;
-}
-
-.resume-card-content h5 {
-    font-size: 0.9rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-.resume-card-content p {
-    font-size: 0.9rem;
-    color: #4a5568;
-    line-height: 1.6;
+.card.uiverse-style:last-child {
     margin-bottom: 0;
 }
 
-.text-center {
-    margin-top: 40px;
+.card.uiverse-style:hover {
+    transform: translateX(8px) translateY(-5px);
+    box-shadow: 0 20px 50px rgba(99, 102, 241, 0.25);
+    border-color: rgba(99, 102, 241, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(250, 245, 255, 1) 100%);
 }
 
-/* Responsive Design */
+.card.uiverse-style:hover::after {
+    opacity: 1;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    opacity: 0.12;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 4px 8px rgba(99, 102, 241, 0.2));
+}
+
+.card.uiverse-style:hover .card-icon {
+    opacity: 0.25;
+    transform: scale(1.15) rotate(8deg);
+    filter: drop-shadow(0 6px 12px rgba(99, 102, 241, 0.3));
+}
+
+
+.card.uiverse-style h4 {
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, var(--text-color) 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.3px;
+}
+
+.card.uiverse-style h5 {
+    font-size: 0.95rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+    font-family: var(--font-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card.uiverse-style h5::before {
+    content: '📍';
+    font-size: 0.9em;
+}
+
+.card.uiverse-style p {
+    font-size: 1rem;
+    margin-bottom: 0;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+/* Scroll Animation Staggering (already defined in components.css or animation.css) */
+/* No need to redefine here unless you want different delays for resume cards */
+
+
+/* Resume Section Responsive Adjustments */
 @media (min-width: 769px) {
     .resume-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        gap: 40px;
+    }
+
+    .resume-column {
+        padding: 40px;
     }
 }
 
 @media (max-width: 768px) {
-    .resume-column {
-        padding: 25px;
-        border-top: 4px solid #e2e8f0;
+    .resume-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
     }
-    
-    .resume-column-title {
-        font-size: 1.6rem;
-        margin-bottom: 25px;
-        color: #2d3748;
-    }
-    
-    .resume-column-title i {
-        background: #f7fafc;
-        color: #a0aec0;
-    }
-    
-    .resume-items-container {
-        padding-left: 25px;
-    }
-    
-    .resume-items-container::before {
-        background: #f1f5f9;
-    }
-    
-    .card.uiverse-style {
-        padding: 18px;
-        gap: 15px;
-        margin-bottom: 20px;
-    }
-    
-    .card.uiverse-style::before {
-        top: 30px;
-        left: -23px;
-        width: 12px;
-        height: 12px;
-        background: #e2e8f0;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .resume-card-icon {
-        width: 45px;
-        height: 45px;
-        font-size: 1.2rem;
-        background: #f7fafc;
-        color: #4a5568;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-    
-    .resume-card-content h4 {
-        font-size: 1.1rem;
-    }
-    
-    .resume-card-content h5 {
-        font-size: 0.85rem;
-        color: #a0aec0;
-    }
-    
-    .resume-card-content p {
-        font-size: 0.85rem;
-    }
-}
 
-@media (max-width: 480px) {
     .resume-column {
         padding: 20px;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.02) 0%, rgba(236, 72, 153, 0.02) 100%);
     }
-    
+
     .resume-column-title {
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         margin-bottom: 20px;
+        padding-bottom: 12px;
     }
-    
+
+    .resume-column-title i {
+        font-size: 1.2em;
+        margin-right: 12px;
+    }
+
+    .resume-items-container::before {
+        left: 15px;
+        width: 2px;
+    }
+
     .card.uiverse-style {
-        padding: 15px;
-        gap: 12px;
+        padding: 20px;
+        margin-bottom: 20px;
+        margin-left: 35px;
+        border-radius: 16px;
     }
-    
-    .resume-card-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
+
+    .card.uiverse-style::before {
+        left: -37px;
+        width: 12px;
+        height: 12px;
+        border-width: 2px;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    .card.uiverse-style h4 {
+        font-size: 1.05rem;
+        line-height: 1.4;
+        margin-bottom: 8px;
+    }
+
+    .card.uiverse-style h5 {
+        font-size: 0.85rem;
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .card.uiverse-style h5::before {
+        font-size: 0.8em;
+    }
+
+    .card.uiverse-style p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+
+    .card-icon {
+        width: 35px;
+        height: 35px;
+        top: 18px;
+        right: 18px;
+        opacity: 0.08;
     }
 }

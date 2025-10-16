@@ -1,39 +1,83 @@
-/* projects.css - Soft White Theme */
+/* project.css - Styles specific to the Projects section */
+
+#projects {
+    background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 50%, #faf5ff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+#projects::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -15%;
+    width: 550px;
+    height: 550px;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
 
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 30px;
-    margin-top: 30px;
+    gap: 45px;
+    margin-top: 50px;
+    position: relative;
+    z-index: 1;
 }
 
 .project-card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 2px solid rgba(99, 102, 241, 0.1);
+}
+
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover::before {
+    opacity: 1;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 25px 60px rgba(99, 102, 241, 0.25);
+    border-color: rgba(99, 102, 241, 0.3);
 }
 
 .project-image {
     position: relative;
     overflow: hidden;
-    height: 220px;
+    border-radius: 20px 20px 0 0;
 }
 
 .project-image img {
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9.5;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    filter: brightness(0.95);
+}
+
+.project-card:hover .project-image img {
+    filter: brightness(1);
 }
 
 .project-image::before {
@@ -43,14 +87,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.7) 0%, rgba(236, 72, 153, 0.7) 100%);
     opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 2;
+    transition: opacity 0.4s ease;
+    z-index: 1;
 }
 
 .project-image::after {
-    content: '\f35d';
+    content: '\f06e';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
     position: absolute;
@@ -60,8 +104,10 @@
     color: white;
     font-size: 3rem;
     opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 3;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    pointer-events: none;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .project-card:hover .project-image::before {
@@ -74,136 +120,154 @@
 }
 
 .project-card:hover .project-image img {
-    transform: scale(1.05);
+    transform: scale(1.15);
 }
 
+
+/* Shine effect (if used - ensure .animate-shine-card class is on .project-image) */
+.animate-shine-card.project-image::after { /* This was the original shine, now it's for the icon */
+    /* If you want to keep the shine OVER the image but UNDER the icon, adjust z-index or use another pseudo */
+    /* For simplicity, I'm assuming the icon is primary. If shine is still desired on image: */
+    /* Create a new pseudo for shine, or adjust existing. For now, the icon takes precedence. */
+}
+/* If you want to re-enable shine ON THE IMAGE (under the new overlay): */
+/*
+.project-image .image-shine-effect { // You'd add a <span class="image-shine-effect"></span> inside project-image if needed
+    content: "";
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background-image: linear-gradient(100deg,
+            rgba(255, 255, 255, 0) 15%,
+            rgba(255, 255, 255, 0.1) 50%, // More subtle shine
+            rgba(255, 255, 255, 0) 85%);
+    transform: rotate(20deg);
+    animation: shine 3s linear infinite;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 0; // Below the main overlay
+}
+.project-card:hover .project-image .image-shine-effect {
+    opacity: 1;
+}
+*/
+
+
 .project-info {
-    padding: 25px;
+    padding: 35px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 245, 255, 0.5) 100%);
+    position: relative;
+    z-index: 5;
 }
 
 .project-info h3 {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    color: var(--primary-color);
-    font-weight: 600;
-    line-height: 1.3;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--text-color) 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .project-info h3 {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .project-info p {
-    font-size: 0.95rem;
-    margin-bottom: 20px;
+    font-size: 1rem;
+    margin-bottom: 2rem;
     flex-grow: 1;
-    line-height: 1.6;
-    color: #4a5568;
-    text-align: justify;
+    line-height: 1.75;
+    color: var(--text-color);
 }
 
 .project-info .btn {
     align-self: flex-start;
     margin-top: auto;
-    background: var(--primary-color);
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.project-info .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.project-info .btn:hover::before {
+    left: 100%;
 }
 
 .project-info .btn:hover {
-    background: var(--primary-hover-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
 }
 
 .project-info .btn i {
-    margin-left: 8px;
-    transition: transform 0.3s ease;
+    margin-left: 10px;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-info .btn:hover i {
-    transform: translateX(5px);
+    transform: translateX(8px) scale(1.15);
 }
 
-/* Responsive Design */
+.projects-grid .project-card.animate-on-scroll:nth-child(odd) { transition-delay: 0.2s; }
+.projects-grid .project-card.animate-on-scroll:nth-child(even) { transition-delay: 0.35s; }
+
 @media (min-width: 769px) {
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+        gap: 40px;
     }
 }
 
-@media (min-width: 1200px) {
-    .project-image {
-        height: 250px;
+@media (min-width: 1200px) { /* Larger Desktops */
+    .projects-grid {
+        /* Consider 3 columns if you have many projects and want a denser layout */
+        /* grid-template-columns: repeat(3, 1fr); */
+        /* gap: 30px; */
     }
 }
 
 @media (max-width: 768px) {
     .projects-grid {
-        gap: 25px;
+        grid-template-columns: 1fr;
+        gap: 35px;
     }
-    
-    .project-image {
-        height: 200px;
+    .project-card .project-info {
+        padding: 25px;
     }
-    
-    .project-info {
-        padding: 20px;
-        text-align: center;
-    }
-    
     .project-info h3 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
-        color: #2d3748;
+        font-size: 1.4rem;
     }
-    
-    .project-info p {
-        font-size: 0.9rem;
-        margin-bottom: 18px;
-        text-align: left;
-    }
-    
     .project-info .btn {
-        width: 100%;
-        justify-content: center;
-        align-self: stretch;
-        padding: 14px 20px;
-        background: #f7fafc;
-        color: #2d3748;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-    }
-    
-    .project-info .btn:hover {
-        background: #edf2f7;
-        color: #1a202c;
-    }
-}
-
-@media (max-width: 480px) {
-    .project-image {
-        height: 180px;
-    }
-    
-    .project-info {
-        padding: 18px;
-    }
-    
-    .project-info h3 {
-        font-size: 1.2rem;
-    }
-    
-    .project-info p {
-        font-size: 0.85rem;
-        margin-bottom: 15px;
-    }
-    
-    .project-info .btn {
-        padding: 12px 18px;
+        padding: 10px 24px;
         font-size: 0.9rem;
     }
 }
