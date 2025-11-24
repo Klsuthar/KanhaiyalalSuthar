@@ -139,6 +139,11 @@
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
 }
 
 .hero-buttons .btn-primary:hover {
@@ -155,6 +160,11 @@
     border-radius: 8px;
     transition: all 0.3s ease;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
 }
 
 .hero-buttons .btn-outline:hover {
@@ -267,6 +277,11 @@
 
 /* Responsive */
 @media (max-width: 992px) {
+    .hero-section {
+        padding-top: 100px;
+        padding-bottom: 40px;
+    }
+
     .hero-section::after {
         width: 100%;
         opacity: 0.3;
@@ -275,11 +290,13 @@
     .hero-container {
         flex-direction: column-reverse;
         text-align: center;
-        gap: 3rem;
+        gap: 2rem;
+        padding: 0 20px;
     }
 
     .hero-content {
         align-items: center;
+        width: 100%;
     }
 
     .designation-wrapper {
@@ -288,49 +305,75 @@
 
     .hero-buttons {
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .image-wrapper {
-        width: 300px;
-        height: 300px;
+        width: 280px;
+        max-width: 90%;
     }
 
-    .name {
-        font-size: 3rem;
-    }
-}
-
-@media (max-width: 576px) {
     .name {
         font-size: 2.5rem;
     }
 
+    .hero-blob {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding-top: 80px;
+        min-height: auto;
+    }
+
+    .hero-container {
+        gap: 1.5rem;
+        padding: 0 15px;
+    }
+
+    .name {
+        font-size: 2rem;
+        word-break: break-word;
+    }
+
     .greeting {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .designation-wrapper {
-        font-size: 1.2rem;
+        font-size: 1rem;
     }
 
     .image-wrapper {
-        width: 250px;
-        height: 250px;
+        width: 240px;
+        max-width: 85%;
     }
 
     .hero-buttons {
         flex-direction: column;
         width: 100%;
+        gap: 0.8rem;
+        align-items: center;
     }
 
     .hero-buttons .btn-primary,
     .hero-buttons .btn-outline {
-        width: 100%;
-        max-width: 300px;
+        width: calc(100% - 30px);
+        max-width: 280px;
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        text-align: center;
     }
 
     .hero-blob {
-        width: 300px;
-        height: 300px;
+        width: 250px;
+        height: 250px;
+    }
+
+    .scroll-down {
+        display: none;
     }
 }
