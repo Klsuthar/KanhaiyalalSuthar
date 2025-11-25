@@ -2,13 +2,18 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // Loading Screen
+    document.body.classList.add('loading');
     const loadingScreen = document.getElementById('loadingScreen');
-    setTimeout(() => {
-        loadingScreen.classList.add('fade-out');
+    
+    window.addEventListener('load', () => {
         setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500);
-    }, 2500);
+            loadingScreen.classList.add('fade-out');
+            document.body.classList.remove('loading');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }, 2000);
+    });
 
     // Navigation Active State
     const sections = document.querySelectorAll('section');
