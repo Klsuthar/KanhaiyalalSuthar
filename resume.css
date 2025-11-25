@@ -12,10 +12,6 @@
     margin-top: 3rem;
 }
 
-.cards-wrapper {
-    display: block;
-}
-
 .column-title {
     font-size: 1.8rem;
     margin-bottom: 2rem;
@@ -111,101 +107,48 @@
 }
 
 @media (max-width: 768px) {
-    .resume-column {
-        margin-bottom: 2rem;
-    }
-
     .column-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         margin-bottom: 1.5rem;
     }
 
     .resume-grid {
-        gap: 2rem;
-    }
-
-    .cards-wrapper {
-        position: relative;
-        overflow: hidden;
-        padding: 0 10%;
+        gap: 2.5rem;
     }
 
     .resume-card {
-        position: absolute;
-        width: 80%;
-        left: 50%;
-        transform: translateX(-50%) scale(0.85);
-        opacity: 0.5;
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        flex-direction: column;
+        padding: 1.2rem;
         gap: 1rem;
-        margin-bottom: 0;
-        pointer-events: none;
+        margin-bottom: 1rem;
     }
 
-    .resume-card.active {
-        transform: translateX(-50%) scale(1);
-        opacity: 1;
-        z-index: 2;
-        pointer-events: auto;
-    }
-
-    .resume-card.prev {
-        transform: translateX(-130%) scale(0.85);
-        opacity: 0.5;
-        z-index: 1;
-        cursor: pointer;
-        pointer-events: auto;
-    }
-
-    .resume-card.next {
-        transform: translateX(30%) scale(0.85);
-        opacity: 0.5;
-        z-index: 1;
-        cursor: pointer;
-        pointer-events: auto;
-    }
-
-    .cards-wrapper {
-        min-height: 280px;
+    .resume-card:hover {
+        transform: translateY(-3px);
     }
 
     .card-icon {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
     }
 
     .card-icon img {
-        width: 25px;
-        height: 25px;
+        width: 28px;
+        height: 28px;
     }
 
     .card-content h4 {
-        font-size: 1rem;
+        font-size: 0.95rem;
     }
 
-
-
-    .resume-dots {
-        display: flex;
-        justify-content: center;
-        gap: 0.5rem;
-        margin-top: 1rem;
+    .organization {
+        font-size: 0.85rem;
     }
 
-    .resume-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--text-secondary);
-        opacity: 0.3;
-        transition: all 0.3s ease;
+    .duration {
+        font-size: 0.8rem;
     }
 
-    .resume-dot.active {
-        background: var(--primary-color);
-        opacity: 1;
-        width: 24px;
-        border-radius: 4px;
+    .card-content p {
+        font-size: 0.85rem;
     }
 }

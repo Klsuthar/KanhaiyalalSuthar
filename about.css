@@ -18,9 +18,13 @@
 }
 
 .about-image img {
+    width: 100%;
+    height: auto;
+    max-width: 400px;
     border-radius: 20px;
     box-shadow: 20px 20px 0 rgba(99, 102, 241, 0.1);
     transition: var(--transition-medium);
+    display: block;
 }
 
 .about-image:hover img {
