@@ -325,31 +325,38 @@
 
 @media (max-width: 576px) {
     .hero-section {
-        padding-top: 80px;
-        min-height: auto;
+        padding-top: 100px;
+        padding-bottom: 60px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .hero-container {
-        gap: 1.5rem;
+        gap: 2rem;
         padding: 0 15px;
     }
 
     .name {
-        font-size: 2rem;
+        font-size: 1.8rem;
         word-break: break-word;
+        margin-bottom: 0.8rem;
     }
 
     .greeting {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
     }
 
     .designation-wrapper {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
     }
 
     .image-wrapper {
-        width: 240px;
-        max-width: 85%;
+        width: 200px;
+        max-width: 75%;
     }
 
     .hero-buttons {
