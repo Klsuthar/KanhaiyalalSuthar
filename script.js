@@ -1,7 +1,7 @@
 /* Main Script */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Loading Screen
+    // Loading Screen with Bindi Animation
     document.body.classList.add('loading');
     const loadingScreen = document.getElementById('loadingScreen');
     
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
             }, 500);
-        }, 2000);
+        }, 4200);
     });
 
     // Navigation Active State

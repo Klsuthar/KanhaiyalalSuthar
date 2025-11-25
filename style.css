@@ -94,74 +94,58 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--background-dark);
+    width: 100vw;
+    height: 100vh;
+    background-color: #0f172a;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
+    overflow: hidden;
 }
 
 .loader-text {
-    font-family: var(--font-primary);
+    font-family: 'Poppins', sans-serif;
     font-size: 3rem;
     font-weight: 700;
     letter-spacing: 10px;
+    position: relative;
+    z-index: 10;
 }
 
 .loader-text span {
     display: inline-block;
+    color: #f1f5f9;
     opacity: 0;
     transform: translateY(20px);
     animation: revealLetter 0.5s forwards;
+    position: relative;
 }
 
-.loader-text span:nth-child(1) {
-    animation-delay: 0.1s;
-}
-
-.loader-text span:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.loader-text span:nth-child(3) {
-    animation-delay: 0.3s;
-}
-
-.loader-text span:nth-child(4) {
-    animation-delay: 0.4s;
-}
-
-.loader-text span:nth-child(5) {
-    animation-delay: 0.5s;
-}
-
-.loader-text span:nth-child(6) {
-    animation-delay: 0.6s;
-}
-
-.loader-text span:nth-child(7) {
-    animation-delay: 0.7s;
-}
-
-.loader-text span:nth-child(8) {
-    animation-delay: 0.8s;
-}
+.loader-text span:nth-child(1) { animation-delay: 0.1s; }
+.loader-text span:nth-child(2) { animation-delay: 0.2s; }
+.loader-text span:nth-child(3) { animation-delay: 0.3s; }
+.loader-text span:nth-child(4) { animation-delay: 0.4s; }
+.loader-text span:nth-child(5) { animation-delay: 0.5s; }
+.loader-text span:nth-child(6) { animation-delay: 0.6s; }
+.loader-text span:nth-child(7) { animation-delay: 0.7s; }
+.loader-text span:nth-child(8) { animation-delay: 0.8s; }
 
 @keyframes revealLetter {
     to {
         opacity: 1;
         transform: translateY(0);
-        color: var(--primary-color);
+        color: #6366f1;
         text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
     }
 }
 
+
+
 .maths-loader.fade-out {
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 /* Mobile Navigation Bottom */

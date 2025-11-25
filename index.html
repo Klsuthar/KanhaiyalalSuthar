@@ -35,7 +35,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
@@ -57,11 +57,43 @@
 <body>
 
     <!-- Loading Screen -->
-    <div class="maths-loader" id="loadingScreen">
-        <div class="loader-text">
-            <span>K</span><span>A</span><span>N</span><span>H</span><span>A</span><span>I</span><span>Y</span><span>A</span>
+    <div class="maths-loader" id="loadingScreen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#0f172a;display:flex;justify-content:center;align-items:center;z-index:9999;overflow:hidden;">
+        <div class="loader-text" style="font-family:'Poppins',sans-serif;font-size:3rem;font-weight:700;letter-spacing:10px;position:relative;z-index:10;">
+            <span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.1s;opacity:0;">K</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.2s;opacity:0;">A</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.3s;opacity:0;">N</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.4s;opacity:0;">H</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.5s;opacity:0;">A</span><span id="letterI" style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.6s;opacity:0;position:relative;">I</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.7s;opacity:0;">Y</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.8s;opacity:0;">A</span>
         </div>
     </div>
+    <style>
+        @keyframes revealLetter {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); text-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
+        }
+        #letterI::before {
+            content: '';
+            position: absolute;
+            top: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: #6366f1;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 10001;
+            animation: bindiMagic 3s ease-in-out 1.2s forwards;
+            box-shadow: 0 0 30px rgba(99, 102, 241, 1);
+        }
+        @keyframes bindiMagic {
+            0% { opacity: 0; transform: translateX(-50%) scale(1); }
+            15% { opacity: 1; transform: translateX(-50%) translateY(-100px) scale(1.8); box-shadow: 0 0 40px rgba(99, 102, 241, 1); }
+            30% { transform: translateX(-50%) translateY(0) scale(1); box-shadow: 0 0 30px rgba(99, 102, 241, 1); }
+            45% { transform: translateX(-50%) translateY(0) scale(1.2); }
+            55% { transform: translateX(-50%) translateY(0) scale(8); }
+            70% { transform: translateX(-50%) translateY(0) scale(40); opacity: 1; }
+            85% { transform: translateX(-50%) translateY(0) scale(100); opacity: 1; }
+            100% { transform: translateX(-50%) translateY(0) scale(250); opacity: 1; }
+        }
+        .maths-loader.fade-out { opacity: 0; visibility: hidden; transition: opacity 0.5s ease, visibility 0.5s ease; }
+    </style>
 
     <!-- Navigation Bar -->
     <nav class="navbar" id="navbar">
