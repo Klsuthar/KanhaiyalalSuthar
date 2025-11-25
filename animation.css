@@ -1,257 +1,151 @@
-/* animation.css - Modern and Cool Animations */
+/* Animation CSS */
 
-/* --- Keyframes Definitions --- */
-
-/* 1. Standard Fade In (Simple and effective) */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* 2. Fade In Up (Subtle slide up + fade) */
-@keyframes fadeInUp {
-  from {
+/* Utility Classes for Scroll Animations */
+.animate-on-scroll {
     opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    transition: all 0.8s ease;
 }
 
-/* 3. Fade In Down */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
+.animate-on-scroll.animated {
     opacity: 1;
-    transform: translateY(0);
-  }
 }
 
-/* 4. Fade In Left */
+/* Slide Animations */
+.slide-from-left {
+    transform: translateX(-50px);
+}
+
+.slide-from-left.animated {
+    transform: translateX(0);
+}
+
+.slide-from-right {
+    transform: translateX(50px);
+}
+
+.slide-from-right.animated {
+    transform: translateX(0);
+}
+
+.slide-from-bottom {
+    transform: translateY(50px);
+}
+
+.slide-from-bottom.animated {
+    transform: translateY(0);
+}
+
+/* Fade Animations */
+.anim-fade-in-left {
+    animation: fadeInLeft 1s ease forwards;
+}
+
 @keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
-/* 5. Fade In Right */
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* 6. Scale Up Entrance */
-@keyframes scaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* 7. Enhanced Entrance: Fade in + Slight Blur + Scale */
-@keyframes fadeInBlurScale {
-  from {
-    opacity: 0;
-    transform: scale(0.95) translateY(10px);
-    filter: blur(3px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0px);
-  }
-}
-
-/* 8. Text Character Focus-In (apply to spans wrapping characters) */
-@keyframes textFocusIn {
-  0% {
-    filter: blur(12px);
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  100% {
-    filter: blur(0px);
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* 9. Subtle Floating/Bobbing */
-@keyframes floatSubtle {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0px); }
-}
-
-/* 10. Background Pan (for buttons/links on hover) */
-@keyframes backgroundPan {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-/* 11. Icon Wiggle/Jiggle */
-@keyframes iconWiggle {
-  0%, 100% { transform: rotate(0deg); }
-  25% { transform: rotate(10deg) scale(1.1); }
-  75% { transform: rotate(-10deg) scale(1.1); }
-}
-
-/* 12. Clip-path reveal - From Bottom (MODIFIED for subtle scale) */
-@keyframes maskRevealBottomToTop {
-  from {
-    clip-path: inset(100% 0 0 0); /* Start fully masked from bottom */
-    transform: scale(0.98) translateY(10px); /* Slight scale down and offset */
-    opacity: 0; /* Start transparent */
-  }
-  to {
-    clip-path: inset(0 0 0 0);    /* Reveal to full visibility */
-    transform: scale(1) translateY(0);
-    opacity: 1;
-  }
-}
-
-/* 13. Clip-path reveal - From Left */
-@keyframes maskRevealLeftToRight {
-  from {
-    clip-path: inset(0 0 0 100%); /* Start fully masked from right (reveals left to right) */
-    transform: scale(0.98) translateX(10px); /* Added similar subtle transform as bottom reveal */
-    opacity: 0;
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-    transform: scale(1) translateX(0);
-    opacity: 1;
-  }
-}
-
-/* 14. Pulse Border */
-/* Ensure --primary-color-rgb is defined in core.css :root */
-@keyframes pulseBorder {
-  0% { box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb, 0, 123, 255), 0.6); }
-  70% { box-shadow: 0 0 0 12px rgba(var(--primary-color-rgb, 0, 123, 255), 0); }
-  100% { box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb, 0, 123, 255), 0); }
-}
-
-/* 15. Shine Effect */
-@keyframes shine {
-    0% { transform: translateX(-100%) rotate(20deg); }
-    100% { transform: translateX(100%) rotate(20deg); }
-}
-
-/* 16. Blinking Cursor */
-@keyframes blinkCursor {
-    0%, 100% { border-right-color: var(--accent-color); } /* Ensure --accent-color is defined */
-    50% { border-right-color: transparent; }
-}
-
-/* 17. Bounce (loading animation) */
-@keyframes bounce {
-    0%, 80%, 100% { transform: scale(0); }
-    40% { transform: scale(1.0); }
-}
-
-
-/* --- Utility Classes for Applying Animations --- */
-
-/* General Entrance Animations (to be used with .animate-on-scroll and triggered by .is-visible) */
-.anim-fade-in.is-visible { animation: fadeIn 0.7s ease-out forwards; }
-.anim-fade-in-up.is-visible { animation: fadeInUp 0.7s ease-out forwards; }
-.anim-fade-in-down.is-visible { animation: fadeInDown 0.7s ease-out forwards; }
-.anim-fade-in-left.is-visible { animation: fadeInLeft 0.7s ease-out forwards; }
-.anim-fade-in-right.is-visible { animation: fadeInRight 0.7s ease-out forwards; }
-.anim-scale-up.is-visible { animation: scaleUp 0.7s ease-out forwards; }
-
-.anim-fade-in-blur-scale.is-visible {
-  animation: fadeInBlurScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-/* Text Character Reveal (requires JS to wrap characters in spans and add delays) */
-.text-reveal-staggered span {
-  display: inline-block;
-  opacity: 0;
-  will-change: filter, opacity, transform;
-}
-.text-reveal-staggered.is-visible span {
-  animation: textFocusIn 0.6s cubic-bezier(0.550, 0.085, 0.680, 0.530) forwards;
-  /* JS should apply: style.animationDelay = `calc(var(--char-index, ${index}) * 50ms)`; */
-}
-
-/* Subtle continuous floating */
-.anim-float-subtle {
-  animation: floatSubtle 3.5s ease-in-out infinite;
-  will-change: transform;
-}
-
-/* Background Pan on Hover */
-.hover-bg-pan {
-  background-size: 250% auto;
-  transition: background-position 0.6s ease-out;
-}
-.hover-bg-pan:hover {
-  background-position: 100% 50%;
-}
-
-/* Icon Wiggle on Hover */
-.hover-icon-wiggle:hover > i,
-.hover-icon-wiggle:hover > svg,
-.hover-icon-wiggle:hover .fab,
-.hover-icon-wiggle:hover .fas,
-.hover-icon-wiggle:hover .far {
-  animation: iconWiggle 0.45s ease-in-out;
-  display: inline-block; /* Important for transform-origin */
-}
-
-/* Mask Reveal for Scroll Animations */
-.anim-mask-reveal-bottom.is-visible {
-  animation: maskRevealBottomToTop 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-.anim-mask-reveal-left.is-visible {
-  animation: maskRevealLeftToRight 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-}
-
-/* Pulse Border */
-.anim-pulse-border { /* Continuous pulse */
-  animation: pulseBorder 2s infinite cubic-bezier(0.66, 0, 0, 1);
-  border-radius: inherit;
-}
-.interactive-pulse-border:hover,
-.interactive-pulse-border:focus-visible { /* Pulse on interaction */
-  animation: pulseBorder 1.5s cubic-bezier(0.66, 0, 0, 1);
-  border-radius: inherit;
-}
-
-/* General Transition Utilities */
-.transition-all-ease { transition: all 0.3s ease-in-out; }
-.transition-transform-ease { transition: transform 0.3s ease-in-out; }
-.transition-opacity-ease { transition: opacity 0.3s ease-in-out; }
-.transition-colors-ease { transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out; }
-
-/* Hover Lift/Scale/Shadow */
+/* Hover Effects */
 .hover-lift {
-  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  will-change: transform, box-shadow;
+    transition: transform 0.3s ease;
 }
+
 .hover-lift:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: var(--card-box-shadow-hover, 0 8px 25px rgba(0,0,0,0.15)); /* Fallback shadow */
+    transform: translateY(-5px);
+}
+
+.hover-icon-wiggle:hover i {
+    animation: wiggle 0.5s ease;
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+}
+
+/* Pulse Effect */
+.interactive-pulse-border {
+    position: relative;
+}
+
+.interactive-pulse-border::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: inherit;
+    border: 2px solid var(--primary-color);
+    opacity: 0;
+    animation: pulseBorder 2s infinite;
+}
+
+@keyframes pulseBorder {
+    0% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1.1);
+        opacity: 0;
+    }
+}
+
+/* Typing Cursor */
+.cursor {
+    display: inline-block;
+    width: 2px;
+    background-color: var(--primary-color);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Blob Animation */
+@keyframes blobFloat {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
 }

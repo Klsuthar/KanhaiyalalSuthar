@@ -1,252 +1,252 @@
-/* components.css - Styles for global/reusable UI components */
+/* Components CSS */
 
-/* Top Navigation (Desktop and Modified Mobile View) */
-#navbar {
+/* Loading Screen - Dark Theme */
+.maths-loader {
     position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: var(--navbar-height); /* Desktop height */
-    background-color: transparent; /* Desktop initial state */
-    z-index: 1000; /* Ensures it's above most content */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    padding: 0;
-}
-#navbar.scrolled { /* Desktop scrolled state */
-    background-color: var(--bg-white);
-    box-shadow: var(--card-box-shadow);
-    height: calc(var(--navbar-height) - 10px);
-}
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    /* .container class from core.css will handle width and padding */
-}
-.logo {
-    font-family: var(--font-display);
-    font-size: 1.9rem;
-    font-weight: bold;
-    /* Color is determined by :not(.scrolled) and .scrolled states */
-}
-
-/* Desktop logo and link colors based on scroll AND home section background */
-/* When navbar is NOT scrolled (initial state, potentially over light home background) */
-#navbar:not(.scrolled) .logo {
-    /* Assumes --home-text-color-dark is defined in core.css if home bg is light, otherwise defaults to white */
-    color: var(--home-text-color-dark, var(--bg-white));
-}
-#navbar:not(.scrolled) .nav-links a {
-    /* Assumes --home-text-color-medium is defined in core.css if home bg is light, otherwise defaults to white */
-    color: var(--home-text-color-medium, var(--bg-white));
-}
-
-/* When navbar IS scrolled (it becomes white) */
-#navbar.scrolled .logo {
-    color: var(--primary-color);
-}
-#navbar.scrolled .nav-links a {
-    color: var(--text-color); /* Default text color for white background */
-}
-
-
-.nav-links { display: flex; list-style: none; margin: 0; padding: 0; } /* Reset list styles */
-.nav-links li { margin-left: 28px; }
-.nav-links a {
-    font-family: var(--font-accent);
-    font-weight: 500;
-    padding: 5px 0;
-    position: relative;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.7px;
-    text-decoration: none; /* Explicitly remove underline */
-    transition: color 0.3s ease;
-}
-
-.nav-links a::after { /* Underline effect for hover/active */
-    content: '';
-    position: absolute;
-    bottom: -2px; /* Position below the text */
+    top: 0;
     left: 0;
-    width: 0; /* Initially no width */
-    height: 2px;
-    background-color: var(--home-accent-text-color, var(--accent-color)); /* Use specific home accent or fallback */
-    transition: width 0.3s ease;
-}
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%; /* Full width on hover/active */
-}
-.nav-links a.active { /* Active link text color */
-    color: var(--home-accent-text-color, var(--accent-color)) !important; /* Important to override other states if needed */
-}
-.nav-links a:hover { /* Hover link text color (optional, if different from active) */
-    color: var(--home-accent-text-color, var(--accent-color));
-}
-
-
-.burger { display: none; cursor: pointer; } /* Hidden by default on desktop */
-.burger div {
-    width: 25px;
-    height: 3px;
-    background-color: var(--text-color); /* Default color for burger lines */
-    margin: 5px;
-    transition: all 0.3s ease;
-    border-radius: 1px;
-}
-/* Burger line colors when navbar is not scrolled (and potentially transparent) */
-#navbar:not(.scrolled) .burger div {
-    background-color: var(--home-text-color-dark, var(--bg-white)); /* Match link/logo color */
-}
-
-
-/* Buttons (Global Styling) */
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 8px;
-    font-family: var(--font-accent);
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none; /* Ensure no underline for button links */
-}
-.btn-primary {
-    background-color: var(--primary-color);
-    color: var(--bg-white);
-    border-color: var(--primary-color);
-}
-.btn-primary:hover {
-    background-color: var(--primary-hover-color);
-    border-color: var(--primary-hover-color);
-    color: var(--bg-white);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 12px rgba(var(--primary-color-rgb, 0, 123, 255), 0.25);
-}
-.btn-secondary { /* Styled for light backgrounds, e.g., home section button */
-    background-color: transparent;
-    color: var(--home-accent-text-color, var(--primary-color));
-    border-color: var(--home-accent-text-color, var(--primary-color));
-}
-.btn-secondary:hover {
-    background-color: var(--home-accent-text-color, var(--primary-color));
-    color: var(--bg-white);
-    border-color: var(--home-accent-text-color, var(--primary-color));
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 12px rgba(var(--primary-color-rgb, 0, 123, 255), 0.2);
-}
-/* A general outline button, distinct from btn-secondary if that's specific to home */
-.btn-outline-primary {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    background-color: transparent;
-}
-.btn-outline-primary:hover {
-    background-color: var(--primary-color);
-    color: var(--bg-white);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 12px rgba(var(--primary-color-rgb, 0, 123, 255), 0.2);
-}
-.btn-sm {
-    padding: 10px 22px;
-    font-size: 0.8rem;
-}
-
-
-/* Generic Card Base Style (Used by skill-item, project-card, etc. in their respective CSS) */
-/* Section-specific CSS files can extend or use this as a base */
-.card-base {
-    background-color: var(--card-bg);
-    padding: var(--card-padding);
-    border-radius: var(--card-border-radius);
-    box-shadow: var(--card-box-shadow);
-    transition: var(--card-transition);
-    /* Specific hover effects like lift are better applied with utility classes
-       from animation.css (e.g., .hover-lift) in the HTML. */
-}
-
-
-/* Loading Overlay */
-#loading-overlay {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: var(--bg-white);
-    display: flex; justify-content: center; align-items: center;
-    z-index: 9999; /* Highest z-index */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
     transition: opacity 0.5s ease, visibility 0.5s ease;
 }
-#loading-overlay.hidden { opacity: 0; visibility: hidden; }
-.maths-loader {
-    font-family: var(--font-display); font-size: 2.5rem; font-weight: bold;
+
+.maths-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-text {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.loader-text span {
+    display: inline-block;
+    background: linear-gradient(135deg, #60a5fa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: bounce 1.4s infinite ease-in-out both;
+    filter: drop-shadow(0 0 10px rgba(96, 165, 250, 0.3));
+}
+
+.loader-text span:nth-child(1) { animation-delay: -0.32s; }
+.loader-text span:nth-child(2) { animation-delay: -0.28s; }
+.loader-text span:nth-child(3) { animation-delay: -0.24s; }
+.loader-text span:nth-child(4) { animation-delay: -0.20s; }
+.loader-text span:nth-child(5) { animation-delay: -0.16s; }
+.loader-text span:nth-child(6) { animation-delay: -0.12s; }
+.loader-text span:nth-child(7) { animation-delay: -0.08s; }
+.loader-text span:nth-child(8) { animation-delay: -0.04s; }
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(1) translateY(0);
+        opacity: 0.7;
+    }
+    40% {
+        transform: scale(1.2) translateY(-10px);
+        opacity: 1;
+    }
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    gap: 10px;
+    border: none;
+    outline: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--text-primary);
+}
+
+.btn-outline:hover {
+    background: rgba(99, 102, 241, 0.1);
+    transform: translateY(-3px);
+}
+
+.btn-sm {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    background: white;
     color: var(--primary-color);
 }
-.maths-loader span { display: inline-block; animation: bounce 1.4s infinite ease-in-out both; }
-/* Individual span delays for maths-loader */
-.maths-loader span:nth-child(1) { animation-delay: -0.32s; }
-.maths-loader span:nth-child(2) { animation-delay: -0.28s; }
-.maths-loader span:nth-child(3) { animation-delay: -0.24s; }
-.maths-loader span:nth-child(4) { animation-delay: -0.20s; }
-.maths-loader span:nth-child(5) { animation-delay: -0.16s; }
-.maths-loader span:nth-child(6) { animation-delay: -0.12s; }
-.maths-loader span:nth-child(7) { animation-delay: -0.08s; }
-.maths-loader span:nth-child(8) { animation-delay: -0.04s; }
-/* 'bounce' keyframes should be in animation.css */
 
+.btn-sm:hover {
+    background: var(--text-primary);
+}
 
-/* Footer Styles */
-footer {
-    background-color: var(--text-color); /* Dark background for footer */
-    color: rgba(255, 255, 255, 0.75); /* Light text on dark background */
-    padding: 35px 0;
-    text-align: center;
+.btn-block {
+    width: 100%;
+}
+
+/* Cards */
+.card-base {
+    background: var(--background-light);
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid var(--glass-border);
+    transition: var(--transition-fast);
+}
+
+.card-base:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    border-color: var(--primary-color);
+}
+
+/* Form Elements */
+.form-group {
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: var(--font-secondary);
+    transition: var(--transition-fast);
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group label {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    color: var(--text-secondary);
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group input:not(:placeholder-shown),
+.form-group textarea:not(:placeholder-shown) {
+    border-color: var(--primary-color);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-group input:focus~label,
+.form-group textarea:focus~label,
+.form-group input:not(:placeholder-shown)~label,
+.form-group textarea:not(:placeholder-shown)~label {
+    top: -25px;
+    left: 0;
     font-size: 0.9rem;
-}
-footer p {
-    color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 8px;
-    line-height: 1.6;
-}
-footer .container { /* Container within footer */
-    border-top: 1px solid rgba(255, 255, 255, 0.12); /* Subtle top border */
-    padding-top: 25px;
-}
-footer .fas.fa-heart { /* Heart icon color */
-    color: #e74c3c;
+    color: var(--primary-color);
 }
 
+/* Scroll Down Indicator */
+.scroll-down {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.7;
+    transition: var(--transition-fast);
+}
 
-/* Responsive Styles for Global Components */
-@media (max-width: 768px) {
-    /* Top Navbar adjustments for Mobile (now just a title bar) */
-    #navbar {
-        height: var(--navbar-height-mobile);
-        background-color: var(--bg-white) !important; /* Solid white background */
-        box-shadow: var(--card-box-shadow); /* Standard shadow */
-    }
-    #navbar .logo {
-        color: var(--primary-color) !important; /* Logo is primary color */
-    }
-    /* Hide desktop nav links and burger menu, as bottom_nav_bar.css handles mobile nav */
-    #navbar .nav-links,
-    #navbar .burger {
-        display: none !important;
+.scroll-down:hover {
+    opacity: 1;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--text-secondary);
+    border-radius: 20px;
+    position: relative;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 2px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 1.5s infinite;
+}
+
+.arrow {
+    width: 15px;
+    height: 15px;
+    border-right: 2px solid var(--text-secondary);
+    border-bottom: 2px solid var(--text-secondary);
+    transform: rotate(45deg);
+    animation: scrollArrow 1.5s infinite;
+}
+
+@keyframes scrollWheel {
+    0% {
+        top: 10px;
+        opacity: 1;
     }
 
-    /* Adjust general card padding on mobile if using .card-base */
-    .card-base {
-        padding: 20px;
+    100% {
+        top: 30px;
+        opacity: 0;
+    }
+}
+
+@keyframes scrollArrow {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-5px, -5px);
     }
 
-    /* Adjust button sizing for mobile if needed universally */
-    .btn {
-        padding: 10px 20px;
-        font-size: 0.9rem;
+    50% {
+        opacity: 1;
     }
-    /* Specific button styles like .home-buttons .btn are in their respective section CSS (e.g., home.css) */
+
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(5px, 5px);
+    }
 }

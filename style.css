@@ -1,14 +1,324 @@
-/* style.css - Main sitewide styles (can be expanded) */
+/* Main Stylesheet */
 
-body {
-    /* Example: if you had a global max-width for text content not covered by .container */
-    /* max-width: 80ch; */
-    /* margin: 0 auto; */
+/* Navigation Bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 1.5rem 0;
+    transition: var(--transition-fast);
 }
 
-main {
-    /* Styles for the main content wrapper if needed */
-    display: block; /* Default, but good to be explicit */
+.navbar.scrolled {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-/* You can add more truly global element styles here if they don't fit in core.css */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: var(--transition-fast);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    margin: 5px 0;
+    transition: var(--transition-fast);
+}
+
+/* Footer */
+.footer {
+    background-color: #020617;
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin-top: 4rem;
+}
+
+/* Loading Screen */
+.maths-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-text {
+    font-family: var(--font-primary);
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 10px;
+}
+
+.loader-text span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: revealLetter 0.5s forwards;
+}
+
+.loader-text span:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.loader-text span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loader-text span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.loader-text span:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.loader-text span:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.loader-text span:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.loader-text span:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.loader-text span:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+@keyframes revealLetter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        color: var(--primary-color);
+        text-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    }
+}
+
+.maths-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Mobile Navigation Bottom */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 12px 0;
+    z-index: 1000;
+    border-top: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    justify-content: space-around;
+}
+
+.mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    position: relative;
+    padding: 8px 12px;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-align: center;
+}
+
+.mobile-nav-item i {
+    font-size: 1.3rem;
+    margin-bottom: 4px;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-item span {
+    font-size: 0.65rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-item.active {
+    color: var(--primary-color);
+}
+
+.mobile-nav-item.active i {
+    transform: translateY(-3px);
+    color: var(--primary-color);
+}
+
+.mobile-nav-indicator {
+    display: none;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: var(--background-light);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    border: 1px solid var(--glass-border);
+    animation: modalPop 0.3s ease;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: var(--success-color);
+    margin-bottom: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem 0;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: var(--background-light);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: var(--transition-medium);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .hamburger {
+        display: block;
+        z-index: 1001;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .mobile-nav {
+        display: flex;
+    }
+
+    .section-heading {
+        font-size: 2rem;
+    }
+}

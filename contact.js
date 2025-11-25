@@ -1,46 +1,61 @@
-// contact.js - Logic specific to the Contact section
+/* Contact Section Script */
 
 document.addEventListener('DOMContentLoaded', () => {
-    const contactSection = document.getElementById('contact');
-    if (!contactSection) {
-        return;
-    }
+    const form = document.getElementById('contactForm');
+    const modal = document.getElementById('thankYouModal');
+    const closeModal = document.querySelector('.close-modal');
 
-    console.log("Contact section specific JS initializing...");
-
-    const contactForm = document.getElementById('contact-form');
-    const modal = document.getElementById('thanks-modal');
-    const modalCloseBtn = document.getElementById('modal-close-btn');
-
-    if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
+    if (form) {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const formData = new FormData(contactForm);
-            
+
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Basic Validation
+            if (!data.name || !data.phone || !data.message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            const button = form.querySelector('button');
+            const originalText = button.innerHTML;
+            button.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+            button.disabled = true;
+
             try {
-                const response = await fetch(contactForm.action, {
+                const response = await fetch(form.action, {
                     method: 'POST',
                     body: formData,
-                    headers: {'Accept': 'application/json'}
+                    headers: {
+                        'Accept': 'application/json'
+                    }
                 });
-                
+
                 if (response.ok) {
-                    contactForm.reset();
-                    if (modal) modal.classList.add('show');
+                    modal.style.display = 'flex';
+                    form.reset();
+                } else {
+                    alert('Oops! There was a problem submitting your form');
                 }
             } catch (error) {
-                console.error('Form error:', error);
+                alert('Oops! There was a problem submitting your form');
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
             }
         });
     }
 
-    if (modalCloseBtn && modal) {
-        modalCloseBtn.addEventListener('click', () => modal.classList.remove('show'));
-    }
-
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) modal.classList.remove('show');
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
         });
     }
+
+    window.addEventListener('click', (e) => {
+        if (e.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
 });

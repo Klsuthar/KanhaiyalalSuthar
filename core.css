@@ -1,74 +1,40 @@
-/* core.css - Global variables, resets, base styles, layout, utilities, global animations */
+/* Core CSS - Variables and Resets */
 
 :root {
+    /* Color Palette */
     --primary-color: #6366f1;
-    --primary-color-rgb: 99, 102, 241;
-    --primary-hover-color: #4f46e5;
-
+    /* Indigo */
     --secondary-color: #8b5cf6;
-    /* Often used for subtext or secondary elements */
-    --secondary-color-rgb: 139, 92, 246;
-
+    /* Purple */
     --accent-color: #ec4899;
-    /* A distinct color for highlights, underlines */
-    --accent-color-rgb: 236, 72, 153;
+    /* Pink */
+    --background-dark: #0f172a;
+    /* Slate 900 */
+    --background-light: #1e293b;
+    /* Slate 800 */
+    --text-primary: #f1f5f9;
+    /* Slate 100 */
+    --text-secondary: #cbd5e1;
+    /* Slate 300 */
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
 
-    --text-color: #1e293b;
-    /* Main dark text color for light backgrounds */
-    --text-color-rgb: 30, 41, 59;
-    --text-light: #64748b;
-    /* Lighter shade of dark text */
-
-    --bg-light: #f8fafc;
-    /* Default light page background */
-    --bg-white: #ffffff;
-    /* Pure white background */
-    --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --bg-section-alt: #faf5ff;
-
-    /* Home Section Specific Colors (as defined previously) */
-    --home-bg-color: #f0f7ff;
-    /* Very light blue for home section background */
-    --home-text-color-dark: #122A3F;
-    /* Dark text for home section */
-    --home-text-color-medium: #526A7F;
-    /* Medium text for home section subheadings */
-    --home-accent-text-color: var(--primary-color);
-    /* Use primary for accents in home */
-    --home-grid-line-color: rgba(var(--text-color-rgb), 0.06);
-    /* Grid lines on home */
-    --home-blob-background-color: rgba(var(--primary-color-rgb), 0.12);
-    /* Blob behind image */
-
-    --border-color: #dee2e6;
-    /* Default border color */
-
-    /* Card Variables */
-    --card-bg: var(--bg-white);
-    --card-padding: 30px;
-    --card-border-radius: 16px;
-    --card-box-shadow: 0 10px 30px rgba(99, 102, 241, 0.1);
-    --card-box-shadow-hover: 0 20px 40px rgba(99, 102, 241, 0.2);
-    --card-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-
-    /* Font Stacks */
+    /* Fonts */
     --font-primary: 'Poppins', sans-serif;
-    /* Main body text */
-    --font-secondary: 'Roboto', sans-serif;
-    /* Can be used for UI elements or less prominent text */
-    --font-display: 'Playfair Display', serif;
-    /* For large headings, logo */
-    --font-accent: 'Montserrat', sans-serif;
-    /* For other headings, buttons, nav links */
+    --font-secondary: 'Inter', sans-serif;
 
-    /* Navigation Heights */
-    --navbar-height: 70px;
-    /* Desktop top navbar initial height */
-    --navbar-height-mobile: 60px;
-    /* Mobile top navbar (title bar) height */
+    /* Spacing */
+    --section-padding: 80px 0;
+    --container-width: 1200px;
+
+    /* Transitions */
+    --transition-fast: 0.3s ease;
+    --transition-medium: 0.5s ease;
 }
 
-/* Reset and Base Styles */
+/* Reset & Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -77,318 +43,133 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 16px;
-    /* Base font size */
-    -webkit-font-smoothing: antialiased;
-    /* Smoother fonts on WebKit */
-    -moz-osx-font-smoothing: grayscale;
-    /* Smoother fonts on Firefox */
 }
 
 body {
-    font-family: var(--font-primary);
-    background-color: var(--bg-light);
-    /* Default page background */
-    color: var(--text-color);
-    /* Default text color */
-    line-height: 1.7;
-    /* Default line height for readability */
+    font-family: var(--font-secondary);
+    background-color: var(--background-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
     overflow-x: hidden;
-    /* Prevent horizontal scroll */
-    transition: background-color 0.3s ease;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    min-width: 320px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
 }
 
-body.loading {
-    /* Applied when loading overlay is active */
-    overflow: hidden;
-    /* Prevent scrolling during load */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition-fast);
 }
 
-/* Container for centering content */
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Container */
 .container {
-    width: 90%;
-    max-width: 1140px;
-    /* Common max-width for desktop */
+    max-width: var(--container-width);
     margin: 0 auto;
-    /* Center the container */
-    padding: 0 15px;
-    /* Horizontal padding */
+    padding: 0 20px;
 }
 
-/* Headings */
+/* Typography */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: var(--font-accent);
-    /* Default heading font */
-    color: var(--text-color);
-    margin-top: 0;
-    /* Remove default top margin */
-    margin-bottom: 0.75rem;
-    /* Default bottom margin */
-    line-height: 1.3;
-    /* Default heading line height */
-    font-weight: 600;
-    /* Default boldnes for h2-h6 */
-}
-
-h1 {
-    font-size: 2.8rem;
+    font-family: var(--font-primary);
     font-weight: 700;
-}
-
-/* Specifics for H1 */
-h2 {
-    font-size: 2.2rem;
-}
-
-/* Specifics for H2 (used by .section-title) */
-h3 {
-    font-size: 1.6rem;
-}
-
-h4 {
-    font-size: 1.3rem;
-    font-weight: 500;
-}
-
-h5 {
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-h6 {
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-
-p {
+    line-height: 1.2;
     margin-bottom: 1rem;
-    color: var(--text-light);
-    /* Slightly lighter color for paragraphs */
 }
 
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--primary-hover-color);
-    text-decoration: none;
-    /* Ensure no underline on hover unless specified */
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    /* Maintain aspect ratio */
-    display: block;
-    /* Remove bottom space under images */
-    vertical-align: middle;
-    /* Better alignment if used inline */
-}
-
-/* Utility Classes */
-.bg-white\/80 {
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-/* Tailwind-like opacity */
-.backdrop-blur-sm {
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-}
-
-.text-center {
-    text-align: center;
-}
-
-.d-block {
-    display: block;
-}
-
-.d-inline-block {
-    display: inline-block;
-}
-
-.w-100 {
-    width: 100%;
-}
-
-
-/* Sections General Styling (Used by multiple sections) */
-.section-padding {
-    padding-top: 90px;
-    padding-bottom: 90px;
-}
-
-.section-title {
+.section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    font-weight: 900;
     text-align: center;
     margin-bottom: 1.5rem;
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    color: var(--text-color);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     position: relative;
-    padding-bottom: 20px;
-    font-weight: 700;
-    text-shadow: 1px 1px 3px rgba(var(--text-color-rgb, 33, 37, 41), 0.1);
-    display: block;
-    width: 100%;
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
+    display: inline-block;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
-    border-radius: 2px;
+    letter-spacing: -2px;
+    text-transform: capitalize;
+    filter: drop-shadow(0 0 30px rgba(102, 126, 234, 0.4));
+}
+
+.section-heading::before {
+    content: attr(data-text);
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    z-index: -1;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 50%, rgba(240, 147, 251, 0.2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: blur(2px);
+}
+
+.section-heading::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 5px;
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
 }
 
 .section-subtitle {
     text-align: center;
-    margin-top: -1rem;
-    /* Pull subtitle slightly closer to title */
-    margin-bottom: 45px;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
     font-size: 1.1rem;
-    color: var(--text-light);
-    max-width: 620px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.6;
 }
 
-
-/* Scroll Animations - General Setup (Keyframes are in animation.css) */
-.animate-on-scroll {
-    opacity: 0;
-    /* Start hidden */
-    will-change: transform, opacity;
-    /* Performance hint */
-    /* Base transition, can be overridden by more specific animation classes */
-    transition: opacity 0.6s ease-out, transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
 }
 
-/* Initial states for different slide directions (before .is-visible) */
-.animate-on-scroll.slide-from-left {
-    transform: translateX(-80px) scale(0.95);
+::-webkit-scrollbar-track {
+    background: var(--background-dark);
 }
 
-.animate-on-scroll.slide-from-right {
-    transform: translateX(80px) scale(0.95);
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
 }
 
-.animate-on-scroll.slide-from-bottom {
-    transform: translateY(70px) scale(0.95);
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
 }
 
-.animate-on-scroll.slide-from-top {
-    transform: translateY(-70px) scale(0.95);
-}
-
-.animate-on-scroll.scale-in {
-    transform: scale(0.8);
-}
-
-.animate-on-scroll.fade-only {
-    transform: translateY(0);
-}
-
-/* No movement, just fade */
-
-/* When element becomes visible (JS adds .is-visible) */
-.animate-on-scroll.is-visible {
-    opacity: 1;
-    transform: translateX(0) translateY(0) scale(1) rotate(0);
-    /* Generic reset for all types */
-}
-
-/* Basic Responsive Adjustments (Desktop First Approach) */
-@media (min-width: 992px) {
-
-    /* Larger screens */
-    .section-padding {
-        padding-top: 100px;
-        padding-bottom: 100px;
-    }
-}
-
-/* Mobile Layout Base - General adjustments */
-@media (max-width: 768px) {
-    html {
-        font-size: 15px;
-        /* Slightly smaller base font on mobile */
-    }
-
-    h1 {
-        font-size: 2.3rem;
-    }
-
-    /* Mobile H1 */
-    h2,
-    .section-title {
-        font-size: 2rem;
-    }
-
-    /* Mobile H2 and section titles */
-    h3 {
-        font-size: 1.5rem;
-    }
-
-    /* Mobile H3 */
-    .section-padding {
-        padding-top: 90px;
-        padding-bottom: 90px;
-    }
-
-    body {
-        /* Body padding to account for fixed nav bars */
-        padding-top: var(--navbar-height-mobile);
-        /* For fixed top navbar */
-        padding-bottom: 75px;
-        /* For bottom mobile nav (e.g., 55px nav + 20px buffer) */
-    }
-
-    /* Adjust scroll animation transforms for mobile if needed */
-    .animate-on-scroll.slide-from-left,
-    .animate-on-scroll.slide-from-right {
-        transform: translateX(0) translateY(50px) scale(0.95);
-        /* Slide from bottom on mobile */
-    }
-
-    .animate-on-scroll.slide-from-top {
-        transform: translateY(-50px) scale(0.95);
-    }
-
-    .section-title::after {
-        width: 60px;
-        height: 3px;
-    }
-
-    .section-subtitle {
-        margin-bottom: 35px;
-    }
-}
-
-/* Very Small Screens - General adjustments */
-@media (max-width: 370px) {
-    h1 {
-        font-size: 1.9rem;
-    }
-
-    h2,
-    .section-title {
-        font-size: 1.7rem;
-    }
-
-    /* Further adjustments to typography or spacing if needed */
+/* Selection */
+::selection {
+    background: var(--accent-color);
+    color: white;
 }
