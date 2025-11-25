@@ -339,24 +339,24 @@
     }
 
     .name {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
         word-break: break-word;
-        margin-bottom: 0.8rem;
+        margin-bottom: 1rem;
     }
 
     .greeting {
-        font-size: 0.9rem;
-        margin-bottom: 0.3rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
     }
 
     .designation-wrapper {
-        font-size: 0.95rem;
-        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        margin-bottom: 1.8rem;
     }
 
     .image-wrapper {
-        width: 200px;
-        max-width: 75%;
+        width: 260px;
+        max-width: 85%;
     }
 
     .hero-buttons {
@@ -369,9 +369,9 @@
     .hero-buttons .btn-primary,
     .hero-buttons .btn-outline {
         width: calc(100% - 30px);
-        max-width: 280px;
-        padding: 12px 20px;
-        font-size: 0.85rem;
+        max-width: 300px;
+        padding: 14px 24px;
+        font-size: 0.95rem;
         text-align: center;
     }
 
