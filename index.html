@@ -57,42 +57,17 @@
 <body>
 
     <!-- Loading Screen -->
-    <div class="maths-loader" id="loadingScreen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:#0f172a;display:flex;justify-content:center;align-items:center;z-index:9999;overflow:hidden;">
-        <div class="loader-text" style="font-family:'Poppins',sans-serif;font-size:3rem;font-weight:700;letter-spacing:10px;position:relative;z-index:10;">
-            <span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.1s;opacity:0;">K</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.2s;opacity:0;">A</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.3s;opacity:0;">N</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.4s;opacity:0;">H</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.5s;opacity:0;">A</span><span id="letterI" style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.6s;opacity:0;position:relative;">I</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.7s;opacity:0;">Y</span><span style="display:inline-block;color:#6366f1;animation:revealLetter 0.5s forwards 0.8s;opacity:0;">A</span>
+    <div class="maths-loader" id="loadingScreen" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);display:flex;justify-content:center;align-items:center;z-index:9999;">
+        <div style="font-family:'Poppins',sans-serif;font-size:clamp(2.5rem,10vw,5rem);font-weight:700;color:#f1f5f9;animation:fadeIn 0.5s ease;display:flex;align-items:baseline;">
+            <span style="color:#6366f1;text-shadow:0 0 20px rgba(99,102,241,0.6);">K</span><span style="color:#f1f5f9;">anhaiya</span><span style="display:inline-flex;gap:4px;margin-left:8px;"><span style="color:#ec4899;animation:dot1 1.2s infinite;">.</span><span style="color:#8b5cf6;animation:dot2 1.2s infinite;">.</span><span style="color:#6366f1;animation:dot3 1.2s infinite;">.</span></span>
         </div>
     </div>
     <style>
-        @keyframes revealLetter {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); text-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
-        }
-        #letterI::before {
-            content: '';
-            position: absolute;
-            top: -18px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 10px;
-            height: 10px;
-            background: #6366f1;
-            border-radius: 50%;
-            opacity: 0;
-            z-index: 10001;
-            animation: bindiMagic 3s ease-in-out 1.2s forwards;
-            box-shadow: 0 0 30px rgba(99, 102, 241, 1);
-        }
-        @keyframes bindiMagic {
-            0% { opacity: 0; transform: translateX(-50%) scale(1); }
-            15% { opacity: 1; transform: translateX(-50%) translateY(-100px) scale(1.8); box-shadow: 0 0 40px rgba(99, 102, 241, 1); }
-            30% { transform: translateX(-50%) translateY(0) scale(1); box-shadow: 0 0 30px rgba(99, 102, 241, 1); }
-            45% { transform: translateX(-50%) translateY(0) scale(1.2); }
-            55% { transform: translateX(-50%) translateY(0) scale(8); }
-            70% { transform: translateX(-50%) translateY(0) scale(40); opacity: 1; }
-            85% { transform: translateX(-50%) translateY(0) scale(100); opacity: 1; }
-            100% { transform: translateX(-50%) translateY(0) scale(250); opacity: 1; }
-        }
-        .maths-loader.fade-out { opacity: 0; visibility: hidden; transition: opacity 0.5s ease, visibility 0.5s ease; }
+        @keyframes fadeIn{0%{opacity:0}100%{opacity:1}}
+        @keyframes dot1{0%,80%{opacity:0}20%,60%{opacity:1}}
+        @keyframes dot2{0%,20%,80%{opacity:0}40%,60%{opacity:1}}
+        @keyframes dot3{0%,40%,80%{opacity:0}60%{opacity:1}}
+        .maths-loader.fade-out{opacity:0;transition:opacity 0.3s ease}
     </style>
 
     <!-- Navigation Bar -->
