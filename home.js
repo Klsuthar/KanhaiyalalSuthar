@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 1. Typing Effect ---
   const typingTarget = document.getElementById('typing-text');
   if (typingTarget) {
-    const words = ['Maths Teacher', 'Web Developer', 'Tech Enthusiast'];
+    const words = ['Maths Teacher', 'Web Developer', 'AI Enthusiast'];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;

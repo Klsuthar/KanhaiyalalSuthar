@@ -195,13 +195,16 @@
 
 @media (max-width: 991px) {
   .about-content {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    display: block;
   }
   .about-left {
     position: static;
+    width: 100%;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 0 auto 40px auto;
+  }
+  .about-right {
+    width: 100%;
   }
 }
 

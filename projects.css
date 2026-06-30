@@ -66,6 +66,7 @@
   opacity: 0;
   transition: opacity 0.4s ease;
   z-index: 1;
+  pointer-events: none;
 }
 
 .project-card:hover .project-image::before {
@@ -87,6 +88,7 @@
   transition: all 0.4s ease;
   z-index: 2;
   font-family: var(--font-heading);
+  pointer-events: none;
 }
 
 .project-card:hover .project-image::after {
@@ -229,7 +231,7 @@
 }
 
 .project-card.featured .project-info {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 253, 250, 0.5) 100%);
+  background: linear-gradient(180deg, rgba(17, 24, 39, 0.95) 0%, rgba(9, 13, 22, 0.8) 100%);
 }
 
 /* --- Desktop: Two-Column Grid --- */

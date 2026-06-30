@@ -9,14 +9,14 @@
   --primary-color: #6366f1;
   --secondary-color: #8b5cf6;
   --accent-color: #06b6d4;
-  --text-color: #0f172a;
-  --text-light: #64748b;
-  --bg-color: #ffffff;
-  --bg-alt: #f8fafc;
-  --border-color: #e2e8f0;
-  --card-bg: #ffffff;
-  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --card-shadow-hover: 0 10px 40px rgba(99, 102, 241, 0.12);
+  --text-color: #ffffff;
+  --text-light: #94a3b8;
+  --bg-color: #090d16;
+  --bg-alt: #0f1322;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --card-bg: rgba(17, 24, 39, 0.7);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  --card-shadow-hover: 0 10px 45px rgba(99, 102, 241, 0.18);
 
   /* Radius */
   --radius-lg: 16px;

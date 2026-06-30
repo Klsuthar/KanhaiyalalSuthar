@@ -52,11 +52,79 @@
 /* ----- Hover Lift Effect ----- */
 
 .hover-lift {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hover-lift:hover {
   transform: translateY(-4px);
+}
+
+/* ----- Smooth Scroll Animation System ----- */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Custom directions & scales */
+.animate-on-scroll.anim-fade-in-left,
+.animate-on-scroll.anim-mask-reveal-left,
+.animate-on-scroll.fade-left {
+  transform: translateX(-30px);
+}
+
+.animate-on-scroll.anim-fade-in-right,
+.animate-on-scroll.anim-mask-reveal-right,
+.animate-on-scroll.fade-right {
+  transform: translateX(30px);
+}
+
+.animate-on-scroll.anim-scale-up,
+.animate-on-scroll.scale-up {
+  transform: scale(0.96);
+}
+
+.animate-on-scroll.anim-mask-reveal-bottom,
+.animate-on-scroll.slide-from-bottom {
+  transform: translateY(40px);
+}
+
+.animate-on-scroll.anim-fade-in-blur-scale {
+  opacity: 0;
+  transform: scale(0.98);
+  filter: blur(4px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Triggered State */
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1) !important;
+  filter: blur(0) !important;
+}
+
+/* Staggered Delay Helpers */
+.animate-on-scroll:nth-child(1) { transition-delay: 0s; }
+.animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+.animate-on-scroll:nth-child(5) { transition-delay: 0.4s; }
+.animate-on-scroll:nth-child(6) { transition-delay: 0.5s; }
+.animate-on-scroll:nth-child(7) { transition-delay: 0.6s; }
+.animate-on-scroll:nth-child(8) { transition-delay: 0.7s; }
+
+/* ----- Global Smooth Hover System ----- */
+a, 
+.btn, 
+.card, 
+.project-card, 
+.skill-item, 
+.interest-tag, 
+.contact-info, 
+.contact-social-links a, 
+.form-group input, 
+.form-group textarea {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* ----- Reduced Motion ----- */

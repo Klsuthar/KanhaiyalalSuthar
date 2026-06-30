@@ -203,7 +203,8 @@
 }
 
 .modal-content {
-  background: white;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 48px;
   text-align: center;

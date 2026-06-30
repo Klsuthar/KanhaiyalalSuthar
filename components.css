@@ -11,7 +11,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(9, 13, 22, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid transparent;
@@ -19,9 +19,9 @@
 }
 
 #navbar.scrolled {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(9, 13, 22, 0.95);
   border-bottom-color: var(--border-color);
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .nav-container {
@@ -165,7 +165,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: white;
+  background: var(--bg-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -208,7 +208,7 @@
 /* ===== FOOTER ===== */
 
 footer {
-  background: var(--text-color);
+  background: #05080e;
   color: rgba(255, 255, 255, 0.7);
   padding: 30px 0;
   text-align: center;
