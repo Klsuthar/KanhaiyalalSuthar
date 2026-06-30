@@ -1,0 +1,95 @@
+# Kanhaiya Lal Suthar
+
+Maths Teacher, Web Developer, and Tech Enthusiast from Dhadheru, Churu, Rajasthan, India. Specializes in secondary and primary level mathematics instruction and modern front-end web development.
+
+## Summary
+
+Kanhaiya Lal Suthar holds a B.Sc.-B.Ed. integrated degree with first distinction. He has over 6 years of computer experience, combining mathematical teaching methodologies with modern technology. He builds responsive web applications and SaaS platforms, utilizing AI prompt engineering, React, Next.js, and vanilla HTML/CSS/JS.
+
+## Contact Information
+
+- **Email**: [klsuthar0987@gmail.com](mailto:klsuthar0987@gmail.com)
+- **Phone**: [+919001375139](tel:+919001375139)
+- **Location**: Dhadheru, Churu, Rajasthan, India (Postal Code: 331501)
+- **LinkedIn**: [Kanhaiya Lal Suthar on LinkedIn](https://www.linkedin.com/in/kanhaiya-lal-suthar/)
+- **GitHub**: [klsuthar on GitHub](https://github.com/klsuthar)
+- **WhatsApp**: [+919001375139](https://wa.me/919001375139)
+- **Telegram**: [@kanhaiyalalsuthar](https://t.me/kanhaiyalalsuthar)
+
+## Skills
+
+### Teaching
+- **Mathematics Instruction**: Primary & Senior level pedagogy, simplifying complex algebra, geometry, and arithmetic.
+- **Engagement**: Interactive teaching techniques and student performance tracking.
+
+### Web Development & Computer Skills
+- **Frontend Technologies**: HTML5, CSS3, JavaScript (ES6+), React, Next.js, Tailwind CSS.
+- **Tools & Productivity**: MS Office (Advanced Excel, Word), AI Prompt Engineering, Web Design.
+- **Core Strengths**: Responsive web layouts, user interface (UI) transitions, clean code architecture.
+
+## Experience
+
+### Primary Maths Teacher
+- **Institution**: Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu, Rajasthan
+- **Duration**: July 2025 - Present
+- **Responsibilities**: Teaching fundamental mathematical concepts to primary level students.
+
+### Maths Teacher Intern (Senior Level)
+- **Institution**: Gov. Sen. Sec. School, Dhadheru, Churu, Rajasthan
+- **Duration**: 2024 (3+ Months)
+- **Responsibilities**: Senior-level mathematics curriculum delivery and student coaching.
+
+### Science Teacher Intern (Senior Level)
+- **Institution**: Gov. Sec. School, Dhadheru, Churu, Rajasthan
+- **Duration**: 2023 (1+ Month)
+- **Responsibilities**: Delivered science lessons and supervised practical lab experiments.
+
+## Education
+
+### B.Sc.-B.Ed. Integrated Course
+- **Institution**: Sadguru Institute of Education, Sanganer, Jaipur (Rajasthan University)
+- **Duration**: 2020 - 2024
+- **Result**: First Distinction (65.70%)
+
+### Bachelor of Science (B.Sc.)
+- **Institution**: Sadguru Institute of Education, Sanganer, Jaipur
+- **Duration**: 2020 - 2023
+- **Result**: First Distinction (64.15%)
+
+### Higher Secondary School (PCM)
+- **Institution**: Abhilasha Shikshan Sansthan, Sandwa, Churu
+- **Duration**: 2019 - 2020
+- **Result**: First Distinction (94% in Physics, Chemistry, Mathematics)
+
+### Secondary School
+- **Institution**: Shri Jagdamba Shikshan Sansthan, Dhadheru, Churu
+- **Duration**: 2017 - 2018
+- **Result**: First Distinction (84.33%)
+
+## Projects
+
+### VidyaFrame
+- **Role**: Creator & Developer
+- **Type**: Commercial SaaS Platform
+- **URL**: [https://www.vidyaframe.com/](https://www.vidyaframe.com/)
+- **Description**: An educational design tool helping schools and teachers generate custom-branded worksheets, certificates, posters, and charts with a single click. Built with Next.js, React, Tailwind CSS, and a PDF rendering engine.
+
+### EdMusing Shield
+- **Role**: Creator & Developer
+- **URL**: [https://edmusingshield.com/](https://edmusingshield.com/)
+- **Description**: An interactive online education portal featuring responsive layouts and modern design concepts, aiming to facilitate smoother digital learning for students.
+
+### Student Progress Dashboard
+- **Role**: Developer
+- **URL**: [https://student-progress-dashboard.web.app/](https://student-progress-dashboard.web.app/)
+- **Description**: A data visualization dashboard enabling teachers to analyze grades, identify learning trends, and track student growth dynamically.
+
+### Vishwakarma Wood & CNC Work
+- **Role**: Developer
+- **URL**: [https://vishwakarmafurniture.web.app/](https://vishwakarmafurniture.web.app/)
+- **Description**: A responsive digital storefront showcasing custom carpentry, wood carvings, and CNC patterns. Built with premium design layouts and a direct WhatsApp integration.
+
+### KhatiRaj Woodworks
+- **Role**: Developer
+- **URL**: [https://khatirajwoodwork.web.app/](https://khatirajwoodwork.web.app/)
+- **Description**: An e-commerce showcase application displaying luxury furniture craft items, with smooth page navigation and image highlights.

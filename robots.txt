@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# AI Agent & LLM Crawlers
+# A structured, token-efficient version of this website is available at:
+# Link: https://klsuthar.github.io/KanhaiyalalSuthar/llms.txt
+
 Sitemap: https://klsuthar.github.io/KanhaiyalalSuthar/sitemap.xml

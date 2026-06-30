@@ -44,36 +44,115 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Kanhaiya Lal Suthar",
-      "alternateName": "Kanhaiya Lal Suthar Maths Teacher",
-      "url": "https://klsuthar.github.io/KanhaiyalalSuthar/",
-      "jobTitle": ["Maths Teacher", "Web Developer", "Tech Enthusiast"],
-      "image": "https://klsuthar.github.io/KanhaiyalalSuthar/images/profile.png",
-      "email": "klsuthar0987@gmail.com",
-      "telephone": "+919001375139",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Dhadheru",
-        "addressLocality": "Churu",
-        "addressRegion": "Rajasthan",
-        "postalCode": "331501",
-        "addressCountry": "IN"
-      },
-      "nationality": "India",
-      "knowsLanguage": ["Hindi", "English"],
-      "alumniOf": {
-        "@type": "EducationalOrganization",
-        "name": "Sadguru Institute of Education, Sanganer, Jaipur"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/kanhaiya-lal-suthar/",
-        "https://wa.me/919001375139",
-        "https://t.me/kanhaiyalalsuthar",
-        "https://github.com/klsuthar"
-      ],
-      "knowsAbout": ["Mathematics", "Teaching", "Maths Pedagogy", "Web Development", "MS Office", "Advanced Excel", "Web Design", "Technology", "AI Prompt Engineering"],
-      "description": "Kanhaiya Lal Suthar is a dedicated Maths Teacher from Dhadheru, Churu, Rajasthan, holding a B.Sc.-B.Ed. integrated degree. With over 6 years of computer experience, he excels at making complex mathematical concepts engaging. Kanhaiya is also a tech enthusiast and web developer."
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://klsuthar.github.io/KanhaiyalalSuthar/#person",
+          "name": "Kanhaiya Lal Suthar",
+          "alternateName": "Kanhaiya Lal Suthar Maths Teacher",
+          "url": "https://klsuthar.github.io/KanhaiyalalSuthar/",
+          "jobTitle": ["Maths Teacher", "Web Developer", "Tech Enthusiast"],
+          "image": "https://klsuthar.github.io/KanhaiyalalSuthar/images/Kanhaiyalal.png",
+          "email": "klsuthar0987@gmail.com",
+          "telephone": "+919001375139",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Dhadheru",
+            "addressLocality": "Churu",
+            "addressRegion": "Rajasthan",
+            "postalCode": "331501",
+            "addressCountry": "IN"
+          },
+          "nationality": "India",
+          "knowsLanguage": ["Hindi", "English"],
+          "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Sadguru Institute of Education, Sanganer, Jaipur",
+            "url": "https://sadgurujournals.org/"
+          },
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "B.Sc.-B.Ed. Integrated Degree",
+              "credentialCategory": "degree",
+              "educationalLevel": "Bachelor"
+            }
+          ],
+          "sameAs": [
+            "https://www.linkedin.com/in/kanhaiya-lal-suthar/",
+            "https://wa.me/919001375139",
+            "https://t.me/kanhaiyalalsuthar",
+            "https://github.com/klsuthar"
+          ],
+          "knowsAbout": [
+            "Mathematics",
+            "Teaching",
+            "Maths Pedagogy",
+            "Web Development",
+            "MS Office",
+            "Advanced Excel",
+            "Web Design",
+            "Technology",
+            "AI Prompt Engineering",
+            "SaaS",
+            "Next.js",
+            "React",
+            "Tailwind CSS"
+          ],
+          "description": "Kanhaiya Lal Suthar is a dedicated Maths Teacher from Dhadheru, Churu, Rajasthan, holding a B.Sc.-B.Ed. integrated degree. With over 6 years of computer experience, he excels at making complex mathematical concepts engaging. Kanhaiya is also a tech enthusiast and web developer.",
+          "publishingPrinciples": "https://klsuthar.github.io/KanhaiyalalSuthar/llms.txt"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://klsuthar.github.io/KanhaiyalalSuthar/#website",
+          "url": "https://klsuthar.github.io/KanhaiyalalSuthar/",
+          "name": "Kanhaiya Lal Suthar — Portfolio",
+          "publisher": {
+            "@id": "https://klsuthar.github.io/KanhaiyalalSuthar/#person"
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://klsuthar.github.io/KanhaiyalalSuthar/#faq",
+          "isPartOf": {
+            "@id": "https://klsuthar.github.io/KanhaiyalalSuthar/#website"
+          },
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Who is Kanhaiya Lal Suthar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kanhaiya Lal Suthar is a professional Mathematics Teacher, Web Developer, and Tech Enthusiast based in Churu, Rajasthan, India. He combines educational expertise with technical skills to teach math and build modern web applications."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What are Kanhaiya Lal Suthar's educational qualifications and teaching experience?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kanhaiya Lal Suthar holds an integrated B.Sc.-B.Ed. degree with First Distinction from Sadguru Institute of Education, Sanganer, Jaipur. He has completed a 3+ month internship teaching senior level mathematics at Gov. Sen. Sec. School, Dhadheru, and currently works as a Primary Maths Teacher at Shri Jagdamba Shikshan Sansthan."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What web projects and software has Kanhaiya Lal Suthar developed?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "He has developed several web platforms including VidyaFrame (a commercial SaaS for creating school worksheets/charts), EdMusing Shield (an educational portal), a Student Progress Dashboard, and business showcase sites like Vishwakarma Wood & CNC Work and KhatiRaj Woodworks."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What are Kanhaiya Lal Suthar's technical computer skills?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "His technical expertise includes frontend web development (HTML, CSS, JavaScript, React, Next.js, Tailwind CSS), advanced office productivity tools (MS Office, Advanced Excel), and modern AI Prompt Engineering."
+              }
+            }
+          ]
+        }
+      ]
     }
     </script>
 
@@ -188,7 +267,7 @@
                     <div class="about-right animate-on-scroll anim-mask-reveal-bottom" data-delay="0.2s">
                         <!-- Or slide-from-right -->
                         <h3>Maths Teacher & Web Developer</h3> <!-- This is the main subheading in right column -->
-                        <p>I'm Kanhaiya Lal Suthar, a passionate Mathematics teacher...</p>
+                        <p>I'm Kanhaiya Lal Suthar, a passionate Mathematics Teacher and Web Developer from Churu, Rajasthan. With a B.Sc.-B.Ed. integrated degree from Sadguru Institute of Education, Jaipur, and over 6 years of computer experience, I specialize in teaching senior and primary level mathematics, making complex concepts engaging and accessible. Additionally, I build responsive, modern web applications and SaaS tools like VidyaFrame (a custom branded school charts & worksheets creator SaaS) and EdMusing Shield, combining educational expertise with modern technology like React, Next.js, CSS, and AI Prompt Engineering.</p>
 
                         <div class="interests-section animate-on-scroll slide-from-bottom" data-delay="0.3s">
                             <h4 class="interests-title">My Interests</h4>
@@ -271,6 +350,63 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- FAQ Accordion Section for SEO / AEO / GEO -->
+                <div class="about-faq animate-on-scroll slide-from-bottom" data-delay="0.5s">
+                    <h3 class="faq-title">Frequently Asked Questions</h3>
+                    <div class="faq-grid">
+                        <div class="faq-item animate-on-scroll slide-from-bottom">
+                            <details>
+                                <summary>Who is Kanhaiya Lal Suthar?</summary>
+                                <div class="faq-content">
+                                    <p>Kanhaiya Lal Suthar is a professional Mathematics Teacher, Web Developer, and Tech Enthusiast based in Churu, Rajasthan, India. With over 6 years of computer experience, he holds a B.Sc.-B.Ed. integrated degree. He is passionate about making math concepts intuitive and engaging for students while building responsive, modern web applications for schools, small businesses, and communities.</p>
+                                </div>
+                            </details>
+                        </div>
+                        <div class="faq-item animate-on-scroll slide-from-bottom">
+                            <details>
+                                <summary>What are Kanhaiya Lal Suthar's educational qualifications and teaching experience?</summary>
+                                <div class="faq-content">
+                                    <p>Kanhaiya Lal holds an integrated B.Sc.-B.Ed. degree from Sadguru Institute of Education (Sanganer, Jaipur) with First Distinction. His teaching experience includes:</p>
+                                    <ul>
+                                        <li><strong>Primary Maths Teacher</strong> at Shri Jagdamba Shikshan Sansthan (July 2025 - Present), teaching foundational concepts.</li>
+                                        <li><strong>Maths Teacher Intern</strong> at Gov. Sen. Sec. School, Dhadheru (3+ Months, 2024), focusing on senior-level algebra, trigonometry, and calculus.</li>
+                                        <li><strong>Science Teacher Intern</strong> at Gov. Sen. Sec. School, Dhadheru (1+ Month, 2023), managing classrooms and lab demonstrations.</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                        <div class="faq-item animate-on-scroll slide-from-bottom">
+                            <details>
+                                <summary>What web projects has Kanhaiya Lal Suthar built?</summary>
+                                <div class="faq-content">
+                                    <p>Kanhaiya Lal has designed and developed several digital platforms, combining coding and pedagogy:</p>
+                                    <ul>
+                                        <li><strong>VidyaFrame</strong>: A commercial educational SaaS platform that allows schools to generate customized worksheets, certificates, and charts in one click.</li>
+                                        <li><strong>EdMusing Shield</strong>: A modern responsive portal built for educational institutes to transform digital learning.</li>
+                                        <li><strong>Student Progress Dashboard</strong>: An analytics dashboard for teachers to visualize student metrics and identify performance trends.</li>
+                                        <li><strong>Vishwakarma Wood & CNC Work</strong> and <strong>KhatiRaj Woodworks</strong>: Premium digital showcases and catalogs built for artisans and luxury woodwork businesses.</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                        <div class="faq-item animate-on-scroll slide-from-bottom">
+                            <details>
+                                <summary>What are Kanhaiya Lal Suthar's key technical and computer skills?</summary>
+                                <div class="faq-content">
+                                    <p>Kanhaiya Lal has a strong background in computer applications and frontend engineering:</p>
+                                    <ul>
+                                        <li><strong>Frontend Development</strong>: HTML5, CSS3, JavaScript (ES6+), React, Next.js, and Tailwind CSS.</li>
+                                        <li><strong>Office & Analytics</strong>: Microsoft Office Suite, specializing in Advanced Excel data processing and analysis.</li>
+                                        <li><strong>AI Prompt Engineering</strong>: Expert in crafting high-efficiency prompts for large language models to automate and optimize workflows.</li>
+                                        <li><strong>Core Competencies</strong>: Responsive layouts, CSS animations, UI design, and SEO/AEO/GEO optimization.</li>
+                                    </ul>
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
