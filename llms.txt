@@ -79,10 +79,10 @@ Kanhaiya Lal Suthar holds a B.Sc.-B.Ed. integrated degree with first distinction
 - **URL**: [https://edmusingshield.com/](https://edmusingshield.com/)
 - **Description**: An interactive online education portal featuring responsive layouts and modern design concepts, aiming to facilitate smoother digital learning for students.
 
-### Student Progress Dashboard
+### Shree Jagdamba Convent School
 - **Role**: Developer
-- **URL**: [https://student-progress-dashboard.web.app/](https://student-progress-dashboard.web.app/)
-- **Description**: A data visualization dashboard enabling teachers to analyze grades, identify learning trends, and track student growth dynamically.
+- **URL**: [https://shree-jagdamba.web.app/](https://shree-jagdamba.web.app/)
+- **Description**: Official website for Shree Jagdamba Convent School, Dhadheru, where I currently teach mathematics. A modern platform showcasing school information, facilities, and academic programs.
 
 ### Vishwakarma Wood & CNC Work
 - **Role**: Developer
