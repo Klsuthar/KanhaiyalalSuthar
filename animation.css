@@ -1,151 +1,72 @@
-/* Animation CSS */
+/* ============================================
+   ANIMATION.CSS — Essential Animations Only
+   Clean, Minimal, Performant
+   ============================================ */
 
-/* Utility Classes for Scroll Animations */
-.animate-on-scroll {
+/* ----- Keyframes ----- */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
     opacity: 0;
-    transition: all 0.8s ease;
-}
-
-.animate-on-scroll.animated {
+    transform: translateY(30px);
+  }
+  to {
     opacity: 1;
-}
-
-/* Slide Animations */
-.slide-from-left {
-    transform: translateX(-50px);
-}
-
-.slide-from-left.animated {
-    transform: translateX(0);
-}
-
-.slide-from-right {
-    transform: translateX(50px);
-}
-
-.slide-from-right.animated {
-    transform: translateX(0);
-}
-
-.slide-from-bottom {
-    transform: translateY(50px);
-}
-
-.slide-from-bottom.animated {
     transform: translateY(0);
+  }
 }
 
-/* Fade Animations */
-.anim-fade-in-left {
-    animation: fadeInLeft 1s ease forwards;
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
 }
 
-@keyframes fadeInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
-/* Hover Effects */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ----- Animation Utility Classes ----- */
+
+.anim-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.anim-fade-in-up {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.anim-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ----- Hover Lift Effect ----- */
+
 .hover-lift {
-    transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .hover-lift:hover {
-    transform: translateY(-5px);
+  transform: translateY(-4px);
 }
 
-.hover-icon-wiggle:hover i {
-    animation: wiggle 0.5s ease;
-}
+/* ----- Reduced Motion ----- */
 
-@keyframes wiggle {
-
-    0%,
-    100% {
-        transform: rotate(0);
-    }
-
-    25% {
-        transform: rotate(-10deg);
-    }
-
-    75% {
-        transform: rotate(10deg);
-    }
-}
-
-/* Pulse Effect */
-.interactive-pulse-border {
-    position: relative;
-}
-
-.interactive-pulse-border::before {
-    content: '';
-    position: absolute;
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border-radius: inherit;
-    border: 2px solid var(--primary-color);
-    opacity: 0;
-    animation: pulseBorder 2s infinite;
-}
-
-@keyframes pulseBorder {
-    0% {
-        transform: scale(1);
-        opacity: 0.5;
-    }
-
-    100% {
-        transform: scale(1.1);
-        opacity: 0;
-    }
-}
-
-/* Typing Cursor */
-.cursor {
-    display: inline-block;
-    width: 2px;
-    background-color: var(--primary-color);
-    animation: blink 1s infinite;
-}
-
-@keyframes blink {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0;
-    }
-}
-
-/* Blob Animation */
-@keyframes blobFloat {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-
-    33% {
-        transform: translate(30px, -50px) scale(1.1);
-    }
-
-    66% {
-        transform: translate(-20px, 20px) scale(0.9);
-    }
-
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

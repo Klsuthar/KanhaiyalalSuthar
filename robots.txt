@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://klsuthar.github.io/KanhaiyalalSuthar/sitemap.xml
 
-# Kanhaiyalal Suthar - Maths Teacher & Web Developer
-# Churu, Rajasthan
+Sitemap: https://klsuthar.github.io/KanhaiyalalSuthar/sitemap.xml

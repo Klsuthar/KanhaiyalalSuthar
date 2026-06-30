@@ -1,115 +1,221 @@
-/* About Section CSS */
+/* ============================================
+   ABOUT.CSS — About Section
+   Modern, Clean, Simple, Smooth
+   ============================================ */
 
-.about-section {
-    padding: var(--section-padding);
-    background-color: var(--background-dark);
+#about {
+  background-color: var(--bg-alt);
+  background-image: 
+    radial-gradient(circle at 85% 15%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 15% 85%, rgba(139, 92, 246, 0.04) 0%, transparent 40%);
 }
 
 .about-content {
-    display: flex;
-    align-items: center;
-    gap: 4rem;
-    margin-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 60px;
+  align-items: start;
 }
 
-.about-image {
-    flex: 1;
-    position: relative;
+.about-left {
+  position: sticky;
+  top: 100px;
 }
 
-.about-image img {
-    width: 100%;
-    height: auto;
+.about-left img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.about-details {
+  margin-top: 24px;
+  padding: 24px;
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+}
+
+.about-details h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  color: var(--text-color);
+}
+
+.about-details p {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.about-details p:last-child {
+  margin-bottom: 0;
+}
+
+.about-details p i {
+  color: var(--primary-color);
+  width: 18px;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.about-details a {
+  color: var(--text-light);
+  transition: color 0.3s;
+}
+
+.about-details a:hover {
+  color: var(--primary-color);
+}
+
+.about-right h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+.about-right > p {
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+.interests-section {
+  margin-bottom: 36px;
+}
+
+.interests-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+.interests-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.interest-tag {
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-light);
+  border: 1px solid var(--border-color);
+  background: var(--card-bg);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.interest-tag:hover {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+  background: rgba(99, 102, 241, 0.04);
+  transform: translateY(-2px);
+}
+
+.skills-section-container {
+  margin-top: 36px;
+}
+
+.skills-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--text-color);
+  margin-bottom: 20px;
+}
+
+.animated-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.skill-item {
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.skill-item:hover {
+  box-shadow: var(--card-shadow-hover);
+  border-color: rgba(99, 102, 241, 0.2);
+  transform: translateY(-3px);
+}
+
+.skill-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.skill-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.skill-percentage {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.progress-bar-container {
+  height: 6px;
+  background: var(--bg-alt);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 3px;
+  width: 0%; /* Dynamic fill handled by JS */
+  transition: width 1.2s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+/* --- Media Queries --- */
+
+@media (max-width: 991px) {
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .about-left {
+    position: static;
     max-width: 400px;
-    border-radius: 20px;
-    box-shadow: 20px 20px 0 rgba(99, 102, 241, 0.1);
-    transition: var(--transition-medium);
-    display: block;
+    margin: 0 auto;
+  }
 }
 
-.about-image:hover img {
-    transform: translate(-5px, -5px);
-    box-shadow: 25px 25px 0 rgba(99, 102, 241, 0.2);
-}
+@media (max-width: 768px) {
+  .animated-skills-grid {
+    grid-template-columns: 1fr;
+  }
 
-.about-text {
-    flex: 1.2;
-}
+  .about-details {
+    padding: 16px;
+    margin-top: 16px;
+  }
 
-.about-text h3 {
-    font-size: 1.8rem;
-    color: var(--text-primary);
-    margin-bottom: 1.5rem;
-}
-
-.about-text p {
-    color: var(--text-secondary);
-    margin-bottom: 2rem;
-    font-size: 1.05rem;
-}
-
-.personal-info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-bottom: 3rem;
-}
-
-.info-item {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-}
-
-.info-item span {
-    color: var(--primary-color);
-    font-weight: 600;
-    margin-right: 0.5rem;
-}
-
-.stats-counter {
-    display: flex;
-    justify-content: space-between;
-    background: var(--background-light);
-    padding: 2rem;
-    border-radius: 15px;
-    border: 1px solid var(--glass-border);
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-item h4 {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    margin-bottom: 0.2rem;
-}
-
-.stat-item span {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    .about-content {
-        flex-direction: column;
-        gap: 3rem;
-    }
-
-    .about-image {
-        width: 80%;
-        margin: 0 auto;
-    }
-}
-
-@media (max-width: 576px) {
-    .personal-info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .stats-counter {
-        flex-direction: column;
-        gap: 2rem;
-    }
+  .skill-item {
+    padding: 16px;
+  }
 }

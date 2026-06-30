@@ -1,0 +1,90 @@
+/* ============================================
+   MOBILE-SCROLL.CSS — Mobile Horizontal Scrolling
+   Modern, Clean, Simple, Smooth
+   ============================================ */
+
+@media (max-width: 768px) {
+  /* Skills horizontal scroll */
+  .animated-skills-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding: 4px 4px 16px;
+    margin: 0 -4px;
+  }
+  
+  .animated-skills-grid .skill-item {
+    width: 85% !important;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+  /* Resume cards horizontal scroll */
+  .resume-items-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 16px;
+    padding: 4px 4px 16px;
+    margin: 0 -4px;
+    padding-left: 0;
+  }
+  
+  .resume-items-container .card {
+    width: 85% !important;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    margin-bottom: 0;
+  }
+
+  /* Remove vertical line and indicators on mobile */
+  .resume-items-container::before {
+    display: none !important;
+  }
+  
+  .card::before {
+    display: none !important;
+  }
+
+  /* Projects cards horizontal scroll */
+  .projects-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+    padding: 4px 4px 16px;
+    margin: 0 -4px;
+  }
+
+  .projects-grid .project-card {
+    width: 85% !important;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    margin-bottom: 0;
+  }
+
+  /* Custom minimal scrollbar styling */
+  .animated-skills-grid::-webkit-scrollbar,
+  .resume-items-container::-webkit-scrollbar,
+  .projects-grid::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .animated-skills-grid::-webkit-scrollbar-track,
+  .resume-items-container::-webkit-scrollbar-track,
+  .projects-grid::-webkit-scrollbar-track {
+    background: var(--bg-alt);
+    border-radius: 2px;
+  }
+  
+  .animated-skills-grid::-webkit-scrollbar-thumb,
+  .resume-items-container::-webkit-scrollbar-thumb,
+  .projects-grid::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 2px;
+  }
+}

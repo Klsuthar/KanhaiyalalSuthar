@@ -1,0 +1,25 @@
+{
+  "name": "Kanhaiya Lal Suthar — Portfolio",
+  "short_name": "KLS Portfolio",
+  "icons": [
+    {
+      "src": "images/fav/fav128.ico",
+      "sizes": "128x128",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "images/fav/fav256.ico",
+      "sizes": "256x256",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "images/fav/fav512.ico",
+      "sizes": "512x512",
+      "type": "image/x-icon"
+    }
+  ],
+  "theme_color": "#6366f1",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "start_url": "."
+}

@@ -1,179 +1,245 @@
-/* Core CSS - Variables and Resets */
+/* ============================================
+   CORE.CSS — Design System Foundation
+   Modern, Clean, Simple, Smooth
+   ============================================ */
 
+/* ----- Design Tokens ----- */
 :root {
-    /* Color Palette */
-    --primary-color: #6366f1;
-    /* Indigo */
-    --secondary-color: #8b5cf6;
-    /* Purple */
-    --accent-color: #ec4899;
-    /* Pink */
-    --background-dark: #0f172a;
-    /* Slate 900 */
-    --background-light: #1e293b;
-    /* Slate 800 */
-    --text-primary: #f1f5f9;
-    /* Slate 100 */
-    --text-secondary: #cbd5e1;
-    /* Slate 300 */
-    --success-color: #10b981;
-    --warning-color: #f59e0b;
-    --glass-bg: rgba(30, 41, 59, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.1);
+  /* Colors */
+  --primary-color: #6366f1;
+  --secondary-color: #8b5cf6;
+  --accent-color: #06b6d4;
+  --text-color: #0f172a;
+  --text-light: #64748b;
+  --bg-color: #ffffff;
+  --bg-alt: #f8fafc;
+  --border-color: #e2e8f0;
+  --card-bg: #ffffff;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --card-shadow-hover: 0 10px 40px rgba(99, 102, 241, 0.12);
 
-    /* Fonts */
-    --font-primary: 'Poppins', sans-serif;
-    --font-secondary: 'Inter', sans-serif;
+  /* Radius */
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-sm: 8px;
 
-    /* Spacing */
-    --section-padding: 80px 0;
-    --container-width: 1200px;
-
-    /* Transitions */
-    --transition-fast: 0.3s ease;
-    --transition-medium: 0.5s ease;
+  /* Typography */
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
 }
 
-/* Reset & Base Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ----- Universal Reset ----- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+/* ----- Base ----- */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 body {
-    font-family: var(--font-secondary);
-    background-color: var(--background-dark);
-    color: var(--text-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
-    -webkit-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    min-width: 320px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
+  font-family: var(--font-body);
+  color: var(--text-color);
+  line-height: 1.7;
+  background: var(--bg-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
-body.loading {
-    overflow: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: var(--transition-fast);
-}
-
-ul {
-    list-style: none;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-/* Container */
+/* ----- Layout Utilities ----- */
 .container {
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
 }
 
-/* Typography */
-h1,
-h2,
-h3,
-h4,
-h5,
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Linear tech grid lines for even sections */
+section:nth-of-type(even)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(99, 102, 241, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Dot grid pattern for odd sections */
+section:nth-of-type(odd)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--border-color) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.section-padding {
+  padding: 100px 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* ----- Typography ----- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+}
+
+h3 {
+  font-size: 1.4rem;
+}
+
+h4 {
+  font-size: 1.15rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
 h6 {
-    font-family: var(--font-primary);
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
-.section-heading {
-    font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    position: relative;
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
-    letter-spacing: -2px;
-    text-transform: capitalize;
-    filter: drop-shadow(0 0 30px rgba(102, 126, 234, 0.4));
+p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
 }
 
-.section-heading::before {
-    content: attr(data-text);
-    position: absolute;
-    left: 4px;
-    top: 4px;
-    z-index: -1;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 50%, rgba(240, 147, 251, 0.2) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: blur(2px);
+/* ----- Section Headers ----- */
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  text-align: center;
+  margin-bottom: 12px;
+  color: var(--text-color);
+  position: relative;
+  font-weight: 700;
 }
 
-.section-heading::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 5px;
-    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
+.section-title::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  margin: 16px auto 0;
+  border-radius: 2px;
 }
 
 .section-subtitle {
-    text-align: center;
-    color: var(--text-secondary);
-    margin-bottom: 3rem;
-    font-size: 1.1rem;
+  text-align: center;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto 50px;
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
+/* ----- Links ----- */
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--background-dark);
+a:hover {
+  color: var(--secondary-color);
 }
 
-::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 5px;
+/* ----- Images ----- */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-color);
+/* ----- Lists ----- */
+ul, ol {
+  list-style: none;
 }
 
-/* Selection */
-::selection {
-    background: var(--accent-color);
-    color: white;
+/* ----- Scroll Animations ----- */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays */
+.animate-on-scroll:nth-child(1) { transition-delay: 0s; }
+.animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+.animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+.animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+.animate-on-scroll:nth-child(5) { transition-delay: 0.4s; }
+.animate-on-scroll:nth-child(6) { transition-delay: 0.5s; }
+
+/* ----- Responsive Breakpoints ----- */
+
+/* Tablets & below */
+@media (max-width: 992px) {
+  /* Inherits 100% width and 24px padding */
+}
+
+/* Mobile landscape & below */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .section-padding {
+    padding: 60px 0;
+  }
+
+  .section-subtitle {
+    margin-bottom: 35px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .section-padding {
+    padding: 50px 0;
+  }
 }
