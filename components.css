@@ -41,6 +41,10 @@
   letter-spacing: -0.5px;
 }
 
+.logo-dot {
+  color: var(--primary-color);
+}
+
 /* ----- Nav Links ----- */
 
 .nav-links {
